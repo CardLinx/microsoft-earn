@@ -1,0 +1,148 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+@model DealVM
+
+<!-- Start of main-banner -->
+@*hero tile image*@
+<table width="100%" bgcolor="#d8d8d8" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="banner">
+    <tbody>
+        <tr>
+            <td>
+                <table width="560" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+                    <tbody>
+                        <tr>
+                            <td width="100%">
+                                <table width="560" align="center" cellspacing="0" cellpadding="0" border="0" class="devicewidth">
+                                    <tbody>
+                                        <tr>
+                                            <!-- start of image -->
+                                            <td align="center" st-image="banner-image">
+                                                <div class="imgpop">
+                                                    <a target="_blank" href="@Model.TransactionUrl">
+                                                        <img width="560" border="0" height="250" alt="@Model.BusinessName" border="0" style="display: block; border: none; outline: none; text-decoration: none;" src="@Model.LargeImageUrl" class="banner" /></a>
+                                                </div>
+                                            </td>
+                                            <!-- end of image -->
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+@*hero tile text*@
+<table width="100%" bgcolor="#d8d8d8" cellpadding="0" cellspacing="0" border="0" id="backgroundTable">
+    <tbody>
+        <tr>
+            <td>
+                <table bgcolor="#f5f5f5" width="560" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth" style="background-color: #f5f5f5;">
+                    <tbody>
+                        <tr>
+                            <td width="100%" style="padding-right: 20px; padding-left: 20px; padding-top: 20px; padding-bottom: 20px;">
+                                <table cellspacing="0" cellpadding="0" width="100%" style="color: #444444; font-family: 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif; width: 100%">
+                                    <tr>
+                                        <td align="left" style="text-align: left; padding-left: 0; padding-bottom: 0; padding-top: 0; padding-right: 0;">
+                                            <table cellspacing="0" cellpadding="0" width="100%" style="font-family: 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif; width: 100%; padding-left: 0; padding-bottom: 0; padding-top: 0; padding-right: 0;">
+                                                <!-- Spacing -->
+                                                <tr>
+                                                    <td width="100%" height="15" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                </tr>
+                                                <!-- /Spacing -->
+                                                <tr>
+                                                    <td align="left" valign="top" style="vertical-align: top; text-align: left; padding-top: 0; padding-right: 0; padding-bottom: 10px; padding-left: 0; font-size: 20px; color: #444444;">@Model.BusinessName
+                                                    </td>
+                                                </tr>
+                                                <!-- Spacing -->
+                                                <tr>
+                                                    <td width="100%" height="15" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                </tr>
+                                                <!-- /Spacing -->
+                                                <tr>
+                                                    <td align="left" valign="top" style="vertical-align: top; text-align: left; padding-top: 0; padding-right: 0; padding-bottom: 10px; padding-left: 0; font-size: 26px; color: #b4009e; line-height: 32px">@Model.Title
+                                                    </td>
+                                                </tr>
+                                                <!-- Spacing -->
+                                                <tr>
+                                                    <td width="100%" height="15" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                </tr>
+                                                <!-- /Spacing -->
+                                                <tr>
+                                                    <td align="left" valign="top" style="vertical-align: top; text-align: left; padding-top: 0; padding-right: 0; padding-bottom: 10px; padding-left: 0; font-size: 14px; color: #777777;">@Model.Attribution
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <table cellspacing="0" cellpadding="0" width="100%" style="color: #444444; font-family: 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif; width: 100%; padding-left: 0; padding-bottom: 0; padding-top: 0; padding-right: 0;">
+                                                <tr>
+                                                    <td valign="bottom" style="width: 70%; text-align: left; vertical-align: bottom; padding-left: 0; padding-bottom: 5px; padding-top: 0; padding-right: 0;">
+                                                        <table cellspacing="0" cellpadding="0" width="100%" style="text-align: left; width: 100%; font-family: 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif; padding-left: 0; padding-bottom: 0; padding-top: 0; padding-right: 0;">
+                                                            <tr>
+                                                                <td width="60%">
+                                                                    <table cellspacing="0" cellpadding="0" width="100%" style="text-align: left; width: 100%; font-family: 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif; padding-left: 0; padding-bottom: 0; padding-top: 0; padding-right: 0;">
+                                                                        <tr>
+                                                                            <td valign="bottom" style="font-size: 12px; vertical-align: bottom; color: #b4009e;">@DailyDeals.SaveHeader</td>
+
+                                                                            @if (!string.IsNullOrEmpty(Model.MinimumSpend))
+                                                                            {
+                                                                                <td valign="bottom" style="font-size: 12px; vertical-align: bottom; color: #b4009e;">
+                                                                                    @DailyDeals.SpendHeader
+                                                                                </td>
+                                                                            }
+                                                                        </tr>
+                                                                        <tr>
+
+                                                                            <td valign="bottom" style="font-size: 24px; font-weight: normal; vertical-align: bottom; color: #b4009e;">
+                                                                                @(!string.IsNullOrWhiteSpace(Model.Discount) ? Model.Discount : Model.DiscountAmmount)
+                                                                            </td>
+                                                                            @if (!string.IsNullOrEmpty(Model.MinimumSpend))
+                                                                            {
+                                                                                <td valign="bottom" style="font-size: 24px; font-weight: normal; vertical-align: bottom; color: #b4009e;">@Model.MinimumSpend</td>
+                                                                            }
+                                                                        </tr>
+                                                                    </table>
+                                                                </td>
+                                                                <td align="right" valign="middle" style="text-align: right; vertical-align: middle;" width="40%">
+                                                                    <table border="0" cellpadding="0" cellspacing="0" class="tablet-button" st-button="edit" width="100%">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td align="center" valign="middle" height="40" width="100%" style="background-color: #ffa615; border-top-left-radius: 4px; border-bottom-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; background-clip: padding-box; font-size: 16px; font-family: Helvetica, arial, sans-serif; text-align: center; color: #ffffff; font-weight: 300; padding-left: 10px; padding-right: 10px;">
+                                                                                    <span style="color: #ffffff; font-weight: 300; vertical-align: bottom">
+                                                                                        <a style="color: #ffffff; text-align: center; text-decoration: none;" href="@Model.TransactionUrl">@DailyDeals.ViewOffer</a>
+                                                                                    </span>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <!-- Spacing -->
+                        <tr>
+                            <td height="10" bgcolor="#ffffff" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                        </tr>
+                        <!-- Spacing -->
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<!-- End of main-banner -->

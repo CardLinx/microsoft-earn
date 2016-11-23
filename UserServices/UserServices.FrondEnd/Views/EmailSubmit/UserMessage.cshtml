@@ -1,0 +1,23 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+@model System.Guid?
+@{
+    ViewBag.Title = "Email Submit Test";
+
+    ViewBag.Message = "Submit Email Request Test";
+}
+
+@section featured{
+<section class="featured">
+    <div class="content-wrapper">
+        <hgroup class="title">
+            <h1>@ViewBag.Title.</h1>
+            <br />
+            <h2>@ViewBag.Message</h2>
+        </hgroup>
+        </div>
+</section>
+}
+<p>Your email request is in progress. Please check the mailbox of @Html.DisplayFor(model => model) </p>

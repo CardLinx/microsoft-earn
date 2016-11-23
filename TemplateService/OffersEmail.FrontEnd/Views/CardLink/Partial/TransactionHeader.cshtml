@@ -1,0 +1,41 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+<tr style="width: 100%">
+    <td style="background-color: #505050; height: 56px; padding: 0;">
+        <table>
+            <tr>
+                <td width="11px" style="width: 11px"></td>
+                <td>
+                    <a href="https://www.bing.com/offers?bor=@ViewBag.referrer&bof=@ViewBag.campaign" style="padding-right: 0; padding-top: 0; padding-left: 0; padding-bottom: 0; text-decoration: none;" target="_blank">
+                        <img width="145" height="34" border="0" src="https://az414848.vo.msecnd.net/assets/offers_email_logo.png" style="width: 145px; height: 34px; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; margin-top: 11px" alt="bing offers" />
+                    </a>
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>
+<tr style="width: 100%">
+    <td bgcolor="#d2d2d2" valign="middle" align="left" style="padding: 0; background-color: #d2d2d2; height: 22px; font-family: 'Segoe UI Regular', 'Segoe UI', Arial, Helvetica, sans-serif; font-size: 10px; margin: 0; vertical-align: central;">
+        <table border="0" style="border: 0; border-collapse: collapse;">
+            <tr>
+                <td width="30px" style="width: 11px;"></td>
+                <td><a style="text-decoration: none; line-height: 22px; color: #505050;" target="_blank" href="https://www.bing.com/offers?bor=@ViewBag.referrer&bof=@ViewBag.campaign">@CardLink.Browse</a>
+                </td>
+                <td width="30px" style="width: 30px;"></td>
+                <td>
+                   @{
+                       if (ViewBag.isUnVerifiedUser == null || ViewBag.isUnVerifiedUser == false)   
+                        {
+                            <a style="text-decoration: none; line-height: 22px; color: #505050;" target="_blank" href="https://www.bing.com/offers/settings?bor=@ViewBag.referrer&bof=@ViewBag.campaign">@CardLink.Settings</a>
+                        }
+                    }
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>
+<tr>
+    <td height="20px" style="height: 20px; padding: 0"></td>
+</tr>

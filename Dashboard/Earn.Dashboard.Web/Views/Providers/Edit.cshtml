@@ -1,0 +1,392 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+@using OfferManagement.DataModel
+@model Provider
+@{
+    ViewBag.Title = "Providers";
+}
+@section styles
+{
+    <link href="https://cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+    @Styles.Render("~/bundles/providersCss")
+}
+<div class="content-wrapper providers-edit" style="min-height: 916px;" id="mainSection">
+    <!-- Page header -->
+    <div class="row">
+        <div class="col-lg-12">
+            <ol class="breadcrumb">
+                <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="/providers/"><i class="fa fa-shopping-cart"></i> Providers</a></li>
+                <li class="active"> @Model.Name</li>
+            </ol>
+        </div>
+    </div>
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box box-primary">
+
+                    <div class="box-header">
+                        <h3 class="box-title">Provider Details</h3>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <div class="col-lg-6">
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="providerId" class="col-lg-2 control-label text-right">Id</label>
+                                    <div class="col-lg-10">
+                                        <input type="text" class="form-control" id="providerId" value="@Model.Id" disabled="disabled" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="providerName" class="col-lg-2 control-label text-right">Name</label>
+                                    <div class="col-lg-10">
+                                        <input type="text" class="form-control" id="providerName" value="@Model.Name" disabled="disabled" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="feedType" class="col-lg-2 control-label text-right">Feed Type</label>
+                                    <div class="col-lg-10">
+                                        <input type="text" class="form-control" id="feedType" value="@Model.FeedType" disabled="disabled" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="providerType" class="col-lg-2 control-label text-right">Provider Type</label>
+                                    <div class="col-lg-10">
+                                        <input type="text" class="form-control" id="providerType" value="@Model.ProviderType" disabled="disabled" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="isNational" class="col-lg-2 control-label text-right">National</label>
+                                    <div class="col-lg-10">
+                                        @if (Model.IsNational)
+                                        {
+                                            <input type="checkbox" id="isNational" checked="checked" disabled="disabled" />
+                                        }
+                                        else
+                                        {
+                                            <input type="checkbox" id="isNational" disabled="disabled" />
+                                        }
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <input type="hidden" id="providerOfferId" value="@Model.OfferId" />
+                                    <label for="addOffer" class="col-lg-2 control-label text-right">Offers</label>
+                                    <div class="col-lg-10">
+                                        <button id="addOffer" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#offerModal" data-id="-1"><i class="fa fa-plus"></i> Offer</button>
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>Title</th>
+                                                    <th>Discount</th>
+                                                    <th>Active</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody data-bind="foreach: offers">
+                                                <tr data-toggle="modal" data-target="#offerModal" style="cursor: pointer" data-bind="attr: { 'data-id': $index }">
+                                                    <td><span data-bind="text: title"></span></td>
+                                                    <td><span data-bind="text: discount"></span>%</td>
+                                                    <td>
+                                                        <input type="checkbox" disabled="disabled" data-bind="checked: active">
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-lg-6"></div>
+                    </div>
+                    <div class="box-footer">
+                        <div class="col-sm-2">
+                            <div class="onoffswitch">
+                                @if (Model.IsActive)
+                                {
+                                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="enablePovider" checked="checked" />
+                                }
+                                else
+                                {
+                                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="enablePovider" />
+                                }
+                                <label class="onoffswitch-label" for="enablePovider">
+                                    <span class="onoffswitch-inner"></span>
+                                    <span class="onoffswitch-switch"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box box-primary collapsed-box">
+                    <div class="box-header">
+                        <h3 class="box-title">Filter Merchants</h3>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <div class="col-md-12 col-lg-10">
+                            <div id="queryBuilder"></div>
+                            @*<button type="button" id="queryBuilderSql" class="btn btn-danger" data-bind="click: queryBuilderSql">SQL</button>*@
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-primary btn-block" data-bind="click: queryBuilderFilter"><i class="fa fa-search"></i> Filter</button>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-warning " data-bind="click: queryBuilderReset"><i class="fa fa-refresh"></i> Reset</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-2">
+                <span class="btn btn-github" data-toggle="modal" data-target="#merchantModal" data-id="-1">
+                    <i class="fa fa-plus"></i> Merchant
+                </span>
+                <p class="help-block">Add merchant</p>
+            </div>
+            <div class="col-lg-2 text-right">
+                <span class="btn btn-google btn-file" id="importMerchants">
+                    <i class="fa fa-cloud-upload"></i> Import <input type="file" id="importMerchantsUpload" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
+                </span>
+                <p class="help-block">Import merchants</p>
+            </div>
+            <div class="col-lg-2 text-left">
+                <table class="table-condensed">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <span><input type="radio" name="import" value="MasterCardAuth" checked="checked" /> <img width="25" height="15" src="~/Content/img/mc.png" /> Auth</span>
+                            </td>
+                            <td>
+                                <span><input type="radio" name="import" value="Visa" /> <img width="25" height="15" src="~/Content/img/visa.png" /></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span><input type="radio" name="import" value="MasterCardClearing" /> <img width="25" height="15" src="~/Content/img/mc.png" /> Clear</span>
+                            </td>
+                            <td>
+                                <span><input type="radio" name="import" value="Amex" /> <img width="25" height="15" src="~/Content/img/amex.png" /></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-lg-2 text-right">
+                <span class="btn btn-microsoft" id="exportMerchants">
+                    <i class="fa fa-cloud-download"></i> Export
+                </span>
+                <p class="help-block">Export merchants</p>
+            </div>
+            <div class="col-lg-2 text-left">
+                <table class="table-condensed">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <span><input type="radio" name="export" value="MasterCard" checked="checked" /> <img width="25" height="15" src="~/Content/img/mc.png" /></span>
+                            </td>
+                            <td>
+                                <span><input type="radio" name="export" value="Visa" /> <img width="25" height="15" src="~/Content/img/visa.png" /></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <span><input type="radio" name="export" value="Amex" /> <img width="25" height="15" src="~/Content/img/amex.png" /></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <table id="businessesTable" class="display compact" cellspacing="0" width="100%"></table>
+            </div>
+        </div>
+    </section>
+
+    @*modal*@
+    <div class="modal fade" id="offerModal" tabindex="-1" role="dialog" aria-labelledby="offerModalLabel">
+        <div class="modal-dialog" role="document">
+            <form id="saveOfferForm" action="#" data-bind="submit: addOrUpdateOffer">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="offerModalLabel">Offer</h4>
+                    </div>
+                    <div class="modal-body" data-bind="with: selectedOffer">
+                        <input type="hidden" id="merchantId" name="id" data-bind="value: id" />
+                        <div class="form-group">
+                            <label for="offerTitle">Title</label>
+                            <input type="text" class="form-control" id="offerTitle" name="title" placeholder="Title" data-bind="value: title">
+                        </div>
+                        <div class="form-group">
+                            <label for="offerDiscount">Discount (%)</label>
+                            <input type="number" min="0" max="100" class="form-control" id="offerDiscount" name="discount" placeholder="5" data-bind="value: discount">
+                        </div>
+                        <div class="form-group">
+                            <label for="merchantActive">Set as Active Offer</label>&nbsp;&nbsp;
+                            <input id="merchantActive" type="checkbox" name="active" data-bind="checked: active, value: active, enable: providerOfferId() != id() && offers().length != 0">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-remove"></i> Close</button>
+                        <button id="saveOffer" type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal fade" id="merchantModal" tabindex="-1" role="dialog" aria-labelledby="merchantModalLabel">
+        <div class="modal-dialog" role="document">
+            <form class="form-horizontal" id="saveMerchantForm" action="#" data-bind="submit: addOrUpdateMerchant">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="merchantModalLabel">Merchant</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group" data-bind="with: selectedMerchant">
+                            <input type="hidden" id="merchantId" name="id" data-bind="value: id" />
+                            <label for="merchantName" class="col-lg-2 control-label text-right">Name</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="merchantName" name="name" data-bind="value: name">
+                            </div>
+                            <label for="merchantAddress" class="col-lg-2 control-label text-right">Address</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="merchantAddress" name="address" data-bind="value: address">
+                            </div>
+                            <label for="merchantCity" class="col-lg-2 control-label text-right">City</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="merchantCity" name="city" data-bind="value: city">
+                            </div>
+                            <label for="merchantState" class="col-lg-2 control-label text-right">State</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="merchantState" name="state" data-bind="value: state">
+                            </div>
+                            <label for="merchantZip" class="col-lg-2 control-label text-right">Zip</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="merchantZip" name="zip" data-bind="value: zip">
+                            </div>
+                            <label for="merchantLat" class="col-lg-2 control-label text-right">Latitude</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="merchantLat" name="latitude" data-bind="value: latitude">
+                            </div>
+                            <label for="merchantLon" class="col-lg-2 control-label text-right">Longitude</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="merchantLon" name="longitude" data-bind="value: longitude">
+                            </div>
+                            <label for="merchantPhone" class="col-lg-2 control-label text-right">Phone</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="merchantPhone" name="phone" data-bind="value: phone">
+                            </div>
+                            <label for="merchantUrl" class="col-lg-2 control-label text-right">Url</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="merchantUrl" name="url" data-bind="value: url">
+                            </div>
+                            <label for="merchantVisa" class="col-lg-2 control-label text-right"><img src="~/Content/img/visa.png" /></label>
+                            <div class="col-lg-10">
+                                <textarea id="merchantVisa" class="form-control" name="visa" data-bind="value: visaMids" placeholder="VisaMid;VisaSid|VisaMid;VisaSid"></textarea>
+                            </div>
+                            <label for="merchantMc" class="col-lg-2 control-label text-right" style="margin-top: 30px"><img src="~/Content/img/mc.png" /></label>
+                            <div class="col-lg-10">
+                                <table width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th style="text-align: center">Auth</th>
+                                            <th style="text-align: center">Clear</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td width="50%"><textarea id="merchantMc" rows="3" class="form-control" name="mc" data-bind="value: mcMids" placeholder="AcquiringICA;AcquiringMid|AcquiringICA;AcquiringMid"></textarea></td>
+                                            <td width="50%"><textarea id="merchantMcLocations" rows="3" class="form-control" name="mcLocations" data-bind="value: mcLocationsStr" placeholder="LocationId|LocationId"></textarea></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            @*<label for="merchantMcLocations" class="col-lg-2 control-label text-right">MC Locations</label>
+                                <div class="col-lg-10">
+                                </div>*@
+                            <label for="merchantAmex" class="col-lg-2 control-label text-right"><img src="~/Content/img/amex.png" /></label>
+                            <div class="col-lg-10">
+                                <textarea id="merchantAmex" class="form-control" name="amex" data-bind="value: amexMids" placeholder="SENumber|SENumber"></textarea>
+                            </div>
+                            <label for="merchantActive" class="col-lg-2 control-label text-right">Active</label>
+                            <div class="checkbox col-lg-10">
+                                <label>
+                                    <input id="merchantActive" type="checkbox" name="active" data-bind="checked: active, value: active">
+                                </label>
+                            </div>
+
+                            @if (!Model.IsNational)
+                            {
+                                <label for="merchantTop" class="col-lg-2 control-label text-right">Top Merchant</label>
+                                <div class="checkbox col-lg-10">
+                                    <label>
+
+                                            <input id="merchantTop" type="checkbox" name="rank" data-bind="checked: rank, value: rank">
+                                    </label>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-remove"></i> Close</button>
+                        <button id="saveMerchant" type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal fade" id="confirmImportModal" tabindex="-1" role="dialog" aria-labelledby="confirmImportLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="confirmImportLabel">Confirm Import</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Are you sure you want to upload "<span id="confirmImportFileName"></span>" with "<span id="confirmImportFileFormat"></span>" format?
+                    </p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" id="confirmImport" class="btn btn-primary btn-ok">Import</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section scripts
+{
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.10/js/dataTables.bootstrap.min.js"></script>
+    <script src="~/Scripts/widgets/queryBuilderWidget.min.js"></script>
+    @Scripts.Render("~/bundles/providerJs")
+}

@@ -1,0 +1,180 @@
+/*
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+*/
+@import url('settings.less');
+
+
+/* #region Default View */
+body {
+    margin: 0;
+    font-family: @fontLight;
+    font-size: @fontSize3;
+    padding-right: 7px;
+}
+
+.error-input {
+    border: 1px solid @red !important;
+}
+
+#card-linked-info {
+    width: 370px;
+
+    .new-card {
+        #card-number{
+            width: 260px;
+            margin-right: 8px;
+            height: @gridSingle * 2;
+            border: 1px solid @lightGray;
+            padding: @gridSingle / 2;
+            font-family: @fontRegular;
+            font-size: @fontSize4;
+            color: @darkGray;
+        }
+
+        #fullcreditcardflight{
+         display:none;
+        }
+
+        #name-on-card {
+            width: 260px;
+            margin-right: 8px;
+            margin-top:@gridSingle;
+            height: @gridSingle * 2;
+            border: 1px solid @lightGray;
+            padding: @gridSingle / 2;
+            font-family: @fontRegular;
+            font-size: @fontSize4;
+            color: @darkGray;
+        }
+
+        #expirationdate{
+            width: 270px;
+            margin-top:@gridSingle;
+            font-family: @fontRegular;
+            font-size: @fontSize4;
+            color: @darkGray;
+            margin-bottom:@gridSingle * 2;
+
+            select{
+            margin-right:@gridSingle;
+            height: @gridSingle * 3;
+            width:128px;
+            font-family: @fontRegular;
+            font-size: @fontSize4;
+            color: @darkGray;
+             border: 1px solid @lightGray;
+            }
+
+            select#year{
+            margin-right:0;
+            }
+        
+        }
+
+        #add-button {
+            width: 80px;
+            background-color: @newBingOrange;
+            color: @newDarkGray;
+            border: 1px solid @newBingOrange;
+            cursor: pointer;
+            height: @gridSingle * 3;
+            font-family: @fontRegular;
+            font-size: @fontSize4;
+
+            &:hover {
+                 background-color: @newDarkGray;
+                 border: 1px solid @newDarkGray;
+                 color: @newBingOrange;
+            }
+
+            &:active {
+                border: 1px solid @gray6;
+                background-color: @gray6;
+            }
+        }
+
+        .error {
+            display: none;
+            font-family: @fontSemiBold;
+            color: @red;
+            font-size: @fontSize4;
+            margin: 0;
+        }
+    }
+
+    #loading-icon {
+        background: @loadingAnimation no-repeat;
+        width: @gridSingle * 3;
+        height: @gridSingle * 3;
+        display: none;
+        margin-bottom: -@gridSingle;
+    }
+}
+
+/* #endregion */
+
+/* #region Handheld Portrait */
+@media screen and (max-width: 419px) {
+    #card-linked-info {
+        width: 100%;
+
+        .new-card {
+            #card-number {
+                width: 100%;
+                margin-bottom: @gridSingle;
+                margin-right: 0;
+                padding-right: 0px;
+            }
+
+               #name-on-card {
+                width: 100%;
+                margin-bottom: @gridSingle;
+                margin-top:0;
+                margin-right: 0;
+                padding-right: 0px;
+            }
+
+        #expirationdate{
+             width: 100%;
+             margin-bottom: @gridSingle;
+             margin-top:0;
+             margin-right: 0;
+             padding-right: 0px;
+        }
+
+        #add-button {
+            width: 80px;
+            background-color: @newBingOrange;
+            margin-top:@gridSingle;
+            color: @newDarkGray;
+            border: 1px solid @newBingOrange;
+            cursor: pointer;
+            height: @gridSingle * 3;
+            font-family: @fontRegular;
+            font-size: @fontSize4;
+
+            &:hover {
+                 background-color: @newDarkGray;
+                 border: 1px solid @newDarkGray;
+                 color: @newBingOrange;
+            }
+
+            &:active {
+                border: 1px solid @gray6;
+                background-color: @gray6;
+            }
+        }
+
+
+            #add-button {
+                width: 102%;
+            }
+        }
+
+          #loading-icon {
+            margin-left:45%;
+        }
+    }
+}
+/* #endregion */

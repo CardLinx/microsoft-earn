@@ -1,0 +1,36 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+@model UnauthenticatedAccountLinkingInviteEmailVM
+
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8" />
+    <title>@Confirm.PageTitle</title>
+</head>
+<body>
+
+    <table width="443" cellpadding="20" cellspacing="0" style="margin-right: auto; margin-left: auto; margin-bottom: 0; margin-top: 0; width: 443px; font-family: 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif; padding-left: 20px; padding-bottom: 20px; padding-top: 20px; padding-right: 20px; border-left-width: 0; border-bottom-width: 0; border-right-width: 0; border-top-width: 0;">
+        @Html.Partial("~/Views/CardLink/Partial/TransactionHeader.cshtml")
+        <tr>
+            <td align="left" valign="middle" style="color: #505050; font-family: 'Segoe UI Regular', 'Segoe UI', Arial, Helvetica, sans-serif; text-align: left; vertical-align: middle; padding-top: 0; padding-right: 11px; padding-bottom: 10px; padding-left: 11px;">
+
+                <h2 style="color: #505050; font-weight: normal; font-size: 30px; font-family: 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif; margin: 0;">@UnauthenticatedAccountLinkingInvite.EmailConfirmLine1  </h2>
+                <p>
+                    @UnauthenticatedAccountLinkingInvite.EmailConfirmLine2
+                </p>
+                <p>
+                    <a href="@Model.ConfirmationUrl" target="_blank" bgcolor="#ffb900" width="230px" height="40px" target="_blank" style="display: block; height: 45px; line-height: 45px; font-size: 30px; width: 230px; background-color: #ffb900; text-decoration: none; font-family: 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif; color: #505050; padding-left: 10px;"> @UnauthenticatedAccountLinkingInvite.EmailConfirmLine3</a>
+                </p>
+            </td>
+        </tr>
+        @Html.Partial("~/Views/CardLink/Partial/MoreAndFinePrint.cshtml", string.Empty)
+        @Html.Partial("~/Views/CardLink/Partial/TransactionFooter.cshtml")
+    </table>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+@model DailyDealsVM
+@{
+    ViewBag.Title = "Newsletter Weekly";
+    Layout = "~/Views/Shared/_ResponsiveLayoutA.cshtml";
+}
+
+@*Header*@
+@Html.Partial("Partial/Header", Model.Location)
+
+@*Deals*@
+@if (Model != null)
+{
+    //Hero Tile
+    if (Model.HeroDeal != null)
+    {
+
+        @Html.Partial("Partial/HeroTile", Model.HeroDeal)
+    }
+
+    //Additional Tile
+    if (Model.FeaturedDeals != null && Model.FeaturedDeals.Any())
+    {
+        foreach (var deal in Model.FeaturedDeals)
+        {
+            @Html.Partial("Partial/FeaturedTile", deal)
+        }
+    }
+}
+
+@*Social Sharing*@
+@Html.Partial("Partial/SocialSharing")
+
+@*Footer*@
+@Html.Partial("Partial/Footer", Model.UnsubscribeUrl)
+
+

@@ -1,0 +1,106 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+@model Earn.Offers.Earn.Models.AccountsPageModel
+@{
+    Layout = "~/offers/earn/views/account/accountslayout.cshtml";
+    ViewBag.Title = "How to spend your balance";
+}
+
+<section id="spending" class="accounts-container">
+    <div class="container">
+        <div class="spending-container">
+            <div class="left">
+                <div>
+                    <h2>You have @Model.EarnTotal in Earn Credits.</h2>
+                    <br />
+                </div>
+                <h1>How to spend your balance</h1>
+                <br />
+                <p>
+                    Spending your Earn Credits is easy. Just make a purchase with your enrolled credit or debit<sup>1</sup> card(s) at the online <a target="_blank" class="microsoftstore" href="https://www.microsoftstore.com">Microsoft Store</a>
+                    or in a participating local Microsoft Store, and you will receive a credit on your next card statement up to your Earn Balance.<sup>*</sup>
+                    You can apply your Earn Credits to anything you purchase, including: software, laptops, tablets, phones, Xbox consoles and games, headphones, speakers, and more.
+                </p>
+                <br />
+                <br />
+                <a data-bind="click:shopOnlineClicked" class="button shopOnline">Shop online</a>
+                <a data-bind="click:seeMicrosoftStoresClicked" class="button seeParticipatingStores">Participating local Microsoft Stores</a>
+            </div>
+            <div class="right desktop">
+                <img src="https://az414848.vo.msecnd.net/card-linked-assets/grid-products-desktop.jpg" />
+            </div>
+            <div class="right mobile">
+                <img src="https://az414848.vo.msecnd.net/card-linked-assets/grid-products-mobile.jpg" class="tablet" />
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</section>
+<section id="spending" class="accounts-container grey">
+    <div class="container">
+        <div class="spending-container" id="storelocations">
+            <div class="left desktop">
+                <img src="https://az414848.vo.msecnd.net/card-linked-assets/image_desktop.png" />
+            </div>
+            <div class="right">
+                <div class="content">
+                    <h1>Participating Microsoft Store locations</h1>
+                    <div class="col">
+                        <div class="location-section">
+                            <h4>Arizona</h4>
+                            <p>Chandler, <a href="http://www.microsoft.com/en-us/store/locations/az/chandler/chandler-fashion-center/store-1071" target="_blank">Chandler Fashion Center</a></p>
+                            <p>Scottsdale, <a href="http://www.microsoft.com/en-us/store/locations/az/scottsdale/scottsdale-fashion-square/store-1" target="_blank">Scottsdale Fashion Square</a></p>
+                            <p>Tucson<sup>2</sup>, <a href="http://www.microsoft.com/en-us/store/locations/az/tucson/park-place/store-1051" target="_blank">Park Place</a></p>
+                        </div>
+                        <div class="location-section">
+                            <h4>Massachusetts</h4>
+                            <p>Boston, <a href="http://www.microsoft.com/en-us/store/locations/ma/boston/the-shops-at-prudential-center/store-29" target="_blank">The Shops at Prudential Center</a></p>
+                            <p>Burlington, <a href="http://www.microsoft.com/en-us/store/locations/ma/burlington/burlington-mall/store-1002" target="_blank">Burlington Mall</a></p>
+                            <p>Natick, <a href="http://www.microsoft.com/en-us/store/locations/ma/natick/natick-mall/store-41" target="_blank">Natick Mall</a></p>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+
+                    <div class="col">
+                        <div class="location-section">
+                            <h4>Washington</h4>
+                            <p>Bellevue, <a href="http://www.microsoft.com/en-us/store/locations/wa/bellevue/bellevue-square-mall/store-6" target="_blank" class="hyperlink">Bellevue Square Mall</a></p>
+                            <p>Lynwood<sup>2</sup>, <a href="http://www.microsoft.com/en-us/store/locations/wa/lynnwood/alderwood/store-1058" target="_blank">Alderwood</a></p>
+                            <p>Seattle<sup>2</sup>, <a href="http://www.microsoft.com/en-us/store/locations/wa/seattle/pacific-place/store-1012" target="_blank">Pacific Place</a></p>
+                            <p>Seattle, <a href="http://www.microsoft.com/en-us/store/locations/wa/seattle/university-village/store-13" target="_blank">University Village</a></p>
+                            <p>Seattle<sup>2</sup>, <a href="http://www.microsoft.com/en-us/store/locations/wa/seattle/westfield-southcenter/store-1065" target="_blank">Westfield Southcenter</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="left tablet">
+                <img src="https://az414848.vo.msecnd.net/card-linked-assets/ms_store_950px.jpg" />
+            </div>
+            <div class="clear">&nbsp;</div>
+        </div>
+    </div>
+</section>
+
+@section Fineprints{
+    <section id="fineprints">
+        <div class="container">
+            <p class="fineprint">
+                [*] Earn Credits are only received for transactions at participating merchants in Arizona, Massachusetts and Washington, and only apply to purchases made at the online <a href="http://www.microsoftstore.com/">Microsoft Store</a> and local Microsoft Stores in Arizona, Massachusetts, and Washington.
+                Please note that it may take a few days before a purchase appears in your @Html.ActionLink("transaction history", "History", "Account").
+                If you believe you did not receive Earn Credits due, please @Html.ActionLink("contact us", "Support", "Account") and provide the place and date of purchase, along with the last 4 digits of your credit/debit card.
+                In some cases, Shell transactions may not show up in your Pending transactions at all, but should show up in your Confirmed transactions within a few days.
+            </p>
+            <br />
+            <p class="fineprint">
+                [1] Transactions where a PIN is entered at checkout do not qualify to receive Earn Credits.
+            </p>
+            <br />
+            <p class="fineprint">
+                [2] Microsoft Specialty Store. Features a curated selection of the best Microsoft products.
+            </p>
+        </div>
+        <div class="clear"></div>
+    </section>
+}

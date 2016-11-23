@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{77735244-DB9E-4257-801F-DDD53187733E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Lomo.Commerce.CardLink</RootNamespace>
+    <AssemblyName>Lomo.Commerce.CardLink</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>..\CommerceRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>..\CommerceRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ProdDebug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ProdDebug\</OutputPath>
+    <DefineConstants>CODE_ANALYSIS;DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>..\CommerceRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ProdRelease|AnyCPU'">
+    <OutputPath>bin\ProdRelease\</OutputPath>
+    <DefineConstants>CODE_ANALYSIS;TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>..\CommerceRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'IntDebug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\IntDebug\</OutputPath>
+    <DefineConstants>CODE_ANALYSIS;DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>..\CommerceRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'IntRelease|AnyCPU'">
+    <OutputPath>bin\IntRelease\</OutputPath>
+    <DefineConstants>CODE_ANALYSIS;TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>..\CommerceRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Cards\AddCardInvoker.cs" />
+    <Compile Include="Cards\RemoveCardInvoker.cs" />
+    <Compile Include="ClaimedDeals\ClaimDealInvoker.cs" />
+    <Compile Include="Deals\RegisterDealInvoker.cs" />
+    <Compile Include="Partners\Amex\Amex.cs" />
+    <Compile Include="Partners\Amex\AmexOfferIdGenerator.cs" />
+    <Compile Include="Partners\Amex\AmexUtilities.cs" />
+    <Compile Include="Partners\FirstData\FirstData.cs" />
+    <Compile Include="Partners\FirstData\FirstDataOfferIdGenerator.cs" />
+    <Compile Include="Partners\FirstData\FirstDataUtilities.cs" />
+    <Compile Include="Partners\ICommercePartner.cs" />
+    <Compile Include="Partners\IVisaClient.cs" />
+    <Compile Include="Partners\MasterCard\MasterCardUtilities.cs" />
+    <Compile Include="Partners\MasterCard\MasterCardOfferIdGenerator.cs" />
+    <Compile Include="Partners\MasterCard\MasterCard.cs" />
+    <Compile Include="Partners\PartnerUtilities.cs" />
+    <Compile Include="Partners\Visa\Visa.cs" />
+    <Compile Include="Partners\Visa\VisaOfferIdGenerator.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDictionary Include="..\CustomDictionary.xml">
+      <SubType>Designer</SubType>
+    </CodeAnalysisDictionary>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\shared\utils\Visa.Proxy\Visa.Proxy.csproj">
+      <Project>{7eea55c9-6910-41e4-9da5-8d0bf1fcb166}</Project>
+      <Name>Visa.Proxy</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataContracts\Commerce.DataContracts.csproj">
+      <Project>{0ff826a6-bce1-462d-ae04-f291390f6470}</Project>
+      <Name>Commerce.DataContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\Lomo.Scheduler\Lomo.Scheduler.csproj">
+      <Project>{5E774D1C-7687-4990-A581-BB56E5D64B31}</Project>
+      <Name>Lomo.Scheduler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AmexClient\Commerce.AmexClient.csproj">
+      <Project>{C52AFFFA-9D7C-411D-8DEC-46F58CC9052E}</Project>
+      <Name>Commerce.AmexClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Configuration\Commerce.Configuration.csproj">
+      <Project>{15a69462-a2c1-44ae-9ab6-9da19d3b686d}</Project>
+      <Name>Commerce.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Context\Commerce.Context.csproj">
+      <Project>{a67149d4-e149-4c3f-873b-52921e2bfa0f}</Project>
+      <Name>Commerce.Context</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataAccess\Commerce.DataAccess.csproj">
+      <Project>{7B84E649-BBAA-4E0F-BBB4-4BE1143DBC87}</Project>
+      <Name>Commerce.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataContractExtensions\Commerce.DataContractExtensions.csproj">
+      <Project>{f68fefff-05b1-49cf-96d3-696cad8d275f}</Project>
+      <Name>Commerce.DataContractExtensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataModels\Commerce.DataModels.csproj">
+      <Project>{10f548e4-c48e-4524-9a72-a6aaed713e5c}</Project>
+      <Name>Commerce.DataModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FirstDataClient\Commerce.FirstDataClient.csproj">
+      <Project>{a2fe6904-1156-4d04-9ea8-2099774b1a0f}</Project>
+      <Name>Commerce.FirstDataClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Logging\Commerce.Logging.csproj">
+      <Project>{3fa7609a-4c21-46cc-9c76-0daefe77815c}</Project>
+      <Name>Commerce.Logging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LogicCore\Commerce.Logic.Core.csproj">
+      <Project>{2d8f2a73-23fe-4a54-8e49-fb3d40d1aa11}</Project>
+      <Name>Commerce.Logic.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MasterCardClient\Commerce.MasterCardClient.csproj">
+      <Project>{ffb3ee37-2f5f-4ca3-a051-05b106d983bc}</Project>
+      <Name>Commerce.MasterCardClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServiceResponder\Commerce.Service.Responder.csproj">
+      <Project>{76fad5db-1978-44f9-8719-cdd7b8c80f7a}</Project>
+      <Name>Commerce.Service.Responder</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utilities\Commerce.Utilities.csproj">
+      <Project>{78499661-cfde-4218-bb0b-b3866bd8dafd}</Project>
+      <Name>Commerce.Utilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VisaClient\Commerce.VisaClient.csproj">
+      <Project>{b30ba984-cecc-4601-a052-0d943190b08e}</Project>
+      <Name>Commerce.VisaClient</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Channels" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

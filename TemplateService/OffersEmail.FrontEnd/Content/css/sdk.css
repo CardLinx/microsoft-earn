@@ -1,0 +1,42 @@
+/*
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+*/
+body {
+    background-color: #f5f5f5;
+    color: darkgray;
+    font-size: .85em;
+    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+    margin: 0;
+    padding: 0;
+}
+
+.content-header {
+    display: block;
+    margin: auto;
+    text-align: center;
+    background-color: white;
+    color: black;
+}
+
+.content-section {
+    color: brown;
+    margin-left: 50px;
+}
+
+
+.content-section-inner {
+    margin-left: 20px;
+}
+
+/* #region InfoBox */
+.info-wrapper {
+    width: 500px;
+}
+
+.info {
+    background: linear-gradient(rgba(192,192,192,0), #ccc);
+    border-radius: 1em;
+}
+
+/* #endregion*/

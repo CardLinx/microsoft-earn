@@ -1,0 +1,14 @@
+﻿[
+  {
+    "outputFile": "Content/WebAnalytics.css",
+    "inputFile": "Content/WebAnalytics.less"
+  },
+  {
+    "outputFile": "Content/Support.css",
+    "inputFile": "Content/Support.less"
+  },
+  {
+    "outputFile": "Content/Providers.css",
+    "inputFile": "Content/Providers.less"
+  }
+]

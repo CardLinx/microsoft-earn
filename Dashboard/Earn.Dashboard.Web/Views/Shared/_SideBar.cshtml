@@ -1,0 +1,85 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+@using Earn.Dashboard.Web.Utils
+<aside class="main-sidebar">
+    <section class="sidebar" style="height: auto;">
+        <ul class="sidebar-menu">
+            <li class="header">EARN IT</li>
+            <li class="active treeview">
+                <a href="/">
+                    <i class="fa fa-dashboard"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            @{
+                List<string> roles = (List<string>)HttpContext.Current.Session[Config.Role];
+            }
+            @if (roles.Intersect(new List<string> { Config.Roles.Admin, Config.Roles.User }).Any())
+            {
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-pie-chart"></i>
+                        <span>Reports</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="/reports/webanalytics"><i class="fa fa-area-chart"></i> Web Analytics</a></li>
+                        <li><a href="/reports/merchantreport"><i class="fa fa-bar-chart"></i> Merchant Report</a></li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="/providers/">
+                        <i class="fa fa-shopping-cart"></i>
+                        <span>Providers</span>
+                    </a>
+                </li>
+                @*<li class="treeview">
+                        <a href="/offers/">
+                            <i class="fa fa-shopping-cart"></i>
+                            <span>Offers</span>
+                        </a>
+                    </li>*@
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-stethoscope"></i>
+                        <span>Developer</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="/developer/health"><i class="fa fa-globe"></i> Health</a></li>
+                    </ul>
+                </li>
+            }
+            @if (roles.Intersect(new List<string> { Config.Roles.Admin, Config.Roles.Support }).Any())
+            {
+                <li>
+                    <a href="#">
+                        <i class="fa fa-envelope"></i> <span>Support</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                        @*<small class="label pull-right bg-yellow">4</small>*@
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="/support/customer"><i class="fa fa-user"></i> Customer</a></li>
+                    </ul>
+                </li>
+            }
+            @if (roles.Intersect(new List<string> { Config.Roles.Admin }).Any())
+            {
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-user-secret"></i>
+                        <i class="fa fa-angle-left pull-right"></i>
+                        <span>Admin</span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="/admin/adduser"><i class="fa fa-user-plus"></i> Add User</a></li>
+                        <li><a href="/admin/notify"><i class="fa fa-bullhorn"></i> Notify</a></li>
+                    </ul>
+                </li>
+            }
+        </ul>
+    </section>
+    <!-- /.sidebar -->
+</aside>

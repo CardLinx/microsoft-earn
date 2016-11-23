@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1DC695F8-5DA0-473A-8777-3210760E35FF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Commerce.RewardsNetworkWorker</RootNamespace>
+    <AssemblyName>Commerce.RewardsNetworkWorker</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.WindowsAzure.Configuration, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Microsoft.WindowsAzure.ConfigurationManager.3.2.1\lib\net40\Microsoft.WindowsAzure.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="RewardNetworkReportProcessor.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RecordMarshalers\TransactionReportBuilder\ReportHeaderBuilder.cs" />
+    <Compile Include="RecordMarshalers\TransactionReportBuilder\ReportRecordBuilder.cs" />
+    <Compile Include="RecordMarshalers\TransactionReportBuilder\TransactionRecord.cs" />
+    <Compile Include="RecordMarshalers\TransactionReportBuilder\TransactionReportBuilder.cs" />
+    <Compile Include="RecordMarshalers\TransactionReportBuilder\TransactionReportConstants.cs" />
+    <Compile Include="RewardsNetworkConstants.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataContracts\Commerce.DataContracts.csproj">
+      <Project>{0ff826a6-bce1-462d-ae04-f291390f6470}</Project>
+      <Name>Commerce.DataContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\shared\models\DotM.DataModels\DotM.DataModels.csproj">
+      <Project>{43993608-978a-4330-8a5f-d96a8fa3eadb}</Project>
+      <Name>DotM.DataModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\shared\utils\Common.Utils\Common.Utils.csproj">
+      <Project>{2DF48B39-6126-4C23-9610-4A6A1185CBB4}</Project>
+      <Name>Common.Utils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Configuration\Commerce.Configuration.csproj">
+      <Project>{15a69462-a2c1-44ae-9ab6-9da19d3b686d}</Project>
+      <Name>Commerce.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Context\Commerce.Context.csproj">
+      <Project>{a67149d4-e149-4c3f-873b-52921e2bfa0f}</Project>
+      <Name>Commerce.Context</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataAccess\Commerce.DataAccess.csproj">
+      <Project>{7b84e649-bbaa-4e0f-bbb4-4be1143dbc87}</Project>
+      <Name>Commerce.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataContractExtensions\Commerce.DataContractExtensions.csproj">
+      <Project>{F68FEFFF-05B1-49CF-96D3-696CAD8D275F}</Project>
+      <Name>Commerce.DataContractExtensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataModels\Commerce.DataModels.csproj">
+      <Project>{10f548e4-c48e-4524-9a72-a6aaed713e5c}</Project>
+      <Name>Commerce.DataModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Deals.DataAccess\Deals.DataAccess.csproj">
+      <Project>{5d3b49f1-7d11-4487-a4da-0c63e241849d}</Project>
+      <Name>Deals.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FtpClient\Commerce.FtpClient.csproj">
+      <Project>{94800b05-142c-4320-b97b-4302248bae2e}</Project>
+      <Name>Commerce.FtpClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Logging\Commerce.Logging.csproj">
+      <Project>{3fa7609a-4c21-46cc-9c76-0daefe77815c}</Project>
+      <Name>Commerce.Logging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SftpClient\Commerce.SftpClient.csproj">
+      <Project>{1c84de35-0f60-411c-b888-425b67b1f56c}</Project>
+      <Name>Commerce.SftpClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utilities\Commerce.Utilities.csproj">
+      <Project>{78499661-cfde-4218-bb0b-b3866bd8dafd}</Project>
+      <Name>Commerce.Utilities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

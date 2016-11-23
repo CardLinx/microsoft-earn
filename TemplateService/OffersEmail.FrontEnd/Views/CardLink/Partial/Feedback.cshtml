@@ -1,0 +1,11 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+@model CardLinkVM
+@if (!string.IsNullOrEmpty(Model.FeedbackUrl))
+{
+    <p>
+        @CardLink.CardLinkFeedbackPart1 <a href="@Model.FeedbackUrl">@CardLink.CardLinkFeedbackPart2</a>@CardLink.CardLinkFeedbackPart3
+    </p>
+}

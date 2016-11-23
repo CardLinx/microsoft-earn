@@ -1,0 +1,2207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Lomo.UsersModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ConfirmationCodes">
+          <Key>
+            <PropertyRef Name="UserIdHash" />
+            <PropertyRef Name="PartitionId" />
+            <PropertyRef Name="EntityType" />
+            <PropertyRef Name="CreatedDate" />
+          </Key>
+          <Property Name="UserIdHash" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="PartitionId" Type="int" Nullable="false" />
+          <Property Name="EntityId" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="EntityType" Type="tinyint" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Code" Type="int" Nullable="false" />
+          <Property Name="RetryCount" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ExpiredDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmailCampaigns">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ScheduleId" Type="int" Nullable="false" />
+          <Property Name="CampaignName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Status" Type="varchar(max)" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="EmailDataContracts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Contract" Type="varchar(max)" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="EmailJobs">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="PartitionId" />
+            <PropertyRef Name="SubscriptionType" />
+          </Key>
+          <Property Name="JobId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PartitionId" Type="int" Nullable="false" />
+          <Property Name="SubscriptionType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastRunTime" Type="datetime" />
+          <Property Name="NextRunTime" Type="datetime" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmailSchedules">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TemplateId" Type="int" Nullable="false" />
+          <Property Name="TargetId" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="255" />
+          <Property Name="StartDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="EndDate" Type="datetime2" Precision="7" />
+          <Property Name="Recurrence" Type="smallint" Nullable="false" />
+          <Property Name="NextRunDate" Type="datetime2" Precision="7" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Metadata" Type="varchar(max)" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="EmailSchedulesHistory">
+          <Key>
+            <PropertyRef Name="HistoryId" />
+          </Key>
+          <Property Name="HistoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="TemplateId" Type="int" Nullable="false" />
+          <Property Name="TargetId" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="255" />
+          <Property Name="StartDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="EndDate" Type="datetime2" Precision="7" />
+          <Property Name="Recurrence" Type="smallint" Nullable="false" />
+          <Property Name="NextRunDate" Type="datetime2" Precision="7" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Metadata" Type="varchar(max)" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="EmailSubscriptions">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="PartitionId" />
+            <PropertyRef Name="LocationId" />
+            <PropertyRef Name="SubscriptionType" />
+          </Key>
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PartitionId" Type="int" Nullable="false" />
+          <Property Name="LocationId" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="SubscriptionType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmailSubscriptionsHistory">
+          <Key>
+            <PropertyRef Name="HistoryDate" />
+            <PropertyRef Name="HistoryId" />
+            <PropertyRef Name="PartitionId" />
+          </Key>
+          <Property Name="HistoryDate" Type="datetime" Nullable="false" />
+          <Property Name="HistoryId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PartitionId" Type="int" Nullable="false" />
+          <Property Name="LocationId" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+          <Property Name="SubscriptionType" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmailTargets">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="IsClo" Type="bit" />
+          <Property Name="Description" Type="varchar" MaxLength="255" />
+          <Property Name="Query" Type="varchar" MaxLength="500" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="EmailTemplates">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="TypeId" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="255" />
+          <Property Name="Url" Type="varchar" MaxLength="255" />
+          <Property Name="TestUrl" Type="varchar" MaxLength="255" />
+          <Property Name="DataContractId" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="EmailTemplateTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="255" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="EmailUnsubscribeUrls">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="PartitionId" />
+          </Key>
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PartitionId" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UnsubscribeUrl" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="EventLog">
+          <Key>
+            <PropertyRef Name="EventID" />
+          </Key>
+          <Property Name="EventID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LocalDate" Type="datetime" StoreGeneratedPattern="Computed" />
+          <Property Name="Process" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Mode" Type="varchar" MaxLength="100" />
+          <Property Name="Action" Type="varchar" MaxLength="20" />
+          <Property Name="Target" Type="varchar" MaxLength="100" />
+          <Property Name="Rows" Type="bigint" />
+          <Property Name="Milliseconds" Type="int" />
+          <Property Name="EventText" Type="nvarchar" MaxLength="3500" />
+          <Property Name="EventDate" Type="datetime" Nullable="false" />
+          <Property Name="ParentEventID" Type="bigint" />
+          <Property Name="SPID" Type="smallint" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="HostName" Type="varchar" MaxLength="64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ExternalUsers">
+          <Key>
+            <PropertyRef Name="ExternalId" />
+            <PropertyRef Name="PartitionId" />
+            <PropertyRef Name="AuthProvider" />
+          </Key>
+          <Property Name="ExternalId" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PartitionId" Type="int" Nullable="false" />
+          <Property Name="AuthProvider" Type="tinyint" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ExternalUsersHistory">
+          <Key>
+            <PropertyRef Name="HistoryDate" />
+            <PropertyRef Name="HistoryId" />
+            <PropertyRef Name="PartitionId" />
+          </Key>
+          <Property Name="HistoryDate" Type="datetime" Nullable="false" />
+          <Property Name="HistoryId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ExternalId" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PartitionId" Type="int" Nullable="false" />
+          <Property Name="AuthProvider" Type="tinyint" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MerchantSubscriptions">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="PartitionId" />
+            <PropertyRef Name="SubscriptionType" />
+          </Key>
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PartitionId" Type="int" Nullable="false" />
+          <Property Name="SubscriptionType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Preferences" Type="nvarchar(max)" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ScheduleType" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="MerchantSubscriptionsHistory">
+          <Key>
+            <PropertyRef Name="HistoryDate" />
+            <PropertyRef Name="HistoryId" />
+            <PropertyRef Name="PartitionId" />
+          </Key>
+          <Property Name="HistoryDate" Type="datetime" Nullable="false" />
+          <Property Name="HistoryId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PartitionId" Type="int" Nullable="false" />
+          <Property Name="SubscriptionType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Preferences" Type="nvarchar(max)" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ScheduleType" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Parameters">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="Number" Type="float" />
+          <Property Name="Char" Type="varchar" MaxLength="255" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="UserConfirmEmailResendsHistory">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="PartitionId" />
+            <PropertyRef Name="CreatedDate" />
+          </Key>
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PartitionId" Type="int" Nullable="false" />
+          <Property Name="EntityType" Type="tinyint" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="PartitionId" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PartitionId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="MsId" Type="nvarchar" MaxLength="100" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+          <Property Name="IsSuppressed" Type="bit" Nullable="false" />
+          <Property Name="Json" Type="nvarchar(max)" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="LinkedToUserId" Type="uniqueidentifier" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="Source" Type="nvarchar(max)" />
+          <Property Name="IsEmailConfirmed" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UsersHistory">
+          <Key>
+            <PropertyRef Name="HistoryDate" />
+            <PropertyRef Name="HistoryId" />
+            <PropertyRef Name="PartitionId" />
+          </Key>
+          <Property Name="HistoryDate" Type="datetime" Nullable="false" />
+          <Property Name="HistoryId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PartitionId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="MsId" Type="nvarchar" MaxLength="100" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+          <Property Name="IsSuppressed" Type="bit" Nullable="false" />
+          <Property Name="Json" Type="nvarchar(max)" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="LinkedToUserId" Type="uniqueidentifier" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="Source" Type="nvarchar(max)" />
+          <Property Name="IsEmailConfirmed" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UsersLocation">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="City" Type="nvarchar" MaxLength="100" />
+          <Property Name="State" Type="nvarchar" MaxLength="50" />
+          <Property Name="ZipCode" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Lomo.Users.dbo.ActiveEmailJobsView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ActiveEmailJobsView">
+          <Key>
+            <PropertyRef Name="JobId" />
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="PartitionId" />
+            <PropertyRef Name="SubscriptionType" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="UpdatedDate" />
+          </Key>
+          <Property Name="JobId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PartitionId" Type="int" Nullable="false" />
+          <Property Name="SubscriptionType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastRunTIme" Type="datetime" />
+          <Property Name="NextRunTime" Type="datetime" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Lomo.Users.dbo.EmailSubscriptionsCurrentView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="EmailSubscriptionsCurrentView">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="PartitionId" />
+            <PropertyRef Name="LocationId" />
+            <PropertyRef Name="IsActive" />
+            <PropertyRef Name="SubscriptionType" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="UpdatedDate" />
+            <PropertyRef Name="Version" />
+          </Key>
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PartitionId" Type="int" Nullable="false" />
+          <Property Name="LocationId" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="SubscriptionType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+          <Property Name="Version" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Lomo.Users.dbo.ExecStats' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ExecStats">
+          <Key>
+            <PropertyRef Name="sql_handle" />
+            <PropertyRef Name="statement_start_offset" />
+            <PropertyRef Name="statement_end_offset" />
+            <PropertyRef Name="execution_count" />
+            <PropertyRef Name="total_worker_time" />
+            <PropertyRef Name="last_worker_time" />
+            <PropertyRef Name="min_worker_time" />
+            <PropertyRef Name="max_worker_time" />
+            <PropertyRef Name="total_physical_reads" />
+            <PropertyRef Name="last_physical_reads" />
+            <PropertyRef Name="min_physical_reads" />
+            <PropertyRef Name="max_physical_reads" />
+            <PropertyRef Name="total_logical_writes" />
+            <PropertyRef Name="last_logical_writes" />
+            <PropertyRef Name="min_logical_writes" />
+            <PropertyRef Name="max_logical_writes" />
+            <PropertyRef Name="total_logical_reads" />
+            <PropertyRef Name="last_logical_reads" />
+            <PropertyRef Name="min_logical_reads" />
+            <PropertyRef Name="max_logical_reads" />
+            <PropertyRef Name="total_clr_time" />
+            <PropertyRef Name="last_clr_time" />
+            <PropertyRef Name="min_clr_time" />
+            <PropertyRef Name="max_clr_time" />
+            <PropertyRef Name="total_elapsed_time" />
+            <PropertyRef Name="last_elapsed_time" />
+            <PropertyRef Name="min_elapsed_time" />
+            <PropertyRef Name="max_elapsed_time" />
+          </Key>
+          <Property Name="sql_handle" Type="varbinary" MaxLength="64" Nullable="false" />
+          <Property Name="statement_start_offset" Type="int" Nullable="false" />
+          <Property Name="statement_end_offset" Type="int" Nullable="false" />
+          <Property Name="plan_generation_num" Type="bigint" />
+          <Property Name="plan_handle" Type="varbinary" MaxLength="64" />
+          <Property Name="creation_time" Type="datetime" />
+          <Property Name="last_execution_time" Type="datetime" />
+          <Property Name="execution_count" Type="bigint" Nullable="false" />
+          <Property Name="total_worker_time" Type="bigint" Nullable="false" />
+          <Property Name="last_worker_time" Type="bigint" Nullable="false" />
+          <Property Name="min_worker_time" Type="bigint" Nullable="false" />
+          <Property Name="max_worker_time" Type="bigint" Nullable="false" />
+          <Property Name="total_physical_reads" Type="bigint" Nullable="false" />
+          <Property Name="last_physical_reads" Type="bigint" Nullable="false" />
+          <Property Name="min_physical_reads" Type="bigint" Nullable="false" />
+          <Property Name="max_physical_reads" Type="bigint" Nullable="false" />
+          <Property Name="total_logical_writes" Type="bigint" Nullable="false" />
+          <Property Name="last_logical_writes" Type="bigint" Nullable="false" />
+          <Property Name="min_logical_writes" Type="bigint" Nullable="false" />
+          <Property Name="max_logical_writes" Type="bigint" Nullable="false" />
+          <Property Name="total_logical_reads" Type="bigint" Nullable="false" />
+          <Property Name="last_logical_reads" Type="bigint" Nullable="false" />
+          <Property Name="min_logical_reads" Type="bigint" Nullable="false" />
+          <Property Name="max_logical_reads" Type="bigint" Nullable="false" />
+          <Property Name="total_clr_time" Type="bigint" Nullable="false" />
+          <Property Name="last_clr_time" Type="bigint" Nullable="false" />
+          <Property Name="min_clr_time" Type="bigint" Nullable="false" />
+          <Property Name="max_clr_time" Type="bigint" Nullable="false" />
+          <Property Name="total_elapsed_time" Type="bigint" Nullable="false" />
+          <Property Name="last_elapsed_time" Type="bigint" Nullable="false" />
+          <Property Name="min_elapsed_time" Type="bigint" Nullable="false" />
+          <Property Name="max_elapsed_time" Type="bigint" Nullable="false" />
+          <Property Name="query_hash" Type="binary" MaxLength="8" />
+          <Property Name="query_plan_hash" Type="binary" MaxLength="8" />
+          <Property Name="total_rows" Type="bigint" />
+          <Property Name="last_rows" Type="bigint" />
+          <Property Name="min_rows" Type="bigint" />
+          <Property Name="max_rows" Type="bigint" />
+          <Property Name="statement_sql_handle" Type="varbinary" MaxLength="64" />
+          <Property Name="statement_context_id" Type="bigint" />
+          <Property Name="text" Type="nvarchar(max)" />
+          <Property Name="Statement" Type="nvarchar(max)" />
+          <Property Name="ProcedureStart" Type="bigint" />
+          <Property Name="ShortText" Type="nvarchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Lomo.Users.dbo.ValidMerchantUsersView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ValidMerchantUsersView">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="PartitionId" />
+            <PropertyRef Name="SubscriptionType" />
+            <PropertyRef Name="IsActive" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="UpdatedDate" />
+          </Key>
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PartitionId" Type="int" Nullable="false" />
+          <Property Name="SubscriptionType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Preferences" Type="nvarchar(max)" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ScheduleType" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Lomo.Users.dbo.ValidUsersView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ValidUsersView">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="PartitionId" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="UpdatedDate" />
+            <PropertyRef Name="IsSuppressed" />
+            <PropertyRef Name="IsDeleted" />
+            <PropertyRef Name="IsEmailConfirmed" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PartitionId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="MsId" Type="nvarchar" MaxLength="100" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+          <Property Name="IsSuppressed" Type="bit" Nullable="false" />
+          <Property Name="Json" Type="nvarchar(max)" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="LinkedToUserId" Type="uniqueidentifier" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="Source" Type="nvarchar(max)" />
+          <Property Name="IsEmailConfirmed" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Lomo.Users.sys.database_firewall_rules' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="database_firewall_rules">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="start_ip_address" />
+            <PropertyRef Name="end_ip_address" />
+            <PropertyRef Name="create_date" />
+            <PropertyRef Name="modify_date" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="start_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="end_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="create_date" Type="datetime" Nullable="false" />
+          <Property Name="modify_date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Lomo.Users.sys.script_deployment_status' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="script_deployment_status">
+          <Key>
+            <PropertyRef Name="deployment_id" />
+            <PropertyRef Name="logical_server" />
+            <PropertyRef Name="database_name" />
+            <PropertyRef Name="status" />
+            <PropertyRef Name="num_retries" />
+          </Key>
+          <Property Name="deployment_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="worker_id" Type="uniqueidentifier" />
+          <Property Name="logical_server" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="database_name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="deployment_start" Type="datetimeoffset" Precision="7" />
+          <Property Name="deployment_end" Type="datetimeoffset" Precision="7" />
+          <Property Name="status" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="num_retries" Type="smallint" Nullable="false" />
+          <Property Name="messages" Type="nvarchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Lomo.Users.sys.script_deployments' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="script_deployments">
+          <Key>
+            <PropertyRef Name="deployment_id" />
+            <PropertyRef Name="coordinator_id" />
+            <PropertyRef Name="deployment_name" />
+            <PropertyRef Name="deployment_submitted" />
+            <PropertyRef Name="status" />
+            <PropertyRef Name="retry_policy" />
+            <PropertyRef Name="script" />
+          </Key>
+          <Property Name="deployment_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="coordinator_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="deployment_name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="deployment_submitted" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="deployment_start" Type="datetimeoffset" Precision="7" />
+          <Property Name="deployment_end" Type="datetimeoffset" Precision="7" />
+          <Property Name="status" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="results_table" Type="nvarchar" MaxLength="261" />
+          <Property Name="retry_policy" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="script" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="messages" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_EmailCampaigns_EmailSchedules">
+          <End Role="EmailSchedules" Type="Self.EmailSchedules" Multiplicity="1" />
+          <End Role="EmailCampaigns" Type="Self.EmailCampaigns" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailSchedules">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmailCampaigns">
+              <PropertyRef Name="ScheduleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailJobs_UserId_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="EmailJobs" Type="Self.EmailJobs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="PartitionId" />
+            </Principal>
+            <Dependent Role="EmailJobs">
+              <PropertyRef Name="UserId" />
+              <PropertyRef Name="PartitionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailSchedules_EmailTargets">
+          <End Role="EmailTargets" Type="Self.EmailTargets" Multiplicity="1" />
+          <End Role="EmailSchedules" Type="Self.EmailSchedules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailTargets">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmailSchedules">
+              <PropertyRef Name="TargetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailSchedules_EmailTemplates">
+          <End Role="EmailTemplates" Type="Self.EmailTemplates" Multiplicity="1" />
+          <End Role="EmailSchedules" Type="Self.EmailSchedules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailTemplates">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmailSchedules">
+              <PropertyRef Name="TemplateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailSchedulesHistory_EmailTargets">
+          <End Role="EmailTargets" Type="Self.EmailTargets" Multiplicity="1" />
+          <End Role="EmailSchedulesHistory" Type="Self.EmailSchedulesHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailTargets">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmailSchedulesHistory">
+              <PropertyRef Name="TargetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailSchedulesHistory_EmailTemplates">
+          <End Role="EmailTemplates" Type="Self.EmailTemplates" Multiplicity="1" />
+          <End Role="EmailSchedulesHistory" Type="Self.EmailSchedulesHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailTemplates">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmailSchedulesHistory">
+              <PropertyRef Name="TemplateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailSubscription_UserId_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="EmailSubscriptions" Type="Self.EmailSubscriptions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="PartitionId" />
+            </Principal>
+            <Dependent Role="EmailSubscriptions">
+              <PropertyRef Name="UserId" />
+              <PropertyRef Name="PartitionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailTemplates_EmailDataContracts">
+          <End Role="EmailDataContracts" Type="Self.EmailDataContracts" Multiplicity="1" />
+          <End Role="EmailTemplates" Type="Self.EmailTemplates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailDataContracts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmailTemplates">
+              <PropertyRef Name="DataContractId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailTemplates_EmailTemplateTypes">
+          <End Role="EmailTemplateTypes" Type="Self.EmailTemplateTypes" Multiplicity="1" />
+          <End Role="EmailTemplates" Type="Self.EmailTemplates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailTemplateTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmailTemplates">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailUnsubscribeUrls_UserId_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="EmailUnsubscribeUrls" Type="Self.EmailUnsubscribeUrls" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="PartitionId" />
+            </Principal>
+            <Dependent Role="EmailUnsubscribeUrls">
+              <PropertyRef Name="UserId" />
+              <PropertyRef Name="PartitionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MerchantSubscriptions_UserId_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="MerchantSubscriptions" Type="Self.MerchantSubscriptions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="PartitionId" />
+            </Principal>
+            <Dependent Role="MerchantSubscriptions">
+              <PropertyRef Name="UserId" />
+              <PropertyRef Name="PartitionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LomoUsersModelStoreContainer">
+          <EntitySet Name="ConfirmationCodes" EntityType="Self.ConfirmationCodes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmailCampaigns" EntityType="Self.EmailCampaigns" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmailDataContracts" EntityType="Self.EmailDataContracts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmailJobs" EntityType="Self.EmailJobs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmailSchedules" EntityType="Self.EmailSchedules" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmailSchedulesHistory" EntityType="Self.EmailSchedulesHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmailSubscriptions" EntityType="Self.EmailSubscriptions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmailSubscriptionsHistory" EntityType="Self.EmailSubscriptionsHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmailTargets" EntityType="Self.EmailTargets" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmailTemplates" EntityType="Self.EmailTemplates" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmailTemplateTypes" EntityType="Self.EmailTemplateTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmailUnsubscribeUrls" EntityType="Self.EmailUnsubscribeUrls" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EventLog" EntityType="Self.EventLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExternalUsers" EntityType="Self.ExternalUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExternalUsersHistory" EntityType="Self.ExternalUsersHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MerchantSubscriptions" EntityType="Self.MerchantSubscriptions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MerchantSubscriptionsHistory" EntityType="Self.MerchantSubscriptionsHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Parameters" EntityType="Self.Parameters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserConfirmEmailResendsHistory" EntityType="Self.UserConfirmEmailResendsHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsersHistory" EntityType="Self.UsersHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsersLocation" EntityType="Self.UsersLocation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ActiveEmailJobsView" EntityType="Self.ActiveEmailJobsView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ActiveEmailJobsView].[JobId] AS [JobId], 
+    [ActiveEmailJobsView].[UserId] AS [UserId], 
+    [ActiveEmailJobsView].[PartitionId] AS [PartitionId], 
+    [ActiveEmailJobsView].[SubscriptionType] AS [SubscriptionType], 
+    [ActiveEmailJobsView].[LastRunTIme] AS [LastRunTIme], 
+    [ActiveEmailJobsView].[NextRunTime] AS [NextRunTime], 
+    [ActiveEmailJobsView].[CreatedDate] AS [CreatedDate], 
+    [ActiveEmailJobsView].[UpdatedDate] AS [UpdatedDate]
+    FROM [dbo].[ActiveEmailJobsView] AS [ActiveEmailJobsView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="EmailSubscriptionsCurrentView" EntityType="Self.EmailSubscriptionsCurrentView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [EmailSubscriptionsCurrentView].[UserId] AS [UserId], 
+    [EmailSubscriptionsCurrentView].[PartitionId] AS [PartitionId], 
+    [EmailSubscriptionsCurrentView].[LocationId] AS [LocationId], 
+    [EmailSubscriptionsCurrentView].[IsActive] AS [IsActive], 
+    [EmailSubscriptionsCurrentView].[SubscriptionType] AS [SubscriptionType], 
+    [EmailSubscriptionsCurrentView].[Email] AS [Email], 
+    [EmailSubscriptionsCurrentView].[CreatedDate] AS [CreatedDate], 
+    [EmailSubscriptionsCurrentView].[UpdatedDate] AS [UpdatedDate], 
+    [EmailSubscriptionsCurrentView].[Version] AS [Version]
+    FROM [dbo].[EmailSubscriptionsCurrentView] AS [EmailSubscriptionsCurrentView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ExecStats" EntityType="Self.ExecStats" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ExecStats].[sql_handle] AS [sql_handle], 
+    [ExecStats].[statement_start_offset] AS [statement_start_offset], 
+    [ExecStats].[statement_end_offset] AS [statement_end_offset], 
+    [ExecStats].[plan_generation_num] AS [plan_generation_num], 
+    [ExecStats].[plan_handle] AS [plan_handle], 
+    [ExecStats].[creation_time] AS [creation_time], 
+    [ExecStats].[last_execution_time] AS [last_execution_time], 
+    [ExecStats].[execution_count] AS [execution_count], 
+    [ExecStats].[total_worker_time] AS [total_worker_time], 
+    [ExecStats].[last_worker_time] AS [last_worker_time], 
+    [ExecStats].[min_worker_time] AS [min_worker_time], 
+    [ExecStats].[max_worker_time] AS [max_worker_time], 
+    [ExecStats].[total_physical_reads] AS [total_physical_reads], 
+    [ExecStats].[last_physical_reads] AS [last_physical_reads], 
+    [ExecStats].[min_physical_reads] AS [min_physical_reads], 
+    [ExecStats].[max_physical_reads] AS [max_physical_reads], 
+    [ExecStats].[total_logical_writes] AS [total_logical_writes], 
+    [ExecStats].[last_logical_writes] AS [last_logical_writes], 
+    [ExecStats].[min_logical_writes] AS [min_logical_writes], 
+    [ExecStats].[max_logical_writes] AS [max_logical_writes], 
+    [ExecStats].[total_logical_reads] AS [total_logical_reads], 
+    [ExecStats].[last_logical_reads] AS [last_logical_reads], 
+    [ExecStats].[min_logical_reads] AS [min_logical_reads], 
+    [ExecStats].[max_logical_reads] AS [max_logical_reads], 
+    [ExecStats].[total_clr_time] AS [total_clr_time], 
+    [ExecStats].[last_clr_time] AS [last_clr_time], 
+    [ExecStats].[min_clr_time] AS [min_clr_time], 
+    [ExecStats].[max_clr_time] AS [max_clr_time], 
+    [ExecStats].[total_elapsed_time] AS [total_elapsed_time], 
+    [ExecStats].[last_elapsed_time] AS [last_elapsed_time], 
+    [ExecStats].[min_elapsed_time] AS [min_elapsed_time], 
+    [ExecStats].[max_elapsed_time] AS [max_elapsed_time], 
+    [ExecStats].[query_hash] AS [query_hash], 
+    [ExecStats].[query_plan_hash] AS [query_plan_hash], 
+    [ExecStats].[total_rows] AS [total_rows], 
+    [ExecStats].[last_rows] AS [last_rows], 
+    [ExecStats].[min_rows] AS [min_rows], 
+    [ExecStats].[max_rows] AS [max_rows], 
+    [ExecStats].[statement_sql_handle] AS [statement_sql_handle], 
+    [ExecStats].[statement_context_id] AS [statement_context_id], 
+    [ExecStats].[text] AS [text], 
+    [ExecStats].[Statement] AS [Statement], 
+    [ExecStats].[ProcedureStart] AS [ProcedureStart], 
+    [ExecStats].[ShortText] AS [ShortText]
+    FROM [dbo].[ExecStats] AS [ExecStats]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ValidMerchantUsersView" EntityType="Self.ValidMerchantUsersView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ValidMerchantUsersView].[UserId] AS [UserId], 
+    [ValidMerchantUsersView].[PartitionId] AS [PartitionId], 
+    [ValidMerchantUsersView].[SubscriptionType] AS [SubscriptionType], 
+    [ValidMerchantUsersView].[IsActive] AS [IsActive], 
+    [ValidMerchantUsersView].[Preferences] AS [Preferences], 
+    [ValidMerchantUsersView].[CreatedDate] AS [CreatedDate], 
+    [ValidMerchantUsersView].[UpdatedDate] AS [UpdatedDate], 
+    [ValidMerchantUsersView].[ScheduleType] AS [ScheduleType]
+    FROM [dbo].[ValidMerchantUsersView] AS [ValidMerchantUsersView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ValidUsersView" EntityType="Self.ValidUsersView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ValidUsersView].[Id] AS [Id], 
+    [ValidUsersView].[PartitionId] AS [PartitionId], 
+    [ValidUsersView].[Name] AS [Name], 
+    [ValidUsersView].[Email] AS [Email], 
+    [ValidUsersView].[MsId] AS [MsId], 
+    [ValidUsersView].[CreatedDate] AS [CreatedDate], 
+    [ValidUsersView].[UpdatedDate] AS [UpdatedDate], 
+    [ValidUsersView].[IsSuppressed] AS [IsSuppressed], 
+    [ValidUsersView].[Json] AS [Json], 
+    [ValidUsersView].[IsDeleted] AS [IsDeleted], 
+    [ValidUsersView].[LinkedToUserId] AS [LinkedToUserId], 
+    [ValidUsersView].[PhoneNumber] AS [PhoneNumber], 
+    [ValidUsersView].[Source] AS [Source], 
+    [ValidUsersView].[IsEmailConfirmed] AS [IsEmailConfirmed]
+    FROM [dbo].[ValidUsersView] AS [ValidUsersView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" store:Type="Views" store:Schema="sys">
+            <DefiningQuery>SELECT 
+    [database_firewall_rules].[id] AS [id], 
+    [database_firewall_rules].[name] AS [name], 
+    [database_firewall_rules].[start_ip_address] AS [start_ip_address], 
+    [database_firewall_rules].[end_ip_address] AS [end_ip_address], 
+    [database_firewall_rules].[create_date] AS [create_date], 
+    [database_firewall_rules].[modify_date] AS [modify_date]
+    FROM [sys].[database_firewall_rules] AS [database_firewall_rules]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="script_deployment_status" EntityType="Self.script_deployment_status" store:Type="Views" store:Schema="sys">
+            <DefiningQuery>SELECT 
+    [script_deployment_status].[deployment_id] AS [deployment_id], 
+    [script_deployment_status].[worker_id] AS [worker_id], 
+    [script_deployment_status].[logical_server] AS [logical_server], 
+    [script_deployment_status].[database_name] AS [database_name], 
+    [script_deployment_status].[deployment_start] AS [deployment_start], 
+    [script_deployment_status].[deployment_end] AS [deployment_end], 
+    [script_deployment_status].[status] AS [status], 
+    [script_deployment_status].[num_retries] AS [num_retries], 
+    [script_deployment_status].[messages] AS [messages]
+    FROM [sys].[script_deployment_status] AS [script_deployment_status]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="script_deployments" EntityType="Self.script_deployments" store:Type="Views" store:Schema="sys">
+            <DefiningQuery>SELECT 
+    [script_deployments].[deployment_id] AS [deployment_id], 
+    [script_deployments].[coordinator_id] AS [coordinator_id], 
+    [script_deployments].[deployment_name] AS [deployment_name], 
+    [script_deployments].[deployment_submitted] AS [deployment_submitted], 
+    [script_deployments].[deployment_start] AS [deployment_start], 
+    [script_deployments].[deployment_end] AS [deployment_end], 
+    [script_deployments].[status] AS [status], 
+    [script_deployments].[results_table] AS [results_table], 
+    [script_deployments].[retry_policy] AS [retry_policy], 
+    [script_deployments].[script] AS [script], 
+    [script_deployments].[messages] AS [messages]
+    FROM [sys].[script_deployments] AS [script_deployments]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_EmailCampaigns_EmailSchedules" Association="Self.FK_EmailCampaigns_EmailSchedules">
+            <End Role="EmailSchedules" EntitySet="EmailSchedules" />
+            <End Role="EmailCampaigns" EntitySet="EmailCampaigns" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailJobs_UserId_Users" Association="Self.FK_EmailJobs_UserId_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="EmailJobs" EntitySet="EmailJobs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailSchedules_EmailTargets" Association="Self.FK_EmailSchedules_EmailTargets">
+            <End Role="EmailTargets" EntitySet="EmailTargets" />
+            <End Role="EmailSchedules" EntitySet="EmailSchedules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailSchedules_EmailTemplates" Association="Self.FK_EmailSchedules_EmailTemplates">
+            <End Role="EmailTemplates" EntitySet="EmailTemplates" />
+            <End Role="EmailSchedules" EntitySet="EmailSchedules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailSchedulesHistory_EmailTargets" Association="Self.FK_EmailSchedulesHistory_EmailTargets">
+            <End Role="EmailTargets" EntitySet="EmailTargets" />
+            <End Role="EmailSchedulesHistory" EntitySet="EmailSchedulesHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailSchedulesHistory_EmailTemplates" Association="Self.FK_EmailSchedulesHistory_EmailTemplates">
+            <End Role="EmailTemplates" EntitySet="EmailTemplates" />
+            <End Role="EmailSchedulesHistory" EntitySet="EmailSchedulesHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailSubscription_UserId_Users" Association="Self.FK_EmailSubscription_UserId_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="EmailSubscriptions" EntitySet="EmailSubscriptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailTemplates_EmailDataContracts" Association="Self.FK_EmailTemplates_EmailDataContracts">
+            <End Role="EmailDataContracts" EntitySet="EmailDataContracts" />
+            <End Role="EmailTemplates" EntitySet="EmailTemplates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailTemplates_EmailTemplateTypes" Association="Self.FK_EmailTemplates_EmailTemplateTypes">
+            <End Role="EmailTemplateTypes" EntitySet="EmailTemplateTypes" />
+            <End Role="EmailTemplates" EntitySet="EmailTemplates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailUnsubscribeUrls_UserId_Users" Association="Self.FK_EmailUnsubscribeUrls_UserId_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="EmailUnsubscribeUrls" EntitySet="EmailUnsubscribeUrls" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MerchantSubscriptions_UserId_Users" Association="Self.FK_MerchantSubscriptions_UserId_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="MerchantSubscriptions" EntitySet="MerchantSubscriptions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Lomo.UsersModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ConfirmationCode">
+          <Key>
+            <PropertyRef Name="UserIdHash" />
+            <PropertyRef Name="PartitionId" />
+            <PropertyRef Name="EntityType" />
+            <PropertyRef Name="CreatedDate" />
+          </Key>
+          <Property Name="UserIdHash" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PartitionId" Type="Int32" Nullable="false" />
+          <Property Name="EntityId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EntityType" Type="Byte" Nullable="false" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="Code" Type="Int32" Nullable="false" />
+          <Property Name="RetryCount" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ExpiredDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="EmailCampaign">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ScheduleId" Type="Int32" Nullable="false" />
+          <Property Name="CampaignName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="EmailSchedule" Relationship="Self.FK_EmailCampaigns_EmailSchedules" FromRole="EmailCampaigns" ToRole="EmailSchedules" />
+        </EntityType>
+        <EntityType Name="EmailDataContract">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Contract" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="EmailTemplates" Relationship="Self.FK_EmailTemplates_EmailDataContracts" FromRole="EmailDataContracts" ToRole="EmailTemplates" />
+        </EntityType>
+        <EntityType Name="EmailJob">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="PartitionId" />
+            <PropertyRef Name="SubscriptionType" />
+          </Key>
+          <Property Name="JobId" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="PartitionId" Type="Int32" Nullable="false" />
+          <Property Name="SubscriptionType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastRunTime" Type="DateTime" Precision="3" />
+          <Property Name="NextRunTime" Type="DateTime" Precision="3" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="User" Relationship="Self.FK_EmailJobs_UserId_Users" FromRole="EmailJobs" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="EmailSchedule">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TemplateId" Type="Int32" Nullable="false" />
+          <Property Name="TargetId" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="EndDate" Type="DateTime" Precision="7" />
+          <Property Name="Recurrence" Type="Int16" Nullable="false" />
+          <Property Name="NextRunDate" Type="DateTime" Precision="7" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Metadata" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="EmailCampaigns" Relationship="Self.FK_EmailCampaigns_EmailSchedules" FromRole="EmailSchedules" ToRole="EmailCampaigns" />
+          <NavigationProperty Name="EmailTarget" Relationship="Self.FK_EmailSchedules_EmailTargets" FromRole="EmailSchedules" ToRole="EmailTargets" />
+          <NavigationProperty Name="EmailTemplate" Relationship="Self.FK_EmailSchedules_EmailTemplates" FromRole="EmailSchedules" ToRole="EmailTemplates" />
+        </EntityType>
+        <EntityType Name="EmailSchedulesHistory">
+          <Key>
+            <PropertyRef Name="HistoryId" />
+          </Key>
+          <Property Name="HistoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="TemplateId" Type="Int32" Nullable="false" />
+          <Property Name="TargetId" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="EndDate" Type="DateTime" Precision="7" />
+          <Property Name="Recurrence" Type="Int16" Nullable="false" />
+          <Property Name="NextRunDate" Type="DateTime" Precision="7" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Metadata" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="EmailTarget" Relationship="Self.FK_EmailSchedulesHistory_EmailTargets" FromRole="EmailSchedulesHistory" ToRole="EmailTargets" />
+          <NavigationProperty Name="EmailTemplate" Relationship="Self.FK_EmailSchedulesHistory_EmailTemplates" FromRole="EmailSchedulesHistory" ToRole="EmailTemplates" />
+        </EntityType>
+        <EntityType Name="EmailSubscription">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="PartitionId" />
+            <PropertyRef Name="LocationId" />
+            <PropertyRef Name="SubscriptionType" />
+          </Key>
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="PartitionId" Type="Int32" Nullable="false" />
+          <Property Name="LocationId" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="SubscriptionType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="User" Relationship="Self.FK_EmailSubscription_UserId_Users" FromRole="EmailSubscriptions" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="EmailSubscriptionsHistory">
+          <Key>
+            <PropertyRef Name="HistoryDate" />
+            <PropertyRef Name="HistoryId" />
+            <PropertyRef Name="PartitionId" />
+          </Key>
+          <Property Name="HistoryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="HistoryId" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="PartitionId" Type="Int32" Nullable="false" />
+          <Property Name="LocationId" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SubscriptionType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmailTarget">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsClo" Type="Boolean" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Query" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="EmailSchedules" Relationship="Self.FK_EmailSchedules_EmailTargets" FromRole="EmailTargets" ToRole="EmailSchedules" />
+          <NavigationProperty Name="EmailSchedulesHistories" Relationship="Self.FK_EmailSchedulesHistory_EmailTargets" FromRole="EmailTargets" ToRole="EmailSchedulesHistory" />
+        </EntityType>
+        <EntityType Name="EmailTemplate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TypeId" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Url" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="TestUrl" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="DataContractId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="EmailDataContract" Relationship="Self.FK_EmailTemplates_EmailDataContracts" FromRole="EmailTemplates" ToRole="EmailDataContracts" />
+          <NavigationProperty Name="EmailSchedules" Relationship="Self.FK_EmailSchedules_EmailTemplates" FromRole="EmailTemplates" ToRole="EmailSchedules" />
+          <NavigationProperty Name="EmailSchedulesHistories" Relationship="Self.FK_EmailSchedulesHistory_EmailTemplates" FromRole="EmailTemplates" ToRole="EmailSchedulesHistory" />
+          <NavigationProperty Name="EmailTemplateType" Relationship="Self.FK_EmailTemplates_EmailTemplateTypes" FromRole="EmailTemplates" ToRole="EmailTemplateTypes" />
+        </EntityType>
+        <EntityType Name="EmailTemplateType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="EmailTemplates" Relationship="Self.FK_EmailTemplates_EmailTemplateTypes" FromRole="EmailTemplateTypes" ToRole="EmailTemplates" />
+        </EntityType>
+        <EntityType Name="EmailUnsubscribeUrl">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="PartitionId" />
+          </Key>
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="PartitionId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UnsubscribeUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="Self.FK_EmailUnsubscribeUrls_UserId_Users" FromRole="EmailUnsubscribeUrls" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="EventLog">
+          <Key>
+            <PropertyRef Name="EventID" />
+          </Key>
+          <Property Name="EventID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LocalDate" Type="DateTime" annotation:StoreGeneratedPattern="Computed" Precision="3" />
+          <Property Name="Process" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Mode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Action" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Target" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Rows" Type="Int64" />
+          <Property Name="Milliseconds" Type="Int32" />
+          <Property Name="EventText" Type="String" MaxLength="3500" FixedLength="false" Unicode="true" />
+          <Property Name="EventDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ParentEventID" Type="Int64" />
+          <Property Name="SPID" Type="Int16" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="HostName" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ExternalUser">
+          <Key>
+            <PropertyRef Name="ExternalId" />
+            <PropertyRef Name="PartitionId" />
+            <PropertyRef Name="AuthProvider" />
+          </Key>
+          <Property Name="ExternalId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PartitionId" Type="Int32" Nullable="false" />
+          <Property Name="AuthProvider" Type="Byte" Nullable="false" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="ExternalUsersHistory">
+          <Key>
+            <PropertyRef Name="HistoryDate" />
+            <PropertyRef Name="HistoryId" />
+            <PropertyRef Name="PartitionId" />
+          </Key>
+          <Property Name="HistoryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="HistoryId" Type="Guid" Nullable="false" />
+          <Property Name="ExternalId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PartitionId" Type="Int32" Nullable="false" />
+          <Property Name="AuthProvider" Type="Byte" Nullable="false" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="MerchantSubscription">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="PartitionId" />
+            <PropertyRef Name="SubscriptionType" />
+          </Key>
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="PartitionId" Type="Int32" Nullable="false" />
+          <Property Name="SubscriptionType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Preferences" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ScheduleType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="Self.FK_MerchantSubscriptions_UserId_Users" FromRole="MerchantSubscriptions" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="MerchantSubscriptionsHistory">
+          <Key>
+            <PropertyRef Name="HistoryDate" />
+            <PropertyRef Name="HistoryId" />
+            <PropertyRef Name="PartitionId" />
+          </Key>
+          <Property Name="HistoryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="HistoryId" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="PartitionId" Type="Int32" Nullable="false" />
+          <Property Name="SubscriptionType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Preferences" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ScheduleType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Parameter">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="Number" Type="Double" />
+          <Property Name="Char" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="UserConfirmEmailResendsHistory">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="PartitionId" />
+            <PropertyRef Name="CreatedDate" />
+          </Key>
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="PartitionId" Type="Int32" Nullable="false" />
+          <Property Name="EntityType" Type="Byte" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="PartitionId" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="PartitionId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MsId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsSuppressed" Type="Boolean" Nullable="false" />
+          <Property Name="Json" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="LinkedToUserId" Type="Guid" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Source" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsEmailConfirmed" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="EmailJobs" Relationship="Self.FK_EmailJobs_UserId_Users" FromRole="Users" ToRole="EmailJobs" />
+          <NavigationProperty Name="EmailSubscriptions" Relationship="Self.FK_EmailSubscription_UserId_Users" FromRole="Users" ToRole="EmailSubscriptions" />
+          <NavigationProperty Name="EmailUnsubscribeUrl" Relationship="Self.FK_EmailUnsubscribeUrls_UserId_Users" FromRole="Users" ToRole="EmailUnsubscribeUrls" />
+          <NavigationProperty Name="MerchantSubscriptions" Relationship="Self.FK_MerchantSubscriptions_UserId_Users" FromRole="Users" ToRole="MerchantSubscriptions" />
+        </EntityType>
+        <EntityType Name="UsersHistory">
+          <Key>
+            <PropertyRef Name="HistoryDate" />
+            <PropertyRef Name="HistoryId" />
+            <PropertyRef Name="PartitionId" />
+          </Key>
+          <Property Name="HistoryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="HistoryId" Type="Guid" Nullable="false" />
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="PartitionId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MsId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsSuppressed" Type="Boolean" Nullable="false" />
+          <Property Name="Json" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="LinkedToUserId" Type="Guid" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Source" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsEmailConfirmed" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UsersLocation">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ActiveEmailJobsView">
+          <Key>
+            <PropertyRef Name="JobId" />
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="PartitionId" />
+            <PropertyRef Name="SubscriptionType" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="UpdatedDate" />
+          </Key>
+          <Property Name="JobId" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="PartitionId" Type="Int32" Nullable="false" />
+          <Property Name="SubscriptionType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastRunTIme" Type="DateTime" Precision="3" />
+          <Property Name="NextRunTime" Type="DateTime" Precision="3" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="EmailSubscriptionsCurrentView">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="PartitionId" />
+            <PropertyRef Name="LocationId" />
+            <PropertyRef Name="IsActive" />
+            <PropertyRef Name="SubscriptionType" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="UpdatedDate" />
+            <PropertyRef Name="Version" />
+          </Key>
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="PartitionId" Type="Int32" Nullable="false" />
+          <Property Name="LocationId" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="SubscriptionType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Version" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ExecStat">
+          <Key>
+            <PropertyRef Name="sql_handle" />
+            <PropertyRef Name="statement_start_offset" />
+            <PropertyRef Name="statement_end_offset" />
+            <PropertyRef Name="execution_count" />
+            <PropertyRef Name="total_worker_time" />
+            <PropertyRef Name="last_worker_time" />
+            <PropertyRef Name="min_worker_time" />
+            <PropertyRef Name="max_worker_time" />
+            <PropertyRef Name="total_physical_reads" />
+            <PropertyRef Name="last_physical_reads" />
+            <PropertyRef Name="min_physical_reads" />
+            <PropertyRef Name="max_physical_reads" />
+            <PropertyRef Name="total_logical_writes" />
+            <PropertyRef Name="last_logical_writes" />
+            <PropertyRef Name="min_logical_writes" />
+            <PropertyRef Name="max_logical_writes" />
+            <PropertyRef Name="total_logical_reads" />
+            <PropertyRef Name="last_logical_reads" />
+            <PropertyRef Name="min_logical_reads" />
+            <PropertyRef Name="max_logical_reads" />
+            <PropertyRef Name="total_clr_time" />
+            <PropertyRef Name="last_clr_time" />
+            <PropertyRef Name="min_clr_time" />
+            <PropertyRef Name="max_clr_time" />
+            <PropertyRef Name="total_elapsed_time" />
+            <PropertyRef Name="last_elapsed_time" />
+            <PropertyRef Name="min_elapsed_time" />
+            <PropertyRef Name="max_elapsed_time" />
+          </Key>
+          <Property Name="sql_handle" Type="Binary" MaxLength="64" FixedLength="false" Nullable="false" />
+          <Property Name="statement_start_offset" Type="Int32" Nullable="false" />
+          <Property Name="statement_end_offset" Type="Int32" Nullable="false" />
+          <Property Name="plan_generation_num" Type="Int64" />
+          <Property Name="plan_handle" Type="Binary" MaxLength="64" FixedLength="false" />
+          <Property Name="creation_time" Type="DateTime" Precision="3" />
+          <Property Name="last_execution_time" Type="DateTime" Precision="3" />
+          <Property Name="execution_count" Type="Int64" Nullable="false" />
+          <Property Name="total_worker_time" Type="Int64" Nullable="false" />
+          <Property Name="last_worker_time" Type="Int64" Nullable="false" />
+          <Property Name="min_worker_time" Type="Int64" Nullable="false" />
+          <Property Name="max_worker_time" Type="Int64" Nullable="false" />
+          <Property Name="total_physical_reads" Type="Int64" Nullable="false" />
+          <Property Name="last_physical_reads" Type="Int64" Nullable="false" />
+          <Property Name="min_physical_reads" Type="Int64" Nullable="false" />
+          <Property Name="max_physical_reads" Type="Int64" Nullable="false" />
+          <Property Name="total_logical_writes" Type="Int64" Nullable="false" />
+          <Property Name="last_logical_writes" Type="Int64" Nullable="false" />
+          <Property Name="min_logical_writes" Type="Int64" Nullable="false" />
+          <Property Name="max_logical_writes" Type="Int64" Nullable="false" />
+          <Property Name="total_logical_reads" Type="Int64" Nullable="false" />
+          <Property Name="last_logical_reads" Type="Int64" Nullable="false" />
+          <Property Name="min_logical_reads" Type="Int64" Nullable="false" />
+          <Property Name="max_logical_reads" Type="Int64" Nullable="false" />
+          <Property Name="total_clr_time" Type="Int64" Nullable="false" />
+          <Property Name="last_clr_time" Type="Int64" Nullable="false" />
+          <Property Name="min_clr_time" Type="Int64" Nullable="false" />
+          <Property Name="max_clr_time" Type="Int64" Nullable="false" />
+          <Property Name="total_elapsed_time" Type="Int64" Nullable="false" />
+          <Property Name="last_elapsed_time" Type="Int64" Nullable="false" />
+          <Property Name="min_elapsed_time" Type="Int64" Nullable="false" />
+          <Property Name="max_elapsed_time" Type="Int64" Nullable="false" />
+          <Property Name="query_hash" Type="Binary" MaxLength="8" FixedLength="true" />
+          <Property Name="query_plan_hash" Type="Binary" MaxLength="8" FixedLength="true" />
+          <Property Name="total_rows" Type="Int64" />
+          <Property Name="last_rows" Type="Int64" />
+          <Property Name="min_rows" Type="Int64" />
+          <Property Name="max_rows" Type="Int64" />
+          <Property Name="statement_sql_handle" Type="Binary" MaxLength="64" FixedLength="false" />
+          <Property Name="statement_context_id" Type="Int64" />
+          <Property Name="text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Statement" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProcedureStart" Type="Int64" />
+          <Property Name="ShortText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ValidMerchantUsersView">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="PartitionId" />
+            <PropertyRef Name="SubscriptionType" />
+            <PropertyRef Name="IsActive" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="UpdatedDate" />
+          </Key>
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="PartitionId" Type="Int32" Nullable="false" />
+          <Property Name="SubscriptionType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Preferences" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ScheduleType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ValidUsersView">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="PartitionId" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="UpdatedDate" />
+            <PropertyRef Name="IsSuppressed" />
+            <PropertyRef Name="IsDeleted" />
+            <PropertyRef Name="IsEmailConfirmed" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="PartitionId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MsId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsSuppressed" Type="Boolean" Nullable="false" />
+          <Property Name="Json" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="LinkedToUserId" Type="Guid" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Source" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsEmailConfirmed" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="database_firewall_rules">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="start_ip_address" />
+            <PropertyRef Name="end_ip_address" />
+            <PropertyRef Name="create_date" />
+            <PropertyRef Name="modify_date" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="start_ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="end_ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modify_date" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="script_deployment_status">
+          <Key>
+            <PropertyRef Name="deployment_id" />
+            <PropertyRef Name="logical_server" />
+            <PropertyRef Name="database_name" />
+            <PropertyRef Name="status" />
+            <PropertyRef Name="num_retries" />
+          </Key>
+          <Property Name="deployment_id" Type="Guid" Nullable="false" />
+          <Property Name="worker_id" Type="Guid" />
+          <Property Name="logical_server" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="database_name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="deployment_start" Type="DateTimeOffset" Precision="7" />
+          <Property Name="deployment_end" Type="DateTimeOffset" Precision="7" />
+          <Property Name="status" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="num_retries" Type="Int16" Nullable="false" />
+          <Property Name="messages" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="script_deployments">
+          <Key>
+            <PropertyRef Name="deployment_id" />
+            <PropertyRef Name="coordinator_id" />
+            <PropertyRef Name="deployment_name" />
+            <PropertyRef Name="deployment_submitted" />
+            <PropertyRef Name="status" />
+            <PropertyRef Name="retry_policy" />
+            <PropertyRef Name="script" />
+          </Key>
+          <Property Name="deployment_id" Type="Guid" Nullable="false" />
+          <Property Name="coordinator_id" Type="Guid" Nullable="false" />
+          <Property Name="deployment_name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="deployment_submitted" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="deployment_start" Type="DateTimeOffset" Precision="7" />
+          <Property Name="deployment_end" Type="DateTimeOffset" Precision="7" />
+          <Property Name="status" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="results_table" Type="String" MaxLength="261" FixedLength="false" Unicode="true" />
+          <Property Name="retry_policy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="script" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="messages" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_EmailCampaigns_EmailSchedules">
+          <End Role="EmailSchedules" Type="Self.EmailSchedule" Multiplicity="1" />
+          <End Role="EmailCampaigns" Type="Self.EmailCampaign" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailSchedules">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmailCampaigns">
+              <PropertyRef Name="ScheduleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailTemplates_EmailDataContracts">
+          <End Role="EmailDataContracts" Type="Self.EmailDataContract" Multiplicity="1" />
+          <End Role="EmailTemplates" Type="Self.EmailTemplate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailDataContracts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmailTemplates">
+              <PropertyRef Name="DataContractId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailJobs_UserId_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="EmailJobs" Type="Self.EmailJob" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="PartitionId" />
+            </Principal>
+            <Dependent Role="EmailJobs">
+              <PropertyRef Name="UserId" />
+              <PropertyRef Name="PartitionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailSchedules_EmailTargets">
+          <End Role="EmailTargets" Type="Self.EmailTarget" Multiplicity="1" />
+          <End Role="EmailSchedules" Type="Self.EmailSchedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailTargets">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmailSchedules">
+              <PropertyRef Name="TargetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailSchedules_EmailTemplates">
+          <End Role="EmailTemplates" Type="Self.EmailTemplate" Multiplicity="1" />
+          <End Role="EmailSchedules" Type="Self.EmailSchedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailTemplates">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmailSchedules">
+              <PropertyRef Name="TemplateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailSchedulesHistory_EmailTargets">
+          <End Role="EmailTargets" Type="Self.EmailTarget" Multiplicity="1" />
+          <End Role="EmailSchedulesHistory" Type="Self.EmailSchedulesHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailTargets">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmailSchedulesHistory">
+              <PropertyRef Name="TargetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailSchedulesHistory_EmailTemplates">
+          <End Role="EmailTemplates" Type="Self.EmailTemplate" Multiplicity="1" />
+          <End Role="EmailSchedulesHistory" Type="Self.EmailSchedulesHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailTemplates">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmailSchedulesHistory">
+              <PropertyRef Name="TemplateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailSubscription_UserId_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="EmailSubscriptions" Type="Self.EmailSubscription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="PartitionId" />
+            </Principal>
+            <Dependent Role="EmailSubscriptions">
+              <PropertyRef Name="UserId" />
+              <PropertyRef Name="PartitionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailTemplates_EmailTemplateTypes">
+          <End Role="EmailTemplateTypes" Type="Self.EmailTemplateType" Multiplicity="1" />
+          <End Role="EmailTemplates" Type="Self.EmailTemplate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailTemplateTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmailTemplates">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailUnsubscribeUrls_UserId_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="EmailUnsubscribeUrls" Type="Self.EmailUnsubscribeUrl" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="PartitionId" />
+            </Principal>
+            <Dependent Role="EmailUnsubscribeUrls">
+              <PropertyRef Name="UserId" />
+              <PropertyRef Name="PartitionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MerchantSubscriptions_UserId_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="MerchantSubscriptions" Type="Self.MerchantSubscription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="PartitionId" />
+            </Principal>
+            <Dependent Role="MerchantSubscriptions">
+              <PropertyRef Name="UserId" />
+              <PropertyRef Name="PartitionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LomoUsersEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ConfirmationCodes" EntityType="Self.ConfirmationCode" />
+          <EntitySet Name="EmailCampaigns" EntityType="Self.EmailCampaign" />
+          <EntitySet Name="EmailDataContracts" EntityType="Self.EmailDataContract" />
+          <EntitySet Name="EmailJobs" EntityType="Self.EmailJob" />
+          <EntitySet Name="EmailSchedules" EntityType="Self.EmailSchedule" />
+          <EntitySet Name="EmailSchedulesHistories" EntityType="Self.EmailSchedulesHistory" />
+          <EntitySet Name="EmailSubscriptions" EntityType="Self.EmailSubscription" />
+          <EntitySet Name="EmailSubscriptionsHistories" EntityType="Self.EmailSubscriptionsHistory" />
+          <EntitySet Name="EmailTargets" EntityType="Self.EmailTarget" />
+          <EntitySet Name="EmailTemplates" EntityType="Self.EmailTemplate" />
+          <EntitySet Name="EmailTemplateTypes" EntityType="Self.EmailTemplateType" />
+          <EntitySet Name="EmailUnsubscribeUrls" EntityType="Self.EmailUnsubscribeUrl" />
+          <EntitySet Name="EventLogs" EntityType="Self.EventLog" />
+          <EntitySet Name="ExternalUsers" EntityType="Self.ExternalUser" />
+          <EntitySet Name="ExternalUsersHistories" EntityType="Self.ExternalUsersHistory" />
+          <EntitySet Name="MerchantSubscriptions" EntityType="Self.MerchantSubscription" />
+          <EntitySet Name="MerchantSubscriptionsHistories" EntityType="Self.MerchantSubscriptionsHistory" />
+          <EntitySet Name="Parameters" EntityType="Self.Parameter" />
+          <EntitySet Name="UserConfirmEmailResendsHistories" EntityType="Self.UserConfirmEmailResendsHistory" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="UsersHistories" EntityType="Self.UsersHistory" />
+          <EntitySet Name="UsersLocations" EntityType="Self.UsersLocation" />
+          <EntitySet Name="ActiveEmailJobsViews" EntityType="Self.ActiveEmailJobsView" />
+          <EntitySet Name="EmailSubscriptionsCurrentViews" EntityType="Self.EmailSubscriptionsCurrentView" />
+          <EntitySet Name="ExecStats" EntityType="Self.ExecStat" />
+          <EntitySet Name="ValidMerchantUsersViews" EntityType="Self.ValidMerchantUsersView" />
+          <EntitySet Name="ValidUsersViews" EntityType="Self.ValidUsersView" />
+          <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" />
+          <EntitySet Name="script_deployment_status" EntityType="Self.script_deployment_status" />
+          <EntitySet Name="script_deployments" EntityType="Self.script_deployments" />
+          <AssociationSet Name="FK_EmailCampaigns_EmailSchedules" Association="Self.FK_EmailCampaigns_EmailSchedules">
+            <End Role="EmailSchedules" EntitySet="EmailSchedules" />
+            <End Role="EmailCampaigns" EntitySet="EmailCampaigns" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailTemplates_EmailDataContracts" Association="Self.FK_EmailTemplates_EmailDataContracts">
+            <End Role="EmailDataContracts" EntitySet="EmailDataContracts" />
+            <End Role="EmailTemplates" EntitySet="EmailTemplates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailJobs_UserId_Users" Association="Self.FK_EmailJobs_UserId_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="EmailJobs" EntitySet="EmailJobs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailSchedules_EmailTargets" Association="Self.FK_EmailSchedules_EmailTargets">
+            <End Role="EmailTargets" EntitySet="EmailTargets" />
+            <End Role="EmailSchedules" EntitySet="EmailSchedules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailSchedules_EmailTemplates" Association="Self.FK_EmailSchedules_EmailTemplates">
+            <End Role="EmailTemplates" EntitySet="EmailTemplates" />
+            <End Role="EmailSchedules" EntitySet="EmailSchedules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailSchedulesHistory_EmailTargets" Association="Self.FK_EmailSchedulesHistory_EmailTargets">
+            <End Role="EmailTargets" EntitySet="EmailTargets" />
+            <End Role="EmailSchedulesHistory" EntitySet="EmailSchedulesHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailSchedulesHistory_EmailTemplates" Association="Self.FK_EmailSchedulesHistory_EmailTemplates">
+            <End Role="EmailTemplates" EntitySet="EmailTemplates" />
+            <End Role="EmailSchedulesHistory" EntitySet="EmailSchedulesHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailSubscription_UserId_Users" Association="Self.FK_EmailSubscription_UserId_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="EmailSubscriptions" EntitySet="EmailSubscriptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailTemplates_EmailTemplateTypes" Association="Self.FK_EmailTemplates_EmailTemplateTypes">
+            <End Role="EmailTemplateTypes" EntitySet="EmailTemplateTypes" />
+            <End Role="EmailTemplates" EntitySet="EmailTemplates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailUnsubscribeUrls_UserId_Users" Association="Self.FK_EmailUnsubscribeUrls_UserId_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="EmailUnsubscribeUrls" EntitySet="EmailUnsubscribeUrls" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MerchantSubscriptions_UserId_Users" Association="Self.FK_MerchantSubscriptions_UserId_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="MerchantSubscriptions" EntitySet="MerchantSubscriptions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LomoUsersModelStoreContainer" CdmEntityContainer="LomoUsersEntities">
+          <EntitySetMapping Name="ConfirmationCodes">
+            <EntityTypeMapping TypeName="Lomo.UsersModel.ConfirmationCode">
+              <MappingFragment StoreEntitySet="ConfirmationCodes">
+                <ScalarProperty Name="UserIdHash" ColumnName="UserIdHash" />
+                <ScalarProperty Name="PartitionId" ColumnName="PartitionId" />
+                <ScalarProperty Name="EntityId" ColumnName="EntityId" />
+                <ScalarProperty Name="EntityType" ColumnName="EntityType" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="RetryCount" ColumnName="RetryCount" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="ExpiredDate" ColumnName="ExpiredDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailCampaigns">
+            <EntityTypeMapping TypeName="Lomo.UsersModel.EmailCampaign">
+              <MappingFragment StoreEntitySet="EmailCampaigns">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ScheduleId" ColumnName="ScheduleId" />
+                <ScalarProperty Name="CampaignName" ColumnName="CampaignName" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailDataContracts">
+            <EntityTypeMapping TypeName="Lomo.UsersModel.EmailDataContract">
+              <MappingFragment StoreEntitySet="EmailDataContracts">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Contract" ColumnName="Contract" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailJobs">
+            <EntityTypeMapping TypeName="Lomo.UsersModel.EmailJob">
+              <MappingFragment StoreEntitySet="EmailJobs">
+                <ScalarProperty Name="JobId" ColumnName="JobId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PartitionId" ColumnName="PartitionId" />
+                <ScalarProperty Name="SubscriptionType" ColumnName="SubscriptionType" />
+                <ScalarProperty Name="LastRunTime" ColumnName="LastRunTime" />
+                <ScalarProperty Name="NextRunTime" ColumnName="NextRunTime" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailSchedules">
+            <EntityTypeMapping TypeName="Lomo.UsersModel.EmailSchedule">
+              <MappingFragment StoreEntitySet="EmailSchedules">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TemplateId" ColumnName="TemplateId" />
+                <ScalarProperty Name="TargetId" ColumnName="TargetId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="Recurrence" ColumnName="Recurrence" />
+                <ScalarProperty Name="NextRunDate" ColumnName="NextRunDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Metadata" ColumnName="Metadata" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailSchedulesHistories">
+            <EntityTypeMapping TypeName="Lomo.UsersModel.EmailSchedulesHistory">
+              <MappingFragment StoreEntitySet="EmailSchedulesHistory">
+                <ScalarProperty Name="HistoryId" ColumnName="HistoryId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TemplateId" ColumnName="TemplateId" />
+                <ScalarProperty Name="TargetId" ColumnName="TargetId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="Recurrence" ColumnName="Recurrence" />
+                <ScalarProperty Name="NextRunDate" ColumnName="NextRunDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Metadata" ColumnName="Metadata" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailSubscriptions">
+            <EntityTypeMapping TypeName="Lomo.UsersModel.EmailSubscription">
+              <MappingFragment StoreEntitySet="EmailSubscriptions">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PartitionId" ColumnName="PartitionId" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="SubscriptionType" ColumnName="SubscriptionType" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailSubscriptionsHistories">
+            <EntityTypeMapping TypeName="Lomo.UsersModel.EmailSubscriptionsHistory">
+              <MappingFragment StoreEntitySet="EmailSubscriptionsHistory">
+                <ScalarProperty Name="HistoryDate" ColumnName="HistoryDate" />
+                <ScalarProperty Name="HistoryId" ColumnName="HistoryId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PartitionId" ColumnName="PartitionId" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="SubscriptionType" ColumnName="SubscriptionType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailTargets">
+            <EntityTypeMapping TypeName="Lomo.UsersModel.EmailTarget">
+              <MappingFragment StoreEntitySet="EmailTargets">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IsClo" ColumnName="IsClo" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Query" ColumnName="Query" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailTemplates">
+            <EntityTypeMapping TypeName="Lomo.UsersModel.EmailTemplate">
+              <MappingFragment StoreEntitySet="EmailTemplates">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="TestUrl" ColumnName="TestUrl" />
+                <ScalarProperty Name="DataContractId" ColumnName="DataContractId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailTemplateTypes">
+            <EntityTypeMapping TypeName="Lomo.UsersModel.EmailTemplateType">
+              <MappingFragment StoreEntitySet="EmailTemplateTypes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailUnsubscribeUrls">
+            <EntityTypeMapping TypeName="Lomo.UsersModel.EmailUnsubscribeUrl">
+              <MappingFragment StoreEntitySet="EmailUnsubscribeUrls">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PartitionId" ColumnName="PartitionId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UnsubscribeUrl" ColumnName="UnsubscribeUrl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EventLogs">
+            <EntityTypeMapping TypeName="Lomo.UsersModel.EventLog">
+              <MappingFragment StoreEntitySet="EventLog">
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="LocalDate" ColumnName="LocalDate" />
+                <ScalarProperty Name="Process" ColumnName="Process" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Mode" ColumnName="Mode" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="Target" ColumnName="Target" />
+                <ScalarProperty Name="Rows" ColumnName="Rows" />
+                <ScalarProperty Name="Milliseconds" ColumnName="Milliseconds" />
+                <ScalarProperty Name="EventText" ColumnName="EventText" />
+                <ScalarProperty Name="EventDate" ColumnName="EventDate" />
+                <ScalarProperty Name="ParentEventID" ColumnName="ParentEventID" />
+                <ScalarProperty Name="SPID" ColumnName="SPID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="HostName" ColumnName="HostName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExternalUsers">
+            <EntityTypeMapping TypeName="Lomo.UsersModel.ExternalUser">
+              <MappingFragment StoreEntitySet="ExternalUsers">
+                <ScalarProperty Name="ExternalId" ColumnName="ExternalId" />
+                <ScalarProperty Name="PartitionId" ColumnName="PartitionId" />
+                <ScalarProperty Name="AuthProvider" ColumnName="AuthProvider" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExternalUsersHistories">
+            <EntityTypeMapping TypeName="Lomo.UsersModel.ExternalUsersHistory">
+              <MappingFragment StoreEntitySet="ExternalUsersHistory">
+                <ScalarProperty Name="HistoryDate" ColumnName="HistoryDate" />
+                <ScalarProperty Name="HistoryId" ColumnName="HistoryId" />
+                <ScalarProperty Name="ExternalId" ColumnName="ExternalId" />
+                <ScalarProperty Name="PartitionId" ColumnName="PartitionId" />
+                <ScalarProperty Name="AuthProvider" ColumnName="AuthProvider" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MerchantSubscriptions">
+            <EntityTypeMapping TypeName="Lomo.UsersModel.MerchantSubscription">
+              <MappingFragment StoreEntitySet="MerchantSubscriptions">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PartitionId" ColumnName="PartitionId" />
+                <ScalarProperty Name="SubscriptionType" ColumnName="SubscriptionType" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Preferences" ColumnName="Preferences" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="ScheduleType" ColumnName="ScheduleType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MerchantSubscriptionsHistories">
+            <EntityTypeMapping TypeName="Lomo.UsersModel.MerchantSubscriptionsHistory">
+              <MappingFragment StoreEntitySet="MerchantSubscriptionsHistory">
+                <ScalarProperty Name="HistoryDate" ColumnName="HistoryDate" />
+                <ScalarProperty Name="HistoryId" ColumnName="HistoryId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PartitionId" ColumnName="PartitionId" />
+                <ScalarProperty Name="SubscriptionType" ColumnName="SubscriptionType" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Preferences" ColumnName="Preferences" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="ScheduleType" ColumnName="ScheduleType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Parameters">
+            <EntityTypeMapping TypeName="Lomo.UsersModel.Parameter">
+              <MappingFragment StoreEntitySet="Parameters">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Char" ColumnName="Char" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserConfirmEmailResendsHistories">
+            <EntityTypeMapping TypeName="Lomo.UsersModel.UserConfirmEmailResendsHistory">
+              <MappingFragment StoreEntitySet="UserConfirmEmailResendsHistory">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PartitionId" ColumnName="PartitionId" />
+                <ScalarProperty Name="EntityType" ColumnName="EntityType" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="Lomo.UsersModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PartitionId" ColumnName="PartitionId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="MsId" ColumnName="MsId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="IsSuppressed" ColumnName="IsSuppressed" />
+                <ScalarProperty Name="Json" ColumnName="Json" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="LinkedToUserId" ColumnName="LinkedToUserId" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="IsEmailConfirmed" ColumnName="IsEmailConfirmed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsersHistories">
+            <EntityTypeMapping TypeName="Lomo.UsersModel.UsersHistory">
+              <MappingFragment StoreEntitySet="UsersHistory">
+                <ScalarProperty Name="HistoryDate" ColumnName="HistoryDate" />
+                <ScalarProperty Name="HistoryId" ColumnName="HistoryId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PartitionId" ColumnName="PartitionId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="MsId" ColumnName="MsId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="IsSuppressed" ColumnName="IsSuppressed" />
+                <ScalarProperty Name="Json" ColumnName="Json" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="LinkedToUserId" ColumnName="LinkedToUserId" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="IsEmailConfirmed" ColumnName="IsEmailConfirmed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsersLocations">
+            <EntityTypeMapping TypeName="Lomo.UsersModel.UsersLocation">
+              <MappingFragment StoreEntitySet="UsersLocation">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ActiveEmailJobsViews">
+            <EntityTypeMapping TypeName="Lomo.UsersModel.ActiveEmailJobsView">
+              <MappingFragment StoreEntitySet="ActiveEmailJobsView">
+                <ScalarProperty Name="JobId" ColumnName="JobId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PartitionId" ColumnName="PartitionId" />
+                <ScalarProperty Name="SubscriptionType" ColumnName="SubscriptionType" />
+                <ScalarProperty Name="LastRunTIme" ColumnName="LastRunTIme" />
+                <ScalarProperty Name="NextRunTime" ColumnName="NextRunTime" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailSubscriptionsCurrentViews">
+            <EntityTypeMapping TypeName="Lomo.UsersModel.EmailSubscriptionsCurrentView">
+              <MappingFragment StoreEntitySet="EmailSubscriptionsCurrentView">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PartitionId" ColumnName="PartitionId" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="SubscriptionType" ColumnName="SubscriptionType" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="Version" ColumnName="Version" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExecStats">
+            <EntityTypeMapping TypeName="Lomo.UsersModel.ExecStat">
+              <MappingFragment StoreEntitySet="ExecStats">
+                <ScalarProperty Name="sql_handle" ColumnName="sql_handle" />
+                <ScalarProperty Name="statement_start_offset" ColumnName="statement_start_offset" />
+                <ScalarProperty Name="statement_end_offset" ColumnName="statement_end_offset" />
+                <ScalarProperty Name="plan_generation_num" ColumnName="plan_generation_num" />
+                <ScalarProperty Name="plan_handle" ColumnName="plan_handle" />
+                <ScalarProperty Name="creation_time" ColumnName="creation_time" />
+                <ScalarProperty Name="last_execution_time" ColumnName="last_execution_time" />
+                <ScalarProperty Name="execution_count" ColumnName="execution_count" />
+                <ScalarProperty Name="total_worker_time" ColumnName="total_worker_time" />
+                <ScalarProperty Name="last_worker_time" ColumnName="last_worker_time" />
+                <ScalarProperty Name="min_worker_time" ColumnName="min_worker_time" />
+                <ScalarProperty Name="max_worker_time" ColumnName="max_worker_time" />
+                <ScalarProperty Name="total_physical_reads" ColumnName="total_physical_reads" />
+                <ScalarProperty Name="last_physical_reads" ColumnName="last_physical_reads" />
+                <ScalarProperty Name="min_physical_reads" ColumnName="min_physical_reads" />
+                <ScalarProperty Name="max_physical_reads" ColumnName="max_physical_reads" />
+                <ScalarProperty Name="total_logical_writes" ColumnName="total_logical_writes" />
+                <ScalarProperty Name="last_logical_writes" ColumnName="last_logical_writes" />
+                <ScalarProperty Name="min_logical_writes" ColumnName="min_logical_writes" />
+                <ScalarProperty Name="max_logical_writes" ColumnName="max_logical_writes" />
+                <ScalarProperty Name="total_logical_reads" ColumnName="total_logical_reads" />
+                <ScalarProperty Name="last_logical_reads" ColumnName="last_logical_reads" />
+                <ScalarProperty Name="min_logical_reads" ColumnName="min_logical_reads" />
+                <ScalarProperty Name="max_logical_reads" ColumnName="max_logical_reads" />
+                <ScalarProperty Name="total_clr_time" ColumnName="total_clr_time" />
+                <ScalarProperty Name="last_clr_time" ColumnName="last_clr_time" />
+                <ScalarProperty Name="min_clr_time" ColumnName="min_clr_time" />
+                <ScalarProperty Name="max_clr_time" ColumnName="max_clr_time" />
+                <ScalarProperty Name="total_elapsed_time" ColumnName="total_elapsed_time" />
+                <ScalarProperty Name="last_elapsed_time" ColumnName="last_elapsed_time" />
+                <ScalarProperty Name="min_elapsed_time" ColumnName="min_elapsed_time" />
+                <ScalarProperty Name="max_elapsed_time" ColumnName="max_elapsed_time" />
+                <ScalarProperty Name="query_hash" ColumnName="query_hash" />
+                <ScalarProperty Name="query_plan_hash" ColumnName="query_plan_hash" />
+                <ScalarProperty Name="total_rows" ColumnName="total_rows" />
+                <ScalarProperty Name="last_rows" ColumnName="last_rows" />
+                <ScalarProperty Name="min_rows" ColumnName="min_rows" />
+                <ScalarProperty Name="max_rows" ColumnName="max_rows" />
+                <ScalarProperty Name="statement_sql_handle" ColumnName="statement_sql_handle" />
+                <ScalarProperty Name="statement_context_id" ColumnName="statement_context_id" />
+                <ScalarProperty Name="text" ColumnName="text" />
+                <ScalarProperty Name="Statement" ColumnName="Statement" />
+                <ScalarProperty Name="ProcedureStart" ColumnName="ProcedureStart" />
+                <ScalarProperty Name="ShortText" ColumnName="ShortText" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ValidMerchantUsersViews">
+            <EntityTypeMapping TypeName="Lomo.UsersModel.ValidMerchantUsersView">
+              <MappingFragment StoreEntitySet="ValidMerchantUsersView">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PartitionId" ColumnName="PartitionId" />
+                <ScalarProperty Name="SubscriptionType" ColumnName="SubscriptionType" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Preferences" ColumnName="Preferences" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="ScheduleType" ColumnName="ScheduleType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ValidUsersViews">
+            <EntityTypeMapping TypeName="Lomo.UsersModel.ValidUsersView">
+              <MappingFragment StoreEntitySet="ValidUsersView">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PartitionId" ColumnName="PartitionId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="MsId" ColumnName="MsId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="IsSuppressed" ColumnName="IsSuppressed" />
+                <ScalarProperty Name="Json" ColumnName="Json" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="LinkedToUserId" ColumnName="LinkedToUserId" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="IsEmailConfirmed" ColumnName="IsEmailConfirmed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="database_firewall_rules">
+            <EntityTypeMapping TypeName="Lomo.UsersModel.database_firewall_rules">
+              <MappingFragment StoreEntitySet="database_firewall_rules">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="start_ip_address" ColumnName="start_ip_address" />
+                <ScalarProperty Name="end_ip_address" ColumnName="end_ip_address" />
+                <ScalarProperty Name="create_date" ColumnName="create_date" />
+                <ScalarProperty Name="modify_date" ColumnName="modify_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="script_deployment_status">
+            <EntityTypeMapping TypeName="Lomo.UsersModel.script_deployment_status">
+              <MappingFragment StoreEntitySet="script_deployment_status">
+                <ScalarProperty Name="deployment_id" ColumnName="deployment_id" />
+                <ScalarProperty Name="worker_id" ColumnName="worker_id" />
+                <ScalarProperty Name="logical_server" ColumnName="logical_server" />
+                <ScalarProperty Name="database_name" ColumnName="database_name" />
+                <ScalarProperty Name="deployment_start" ColumnName="deployment_start" />
+                <ScalarProperty Name="deployment_end" ColumnName="deployment_end" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="num_retries" ColumnName="num_retries" />
+                <ScalarProperty Name="messages" ColumnName="messages" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="script_deployments">
+            <EntityTypeMapping TypeName="Lomo.UsersModel.script_deployments">
+              <MappingFragment StoreEntitySet="script_deployments">
+                <ScalarProperty Name="deployment_id" ColumnName="deployment_id" />
+                <ScalarProperty Name="coordinator_id" ColumnName="coordinator_id" />
+                <ScalarProperty Name="deployment_name" ColumnName="deployment_name" />
+                <ScalarProperty Name="deployment_submitted" ColumnName="deployment_submitted" />
+                <ScalarProperty Name="deployment_start" ColumnName="deployment_start" />
+                <ScalarProperty Name="deployment_end" ColumnName="deployment_end" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="results_table" ColumnName="results_table" />
+                <ScalarProperty Name="retry_policy" ColumnName="retry_policy" />
+                <ScalarProperty Name="script" ColumnName="script" />
+                <ScalarProperty Name="messages" ColumnName="messages" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

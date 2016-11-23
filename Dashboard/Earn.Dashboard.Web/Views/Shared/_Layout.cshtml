@@ -1,0 +1,63 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+@using Earn.Dashboard.Web.Utils
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" type="image/png" href="/favicon.ico" />
+    <meta name="robots" content="noindex,follow">
+    <title>@ViewBag.Title</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.2/toastr.min.css" rel="stylesheet" />
+    @Styles.Render("~/bundles/layoutCss")
+    @RenderSection("styles", required: false)
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+</head>
+<body class="skin-blue sidebar-mini ">
+    <div class="wrapper">
+
+        @Html.Partial("_Header")
+
+        @Html.Partial("_SideBar")
+
+        @RenderBody()
+
+    </div>
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/knockout/knockout-3.4.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.2/toastr.min.js"></script>
+    @Scripts.Render("~/bundles/layoutJs")
+
+    @*disable signalr*@
+    @*@Scripts.Render("~/bundles/signalr")
+    <script src="~/signalr/hubs"></script>*@
+
+    <script>
+        $('a').parents('li,ul').removeClass('active');
+        $('a[href="' + this.location.pathname + '"]').parents('li,ul').addClass('active');
+    </script>
+    @RenderSection("scripts", required: false)
+    @if (Config.IsProduction)
+    {
+        <script type="text/javascript">
+            var appInsights = window.appInsights || function (config) {
+                function r(config) { t[config] = function () { var i = arguments; t.queue.push(function () { t[config].apply(t, i) }) } } var t = { config: config }, u = document, e = window, o = "script", s = u.createElement(o), i, f; for (s.src = config.url || "//az416426.vo.msecnd.net/scripts/a/ai.0.js", u.getElementsByTagName(o)[0].parentNode.appendChild(s), t.cookie = u.cookie, t.queue = [], i = ["Event", "Exception", "Metric", "PageView", "Trace"]; i.length;) r("track" + i.pop()); return r("setAuthenticatedUserContext"), r("clearAuthenticatedUserContext"), config.disableExceptionTracking || (i = "onerror", r("_" + i), f = e[i], e[i] = function (config, r, u, e, o) { var s = f && f(config, r, u, e, o); return s !== !0 && t["_" + i](config, r, u, e, o), s }), t
+            }({
+                instrumentationKey: "06ec1f26-4985-4321-b8ac-477bc717207d"
+            });
+
+            window.appInsights = appInsights;
+            appInsights.trackPageView();
+        </script>
+    }
+</body>
+</html>

@@ -1,0 +1,222 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+@model List<Earn.Dashboard.Web.Models.ServiceDetails>
+@{
+    ViewBag.Title = "Health";
+}
+@section styles {
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.12.0/vis.min.css" rel="stylesheet" />
+    <style>
+        input[type=radio] {
+            display: none;
+        }
+    </style>
+}
+
+<div class="content-wrapper" style="min-height: 916px;" id="mainSection">
+    <!-- Page header -->
+    <div class="row">
+        <div class="col-lg-12">
+            <ol class="breadcrumb">
+                <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+                <li class="active"><i class="fa fa-stethoscope"> </i> Developer</li>
+                <li class="active"><i class="fa fa-globe"> </i> @ViewBag.Title</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-lg-2">
+                <div class="list-group" data-bind="foreach: serviceDetails">
+                    <a style="cursor: pointer" class="list-group-item" data-bind="css: {active: $data.id == $root.selectedService()}">
+                        <input type="radio" data-bind="value: $data.id, checked: $root.selectedService, attr: {id: $data.id}" />
+                        @*<span data-bind="text: $data.name"></span>*@
+                        @*click on label only not the anchor tag*@
+                        <i class="glyphicon glyphicon-globe"></i>&nbsp;
+                        <label style="cursor: pointer" data-bind="attr: {for:  $data.id}, text: $data.name"></label>
+                        <!-- ko if: $data.nodes -->
+                        <span style="cursor: default" class="badge" data-bind="text: $data.nodes"></span>
+                        <!-- /ko -->
+                    </a>
+                </div>
+
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-info-circle"></i> Service Info</h3>
+                    </div>
+
+                    <table class="table" data-bind="with: selectedInstance" style="font-size: x-small;">
+                        <tr>
+                            <th style="width: 20%">Name</th>
+                            <td data-bind="text: $data.name"></td>
+                        </tr>
+                        <tr>
+                            <th>Status</th>
+                            <td data-bind="text: $data.status"></td>
+                        </tr>
+                        <tr>
+                            <th>Enabled</th>
+                            <td data-bind="text: $data.enabled"></td>
+                        </tr>
+                        <tr>
+                            <th>Endpoint</th>
+                            <td>
+                                <a data-bind="attr: {href: $data.endpoint}, text: $data.endpoint" target="_blank"></a>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+            <div class="col-lg-10">
+                <div class="panel panel-default">
+                    <div class="panel-body" id="jstree-div">
+                        <div id="network" style="width: 100%; height: 600px;"></div>
+                        @*<p id="selection"></p>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.12.0/vis.min.js"></script>
+    <script>
+        var ServiceHealthViewModel = function () {
+            var self = this;
+            self.serviceDetails = ko.observableArray([]);
+            self.serviceInstances = ko.observableArray([]);
+            self.selectedInstance = ko.observable();
+            self.nodes = [];
+            self.edges = [];
+
+            @foreach (var item in Model)
+            {
+               <text>self.serviceDetails.push({ id: '@item.Id', name: '@item.Name', nodes: '' });</text>
+            }
+
+            self.selectedService = ko.observable("1");
+            self.selectedService.subscribe(function () { self.getServiceDetails(); });
+            self.getServiceDetails = function () {
+                $('#spinner').show();
+                $.ajax({
+                    url: '/developer/getservicedetails?id=' + self.selectedService(),
+                    type: 'GET',
+                    cache: false
+                }).done(function (data) {
+                    if (data) {
+                        //alert(data);
+                        self.buildGraph(data);
+                    }
+                }).fail(function () {
+                    toastr.error('Failed to get details.', 'Health', { timeOut: 2000 });
+                }).always(function () {
+                    $('#spinner').hide();
+                });
+            };
+
+            self.buildGraph = function (data) {
+                var container = document.getElementById('network'),
+                    json = JSON.parse(data),
+                    dir = '/content/img/',
+                    instanceCount = 0;
+                self.nodes = [];
+                self.edges = [];
+                self.serviceInstances([]);
+                //var count = 0;
+                self.nodes.push({
+                    id: 0,
+                    label: json.Name,
+                    image: dir + 'traffic-manager.png', shape: 'image',
+                    //level: 0 // traffic manager
+                });
+                self.serviceInstances.push({ id: 0, name: json.Name, enabled: json.Enabled, status: json.Status, endpoint: json.Endpoint }); // traffic manager
+
+                var serviceImage, instanceImage;
+                var previousChildren = json.Children.length + 1;
+                for (var i = 0; i < json.Children.length; i++) {
+                    serviceImage = json.Children[i].Enabled ? 'service-enabled.png' : 'service-disabled.png';
+                    self.nodes.push({
+                        id: i + 1,
+                        label: json.Children[i].Name,
+                        image: dir + serviceImage, shape: 'image',
+                        //level: 1 // cloud services
+                    });
+
+                    self.edges.push({
+                        from: 0,
+                        to: i + 1,
+                        length: 300
+                    });
+
+                    self.serviceInstances.push({ id: i + 1, name: json.Children[i].Name, enabled: json.Children[i].Enabled, status: json.Children[i].Status, endpoint: json.Children[i].Endpoint }); // cloud services
+                    for (var j = 0; j < json.Children[i].Children.length; j++) {
+                        instanceCount++;
+                        instanceImage = json.Children[i].Enabled ? 'instance-enabled.png' : 'instance-disabled.png';
+
+                        self.nodes.push({
+                            id: previousChildren,
+                            label: json.Children[i].Children[j].Name,
+                            image: dir + instanceImage, shape: 'image',
+                            //level: 2  // VMs
+                        });
+
+                        self.edges.push({
+                            from: i + 1,
+                            to: previousChildren
+                        });
+
+                        self.serviceInstances.push({ id: previousChildren, name: json.Children[i].Children[j].Name, enabled: json.Children[i].Children[j].Enabled, status: json.Children[i].Children[j].Status, endpoint: json.Children[i].Children[j].Endpoint });  // VMs
+
+                        previousChildren++;
+                    }
+                }
+
+                var tree = {
+                    nodes: self.nodes,
+                    edges: self.edges
+                };
+
+                var options = {
+                    stabilize: true,
+                    smoothCurves: true,
+                    //hierarchicalLayout: {
+                    //    direction: 'UD'
+                    //}
+                };
+                var network = new vis.Network(container, tree, options);
+
+                // add event listeners
+                network.on('select', function (params) {
+                    //document.getElementById('selection').innerHTML = 'Selection: ' + params.nodes;
+                    self.selectedInstance(ko.utils.arrayFilter(self.serviceInstances(), function (item) {
+                        return item.id == params.nodes;
+                    })[0]);
+                });
+                self.selectedInstance(self.serviceInstances()[0]);
+
+                var temp = self.serviceDetails();
+                self.serviceDetails([]);
+                ko.utils.arrayForEach(temp, function (item) {
+                    if (item.id == self.selectedService()) {
+                        item.nodes = String(instanceCount);
+                    } else {
+                        item.nodes = '';
+                    }
+                });
+                self.serviceDetails(temp);
+            };
+
+            self.getServiceDetails();
+        }
+
+        $(function () {
+            ko.applyBindings(new ServiceHealthViewModel(), document.getElementById("mainSection"));
+        });
+    </script>
+}

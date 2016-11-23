@@ -1,0 +1,312 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+@model DailyDealsVM
+
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8" />
+    <title>Happy Memorial Day</title>
+    <style>
+        a {
+            text-decoration: none !important;
+        }
+    </style>
+</head>
+<body>
+    <table width="560" cellpadding="20" cellspacing="0" style="margin-right: auto; margin-left: auto; margin-bottom: 0; margin-top: 0; width: 560px; font-family: 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif; padding-left: 20px; padding-bottom: 20px; padding-top: 20px; padding-right: 20px; border-left-width: 0; border-bottom-width: 0; border-right-width: 0; border-top-width: 0;">
+
+        @* offers logo*@
+        <tr>
+            <td bgcolor="#505050" style="padding-bottom: 10px; padding-left: 20px; padding-right: 20px; padding-top: 10px; background-color: #505050;">
+                <table bgcolor="#505050" width="100%" style="font-family: 'Segoe UI Regular', 'Segoe UI', Arial, Helvetica, sans-serif; width: 100%; background-color: #505050;">
+                    <tbody>
+                        <tr>
+                            <td valign="bottom" align="left" style="vertical-align: bottom; text-align: left; width: 20%;">
+                                <a href="https://www.bing.com/offers?bor=@ViewBag.referrer&bof=@ViewBag.campaign" style="padding-right: 0; padding-top: 0; padding-left: 0; padding-bottom: 0; text-decoration: none;" target="_blank">
+                                    <img width="146" height="35" border="0" src="https://az414848.vo.msecnd.net/assets/offers_email_logo.png" style="border: 0; width: 146px; height: 35px; vertical-align: bottom; border-left-width: 0; border-bottom-width: 0; border-right-width: 0; border-top-width: 0; font-size: 10px;" alt="Bing Offers" />
+                                </a>
+                            </td>
+                            @if (!string.IsNullOrEmpty(Model.Location))
+                            {
+                                <td valign="baseline" align="left" style="vertical-align: baseline; text-align: left; font-size: 20px; line-height: 25px; color: #a2a2a2;">&nbsp;|&nbsp;<span style="color: white; font-weight: normal;">@Model.Location</span>
+                                </td>
+                            }
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+
+        @*Memorial day message*@
+        <tr>
+            <td bgcolor="#f5f5f5" style="padding-bottom: 15px; padding-left: 10px; padding-right: 10px; padding-top: 10px; background-color: #f5f5f5; width: 100%">
+                <table bgcolor="#f5f5f5" width="100%" style="font-family: 'Segoe UI Regular', 'Segoe UI', Arial, Helvetica, sans-serif; width: 100%; color: #505050; background-color: #f5f5f5;">
+                    <tbody>
+                        <tr>
+                            <td valign="top" align="center" style="font-family: 'Segoe UI Semibold', 'Segoe UI', Arial, Helvetica, sans-serif; color: #b4009e; text-align: center; font-size: 16px; vertical-align: top">
+                                <a target="_blank" href="https://www.bing.com/offers?bor=@ViewBag.referrer&bof=@ViewBag.campaign" style="text-decoration: none; font-size: 16px; color: #b4009e;">Support local businesses this Memorial Day weekend.
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="bottom" align="center" style="color: #505050; text-align: center; font-size: 13px; vertical-align: top; padding-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 5px;">
+                                <a target="_blank"  href="https://www.bing.com/offers?bor=@ViewBag.referrer&bof=@ViewBag.campaign" style="text-decoration: none; font-size: 13px; color: #505050;">Think local this Memorial Day weekend. From delicious food to sweet treats to family adventures, Bing Offers Card-Linked helps you find everyday discounts at local businesses. Let us take the guesswork out of saving so you can focus on what really matters
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <td valign="middle" align="left" style="padding-bottom: 10px; padding-left: 20px; padding-right: 20px; padding-top: 10px; background-color: #505050; text-align: left; font-size: 14px; vertical-align: middle; width: 100%;">
+                <table bgcolor="#505050" width="100%" style="font-family: 'Segoe UI Regular', 'Segoe UI', Arial, Helvetica, sans-serif; width: 100%; color: #fff; background-color: #505050;">
+                    <tbody>
+                        <tr>
+                            <td valign="middle" align="left" style="font-family: 'Segoe UI Semibold', 'Segoe UI', Arial, Helvetica, sans-serif; color: #fff; text-align: left; font-size: 16px; vertical-align: middle; width: 25%">
+                                <a target="_blank"  href="https://www.bing.com/offers?view=map&bor=@ViewBag.referrer&bof=@ViewBag.campaign" style="text-decoration: none; font-size: 14px; color: #fff;">
+                                    @*Card-Linked <br />*@
+                                    Tip of the week:
+                                </a>
+                            </td>
+                            <td valign="middle" align="left" style="color: #fff; text-align: left; font-size: 16px; vertical-align: top; width: 75%">
+                                <a target="_blank"  href="https://www.bing.com/offers?view=map&bor=@ViewBag.referrer&bof=@ViewBag.campaign" style="text-decoration: none; font-size: 14px; color: #fff;">By using the map feature at bing.com/offers, you can find discounts nearby, making it easy to access a whole day of savings!</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+
+        @*hero tile*@
+        <tr>
+            <td style="height: 250px; padding-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 10px;">
+                <table width="100%" cellspacing="0" cellpadding="0" bgcolor="#cccccc" style="background-color: #cccccc; width: 100%; padding-left: 0; padding-bottom: 0; padding-top: 0; padding-right: 0; border-left-width: 0; border-bottom-width: 0; border-right-width: 0; border-top-width: 0;">
+                    <tr>
+                        <td>
+                            <a href="@Model.HeroDeal.TransactionUrl" style="padding-right: 0; padding-top: 0; padding-left: 0; padding-bottom: 0; text-decoration: none;">
+                                <img width="560" height="250" align="middle" src="@Model.HeroDeal.LargeImageUrl" style="height: 250px; width: 560px; vertical-align: middle; border-left-width: 0; border-bottom-width: 0; border-right-width: 0; border-top-width: 0;" alt="@DailyDeals.ViewOffer" />
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <td bgcolor="#f5f5f5" style="padding-bottom: 20px; padding-left: 20px; padding-right: 20px; padding-top: 20px; background-color: #f5f5f5;">
+                <table cellspacing="0" cellpadding="0" width="100%" bgcolor="#f5f5f5" style="background-color: #f5f5f5; color: #444444; font-family: 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif; width: 100%; padding-left: 0; padding-bottom: 0; padding-top: 0; padding-right: 0;">
+                    <tr>
+                        <td align="left" style="text-align: left; padding-left: 0; padding-bottom: 0; padding-top: 0; padding-right: 0;">
+                            <table cellspacing="0" cellpadding="0" width="100%" style="font-family: 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif; width: 100%; padding-left: 0; padding-bottom: 0; padding-top: 0; padding-right: 0;">
+                                <tr>
+                                    <td align="left" valign="top" style="vertical-align: top; text-align: left; padding-top: 0; padding-right: 0; padding-bottom: 10px; padding-left: 0; font-size: 20px; color: #444444;">@Model.HeroDeal.BusinessName
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="left" valign="top" style="vertical-align: top; text-align: left; padding-top: 0; padding-right: 0; padding-bottom: 10px; padding-left: 0; font-size: 26px; color: #b4009e;">@Model.HeroDeal.Title
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="left" valign="top" style="vertical-align: top; text-align: left; padding-top: 0; padding-right: 0; padding-bottom: 10px; padding-left: 0; font-size: 14px; color: #777777;">@Model.HeroDeal.Attribution
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table cellspacing="0" cellpadding="0" width="100%" bgcolor="#f5f5f5" style="background-color: #f5f5f5; color: #444444; font-family: 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif; width: 100%; padding-left: 0; padding-bottom: 0; padding-top: 0; padding-right: 0;">
+                                <tr>
+                                    <td valign="bottom" style="width: 70%; text-align: left; vertical-align: bottom; padding-left: 0; padding-bottom: 5px; padding-top: 0; padding-right: 0;">
+                                        <table bgcolor="#f5f5f5" cellspacing="0" cellpadding="0" width="100%" style="background-color: #f5f5f5; text-align: left; width: 100%; font-family: 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif; padding-left: 0; padding-bottom: 0; padding-top: 0; padding-right: 0;">
+                                            <tr>
+                                                <td>
+                                                    <table bgcolor="#f5f5f5" cellspacing="0" cellpadding="0" width="100%" style="background-color: #f5f5f5; text-align: left; width: 100%; font-family: 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif; padding-left: 0; padding-bottom: 0; padding-top: 0; padding-right: 0;">
+                                                        <tr>
+                                                            <td valign="bottom" style="font-size: 12px; vertical-align: bottom; color: #b4009e;">@DailyDeals.SaveHeader</td>
+
+                                                            @if (!string.IsNullOrEmpty(Model.HeroDeal.MinimumSpend))
+                                                            {
+                                                                <td valign="bottom" style="font-size: 12px; vertical-align: bottom; color: #b4009e;">
+                                                                    @DailyDeals.SpendHeader
+                                                                </td>
+                                                            }
+                                                        </tr>
+                                                        <tr>
+
+                                                            <td valign="bottom" style="font-size: 24px; font-weight: normal; vertical-align: bottom; color: #b4009e;">
+                                                                @(!string.IsNullOrWhiteSpace(Model.HeroDeal.Discount) ? Model.HeroDeal.Discount : Model.HeroDeal.DiscountAmmount)
+                                                            </td>
+                                                            @if (!string.IsNullOrEmpty(Model.HeroDeal.MinimumSpend))
+                                                            {
+                                                                <td valign="bottom" style="font-size: 24px; font-weight: normal; vertical-align: bottom; color: #b4009e;">@Model.HeroDeal.MinimumSpend</td>
+                                                            }
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                                <td align="center" valign="middle" bgcolor="#ffb900" style="width: 40%; text-align: center; vertical-align: middle; padding-left: 0; padding-bottom: 0; padding-top: 0; padding-right: 0; background-color: #ffb900; color: #505050">
+                                                    <a href="@Model.HeroDeal.TransactionUrl" target="_blank" style="font-size: 18px;  background-color: #ffb900; text-decoration: none; font-family: 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif; color: #505050;">@DailyDeals.ViewOffer</a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        @foreach (var deal in this.Model.FeaturedDeals)
+        {
+            <tr>
+                <td style="padding-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 10px;">
+                    <table bgcolor="#F5F5F5" cellspacing="0" cellpadding="0" width="100%" style="background-color: #F5F5F5; width: 100%; padding-left: 0; padding-bottom: 0; padding-top: 0; padding-right: 0; border-left-width: 0; border-bottom-width: 0; border-right-width: 0; border-top-width: 0;">
+                        <tr>
+                            <td align="left" bgcolor="#cccccc;" style="width: 180px; height: 180px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: #cccccc; text-align: left">
+                                <a href="@deal.TransactionUrl" style="padding-right: 0; padding-top: 0; padding-left: 0; padding-bottom: 0; text-decoration: none;">
+                                    <img align="middle" height="180" width="180" src="@deal.MediumImageUrl" style="width: 180px; height: 180px; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0;" alt="@DailyDeals.ViewOffer" />
+                                </a>
+                            </td>
+                            <td valign="top" bgcolor="#F5F5F5;" style="height: 180px; vertical-align: top; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: #F5F5F5;">
+                                <table cellpadding="0" cellpadding="0" width="100%" style="width: 100%; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;">
+                                    <tr>
+                                        <td bgcolor="#F5F5F5;" style="padding-top: 10px; padding-right: 20px; padding-bottom: 10px; padding-left: 20px; background-color: #F5F5F5;">
+                                            <table bgcolor="#F5F5F5;" cellspacing="0" cellpadding="0" width="100%" style="font-family: 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif; background-color: #F5F5F5; width: 100%; padding-left: 0; padding-bottom: 0; padding-top: 0; padding-right: 0;">
+
+                                                <tr>
+                                                    <td align="left" valign="top" style="text-align: left; vertical-align: top; padding-top: 0; padding-right: 10px; padding-bottom: 0; padding-left: 0;">
+                                                        <table cellpadding="0" cellpadding="0" width="100%" style="font-family: 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif; width: 100%; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;">
+                                                            <tr>
+                                                                <td align="left" valign="top" style="vertical-align: top; text-align: left; padding-top: 0; padding-right: 0; padding-bottom: 5px; padding-left: 0; font-size: 14px; color: #444444;">
+                                                                    @deal.BusinessName
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="left" valign="top" style="vertical-align: top; text-align: left; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; font-size: 18px; color: #b4009e;">
+                                                                    @deal.Title
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+
+                                                    <td align="right" valign="top" style="width: 130px; vertical-align: top; text-align: right; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;">
+                                                        <table cellspacing="0" cellpadding="0" width="100%" style="font-family: 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif; width: 100%; padding-left: 0; padding-bottom: 0; padding-top: 0; padding-right: 0;">
+                                                            <tr>
+                                                                <td valign="top" align="right" style="text-align: right; vertical-align: top; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; font-size: 14px; color: #444444;">
+                                                                    @if (!(string.IsNullOrWhiteSpace(deal.Discount) && string.IsNullOrWhiteSpace(deal.DiscountAmmount)))
+                                                                    {
+                                                                        @DailyDeals.SaveHeader
+                                                                    }
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td valign="top" align="right" style="text-align: right; vertical-align: top; padding-top: 0; padding-right: 0; padding-bottom: 30px; padding-left: 0; font-size: 40px; color: #b4009e;">
+                                                                    @(!string.IsNullOrWhiteSpace(deal.Discount) ? deal.Discount : deal.DiscountAmmount)
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td valign="middle" align="center" bgcolor="#ffb900" style="vertical-align: middle; height: 35px; background-color: #ffb900; text-align: center; color: #505050;">
+                                                                    <a href="@deal.TransactionUrl" target="_blank" style="display: block; font-size: 16px;  background-color: #ffb900; text-decoration: none; font-family: 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif; color: #505050; padding-left: 10px;">@DailyDeals.ViewOffer</a>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        }
+
+        <tr>
+            <td align="center" valign="middle" style="vertical-align: middle; text-align: center; padding-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 20px;">
+                <table bgcolor="#f5f5f5" cellspacing="0" cellpadding="0" width="100%" style="font-family: 'Segoe UI Regular', 'Segoe UI', Arial, Helvetica, sans-serif; width: 100%; background-color: #f5f5f5; width: 100%; padding-left: 0; padding-bottom: 0; padding-top: 0; padding-right: 0;">
+                    <tr>
+                        <td bgcolor="#f5f5f5" valign="middle" align="center" style="background-color: #f5f5f5; vertical-align: middle; text-align: center; padding-bottom: 10px; padding-left: 0; padding-right: 0; padding-top: 10px; color: #ffa615;">
+                            <a href="https://www.bing.com/offers?bor=@ViewBag.referrer&bof=@ViewBag.campaign" style="text-decoration: none; font-size: 18px; color: #ffa615;">@DailyDeals.MoreDealsText</a>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <td align="center" valign="middle" style="vertical-align: middle; text-align: center; padding-bottom: 0; padding-left: 100px; padding-right: 100px; padding-top: 20px;">
+                <table cellspacing="0" cellpadding="0" width="100%" style="width: 100%; padding-left: 0; padding-bottom: 0; padding-top: 0; padding-right: 0;">
+                    <tr>
+                        <td valign="middle" align="center" style="vertical-align: middle; text-align: center; padding-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; width: 25%">
+                            <a href="@DailyDeals.FacebookShareUrl">
+                                <img width="30" height="30" src="@DailyDeals.FacebookIconUrl" border="0" style="width: 30px; height: 30px; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; font-size: 6px;" alt="@DailyDeals.Facebook" />
+                            </a>
+                        </td>
+
+                        <td valign="middle" align="center" style="vertical-align: middle; text-align: center; padding-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; width: 25%">
+                            <a href="@DailyDeals.TwitterShareUrl">
+                                <img width="30" height="30" src="@DailyDeals.TwitterIconUrl" border="0" style="width: 30px; height: 30px; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; font-size: 6px;" alt="@DailyDeals.Twitter" />
+                            </a>
+                        </td>
+
+                        <td valign="middle" align="center" style="vertical-align: middle; text-align: center; padding-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; width: 25%">
+                            <a href="@DailyDeals.PinterestShareUrl">
+                                <img width="30" height="30" src="@DailyDeals.PinterestIconUrl" border="0" style="width: 30px; height: 30px; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; font-size: 6px;" alt="@DailyDeals.Pinterest" />
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <td valign="middle" style="vertical-align: middle; font-size: 11px; padding-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 10px; color: #777777;">
+                <p align="left" style="text-align: left; font-size: 11px; color: #777777;">@DailyDeals.SubscriptionText</p>
+                <p align="center" style="text-align: center; font-size: 11px; color: #777777; text-decoration: none;">@DailyDeals.MicrosoftAddress</p>
+            </td>
+        </tr>
+
+        <tr>
+            <td valign="middle" align="center" style="vertical-align: middle; text-align: center; font-size: 11px; padding-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 10px;">
+                <table cellspacing="0" cellpadding="0" width="100%" style="font-family: 'Segoe UI Regular', 'Segoe UI', Arial, Helvetica, sans-serif; width: 100%; padding-left: 0; padding-bottom: 0; padding-top: 0; padding-right: 0; font-size: 11px;">
+                    <tr>
+                        <td valign="middle" align="center" style="vertical-align: middle; text-align: center; padding-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; width: 23%;">
+                            <a href="@DailyDeals.PrivacyStatementsUrl" style="font-size: 11px;">@DailyDeals.PrivacyStatements</a>
+                        </td>
+                        <td valign="middle" align="center" style="vertical-align: middle; text-align: center; padding-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0;">
+                            <a href="@DailyDeals.TermsConditionsUrl" style="font-size: 11px;">@DailyDeals.TermsConditions</a>
+                        </td>
+                        <td valign="middle" align="center" style="vertical-align: middle; text-align: center; padding-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; width: 23%;">
+                            <a href="@DailyDeals.FeedbackUrl" style="font-size: 11px;">@DailyDeals.Feedback</a>
+                        </td>
+                        <td valign="middle" align="center" style="vertical-align: middle; text-align: center; padding-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; width: 23%;">
+                            <a href="@Model.UnsubscribeUrl" style="font-size: 11px;">@DailyDeals.Unsubscribe</a>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <td valign="middle" align="left" style="vertical-align: middle; text-align: left; padding-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 30px;">
+                <a href="@DailyDeals.MicrosoftUrl" style="padding-right: 0; padding-top: 0; padding-left: 0; padding-bottom: 0; text-decoration: none;">
+                    <img width="70" src="@DailyDeals.MsLogoUrl" alt="@DailyDeals.Microsoft" style="width: 70px; border-left-width: 0; border-bottom-width: 0; border-right-width: 0; border-top-width: 0; font-size: 10px;"  />
+                </a>
+            </td>
+        </tr>
+
+    </table>
+</body>
+</html>

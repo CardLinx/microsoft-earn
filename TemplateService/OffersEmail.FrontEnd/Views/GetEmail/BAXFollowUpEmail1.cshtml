@@ -1,0 +1,250 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+@model AutoprospectingCreateAdVM
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width"/>
+    <title>@Html.Raw(BAXFollowupEmail.Title)</title>
+    <style type="text/css">
+        a:visited{color:blue;}
+        div, p, a, li, td { -webkit-text-size-adjust:none; }
+        .appleLinks a {color:#000000;text-decoration: none}
+        .appleLinksGrey a{color:#999999; text-decoration:none}
+    </style>
+</head>
+<body style="font-family: Arial, Helvetica, sans-serif;">
+    <table width="100%" style="background:#EEEEEE" cellpadding="0" cellspacing="0">
+        <tr>
+            <td>
+               <!-- Main mail -->
+                <table style="background:#FFFFFF" align="center" width="600" cellpadding="0" cellspacing="0" style="width:600px">
+                    <!-- Header -->
+                    <tr>
+                        <td style="border-bottom: 5px solid #FFB900;background:#FFFFFF;padding:10px">
+                            <table width="100%">
+                                <tr>
+                                    <td width="106">
+                                        <a href="http://bingads.com/express"><img style="border:none" src="http://image.email.microsoftemail.com/lib/fe61157075630774741d/m/5/logo_bing_gray_tr_106x58.png" width="106" height="58" alt="Bing" border="0" /></a>
+                                    </td>
+                                    <td></td>
+                                    <td width="80"><img style="border:none" align="right" src="https://TODO_YOUR_CDN_URL/autoprospecting-assets/ms.logo70x15.png" width="70" height="15" alt="Microsoft" /></td>
+                               </tr>
+                           </table>
+                       </td>
+                    </tr>
+                    <tr>
+                        <td style="padding:20px;padding-top:20px;background:#FFFFFF">
+                            <table style="background:#FFF;font-family: Arial, Helvetica, sans-serif;" align="center" width="560" cellpadding="0" cellspacing="0">
+                               <tr>
+                                    <td>
+                                        <div style="font-size:24px;color:#4888C2;text-align: left">@Html.Raw(BAXFollowupEmail.MainHeading)</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="20"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div style="font-size:13px;font-weight:bold">@BAXFollowupEmail.Hello@{if(!String.IsNullOrWhiteSpace(Model.CustomerName)){<text> </text>@Model.CustomerName}},</div>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td height="20"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div style="font-size:13px;text-align: justify; line-height: 18px">
+                                                  @{
+                                                      String businessNameHtml = String.Empty;
+                                                      String reach = "thousands of";
+                                                      String businessCity = "your";
+                                                      if (!String.IsNullOrWhiteSpace(Model.BusinessName)) 
+                                                      {
+                                                          businessNameHtml = "<b>"+Model.BusinessName+"</b>";
+                                                      }
+                                                      if (!String.IsNullOrEmpty(Model.Reach))
+                                                      {
+                                                          reach = "<b>" + String.Format(new System.Globalization.CultureInfo("en-US"), "{0:n0}", Int32.Parse(Model.Reach)) + "</b>";
+                                                      }
+                                                      if (!String.IsNullOrEmpty(Model.BusinessCity))
+                                                      {
+                                                          businessCity = "the " + Model.BusinessCity;
+                                                      }
+                                                  }
+                                                  @Html.Raw(String.Format(BAXFollowupEmail.IntroductionWithCoupon, businessNameHtml, reach, businessCity))
+                                              </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="20"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div style="font-size:13px;text-align: justify">@Html.Raw(BAXFollowupEmail.HereIsAPreview)</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="20"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <!-- Ad Copy -->
+                                        <table style="font-family: Arial, Helvetica, sans-serif;background:#EEEEEE;" width="580" cellspacing="0" >
+                                            <tr>
+                                                <td style="padding:10px">
+                                                    <table style="font-family: Arial, Helvetica, sans-serif;background:#EEEEEE;" width="560" cellspacing="0" >
+                                                        <tr>
+                                                            <td style="background:#FFFFFF;padding:8px;box-shadow:0 0 10px #CCCCCC">
+                                                                <div style="font-size:16px;color:#04c!important"><a href="@{if(!String.IsNullOrWhiteSpace(Model.DestinationUrl)){@Model.DestinationUrl}else{<text>#</text>}}">@Model.AdTitle</a></div>
+                                                                @{if(!String.IsNullOrWhiteSpace(Model.DisplayUrl)){<text><div style="margin:0px;font-size:13px;"><a href="#" style="cursor:text;color:#388222;text-decoration:none"><span style="cursor:text;color:#388222;text-decoration:none">
+                                                                                                                                                                                                                                        <font style="cursor:text;color:#388222;text-decoration:none" color="#388222">@Model.DisplayUrl</font></span></a></div></text>}}
+                                                                <div style="font-size:13px;">@Model.AdDescription</div>
+                                                                <div style="font-size:13px;"><span class="appleLinks">@Model.BusinessAddress</span></div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="20"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <div style="font-size:13px;text-align: justify">@Html.Raw(BAXFollowupEmail.WeAreOffering)</div>
+                                        </td>
+                                </tr>
+                                 <tr>
+                                    <td height="20"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <!--[if mso]>
+                                            <v:rect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="@Model.GettingStartedUrl" style="height:40px;v-text-anchor:middle;width:260px;" stroke="f" fillcolor="#5CA7DA">
+                                            <w:anchorlock/>
+                                            <center>
+                                        <![endif]-->
+                                        <a href="@Model.GettingStartedUrl"
+                                            style="background-color: #5CA7DA; color: #ffffff; display: block; font-family: Arial, Helvetica, sans-serif; font-size: 16px; line-height: 40px; text-align: center; text-decoration: none; width: 240px;">Redeem your $150 credit now</a>
+                                        <!--[if mso]>
+                                            </center>
+                                            </v:rect>
+                                        <![endif]-->
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="20"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div style="font-size:16px;color:#4888C2">@BAXFollowupEmail.StillHaveQuestions</div>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td height="10"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div style="font-size: 13px">@Html.Raw(String.Format(BAXFollowupEmail.OurInfomativeVideo, "http://advertise.bingads.microsoft.com/en-us/bing-ads-Express-video"))</div>
+                                    </td>
+                                </tr>
+                               
+                                
+                                
+                                <tr>
+                                    <td height="20" style="font-size: 20px; line-height: 20px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div style="font-size:13px;text-align: justify">@BAXFollowupEmail.Sincerely</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="3" style="font-size: 3px; line-height: 3px;">&nbsp;</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>
+                                        <div style="font-size:13px;text-align: justify">@BAXFollowupEmail.BingAdsExpressTeam</div>
+                                    </td>
+                                </tr>
+                    
+                        </table>
+
+                    </td>
+                </tr>
+               <!-- START footer -->
+               <tr>
+            <!-- disclaimer and YBN logo -->
+                 <td style="padding-left:20px;padding-right:20px; background:#FFFFFF">
+                        <table cellspacing="0" cellpadding="0" width="560" style="font-family: Arial, Helvetica, sans-serif;">
+                            <tr>
+                                <td colspan="2">
+                                    <div style="border-top:1px solid #CCCCCC;text-align: justify;padding-top:20px;font-size:12px;color:#999999">@Html.Raw(String.Format(BAXFollowupEmail.OfferDetails, "http://advertise.bingads.microsoft.com/en-us/mobile-coupon-full-offer-details"))</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                    <td height="20"></td>
+                                </tr>
+                            <tr>
+                                <td>
+                                    <div style="font-size:12px;text-align: justify;padding:0;color:#999999">@Html.Raw(BAXFollowupEmail.Disclaimer)</div>
+                            
+                                   
+                                </td>
+                                <td rowspan="3" width="116" style="width:113px; color: #666666; font-family: 'Segoe UI Regular', Arial; font-size: 12px; padding:0 0px 0 10px; text-align: right">
+                                    <!-- START YBN logo -->
+                                    <img src="http://image.email.microsoftemail.com/lib/fe61157075630774741d/m/5/logo_YBN_gray_116x42.jpg" width="116" height="42" alt="Yahoo! | Bing Network" border="0" />
+                                    <!-- END YBN logo -->  
+                                </td>
+                            </tr>
+                              <tr>
+                                     <td height="5" style="font-size: 5px; line-height: 5px;">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                     <div class="appleLinksGrey" style="font-size:12px;color:#999999; text-align: center">@Html.Raw(BAXFollowupEmail.MicrosoftsAddress)</div>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!-- footer links -->
+                <tr>
+                    <td style="padding:10px;background:#FFFFFF">
+                            <table width="580" cellpadding="0" cellspacing="0" style="text-align: center;width:580px; font-family: Arial, Helvetica, sans-serif; font-size: 12px">
+                            <tr>
+                                <td width="25%"><a href="https://go.microsoft.com/fwlink/?LinkId=248686">@BAXFollowupEmail.PrivacyStatements</a></td>
+                                <td width="25%"><a href="https://g.msn.com/1ewbingwin8/settingsTOUen-US">@BAXFollowupEmail.TermsAndConditions</a></td>
+                                <td width="25%"><a href="http://bingads.uservoice.com/forums/220185-bing-ads-express">@BAXFollowupEmail.Feedback</a></td>
+                                <td width="25%"><a href="http://www.bingplaces.com/DashBoard/Unsubscribe?view=PopUpView">@BAXFollowupEmail.Unsubscribe</a></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                   
+                
+                <tr>
+                       <td align="right" style="background-color: #DDDDDD; padding: 10px 10px 5px 10px;">
+                            <img src="https://TODO_YOUR_CDN_URL/autoprospecting-assets/ms.logo70x15.png" width="70" height="15" alt="Microsoft" />
+                        </td>
+                </tr>
+               <!-- END footer -->
+            </table>
+        </td>
+    </tr>
+</table>
+    
+</body>
+</html>

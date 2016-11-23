@@ -1,0 +1,878 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+@model OffersEmail.DataContracts.CampaignDataContract
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Activate Your Account</title>
+
+    <style type="text/css">
+        /* Force Outlook to provide a "view in browser" menu link. */
+        #outlook a {
+            padding: 0;
+        }
+
+        /* Prevent Webkit and Windows Mobile platforms from changing default font sizes, while not breaking desktop design. */
+        body {
+            width: 100% !important;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .ExternalClass {
+            width: 100%;
+        }
+            /* Force Hotmail to display emails at full width http://templates.mailchimp.com/development/css/client-specific-styles/ */
+            .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {
+                line-height: 100%;
+            }
+        /* Force Hotmail to display normal line spacing. */
+        #backgroundTable {
+            margin: 0;
+            padding: 0;
+            width: 100% !important;
+            line-height: 100% !important;
+        }
+
+        img {
+            outline: none;
+            text-decoration: none;
+            border: none;
+            -ms-interpolation-mode: bicubic;
+        }
+
+        a img {
+            border: none;
+        }
+
+        .image_fix {
+            display: block;
+        }
+
+        p {
+            margin: 0px 0px !important;
+        }
+
+        table td {
+            border-collapse: collapse;
+        }
+
+        table {
+            border-collapse: collapse;
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        }
+            /*a {color: #e95353;text-decoration: none;text-decoration:none!important;}*/
+            /*STYLES*/
+            table[class=full] {
+                width: 100%;
+                clear: both;
+            }
+
+        /*################################################*/
+        /*IPAD STYLES*/
+        /*################################################*/
+        @@media only screen and (max-width: 640px) {
+            a[href^="tel"], a[href^="sms"] {
+                text-decoration: none;
+                color: #ffffff; /* or whatever your want */
+                pointer-events: none;
+                cursor: default;
+            }
+
+            .mobile_link a[href^="tel"], .mobile_link a[href^="sms"] {
+                text-decoration: default;
+                color: #ffffff !important;
+                pointer-events: auto;
+                cursor: default;
+            }
+
+            table[class=devicewidth] {
+                width: 440px!important;
+                text-align: center!important;
+            }
+
+            table[class=devicewidthinner] {
+                width: 420px!important;
+                text-align: center!important;
+            }
+
+            table[class="sthide"] {
+                display: none!important;
+            }
+
+            img[class="bigimage"] {
+                width: 420px!important;
+                height: 219px!important;
+            }
+
+            img[class="col2img"] {
+                width: 420px!important;
+                height: 258px!important;
+            }
+
+            img[class="image-banner"] {
+                width: 440px!important;
+                height: 106px!important;
+            }
+
+            td[class="menu"] {
+                text-align: center !important;
+                padding: 0 0 10px 0 !important;
+            }
+
+            td[class="logo"] {
+                padding: 10px 0 5px 10px!important;
+                margin: 0 auto !important;
+            }
+
+            img[class="logo"] {
+                padding: 0!important;
+                margin: 0 auto !important;
+            }
+        }
+        /*##############################################*/
+        /*IPHONE STYLES*/
+        /*##############################################*/
+        @@media only screen and (max-width: 480px) {
+            a[href^="tel"], a[href^="sms"] {
+                text-decoration: none;
+                color: #ffffff; /* or whatever your want */
+                pointer-events: none;
+                cursor: default;
+            }
+
+            .mobile_link a[href^="tel"], .mobile_link a[href^="sms"] {
+                text-decoration: default;
+                color: #ffffff !important;
+                pointer-events: auto;
+                cursor: default;
+            }
+
+            table[class=devicewidth] {
+                width: 280px!important;
+                text-align: center!important;
+            }
+
+            table[class=devicewidthinner] {
+                width: 260px!important;
+                text-align: center!important;
+            }
+
+            table[class="sthide"] {
+                display: none!important;
+            }
+
+            img[class="bigimage"] {
+                width: 260px!important;
+                height: 136px!important;
+            }
+
+            img[class="col2img"] {
+                width: 260px!important;
+                height: 160px!important;
+            }
+
+            img[class="image-banner"] {
+                width: 280px!important;
+                height: 68px!important;
+            }
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="block">
+        <!-- Start of preheader -->
+        <table width="100%" bgcolor="#f5f5f5" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="preheader">
+            <tbody>
+                <tr>
+                    <td width="100%">
+                        <table width="580" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+                            <tbody>
+                                <!-- Spacing -->
+                                <tr>
+                                    <td width="100%" height="15"></td>
+                                </tr>
+                                <!-- Spacing -->
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- End of preheader -->
+    </div>
+
+    <div class="block">
+        <!-- start of header -->
+        <table width="100%" bgcolor="#f5f5f5" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="header">
+            <tbody>
+                <tr>
+                    <td>
+                        <table width="580" bgcolor="#505050" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth" hlitebg="edit" shadow="edit">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <!-- logo -->
+                                        <table width="100%" cellpadding="0" cellspacing="0" border="0" align="left" class="devicewidth">
+                                            <tbody>
+                                                <tr>
+                                                    <td width="90%" valign="middle" style="padding: 10px 0 10px 20px;" class="logo">
+                                                        <table cellpadding="0" cellspacing="0" border="0" align="left">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td valign="middle">
+                                                                        <div class="imgpop">
+                                                                            <a target="_blank" href="http://www.bing.com/offers/?location=@Model.PostalCode&bor=@ViewBag.referrer&bof=@ViewBag.campaign">
+                                                                                <img src="https://az414848.vo.msecnd.net/assets/offers_email_logo.png" alt="Bing Offers" border="0" style="border: none; outline: none; text-decoration: none;" st-image="edit" class="logo" />
+                                                                            </a>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td valign="middle" style="font-family: Helvetica, Arial, sans-serif; font-size: 16px; color: #ffffff; line-height: 100%;">&nbsp;&nbsp;|&nbsp;&nbsp;@Model.Location</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <!-- End of logo -->
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- end of header -->
+    </div>
+
+    <div class="block">
+        <!-- start of left image -->
+        <table width="100%" id="backgroundTable" bgcolor="#f5f5f5" border="0" cellspacing="0" cellpadding="0" st-sortable="rightimage">
+            <tbody>
+                <tr>
+                    <td>
+                        <table width="580" align="center" class="devicewidth" bgcolor="#e5e5e5" border="0" cellspacing="0" cellpadding="0" modulebg="edit" style="background-color: #e5e5e5">
+                            <tbody>
+                                <!-- Spacing -->
+                                <tr>
+                                    <td height="15"></td>
+                                </tr>
+                                <!-- Spacing -->
+                                <tr>
+                                    <td>
+                                        <table width="540" align="center" class="devicewidthinner" border="0" cellspacing="0" cellpadding="0">
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+
+                                                        <!-- start of left column -->
+                                                        <table width="270" align="right" class="devicewidthinner" border="0" cellspacing="0" cellpadding="0">
+                                                            <tbody>
+                                                                <!-- image -->
+                                                                <tr>
+                                                                    <td width="270" height="185" align="center">
+                                                                        <a target="_blank"  href="@Model.Content">
+                                                                            <img width="270" height="185" style="border: currentColor; border-image: none; text-decoration: none; display: block;" src="@ViewBag.Image" border="0" alt="" title="" />
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <!-- end of right column -->
+                                                        <!-- mobile spacing -->
+                                                        <table align="left" class="mobilespacing" border="0" cellspacing="0" cellpadding="0">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td width="100%" height="10" style="line-height: 1px; font-size: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <!-- mobile spacing -->
+
+                                                        <!-- start of right column -->
+                                                        <table width="250" align="left" class="devicewidthinner" border="0" cellspacing="0" cellpadding="0">
+                                                            <tbody>
+                                                                <!-- Content -->
+                                                                <tr>
+                                                                    <td style="text-align: left; color: #505050; line-height: 30px; font-family: 'Segoe UI Regular', 'Segoe UI', Arial, Helvetica, sans-serif; font-size: 21px;" st-content="rightimage-paragraph">Bing Offers launches <br/> Card-Linked in Boston, Phoenix, and Seattle.
+                                                                    </td>
+                                                                </tr>
+                                                                <!-- end of content -->
+                                                                <!-- Spacing -->
+                                                                <tr>
+                                                                    <td width="100%" height="20"></td>
+                                                                </tr>
+
+                                                                <!-- Spacing -->
+                                                                <!-- button -->
+                                                                <tr>
+                                                                    <td>
+                                                                        <table height="40" align="left" valign="middle" border="0" cellpadding="0" cellspacing="0" class="tablet-button" st-button="edit">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td align="center" valign="middle" height="40" width="100%" style="background-color: #ffa615; border-top-left-radius: 4px; border-bottom-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; background-clip: padding-box; font-size: 16px; font-family: Helvetica, arial, sans-serif; text-align: center; color: #ffffff; font-weight: 300; padding-left: 20px; padding-right: 20px;">
+                                                                                        <span style="color: #ffffff; font-weight: 300;">
+                                                                                            <a target="_blank" style="color: #ffffff; text-align: center; text-decoration: none;" href="@Model.Content">Activate FREE Discounts</a>
+                                                                                        </span>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                                <!-- /button -->
+                                                            </tbody>
+                                                        </table>
+                                                        <!-- end of right column -->
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="15"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- end of left image -->
+    </div>
+
+    <div class="block">
+        <!-- image + text -->
+        <table width="100%" bgcolor="#f5f5f5" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="bigimage">
+            <tbody>
+                <tr>
+                    <td>
+                        <table bgcolor="#ffffff" width="580" align="center" cellspacing="0" cellpadding="0" border="0" class="devicewidth" modulebg="edit">
+                            <tbody>
+                                <tr>
+                                    <td width="100%" height="5"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <table width="540" align="center" cellspacing="0" cellpadding="0" border="0" class="devicewidthinner">
+                                            <tbody>
+                                                <!-- Spacing -->
+                                                <tr>
+                                                    <td width="100%" height="20"></td>
+                                                </tr>
+                                                <!-- Spacing -->
+                                                <!-- content -->
+                                                <tr>
+                                                    <td style="font-family: 'Segoe UI', Arial, Helvetica, sans-serif; font-size: 18px; color: #777; text-align: left; line-height: 24px;" st-content="rightimage-paragraph">Bing Offers is proud to announce our new Card-Linked program, now available in Boston, Phoenix, and Seattle.  
+                                                    </td>
+                                                </tr>
+                                                <!-- content -->
+                                                <!-- Spacing -->
+                                                <tr>
+                                                    <td width="100%" height="5"></td>
+                                                </tr>
+                                                <!-- Spacing -->
+                                                <!-- content -->
+                                                <tr>
+                                                    <td style="font-family: 'Segoe UI', Arial, Helvetica, sans-serif; font-size: 18px; color: #777; text-align: left; line-height: 26px;" st-content="rightimage-paragraph">Card-Linked is saving made simple. No coupons to clip. No pre-purchasing required. No awkward haggling. Simply receive automatic discounts by using your favorite credit or debit card(s).</td>
+                                                </tr>
+                                                <!-- end of content -->
+                                                <!-- Spacing -->
+                                                <tr>
+                                                    <td width="100%" height="10"></td>
+                                                </tr>
+                                                <!-- Spacing -->
+                                                <!-- content -->
+                                                <tr>
+                                                    <td style="font-family: 'Segoe UI', Arial, Helvetica, sans-serif; font-size: 18px; color: #777; text-align: left; line-height: 26px;" st-content="rightimage-paragraph">If you're living in Boston, Phoenix, or Seattle, you'll now see Card-Linked offers when you visit the Bing Offers site, but you need to register a card so we can automate your discounts! Registration only takes a minute–and membership is FREE. Try Card-Linked today!</td>
+                                                </tr>
+                                                <!-- end of content -->
+                                                <!-- Spacing -->
+                                                <tr>
+                                                    <td width="100%" height="20"></td>
+                                                </tr>
+                                                <!-- button -->
+                                                <tr>
+                                                    <td style="font-family: 'Segoe UI', Arial, Helvetica, sans-serif; font-size: 16px; color: #777; text-align: left; line-height: 20px;" st-content="rightimage-paragraph">
+                                                        <a target="_blank" style="color: #555; text-align: center; text-decoration: underline;" href="http://www.bing.com/offers/cardlinked?bor=@ViewBag.referrer&bof=@ViewBag.campaign">Learn More</a> >
+                                                    </td>
+                                                </tr>
+                                                <!-- /button -->
+                                                <!-- Spacing -->
+                                                <tr>
+                                                    <td width="100%" height="20"></td>
+                                                </tr>
+                                                <!-- Spacing -->
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="block">
+        <!-- 3-columns -->
+        <table width="100%" bgcolor="#f5f5f5" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="3columns">
+            <tbody>
+                <tr>
+                    <td>
+                        <table bgcolor="#ffffff" width="580" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth" modulebg="edit">
+                            <tbody>
+                                <tr>
+                                    <td width="100%" height="20"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <table width="540" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <!-- col 1 -->
+                                                        <table width="170" align="left" border="0" cellpadding="0" cellspacing="0" class="devicewidth">
+                                                            <tbody>
+                                                                <!-- image 2 -->
+                                                                <tr>
+                                                                    <td width="170" height="113" align="center" class="devicewidth">
+                                                                        <img src="https://az414848.vo.msecnd.net/assets/170x113-Activate-05092014.jpg" alt="Register" border="0" width="170" height="113" style="display: block; border: none; outline: none; text-decoration: none;" class="col3img" />
+                                                                    </td>
+                                                                </tr>
+                                                                <!-- end of image2 -->
+                                                                <tr>
+                                                                    <td>
+                                                                        <!-- start of text content table -->
+                                                                        <table width="170" align="center" border="0" cellpadding="0" cellspacing="0" class="devicewidthinner">
+                                                                            <tbody>
+                                                                                <!-- Spacing -->
+                                                                                <tr>
+                                                                                    <td width="100%" height="15" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                                                </tr>
+                                                                                <!-- Spacing -->
+                                                                                <!-- title2 -->
+                                                                                <tr>
+                                                                                    <td style="font-family: arial, sans-serif; font-size: 18px; color: #555; text-align: left; line-height: 20px;" st-title="3col-title1">Activate
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <!-- end of title2 -->
+                                                                                <!-- Spacing -->
+                                                                                <tr>
+                                                                                    <td width="100%" height="15" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                                                </tr>
+                                                                                <!-- Spacing -->
+                                                                                <!-- content2 -->
+                                                                                <tr>
+                                                                                    <td style="font-family: arial, sans-serif; font-size: 13px; color: #777; text-align: left; line-height: 20px;" st-content="3col-para1">Activation is FREE! Activate your credit or debit card and you’ll automatically become eligible for exclusive Card-Linked discounts.</td>
+                                                                                </tr>
+                                                                                <!-- end of content2 -->
+                                                                                <!-- Spacing -->
+                                                                                <tr>
+                                                                                    <td width="100%" height="15" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                                                </tr>
+                                                                                <!-- Spacing -->
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                                <!-- end of text content table -->
+                                                            </tbody>
+                                                        </table>
+                                                        <!-- spacing -->
+                                                        <table width="15" align="left" border="0" cellpadding="0" cellspacing="0" class="removeMobile">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td width="100%" height="15" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <!-- end of spacing -->
+                                                        <!-- col 2 -->
+                                                        <table width="170" align="left" border="0" cellpadding="0" cellspacing="0" class="devicewidth">
+                                                            <tbody>
+                                                                <!-- image 2 -->
+                                                                <tr>
+                                                                    <td width="170" height="113" align="center" class="devicewidth">
+                                                                        <img src="https://az414848.vo.msecnd.net/assets/170x113-Shop-05092014.jpg" alt="Shop" border="0" width="170" height="113" style="display: block; border: none; outline: none; text-decoration: none;" class="col3img" />
+                                                                    </td>
+                                                                </tr>
+                                                                <!-- end of image2 -->
+                                                                <tr>
+                                                                    <td>
+                                                                        <!-- start of text content table -->
+                                                                        <table width="170" align="center" border="0" cellpadding="0" cellspacing="0" class="devicewidthinner">
+                                                                            <tbody>
+                                                                                <!-- Spacing -->
+                                                                                <tr>
+                                                                                    <td width="100%" height="15" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                                                </tr>
+                                                                                <!-- Spacing -->
+                                                                                <!-- title2 -->
+                                                                                <tr>
+                                                                                    <td style="font-family: Helvetica, arial, sans-serif; font-size: 18px; color: #555; text-align: left; line-height: 20px;" st-title="3col-title2">Shop
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <!-- end of title2 -->
+                                                                                <!-- Spacing -->
+                                                                                <tr>
+                                                                                    <td width="100%" height="15" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                                                </tr>
+                                                                                <!-- Spacing -->
+                                                                                <!-- content2 -->
+                                                                                <tr>
+                                                                                    <td style="font-family: Helvetica, arial, sans-serif; font-size: 13px; color: #777; text-align: left; line-height: 20px;" st-content="3col-para2">Use your activated card to shop at Card-Linked participating businesses.
+                                                                                        <br />
+                                                                                        See <a target="_blank" style="text-decoration: underline;" href="http://www.bing.com/offers/?location=@Model.PostalCode&bor=@ViewBag.referrer&bof=@ViewBag.campaign">current offers!</a>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <!-- end of content2 -->
+                                                                                <!-- Spacing -->
+                                                                                <tr>
+                                                                                    <td width="100%" height="15" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                                                </tr>
+                                                                                <!-- /Spacing -->
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                                <!-- end of text content table -->
+                                                            </tbody>
+                                                        </table>
+                                                        <!-- end of col 2 -->
+                                                        <!-- spacing -->
+                                                        <table width="1" align="left" border="0" cellpadding="0" cellspacing="0" class="removeMobile">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td width="100%" height="15" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <!-- end of spacing -->
+                                                        <!-- col 3 -->
+                                                        <table width="170" align="right" border="0" cellpadding="0" cellspacing="0" class="devicewidth">
+                                                            <tbody>
+                                                                <!-- image3 -->
+                                                                <tr>
+                                                                    <td width="170" height="113" align="center" class="devicewidth">
+                                                                        <img src="https://az414848.vo.msecnd.net/assets/170x113-Save-05092014.jpg" alt="Save" width="170" height="113" border="0" style="display: block; border: none; outline: none; text-decoration: none;" class="col3img" />
+                                                                    </td>
+                                                                </tr>
+                                                                <!-- end of image3 -->
+                                                                <tr>
+                                                                    <td>
+                                                                        <!-- start of text content table -->
+                                                                        <table width="170" align="center" border="0" cellpadding="0" cellspacing="0" class="devicewidthinner">
+                                                                            <tbody>
+                                                                                <!-- Spacing -->
+                                                                                <tr>
+                                                                                    <td width="100%" height="15" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                                                </tr>
+                                                                                <!-- Spacing -->
+                                                                                <!-- title -->
+                                                                                <tr>
+                                                                                    <td style="font-family: Helvetica, arial, sans-serif; font-size: 18px; color: #555; text-align: left; line-height: 20px;" st-title="3col-title3">Save
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <!-- end of title -->
+                                                                                <!-- Spacing -->
+                                                                                <tr>
+                                                                                    <td width="100%" height="15" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                                                </tr>
+                                                                                <!-- Spacing -->
+                                                                                <!-- content -->
+                                                                                <tr>
+                                                                                    <td style="font-family: Helvetica, arial, sans-serif; font-size: 13px; color: #777; text-align: left; line-height: 20px;" st-content="3col-para1">After you complete a qualifying purchase, we’ll credit your card account within three to five business days with the savings.</td>
+                                                                                </tr>
+                                                                                <!-- end of content -->
+                                                                                <!-- Spacing -->
+                                                                                <tr>
+                                                                                    <td width="100%" height="15" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                                                </tr>
+                                                                                <!-- Spacing -->
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                                <!-- end of text content table -->
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="100%" height="20"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- end of 3-columns -->
+    </div>
+
+    <div class="block">
+        <!-- Full + text -->
+        <table width="100%" bgcolor="#f5f5f5" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="fullimage">
+            <tbody>
+                <tr>
+                    <td>
+                        <table bgcolor="#ffffff" width="580" align="center" cellspacing="0" cellpadding="0" border="0" class="devicewidth" modulebg="edit">
+                            <tbody>
+                                <tr>
+                                    <td width="100%" height="10"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <table width="540" align="center" cellspacing="0" cellpadding="0" border="0" class="devicewidthinner">
+                                            <tbody>
+                                                @if (Model.Businesses != null && Model.Businesses.Any())
+                                                {
+                                                    <tr>
+                                                        <td width="100%" height="40" bgcolor="#505050" style="font-family: 'Segoe UI Regular', 'Segoe UI', Arial, Helvetica, sans-serif; font-size: 18px; background-color: #505050; text-align: center; line-height: 30px; color: #ffa615">Members currently receive discounts at these businesses & more!
+                                                        </td>
+                                                    </tr>
+                                                    <!-- Spacing -->
+                                                    <tr>
+                                                        <td width="100%" height="20"></td>
+                                                    </tr>
+                                                    <!-- Businesses -->
+                                                    <tr>
+                                                        <td style="font-family: 'Segoe UI Regular', 'Segoe UI', Arial, Helvetica, sans-serif; font-size: 14px; color: #505050; text-align: left; line-height: 18px;" st-content="rightimage-paragraph">
+                                                            <table width="540" align="center" class="devicewidthinner" border="0" cellspacing="0" cellpadding="0">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <!-- start of left column -->
+                                                                            <table width="270" align="right" class="devicewidthinner" border="0" cellspacing="0" cellpadding="0">
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td style="font-family: Helvetica, arial, sans-serif; font-size: 13px; color: #777; text-align: left; line-height: 20px;">
+                                                                                            <table cellspacing="0" cellpadding="0" width="100%">
+                                                                                                <tbody>
+                                                                                                    @for (int i = 0; i < Model.Businesses.Count; i++)
+                                                                                                    {
+                                                                                                        if (i % 2 == 0)
+                                                                                                        {
+                                                                                                        <tr>
+                                                                                                            <td width="20" align="left" valign="top" style="color: #505050">&bull;</td>
+                                                                                                            <td width="220" align="left" valign="top">@Model.Businesses[i]</td>
+                                                                                                        </tr>
+                                                                                                        }
+                                                                                                    }
+                                                                                                </tbody>
+                                                                                            </table>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                            <!-- end of left column -->
+                                                                            <!-- mobile spacing -->
+                                                                            <table align="left" class="mobilespacing" border="0" cellspacing="0" cellpadding="0">
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td width="100%" height="10" style="line-height: 1px; font-size: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                            <!-- mobile spacing -->
+                                                                            <!-- start of right column -->
+                                                                            <table width="250" align="left" class="devicewidthinner" border="0" cellspacing="0" cellpadding="0">
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td style="font-family: Helvetica, arial, sans-serif; font-size: 13px; color: #777; text-align: left; line-height: 20px;">
+                                                                                            <table cellspacing="0" cellpadding="0" width="100%">
+                                                                                                <tbody>
+                                                                                                    @for (int i = 0; i < Model.Businesses.Count; i++)
+                                                                                                    {
+                                                                                                        if (i % 2 != 0)
+                                                                                                        {
+                                                                                                        <tr>
+                                                                                                            <td width="20" align="left" valign="top" style="color: #505050">&bull;</td>
+                                                                                                            <td width="220" align="left" valign="top">@Model.Businesses[i]</td>
+                                                                                                        </tr>
+                                                                                                        }
+                                                                                                    }
+                                                                                                </tbody>
+                                                                                            </table>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                            <!-- end of right column -->
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+
+
+                                                        </td>
+                                                    </tr>
+                                                    <!-- Spacing -->
+                                                    <tr>
+                                                        <td width="100%" height="20"></td>
+                                                    </tr>
+                                                    <!-- Content -->
+                                                    <tr>
+                                                        <td style="font-family: 'Segoe UI', Arial, Helvetica, sans-serif; font-size: 15px; color: #505050; text-align: left; line-height: 24px;">Check out the evolving list of current discounts and Card-Linked businesses!
+                                                        </td>
+                                                    </tr>
+                                                    <!-- Spacing -->
+                                                    <tr>
+                                                        <td width="100%" height="20"></td>
+                                                    </tr>
+                                                }
+                                                <!-- Social Sharing -->
+                                                <tr>
+                                                    <td>
+                                                        <table width="540" align="center" class="devicewidthinner" border="0" cellspacing="0" cellpadding="0">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>
+
+                                                                        <!-- start of left column -->
+                                                                        <table width="250" align="right" class="devicewidthinner" border="0" cellspacing="0" cellpadding="0">
+                                                                            <tbody>
+                                                                                <!-- button -->
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <table height="40" align="center" valign="middle" border="0" cellpadding="0" cellspacing="0" class="tablet-button" st-button="edit">
+                                                                                            <tbody>
+                                                                                                <tr>
+                                                                                                    <td align="left" valign="middle" height="40" width="100%" style="background-color: #ffa615; border-top-left-radius: 4px; border-bottom-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; background-clip: padding-box; font-size: 16px; font-family: Helvetica, arial, sans-serif; text-align: left; color: #ffffff; font-weight: 300; padding-left: 20px; padding-right: 20px;">
+                                                                                                        <span style="color: #ffffff; font-weight: 300;">
+                                                                                                            <a target="_blank" style="color: #ffffff; text-align: center; text-decoration: none;" href="http://www.bing.com/offers/?location=@Model.PostalCode&bor=@ViewBag.referrer&bof=@ViewBag.campaign">View more discounts</a>
+                                                                                                        </span>
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                            </tbody>
+                                                                                        </table>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <!-- /button -->
+                                                                            </tbody>
+                                                                        </table>
+                                                                        <!-- end of left column -->
+
+                                                                        <!-- mobile spacing -->
+                                                                        <table align="left" class="mobilespacing" border="0" cellspacing="0" cellpadding="0">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td width="100%" height="10" style="line-height: 1px; font-size: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                        <!-- mobile spacing -->
+
+                                                                        <!-- start of right column -->
+                                                                        <table width="270" align="left" class="devicewidthinner" border="0" cellspacing="0" cellpadding="0">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <table align="center" valign="middle" border="0" cellspacing="0" cellpadding="0">
+                                                                                            <tbody>
+                                                                                                <tr>
+                                                                                                    <td align="center" valign="middle" style="font-size: 16px; font-family: Helvetica, arial, sans-serif; text-align: center; color: #505050; font-weight: 300; padding-right: 10px;">
+                                                                                                        <span style="color: #505050; font-weight: 300;">
+                                                                                                            <a target="_blank" style="color: #505050; text-align: center; text-decoration: none;" href="https://www.facebook.com/BingOffers">Follow us on</a>
+                                                                                                        </span>
+                                                                                                    </td>
+                                                                                                    <td align="center" valign="middle" height="40">
+                                                                                                        <a target="_blank" href="https://www.facebook.com/BingOffers" style="text-decoration: none; text-align: center;">
+                                                                                                            <img width="30" height="30" border="0" style="border-width: 0px; width: 30px; height: 30px; font-size: 6px;" alt="Facebook" src="https://TODO_YOUR_CDN_URL/dailydeals-assets/digest.facebook.png" border="0" />
+                                                                                                        </a>
+                                                                                                    </td>
+                                                                                                    <td width="20" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                                                                    <td align="center" valign="middle" height="40">
+                                                                                                        <a target="_blank" href="https://twitter.com/bingoffers" style="text-decoration: none; text-align: center;">
+                                                                                                            <img width="30" height="30" border="0" style="border-width: 0px; width: 30px; height: 30px; font-size: 6px;" alt="Twitter" src="https://TODO_YOUR_CDN_URL/dailydeals-assets/digest.twitter.png" border="0" />
+                                                                                                        </a>
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                            </tbody>
+                                                                                        </table>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                        <!-- end of right column -->
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                                <!-- Spacing -->
+                                                <tr>
+                                                    <td width="100%" height="20"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="block">
+        <!-- Start of preheader -->
+        <table width="100%" bgcolor="#f5f5f5" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="postfooter">
+            <tbody>
+                <tr>
+                    <td width="100%">
+                        <table width="580" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+                            <tbody>
+                                <!-- Spacing -->
+                                <tr>
+                                    <td width="100%" height="5"></td>
+                                </tr>
+                                <!-- Spacing -->
+
+                                <tr>
+                                    <td valign="middle" align="left" style="padding: 0; color: #333; font-family: 'Segoe UI Regular', 'Segoe UI', Arial, Helvetica, sans-serif; font-size: 10px; margin: 0; vertical-align: central; padding-left: 10px;">Microsoft
+                                        &nbsp;|&nbsp;
+                                        1 Microsoft Way, Redmond, WA 98052
+                                        &nbsp;|&nbsp;
+                                        <a target="_blank" href="http://go.microsoft.com/fwlink/?LinkId=248686" style="padding-right: 0; padding-top: 0; padding-left: 0; padding-bottom: 0;">Privacy Statement</a>
+                                        &nbsp;|&nbsp;
+                                        <a target="_blank" href="@Model.UnsubscribeUrl" style="padding-right: 0; padding-top: 0; padding-left: 0; padding-bottom: 0;">Unsubscribe</a>
+                                    </td>
+                                </tr>
+
+                                <!-- Spacing -->
+                                <tr>
+                                    <td width="100%" height="15"></td>
+                                </tr>
+                                <!-- Spacing -->
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- End of preheader -->
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+@model DailyDealsVM
+@{
+    Layout = "~/Views/GetEmail/_DailyDealLayout.cshtml";
+    ViewBag.Location = Model.Location;
+    ViewBag.Width = 560;
+}
+
+@Html.Partial("Partial/HeroTile", this.Model.HeroDeal)

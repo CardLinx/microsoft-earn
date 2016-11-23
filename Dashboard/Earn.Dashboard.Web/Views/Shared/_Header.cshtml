@@ -1,0 +1,145 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+@using Earn.Dashboard.Web.Utils
+<header class="main-header" id="mainHeader">
+    <a href="/" class="logo">
+        <!-- mini logo 50x50 pixels -->
+        <span class="logo-mini"><b>E</b></span>
+        <img class="logo-lg" src="https://az414848.vo.msecnd.net/card-linked-assets/earn_logo_wht_gry-1.png">
+    </a>
+    <nav class="navbar navbar-static-top" role="navigation">
+        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+        </a>
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+
+                <li id="spinner" style="display:none;">
+                    <a>
+                        <i class="fa fa-refresh fa-spin"></i>
+                    </a>
+                </li>
+
+                @*<li class="dropdown messages-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        <i class="fa fa-users"></i>
+                        <!-- ko if: users().length > 0 -->
+                        <span class="label label-success" data-bind="text: users().length"></span>
+                        <!-- /ko -->
+                    </a>
+                    <ul class="dropdown-menu">
+                        <!-- ko if: users().length == 0 -->
+                        <li class="header">No Online Users</li>
+                        <!-- /ko -->
+                        <li>
+                            <div class="slimScrollDiv" style="position: relative; overflow: auto; width: auto; height: 100%;">
+                                <ul class="menu" style="overflow: auto; width: 100%; height: 100%;" data-bind="foreach: users">
+                                    <li>
+                                        <a href="#">
+                                            <div class="pull-left">
+                                                <img data-bind="attr: { src: photo }" class="img-circle" alt="User Image">
+                                            </div>
+                                            <p data-bind="text: name"></p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="dropdown messages-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        <i class="fa fa-comments-o"></i>
+                        <!-- ko if: messages().length > 0 -->
+                        <span class="label label-success" data-bind="text: messages().length"></span>
+                        <!-- /ko -->
+                    </a>
+                    <ul class="dropdown-menu">
+                        <!-- ko if: messages().length == 0 -->
+                        <li class="header">No Messages</li>
+                        <!-- /ko -->
+                        <li>
+                            <div class="slimScrollDiv" style="position: relative; overflow: auto; width: auto; height: 100%;">
+                                <ul class="menu" style="overflow: auto; width: 100%; height: 100%;" data-bind="foreach: messages">
+                                    <li>
+                                        <a href="#">
+                                            <div class="pull-left">
+                                                <img data-bind="attr: { src: photo }" class="img-circle" alt="User Image">
+                                            </div>
+                                            <h4 data-bind="text: from">                                                
+                                            </h4>
+                                            <p data-bind="text: message"></p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </li>*@
+
+                @*<li class="dropdown notifications-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-bell-o"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header">Today's Status</li>
+                            <li>
+                                <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 160px;">
+                                    <ul class="menu" style="overflow: hidden; width: 100%; height: 160px;">
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-users text-aqua"></i> 5 New Members
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-shopping-cart text-green"></i> 30 Earn Transactions
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-shopping-cart text-red"></i> 3 Burn Transactions
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-envelope text-warning"></i> 4 Support Requests
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>*@
+
+                <li class="dropdown user user-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                        @if (HttpContext.Current.Session[Config.ThumbnailPhoto] == null)
+                        {
+                            <img src="~/Content/img/user.png" class="user-image" alt="User Image" />
+                        }
+                        else
+                        {
+                            <img src="@HttpContext.Current.Session[Config.ThumbnailPhoto]" class="user-image" alt="User Image" />
+                        }
+                        <span class="hidden-xs">@User.Identity.Name</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <!-- Menu Footer-->
+                        <li class="user-footer">
+                            <div class="pull-left">
+                                <a href="/account" class="btn btn-primary btn-flat"><i class="fa fa-user"></i> Profile</a>
+                            </div>
+                            <div class="pull-right">
+                                <a href="/account/signout" class="btn btn-primary btn-flat"><i class="fa fa-sign-out"></i> Sign out</a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>

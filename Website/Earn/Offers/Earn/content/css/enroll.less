@@ -1,0 +1,719 @@
+/*
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+*/
+@import "settings.less";
+
+html {
+    overflow-y: scroll;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.clear {
+    clear: both;
+}
+
+.container {
+    width: 1430px;
+    margin: auto;
+}
+
+hr {
+    height: 1px;
+    border: none;
+    background-color: #ccc;
+    width: 100%;
+}
+
+#nav {
+    z-index: 100;
+    width: 100%;
+    margin: auto;
+    padding: 20px 0;
+
+    .container {
+        .logo {
+            float: left;
+
+            a {
+                border: none;
+            }
+        }
+
+        .right-nav {
+            float: right;
+            padding-top: 20px;
+
+            .top-nav {
+                float: right;
+
+                #login {
+                    display: none;
+                }
+
+                p {
+                    font-family: @fontRegular;
+                    font-size: 16px;
+                    line-height: 20px;
+                    color: @mediumGray;
+
+                    strong {
+                        font-weight: bold;
+                    }
+
+                    a {
+                        color: @blue;
+                        text-decoration: none;
+                        margin-left: 10px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.accounts-container {
+    margin: 40px 0;
+
+    .container {
+
+        h1 {
+            font-family: @fontLight;
+            font-size: 50px;
+            line-height: 70px;
+            color: @mediumGray;
+            font-weight: 400;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-family: @fontLight;
+            font-size: 24px;
+            line-height: 30px;
+            color: @mediumGray;
+            font-weight: 400;
+        }
+
+        h3 {
+            font-family: @fontRegular;
+            font-size: 20px;
+            line-height: 30px;
+            color: @blue;
+            font-weight: 400;
+        }
+
+        p {
+            font-family: @fontRegular;
+            font-size: 16px;
+            line-height: 20px;
+            color: @mediumGray;
+            font-weight: 400;
+        }
+
+        .enroll-container {
+            margin: 40px 0 200px 0;
+            width: 420px;
+
+            p {
+                strong {
+                    font-weight: bold;
+                }
+            }
+
+            .steps {
+                margin: 30px 0 0 0;
+                overflow: hidden;
+                height: 50px;
+                -moz-box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+
+                .step {
+                    float: left;
+                    -moz-box-sizing: border-box;
+                    -webkit-box-sizing: border-box;
+                    box-sizing: border-box;
+                    width: 37%;
+                    height: 100%;
+                    color: @mediumGray;
+                    text-decoration: none;
+                    padding: 5px 5px 5px 50px;
+                    background: @offwhite; /* fallback color */
+                    position: relative;
+                    display: block;
+
+                    h4 {
+                        font-family: @fontSemiBold;
+                        font-weight: normal;
+                        font-size: 15px;
+                        line-height: 20px;
+                        margin: 0;
+                    }
+
+                    p {
+                        font-family: @fontRegular;
+                        font-weight: normal;
+                        font-size: 14px;
+                        line-height: 18px;
+                        margin: 0;
+                    }
+                }
+
+                .first {
+                    padding-left: 20px;
+                    width: 26%;
+                }
+
+                .step:after {
+                    content: " ";
+                    display: block;
+                    width: 0;
+                    height: 0;
+                    border-top: 50px solid transparent; /* Go big on the size, and let overflow hide */
+                    border-bottom: 50px solid transparent;
+                    border-left: 30px solid @offwhite;
+                    position: absolute;
+                    top: 50%;
+                    margin-top: -50px;
+                    left: 100%;
+                    z-index: 2;
+                }
+
+                .step:before {
+                    content: " ";
+                    display: block;
+                    width: 0;
+                    height: 0;
+                    border-top: 50px solid transparent;
+                    border-bottom: 50px solid transparent;
+                    border-left: 30px solid white;
+                    position: absolute;
+                    top: 50%;
+                    margin-top: -50px;
+                    margin-left: 1px;
+                    left: 100%;
+                    z-index: 1;
+                }
+
+                .current-step {
+                    background: @mediumGray;
+
+                    h4, p {
+                        color: white;
+                    }
+                }
+
+                .current-step:after {
+                    border-left-color: @mediumGray;
+                }
+            }
+
+            .box {
+                margin: 0;
+                width: 350px;
+                -moz-box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+
+                h2 {
+                    margin: 20px 0;
+                }
+
+                hr {
+                    background-color: #eee;
+                    border: none;
+                    height: 1px;
+                }
+
+                p {
+                    margin: 5px 0;
+                    font-size: 14px;
+                    line-height: 20px;
+
+                    .sendToPhone {
+                        margin-left: 50px;
+                    }
+
+                    sup {
+                        vertical-align: baseline;
+                        position: relative;
+                        top: -0.4em;
+                        font-size: 9px;
+                    }
+                }
+
+                p.share {
+                    font-size: 16px;
+                    line-height: 20px;
+                    color: #505050;
+                    font-weight: 400;
+                }
+
+                p.option-text {
+                    line-height: 16px;
+                }
+
+                p.description {
+                    font-weight: bold;
+                }
+
+                p.error {
+                    color: @errorColor;
+                    margin: 10px 0;
+                }
+
+                p.fineprint {
+                    font-size: 12px;
+                    line-height: 16px;
+                    margin-bottom: 20px;
+
+                    a {
+                        color: @blue;
+                        text-decoration: none;
+                    }
+                }
+
+                p.sendearnconfirmations {
+                    margin-bottom: 30px;
+                }
+
+                a.button {
+                    text-decoration: none;
+                    border: 1px solid @white;
+                    color: white;
+                    background-color: @blue;
+                    display: block;
+                    font-size: 17px;
+                    width: 100%;
+                    line-height: 40px;
+                    font-family: @fontRegular;
+                    text-align: center;
+                    margin: 30px 0;
+                    cursor: pointer;
+                }
+
+                a.delete {
+                    width: 90px;
+                    background-color: #ccc;
+                    color: @mediumGray;
+                    font-size: 14px;
+                    line-height: 30px;
+                    margin: 5px 0 5px 60px;
+                }
+
+                p.addanothercard {
+                    font-size: 20px;
+                    font-family: @fontLight;
+                    line-height: 30px;
+                    margin: 20px 0;
+                    vertical-align: middle;
+                    cursor: pointer;
+
+                    span {
+                        width: 30px;
+                        font-size: 30px;
+                        line-height: 30px;
+                        font-family: "bingoffers" !important;
+                        height: 30px;
+                        display: inline-block;
+                        vertical-align: middle;
+                        margin-right: 10px;
+                    }
+                }
+
+                table {
+                    padding-bottom: 30px;
+
+                    tr {
+                        border-bottom: 1px solid #ccc;
+
+                        td {
+                            p {
+                                font-size: 13px;
+                                line-height: 20px;
+                                margin: 5px 0;
+                                color: #777;
+                            }
+                        }
+                    }
+                }
+
+                input[type="text"] {
+                    padding: 7px 5px;
+                    width: 100%;
+                    border: 1px solid #ccc;
+                    font-family: @fontRegular;
+                    color: @mediumGray;
+                    font-size: 14px;
+                    line-height: 20px;
+                }
+
+                input[type="checkbox"] {
+                    width: 20px;
+                }
+
+                #add-card-iframe {
+                    width: 100%;
+                    height: 90px;
+
+                    iframe {
+                        width: 100%;
+                    }
+                }
+
+                .social-plugin {
+                    margin: 30px 0;
+
+                    ul.social {
+                        list-style-type: none;
+
+                        li {
+                            float: left;
+
+                            a {
+                                font-size: 30px;
+                                cursor: pointer;
+                                margin-right: 20px;
+                                width: 30px;
+                                height: 30px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .step3 {
+                width: 420px;
+
+                .personal-link {
+                    margin-top: 20px;
+
+                    p {
+                        font-weight: bold;
+                    }
+
+                    input {
+                        width: 90%;
+                    }
+
+                    .spinner {
+                        margin-left: 8px;
+                    }
+                }
+            }
+        }
+
+        .error-container {
+            min-height: 500px;
+
+            a {
+                color: @linkColor;
+                font-family: @fontLight;
+                font-size: 24px;
+                line-height: 40px;
+                text-decoration: none;
+                margin: 20px 0;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1449px) {
+    // width: 950px;
+    .container {
+        width: 950px;
+        margin: auto;
+    }
+}
+/* #region Tablet Portrait 710*/
+@media screen and (max-width: 989px) {
+    //  width: 710px;
+
+    .container {
+        width: 90%;
+        margin: auto;
+    }
+
+    #nav {
+        .container {
+            .logo {
+                a {
+
+                    img {
+                        height: 34px;
+                    }
+                }
+            }
+
+            .right-nav {
+                padding-top: 5px;
+
+                .top-nav {
+                    float: right;
+                    margin-left: 0;
+
+                    #login {
+                        display: none;
+                    }
+
+                    p {
+                        font-size: 15px;
+                        line-height: 20px;
+                    }
+                }
+            }
+        }
+    }
+
+    .accounts-container {
+        margin: 20px 0;
+
+        .container {
+
+            h1 {
+                font-size: 32px;
+                line-height: 40px;
+                margin-bottom: 20px;
+            }
+
+            h2 {
+                font-size: 20px;
+                line-height: 30px;
+            }
+
+            h3 {
+                font-size: 18px;
+                line-height: 24px;
+            }
+
+            p {
+                font-size: 16px;
+                line-height: 20px;
+            }
+        }
+    }
+}
+/* #region 480 pixel breakpoint */
+@media screen and (max-width: 709px) {
+}
+/* #region Handheld Portrait */
+@media screen and (max-width: 479px) {
+    #nav {
+        .container {
+            .logo {
+                a {
+
+                    img {
+                        height: 28px;
+                    }
+                }
+            }
+        }
+    }
+
+    .accounts-container {
+        margin: 20px 0;
+
+        .container {
+
+            h1 {
+                font-size: 32px;
+                line-height: 40px;
+                margin-bottom: 20px;
+            }
+
+            h2 {
+                font-size: 18px;
+                line-height: 24px;
+            }
+
+            h3 {
+                font-size: 16px;
+                line-height: 20px;
+            }
+
+            p {
+                font-size: 14px;
+                line-height: 20px;
+            }
+
+            .enroll-container {
+                margin: 0 0 100px 0;
+                width: 100%;
+
+                .steps {
+                    height: 70px;
+
+                    .step {
+
+                        h4 {
+                            font-size: 14px;
+                            line-height: 20px;
+                        }
+
+                        p {
+                            font-size: 13px;
+                            line-height: 18px;
+                        }
+                    }
+                }
+
+                .box {
+                    margin: 0;
+                    max-width: 420px;
+                    width: 100%;
+
+                    h2 {
+                        margin: 20px 0;
+                    }
+
+                    p {
+                        margin: 5px 0;
+                        font-size: 14px;
+                        line-height: 20px;
+                    }
+
+                    p.error {
+                        margin: 10px 0;
+                    }
+
+                    p.fineprint {
+                        font-size: 12px;
+                        line-height: 16px;
+                        margin-bottom: 20px;
+                    }
+
+                    a.button {
+                        font-size: 15px;
+                        width: 100%;
+                        line-height: 36px;
+                        margin: 30px auto;
+                    }
+
+                    a.delete {
+                        width: 90px;
+                        font-size: 14px;
+                        line-height: 30px;
+                        margin: 5px 0 5px 60px;
+                    }
+
+                    p.addanothercard {
+                        font-size: 20px;
+                        line-height: 30px;
+                        margin: 20px 0;
+
+                        span {
+                            width: 30px;
+                            font-size: 30px;
+                            line-height: 30px;
+                            height: 30px;
+                            margin-right: 10px;
+                        }
+                    }
+
+                    table {
+                        padding-bottom: 30px;
+
+                        tr {
+                            border-bottom: 1px solid #ccc;
+
+                            td {
+                                p {
+                                    font-size: 13px;
+                                    line-height: 20px;
+                                    margin: 5px 0;
+                                    color: #777;
+                                }
+                            }
+                        }
+                    }
+
+                    input[type="text"] {
+                        padding: 7px 5px;
+                        width: 100%;
+                        border: 1px solid #ccc;
+                        font-family: @fontRegular;
+                        color: @mediumGray;
+                        font-size: 14px;
+                        line-height: 20px;
+                    }
+
+                    input[type="checkbox"] {
+                        width: 20px;
+                    }
+
+                    #add-card-iframe {
+                        width: 100%;
+                        height: 90px;
+
+                        iframe {
+                            width: 100%;
+                        }
+                    }
+
+                    .social-plugin {
+                        margin: 30px 0;
+
+                        ul.social {
+                            list-style-type: none;
+
+                            li {
+                                float: left;
+
+                                a {
+                                    font-size: 30px;
+                                    cursor: pointer;
+                                    margin-right: 20px;
+                                    width: 30px;
+                                    height: 30px;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .step3 {
+                    .personal-link {
+                        input {
+                            width: 85%;
+                        }
+                    }
+                }
+            }
+
+            .error-container {
+                min-height: 500px;
+
+                a {
+                    color: @linkColor;
+                    font-family: @fontLight;
+                    font-size: 24px;
+                    line-height: 40px;
+                    text-decoration: none;
+                    margin: 20px 0;
+                }
+            }
+        }
+    }
+}
+/* #region Handheld Portrait 320px */
+@media screen and (max-width: 320px) {
+    .accounts-container {
+
+        .container {
+            .enroll-container {
+                .step3 {
+                    .personal-link {
+                        input {
+                            width: 80%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

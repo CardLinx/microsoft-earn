@@ -1,0 +1,176 @@
+/*
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+*/
+@font-face {
+  font-family: "Segoe UI Web Light";
+  src: url('https://i.s-microsoft.com/fonts/Segoe-UI/West-European/Light/latest.eot');
+  src: local("Segoe UI Light"), local("Segoe WP Light"), url('https://i.s-microsoft.com/fonts/Segoe-UI/West-European/Light/latest.eot?#iefix') format('embedded-opentype'), url('https://i.s-microsoft.com/fonts/Segoe-UI/West-European/Light/latest.woff') format('woff'), url('https://i.s-microsoft.com/fonts/Segoe-UI/West-European/Light/latest.ttf') format('truetype'), url('https://i.s-microsoft.com/fonts/Segoe-UI/West-European/Light/latest.svg#web') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'MSHPIconsRegular';
+  src: url('https://i.s-microsoft.com/fonts/homepage/icons/mshpicons-regular-webfont.eot');
+  src: url('https://i.s-microsoft.com/fonts/homepage/icons/mshpicons-regular-webfont.eot?#iefix') format('embedded-opentype'), url('https://i.s-microsoft.com/fonts/homepage/icons/mshpicons-regular-webfont.woff') format('woff'), url('https://i.s-microsoft.com/fonts/homepage/icons/mshpicons-regular-webfont.ttf') format('truetype'), url('https://i.s-microsoft.com/fonts/homepage/icons/mshpicons-regular-webfont.svg#web') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Segoe UI Web Regular";
+  src: url('https://i.s-microsoft.com/fonts/Segoe-UI/West-European/Normal/latest.eot');
+  src: local("Segoe UI"), local("Segoe"), local("Segoe WP"), url('https://i.s-microsoft.com/fonts/Segoe-UI/West-European/Normal/latest.eot?#iefix') format('embedded-opentype'), url('https://i.s-microsoft.com/fonts/Segoe-UI/West-European/Normal/latest.woff') format('woff'), url('https://i.s-microsoft.com/fonts/Segoe-UI/West-European/Normal/latest.ttf') format('truetype'), url('https://i.s-microsoft.com/fonts/Segoe-UI/West-European/Normal/latest.svg#web') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Segoe UI Web Semibold';
+  src: url('https://i.s-microsoft.com/fonts/segoe-ui/west-european/semibold/latest.eot');
+  src: url('https://i.s-microsoft.com/fonts/segoe-ui/west-european/semibold/latest.eot?#iefix') format('embedded-opentype'), url('https://i.s-microsoft.com/fonts/segoe-ui/west-european/semibold/latest.woff') format('woff'), url('https://i.s-microsoft.com/fonts/segoe-ui/west-european/semibold/latest.ttf') format('truetype'), url('https://i.s-microsoft.com/fonts/segoe-ui/west-european/semibold/latest.svg#web') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+/* #region Default View */
+body {
+  margin: 0;
+  font-family: "Segoe UI Web Light", Arial, Helvetica, Sans-Serif;
+  font-size: 16px;
+  padding-right: 7px;
+}
+.error-input {
+  border: 1px solid #ff0000 !important;
+}
+#card-linked-info {
+  width: 370px;
+}
+#card-linked-info .new-card #card-number {
+  width: 260px;
+  margin-right: 8px;
+  height: 20px;
+  border: 1px solid #cccccc;
+  padding: 5px;
+  font-family: "Segoe UI Web Regular", Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  color: #444444;
+}
+#card-linked-info .new-card #fullcreditcardflight {
+  display: none;
+}
+#card-linked-info .new-card #name-on-card {
+  width: 260px;
+  margin-right: 8px;
+  margin-top: 10px;
+  height: 20px;
+  border: 1px solid #cccccc;
+  padding: 5px;
+  font-family: "Segoe UI Web Regular", Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  color: #444444;
+}
+#card-linked-info .new-card #expirationdate {
+  width: 270px;
+  margin-top: 10px;
+  font-family: "Segoe UI Web Regular", Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  color: #444444;
+  margin-bottom: 20px;
+}
+#card-linked-info .new-card #expirationdate select {
+  margin-right: 10px;
+  height: 30px;
+  width: 128px;
+  font-family: "Segoe UI Web Regular", Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  color: #444444;
+  border: 1px solid #cccccc;
+}
+#card-linked-info .new-card #expirationdate select#year {
+  margin-right: 0;
+}
+#card-linked-info .new-card #add-button {
+  width: 80px;
+  background-color: #ffb900;
+  color: #505050;
+  border: 1px solid #ffb900;
+  cursor: pointer;
+  height: 30px;
+  font-family: "Segoe UI Web Regular", Arial, Helvetica, sans-serif;
+  font-size: 13px;
+}
+#card-linked-info .new-card #add-button:hover {
+  background-color: #505050;
+  border: 1px solid #505050;
+  color: #ffb900;
+}
+#card-linked-info .new-card #add-button:active {
+  border: 1px solid #666666;
+  background-color: #666666;
+}
+#card-linked-info .new-card .error {
+  display: none;
+  font-family: "Segoe UI Web Semibold", Arial, Helvetica, Sans-Serif;
+  color: #ff0000;
+  font-size: 13px;
+  margin: 0;
+}
+#card-linked-info #loading-icon {
+  background: url(https://az414848.vo.msecnd.net/assets/loader_medium_animated_whitebg.gif) no-repeat;
+  width: 30px;
+  height: 30px;
+  display: none;
+  margin-bottom: -10px;
+}
+/* #endregion */
+/* #region Handheld Portrait */
+@media screen and (max-width: 419px) {
+  #card-linked-info {
+    width: 100%;
+  }
+  #card-linked-info .new-card #card-number {
+    width: 100%;
+    margin-bottom: 10px;
+    margin-right: 0;
+    padding-right: 0px;
+  }
+  #card-linked-info .new-card #name-on-card {
+    width: 100%;
+    margin-bottom: 10px;
+    margin-top: 0;
+    margin-right: 0;
+    padding-right: 0px;
+  }
+  #card-linked-info .new-card #expirationdate {
+    width: 100%;
+    margin-bottom: 10px;
+    margin-top: 0;
+    margin-right: 0;
+    padding-right: 0px;
+  }
+  #card-linked-info .new-card #add-button {
+    width: 80px;
+    background-color: #ffb900;
+    margin-top: 10px;
+    color: #505050;
+    border: 1px solid #ffb900;
+    cursor: pointer;
+    height: 30px;
+    font-family: "Segoe UI Web Regular", Arial, Helvetica, sans-serif;
+    font-size: 13px;
+  }
+  #card-linked-info .new-card #add-button:hover {
+    background-color: #505050;
+    border: 1px solid #505050;
+    color: #ffb900;
+  }
+  #card-linked-info .new-card #add-button:active {
+    border: 1px solid #666666;
+    background-color: #666666;
+  }
+  #card-linked-info .new-card #add-button {
+    width: 102%;
+  }
+  #card-linked-info #loading-icon {
+    margin-left: 45%;
+  }
+}
+/* #endregion */

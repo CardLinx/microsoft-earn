@@ -1,0 +1,588 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.Efs" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.Efs" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://co3sch010042336.phx.gbl:3011/AudienceIntelligenceService/EfsWcfService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.OLP.Common" />
+  <xs:import schemaLocation="http://co3sch010042336.phx.gbl:3011/AudienceIntelligenceService/EfsWcfService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://co3sch010042336.phx.gbl:3011/AudienceIntelligenceService/EfsWcfService.svc?xsd=xsd5" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:simpleType name="UserIdType">
+    <xs:annotation>
+      <xs:appinfo>
+        <ActualType Name="unsignedByte" Namespace="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Anid" />
+      <xs:enumeration value="Muid" />
+      <xs:enumeration value="IpAddress" />
+      <xs:enumeration value="UserAgent" />
+      <xs:enumeration value="Puid" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="UserIdType" nillable="true" type="tns:UserIdType" />
+  <xs:complexType name="UserDemographics">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Age" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="Country" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Gender" type="tns:Gender" />
+      <xs:element minOccurs="0" name="Lcid" type="xs:int" />
+      <xs:element minOccurs="0" name="Zip" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserDemographics" nillable="true" type="tns:UserDemographics" />
+  <xs:simpleType name="Gender">
+    <xs:annotation>
+      <xs:appinfo>
+        <ActualType Name="unsignedByte" Namespace="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown" />
+      <xs:enumeration value="Female" />
+      <xs:enumeration value="Male" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="Gender" nillable="true" type="tns:Gender" />
+  <xs:complexType name="ArrayOfUserDemographicsAttribute">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UserDemographicsAttribute" nillable="true" type="tns:UserDemographicsAttribute" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUserDemographicsAttribute" nillable="true" type="tns:ArrayOfUserDemographicsAttribute" />
+  <xs:complexType name="UserDemographicsAttribute">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AttributeID" type="xs:unsignedInt" />
+      <xs:element minOccurs="0" name="AttributeValue" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.OLP.Common" minOccurs="0" name="AttributeValueType" type="q1:BTAttributeValueType" />
+      <xs:element minOccurs="0" name="AtttributeType" type="tns:AttributeType" />
+      <xs:element minOccurs="0" name="Score" type="xs:unsignedShort" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserDemographicsAttribute" nillable="true" type="tns:UserDemographicsAttribute" />
+  <xs:simpleType name="AttributeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Age" />
+      <xs:enumeration value="Gender" />
+      <xs:enumeration value="Country" />
+      <xs:enumeration value="Zip" />
+      <xs:enumeration value="Lcid" />
+      <xs:enumeration value="Birthdate" />
+      <xs:enumeration value="Industry" />
+      <xs:enumeration value="JobTitle" />
+      <xs:enumeration value="Occupation" />
+      <xs:enumeration value="MaritalStatus" />
+      <xs:enumeration value="HasChildren" />
+      <xs:enumeration value="TargetingOptOut" />
+      <xs:enumeration value="Region" />
+      <xs:enumeration value="F12_MSNPrimary" />
+      <xs:enumeration value="F14_HMES10" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="AttributeType" nillable="true" type="tns:AttributeType" />
+  <xs:complexType name="EfsResponseStruct">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsValueType xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsValueType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="eCode" type="tns:EfsResponseCode" />
+      <xs:element minOccurs="0" name="hResult" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EfsResponseStruct" nillable="true" type="tns:EfsResponseStruct" />
+  <xs:simpleType name="EfsResponseCode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Ok" />
+      <xs:enumeration value="ErrorRetryable" />
+      <xs:enumeration value="ErrorNonRetryable" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="EfsResponseCode" nillable="true" type="tns:EfsResponseCode" />
+  <xs:complexType name="ArrayOfSegmentResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SegmentResult" nillable="true" type="tns:SegmentResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSegmentResult" nillable="true" type="tns:ArrayOfSegmentResult" />
+  <xs:complexType name="SegmentResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Score" type="xs:unsignedShort" />
+      <xs:element minOccurs="0" name="SegmentId" type="xs:unsignedInt" />
+      <xs:element minOccurs="0" name="Value" type="xs:unsignedByte" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SegmentResult" nillable="true" type="tns:SegmentResult" />
+  <xs:complexType name="EfsSegmentReponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="eCode" type="tns:EfsResponseCode" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.OLP.Common" minOccurs="0" name="olpErrorCode" type="q2:OlpErrorCode" />
+      <xs:element minOccurs="0" name="segmentResultList" nillable="true" type="tns:ArrayOfSegmentResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EfsSegmentReponse" nillable="true" type="tns:EfsSegmentReponse" />
+  <xs:complexType name="SegmentFamilyProperty">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="SegmentType" type="xs:unsignedInt" />
+      <xs:element minOccurs="0" name="ValueType" type="tns:BtSegmentValueType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SegmentFamilyProperty" nillable="true" type="tns:SegmentFamilyProperty" />
+  <xs:simpleType name="BtSegmentValueType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="UNKNOWN" />
+      <xs:enumeration value="SINGLEVALUE" />
+      <xs:enumeration value="MULTIVALUE" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="BtSegmentValueType" nillable="true" type="tns:BtSegmentValueType" />
+  <xs:complexType name="ArrayOfUserCategoryCreativeInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UserCategoryCreativeInfo" nillable="true" type="tns:UserCategoryCreativeInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUserCategoryCreativeInfo" nillable="true" type="tns:ArrayOfUserCategoryCreativeInfo" />
+  <xs:complexType name="UserCategoryCreativeInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Categories" nillable="true" type="tns:ArrayOfCategoryResult" />
+      <xs:element minOccurs="0" name="UserId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserType" type="tns:UserIdType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserCategoryCreativeInfo" nillable="true" type="tns:UserCategoryCreativeInfo" />
+  <xs:complexType name="ArrayOfCategoryResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CategoryResult" nillable="true" type="tns:CategoryResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCategoryResult" nillable="true" type="tns:ArrayOfCategoryResult" />
+  <xs:complexType name="CategoryResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CategoryId" type="xs:unsignedInt" />
+      <xs:element minOccurs="0" name="Rank" type="xs:unsignedShort" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CategoryResult" nillable="true" type="tns:CategoryResult" />
+  <xs:complexType name="ArrayOfKeywordResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeywordResult" nillable="true" type="tns:KeywordResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfKeywordResult" nillable="true" type="tns:ArrayOfKeywordResult" />
+  <xs:complexType name="KeywordResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Keyword" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Score" type="xs:unsignedShort" />
+      <xs:element minOccurs="0" name="Weight" type="xs:unsignedShort" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="KeywordResult" nillable="true" type="tns:KeywordResult" />
+  <xs:simpleType name="SortCategoryChoice">
+    <xs:annotation>
+      <xs:appinfo>
+        <ActualType Name="unsignedByte" Namespace="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NoSort" />
+      <xs:enumeration value="ByCategoryID" />
+      <xs:enumeration value="ByRank" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="SortCategoryChoice" nillable="true" type="tns:SortCategoryChoice" />
+  <xs:complexType name="ArrayOfBtFamilyResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BtFamilyResult" nillable="true" type="tns:BtFamilyResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBtFamilyResult" nillable="true" type="tns:ArrayOfBtFamilyResult" />
+  <xs:complexType name="BtFamilyResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FamilyMeta" nillable="true" type="tns:SbtFamilyMeta" />
+      <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Results" nillable="true" type="q3:ArrayOfanyType" />
+      <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.OLP.Common" minOccurs="0" name="olpCode" type="q4:OlpErrorCode" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BtFamilyResult" nillable="true" type="tns:BtFamilyResult" />
+  <xs:complexType name="SbtFamilyMeta">
+    <xs:sequence>
+      <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.OLP.Common" name="BtFamily" nillable="true" type="q5:BTFamily" />
+      <xs:element name="Ttl" type="xs:unsignedInt" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SbtFamilyMeta" nillable="true" type="tns:SbtFamilyMeta" />
+  <xs:complexType name="ArrayOfSbtFamilyMeta">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SbtFamilyMeta" nillable="true" type="tns:SbtFamilyMeta" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSbtFamilyMeta" nillable="true" type="tns:ArrayOfSbtFamilyMeta" />
+  <xs:complexType name="GetUmsClusterBatchRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:EfsRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DataSource" type="tns:UmsDataSource" />
+          <xs:element minOccurs="0" name="UserIds" nillable="true" type="tns:ArrayOfUmsId" />
+          <xs:element xmlns:q6="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="UserTypeSelector" nillable="true" type="q6:ArrayOfstring" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetUmsClusterBatchRequest" nillable="true" type="tns:GetUmsClusterBatchRequest" />
+  <xs:complexType name="EfsRequest">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:element name="EfsRequest" nillable="true" type="tns:EfsRequest" />
+  <xs:simpleType name="UmsDataSource">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Merge" />
+      <xs:enumeration value="Offline" />
+      <xs:enumeration value="Realtime" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="UmsDataSource" nillable="true" type="tns:UmsDataSource" />
+  <xs:complexType name="ArrayOfUmsId">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UmsId" nillable="true" type="tns:UmsId" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUmsId" nillable="true" type="tns:ArrayOfUmsId" />
+  <xs:complexType name="UmsId">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="UserId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserType" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UmsId" nillable="true" type="tns:UmsId" />
+  <xs:complexType name="UpdateUserMappingRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:EfsRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AssoicatedIds" nillable="true" type="tns:ArrayOfUmsIdResult" />
+          <xs:element minOccurs="0" name="StableId" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="UpdateUserMappingRequest" nillable="true" type="tns:UpdateUserMappingRequest" />
+  <xs:complexType name="ArrayOfUmsIdResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UmsIdResult" nillable="true" type="tns:UmsIdResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUmsIdResult" nillable="true" type="tns:ArrayOfUmsIdResult" />
+  <xs:complexType name="UmsIdResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="LastSeenTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UserId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserType" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UmsIdResult" nillable="true" type="tns:UmsIdResult" />
+  <xs:complexType name="UpdateUserMappingResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:EfsResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Hresult" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="UpdateUserMappingResponse" nillable="true" type="tns:UpdateUserMappingResponse" />
+  <xs:complexType name="EfsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ResponseCode" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EfsResponse" nillable="true" type="tns:EfsResponse" />
+  <xs:complexType name="UpdateUserMappingBatchRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:EfsRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Clusters" nillable="true" type="tns:ArrayOfUmsCluster" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="UpdateUserMappingBatchRequest" nillable="true" type="tns:UpdateUserMappingBatchRequest" />
+  <xs:complexType name="ArrayOfUmsCluster">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UmsCluster" nillable="true" type="tns:UmsCluster" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUmsCluster" nillable="true" type="tns:ArrayOfUmsCluster" />
+  <xs:complexType name="UmsCluster">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AssoicatedIds" nillable="true" type="tns:ArrayOfUmsIdResult" />
+      <xs:element minOccurs="0" name="StableId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UmsCluster" nillable="true" type="tns:UmsCluster" />
+  <xs:complexType name="UpdateUserMappingBatchResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:EfsResponse">
+        <xs:sequence>
+          <xs:element xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ResponseCodes" nillable="true" type="q7:ArrayOfint" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="UpdateUserMappingBatchResponse" nillable="true" type="tns:UpdateUserMappingBatchResponse" />
+  <xs:complexType name="GetUserProfileRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:EfsRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="UserId" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="UserType" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetUserProfileRequest" nillable="true" type="tns:GetUserProfileRequest" />
+  <xs:complexType name="GetUserProfileResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:EfsResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Age" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="Country" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Gender" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="Lcid" type="xs:int" />
+          <xs:element minOccurs="0" name="Zip" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetUserProfileResponse" nillable="true" type="tns:GetUserProfileResponse" />
+  <xs:complexType name="GetUmsClusterBatchResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:EfsResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Clusters" nillable="true" type="tns:ArrayOfUmsCluster" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetUmsClusterBatchResponse" nillable="true" type="tns:GetUmsClusterBatchResponse" />
+  <xs:complexType name="GetUserSegmentsRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:EfsRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="MaxSegments" type="xs:int" />
+          <xs:element minOccurs="0" name="UserId" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="UserType" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetUserSegmentsRequest" nillable="true" type="tns:GetUserSegmentsRequest" />
+  <xs:complexType name="GetUserSegmentsResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:EfsResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="OlpErrorCode" type="xs:int" />
+          <xs:element minOccurs="0" name="SegmentResultList" nillable="true" type="tns:ArrayOfSegmentResult" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetUserSegmentsResponse" nillable="true" type="tns:GetUserSegmentsResponse" />
+  <xs:complexType name="UpdateUserSegmentRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:EfsRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Score" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="SegProp" nillable="true" type="tns:SegmentFamilyProperty" />
+          <xs:element minOccurs="0" name="SegmentId" type="xs:unsignedInt" />
+          <xs:element minOccurs="0" name="UserId" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="UserType" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Value" type="xs:unsignedByte" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="UpdateUserSegmentRequest" nillable="true" type="tns:UpdateUserSegmentRequest" />
+  <xs:complexType name="UpdateUserSegmentResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:EfsResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Hresult" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="UpdateUserSegmentResponse" nillable="true" type="tns:UpdateUserSegmentResponse" />
+  <xs:complexType name="DeleteUserSegmentRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:EfsRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="SegProp" nillable="true" type="tns:SegmentFamilyProperty" />
+          <xs:element minOccurs="0" name="SegmentId" type="xs:unsignedInt" />
+          <xs:element minOccurs="0" name="UserId" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="UserType" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DeleteUserSegmentRequest" nillable="true" type="tns:DeleteUserSegmentRequest" />
+  <xs:complexType name="DeleteUserSegmentResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:EfsResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Hresult" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DeleteUserSegmentResponse" nillable="true" type="tns:DeleteUserSegmentResponse" />
+  <xs:complexType name="GetUmsStableIdRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:EfsRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DataSource" type="tns:UmsDataSource" />
+          <xs:element minOccurs="0" name="UserId" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="UserType" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetUmsStableIdRequest" nillable="true" type="tns:GetUmsStableIdRequest" />
+  <xs:complexType name="GetUmsStableIdResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:EfsResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="UserId" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="UserType" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetUmsStableIdResponse" nillable="true" type="tns:GetUmsStableIdResponse" />
+  <xs:complexType name="GetUmsStableIdBatchRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:EfsRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AssociatedIds" nillable="true" type="tns:ArrayOfUmsId" />
+          <xs:element minOccurs="0" name="DataSource" type="tns:UmsDataSource" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetUmsStableIdBatchRequest" nillable="true" type="tns:GetUmsStableIdBatchRequest" />
+  <xs:complexType name="GetUmsStableIdBatchResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:EfsResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="StableIds" nillable="true" type="tns:ArrayOfUmsId" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetUmsStableIdBatchResponse" nillable="true" type="tns:GetUmsStableIdBatchResponse" />
+  <xs:complexType name="GetUmsAssociatedIdsRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:EfsRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DataSource" type="tns:UmsDataSource" />
+          <xs:element minOccurs="0" name="UserId" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="UserType" nillable="true" type="xs:string" />
+          <xs:element xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="UserTypeSelector" nillable="true" type="q8:ArrayOfstring" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetUmsAssociatedIdsRequest" nillable="true" type="tns:GetUmsAssociatedIdsRequest" />
+  <xs:complexType name="GetUmsAssociatedIdsResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:EfsResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AssociatedIds" nillable="true" type="tns:ArrayOfUmsIdResult" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetUmsAssociatedIdsResponse" nillable="true" type="tns:GetUmsAssociatedIdsResponse" />
+  <xs:complexType name="ArrayOfEfsRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EfsRequest" nillable="true" type="tns:EfsRequest" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEfsRequest" nillable="true" type="tns:ArrayOfEfsRequest" />
+  <xs:complexType name="ArrayOfEfsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EfsResponse" nillable="true" type="tns:EfsResponse" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEfsResponse" nillable="true" type="tns:ArrayOfEfsResponse" />
+  <xs:complexType name="UserCommercialPreference">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Preferences" nillable="true" type="tns:ArrayOfCommercialResult" />
+      <xs:element minOccurs="0" name="UserId" nillable="true" type="xs:base64Binary" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserCommercialPreference" nillable="true" type="tns:UserCommercialPreference" />
+  <xs:complexType name="ArrayOfCommercialResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CommercialResult" nillable="true" type="tns:CommercialResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCommercialResult" nillable="true" type="tns:ArrayOfCommercialResult" />
+  <xs:complexType name="CommercialResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AlgorithmId" type="xs:unsignedByte" />
+      <xs:element xmlns:q9="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Attributes" nillable="true" type="q9:ArrayOfKeyValueOfstringstring" />
+      <xs:element minOccurs="0" name="CommercialID" type="xs:unsignedInt" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CommercialResult" nillable="true" type="tns:CommercialResult" />
+  <xs:simpleType name="UserCommercialAttributeKey">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DataSourceIds" />
+      <xs:enumeration value="AuthState" />
+      <xs:enumeration value="Score" />
+      <xs:enumeration value="EventTime" />
+      <xs:enumeration value="ExpirationTime" />
+      <xs:enumeration value="RemoveInferExpTime" />
+      <xs:enumeration value="Relations" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="UserCommercialAttributeKey" nillable="true" type="tns:UserCommercialAttributeKey" />
+  <xs:simpleType name="UserCommercialRelation">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Subscribed" />
+          <xs:enumeration value="Inferred" />
+          <xs:enumeration value="Like" />
+          <xs:enumeration value="RemoveDeclared" />
+          <xs:enumeration value="RemoveInferred" />
+          <xs:enumeration value="Dislike" />
+          <xs:enumeration value="Prefer" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:element name="UserCommercialRelation" nillable="true" type="tns:UserCommercialRelation" />
+  <xs:complexType name="ArrayOfUserCommercialPreferenceInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UserCommercialPreferenceInfo" nillable="true" type="tns:UserCommercialPreferenceInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUserCommercialPreferenceInfo" nillable="true" type="tns:ArrayOfUserCommercialPreferenceInfo" />
+  <xs:complexType name="UserCommercialPreferenceInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Preferences" nillable="true" type="tns:ArrayOfCommercialResult" />
+      <xs:element minOccurs="0" name="UserId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserType" type="tns:UserIdType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserCommercialPreferenceInfo" nillable="true" type="tns:UserCommercialPreferenceInfo" />
+  <xs:simpleType name="UserCommercialFilterType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="RemoveNegativeDeclared" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="UserCommercialFilterType" nillable="true" type="tns:UserCommercialFilterType" />
+</xs:schema>

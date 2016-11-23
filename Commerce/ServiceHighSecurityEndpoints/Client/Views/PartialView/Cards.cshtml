@@ -1,0 +1,68 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+@using Lomo.Commerce.Service.Client.Resources
+  
+   <div class="cards">
+      <span>@AddCardClientResource.AddCard_CardNumber</span>
+      <input id="cardlink-cardNumber" type="text" maxlength="19" class="account-update" title="@AddCardClientResource.AddCard_CardNumber" />
+   </div>
+
+   <div class="cards">
+      <span>@AddCardClientResource.AddCard_CardType</span>
+         <select class="card-type" id="cardlink-cardBrand">
+              @*  American express cards disabled temporarily as they don't work.  *@
+              @*<option value="AmericanExpress">@AddCardClientResource.Amex</option>*@
+             <option value="Visa">@AddCardClientResource.Visa</option>
+             <option value="MasterCard">@AddCardClientResource.MasterCard</option>
+         </select>
+    </div>
+      
+   <div class="cards">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td><span>@AddCardClientResource.AddCard_CardMonth</span>
+                            </td>
+                            <td><span>@AddCardClientResource.AddCard_CardYear</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select class="month" id="cardlink-cardExpiryMonth">
+                                    <option value="01">@AddCardClientResource.January</option>
+                                    <option value="02">@AddCardClientResource.February</option>
+                                    <option value="03">@AddCardClientResource.March</option>
+                                    <option value="04">@AddCardClientResource.April</option>
+                                    <option value="05">@AddCardClientResource.May</option>
+                                    <option value="06">@AddCardClientResource.June</option>
+                                    <option value="07">@AddCardClientResource.July</option>
+                                    <option value="08">@AddCardClientResource.August</option>
+                                    <option value="09">@AddCardClientResource.September</option>
+                                    <option value="10">@AddCardClientResource.October</option>
+                                    <option value="11">@AddCardClientResource.November</option>
+                                    <option value="12">@AddCardClientResource.December</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="year" id="cardlink-cardExpiryYear">
+                                    <option value="2013">@AddCardClientResource.Year2013</option>
+                                    <option value="2014">@AddCardClientResource.Year2014</option>
+                                    <option value="2015">@AddCardClientResource.Year2015</option>
+                                    <option value="2016">@AddCardClientResource.Year2016</option>
+                                    <option value="2017">@AddCardClientResource.Year2017</option>
+                                    <option value="2018">@AddCardClientResource.Year2018</option>
+                                    <option value="2019">@AddCardClientResource.Year2019</option>
+                                    <option value="2020">@AddCardClientResource.Year2020</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+                
+  <span id="cardlink-addCard-screen-error"></span>
+  <input class="cardlink-button cardlink_addCard_Cancel" type="button" value="@AddCardClientResource.Cancel" /> 
+  <input class="cardlink-button action-button cardlink_addCard_add" type="button" value="@AddCardClientResource.AddCard_Add"/>
+  <div class="clear"></div>

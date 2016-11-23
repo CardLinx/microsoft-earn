@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/System.Collections.Generic" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/System.Collections.Generic" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://co3sch010042336.phx.gbl:3011/AudienceIntelligenceService/EfsWcfService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.Efs" />
+  <xs:import schemaLocation="http://co3sch010042336.phx.gbl:3011/AudienceIntelligenceService/EfsWcfService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ArrayOfKeyValuePairOfUserIdTypestringiEqks7YZ">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValuePairOfUserIdTypestringiEqks7YZ" type="tns:KeyValuePairOfUserIdTypestringiEqks7YZ" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfKeyValuePairOfUserIdTypestringiEqks7YZ" nillable="true" type="tns:ArrayOfKeyValuePairOfUserIdTypestringiEqks7YZ" />
+  <xs:complexType name="KeyValuePairOfUserIdTypestringiEqks7YZ">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="KeyValuePairOf{0}{1}{#}" Namespace="http://schemas.datacontract.org/2004/07/System.Collections.Generic" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="UserIdType" Namespace="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.Efs" />
+          <GenericParameter Name="string" Namespace="http://www.w3.org/2001/XMLSchema" />
+        </GenericType>
+        <IsValueType xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsValueType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.Efs" name="key" type="q1:UserIdType" />
+      <xs:element name="value" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="KeyValuePairOfUserIdTypestringiEqks7YZ" nillable="true" type="tns:KeyValuePairOfUserIdTypestringiEqks7YZ" />
+</xs:schema>

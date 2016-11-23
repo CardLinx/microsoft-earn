@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A66DBA6C-21CA-4F33-9578-0D4C60D9B8BB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Earn.Dashboard.DAL</RootNamespace>
+    <AssemblyName>Earn.Dashboard.DAL</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AnalyticsDal.cs" />
+    <Compile Include="CommerceDal.cs" />
+    <Compile Include="CustomerServiceDAL.cs" />
+    <Compile Include="db\Analytics\analytic.cs">
+      <DependentUpon>Analytics.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Analytics\Analytics.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Analytics.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Analytics\Analytics.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Analytics.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Analytics\Analytics.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Analytics.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\ARCHIVE_PartnerCards.cs">
+      <DependentUpon>CommerceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\ARCHIVE_PartnerUsers.cs">
+      <DependentUpon>CommerceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\Authorization.cs">
+      <DependentUpon>CommerceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\Card.cs">
+      <DependentUpon>CommerceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\CardBrand.cs">
+      <DependentUpon>CommerceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\ClaimedDealBatch.cs">
+      <DependentUpon>CommerceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\CommerceEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CommerceEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\CommerceEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CommerceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\CommerceEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CommerceEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\CreditStatu.cs">
+      <DependentUpon>CommerceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\Deal.cs">
+      <DependentUpon>CommerceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\DealBatch.cs">
+      <DependentUpon>CommerceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\DealPartnerMerchantId.cs">
+      <DependentUpon>CommerceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\DealStatu.cs">
+      <DependentUpon>CommerceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\EventLog.cs">
+      <DependentUpon>CommerceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\Merchant.cs">
+      <DependentUpon>CommerceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\MerchantName.cs">
+      <DependentUpon>CommerceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\MSSVDistribution.cs">
+      <DependentUpon>CommerceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\Offer.cs">
+      <DependentUpon>CommerceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\Parameter.cs">
+      <DependentUpon>CommerceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\Partner.cs">
+      <DependentUpon>CommerceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\PartnerCardFilter.cs">
+      <DependentUpon>CommerceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\PartnerDeal.cs">
+      <DependentUpon>CommerceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\PartnerDealRegistrationStatu.cs">
+      <DependentUpon>CommerceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\PartnerMerchantAuthorizationID.cs">
+      <DependentUpon>CommerceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\PartnerMerchantIdType.cs">
+      <DependentUpon>CommerceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\PartnerMerchantSettlementID.cs">
+      <DependentUpon>CommerceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\PartnerRedeemedDeal.cs">
+      <DependentUpon>CommerceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\PartnerUserID.cs">
+      <DependentUpon>CommerceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\PayeeType.cs">
+      <DependentUpon>CommerceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\Provider.cs">
+      <DependentUpon>CommerceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\RedeemedDeal.cs">
+      <DependentUpon>CommerceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\RedemptionEvent.cs">
+      <DependentUpon>CommerceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\RedemptionReport.cs">
+      <DependentUpon>CommerceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\Referral.cs">
+      <DependentUpon>CommerceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\ReferralEvent.cs">
+      <DependentUpon>CommerceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\ReferralEventReward.cs">
+      <DependentUpon>CommerceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\ReferralType.cs">
+      <DependentUpon>CommerceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\ReferralVector.cs">
+      <DependentUpon>CommerceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\ReferrerType.cs">
+      <DependentUpon>CommerceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\ReimbursementTender.cs">
+      <DependentUpon>CommerceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\Reward.cs">
+      <DependentUpon>CommerceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\RewardPayout.cs">
+      <DependentUpon>CommerceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\RewardPayoutStatu.cs">
+      <DependentUpon>CommerceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\RewardProgram.cs">
+      <DependentUpon>CommerceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\RewardReason.cs">
+      <DependentUpon>CommerceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\RewardRecipient.cs">
+      <DependentUpon>CommerceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\RewardType.cs">
+      <DependentUpon>CommerceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\Sequence.cs">
+      <DependentUpon>CommerceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\TrackedRedemptionReward.cs">
+      <DependentUpon>CommerceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\TransactionLink.cs">
+      <DependentUpon>CommerceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\TransactionReviewStatu.cs">
+      <DependentUpon>CommerceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Commerce\User.cs">
+      <DependentUpon>CommerceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\CustomerService\CustomerService.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CustomerService.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\CustomerService\CustomerService.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CustomerService.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\CustomerService\CustomerService.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CustomerService.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="db\CustomerService\GetEarnBurnHistory_Result.cs">
+      <DependentUpon>CustomerService.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\CustomerService\QueryEarnBurnLineItems_Result.cs">
+      <DependentUpon>CustomerService.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="db\Analytics\Analytics.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Analytics.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="db\Analytics\Analytics.edmx.diagram">
+      <DependentUpon>Analytics.edmx</DependentUpon>
+    </None>
+    <EntityDeploy Include="db\CustomerService\CustomerService.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CustomerService.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="db\Commerce\CommerceEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CommerceEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="db\Commerce\CommerceEntities.edmx.diagram">
+      <DependentUpon>CommerceEntities.edmx</DependentUpon>
+    </None>
+    <None Include="db\CustomerService\CustomerService.edmx.diagram">
+      <DependentUpon>CustomerService.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="db\Analytics\Analytics.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Analytics.edmx</DependentUpon>
+      <LastGenOutput>Analytics.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="db\Analytics\Analytics.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Analytics.edmx</DependentUpon>
+      <LastGenOutput>Analytics.cs</LastGenOutput>
+    </Content>
+    <Content Include="db\Commerce\CommerceEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CommerceEntities.edmx</DependentUpon>
+      <LastGenOutput>CommerceEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="db\Commerce\CommerceEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CommerceEntities.edmx</DependentUpon>
+      <LastGenOutput>CommerceEntities.cs</LastGenOutput>
+    </Content>
+    <Content Include="db\CustomerService\CustomerService.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CustomerService.edmx</DependentUpon>
+      <LastGenOutput>CustomerService.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="db\CustomerService\CustomerService.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CustomerService.edmx</DependentUpon>
+      <LastGenOutput>CustomerService.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Earn.DataContract\Earn.DataContract.csproj">
+      <Project>{ed50e570-9e4a-4b61-99b3-8adedcba3db3}</Project>
+      <Name>Earn.DataContract</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

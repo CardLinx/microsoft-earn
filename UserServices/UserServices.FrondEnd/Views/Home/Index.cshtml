@@ -1,0 +1,45 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+@model UserServices.FrondEnd.Models.EmailSubmitModel
+
+@{
+    ViewBag.Title = "User Lookup";
+    
+    ViewBag.Message = "Lookup user by email";
+}
+
+@section featured{
+<section class="featured">
+    <div class="content-wrapper">
+        <hgroup class="title">
+            <h1>@ViewBag.Title.</h1>
+            <br />
+            <br />
+            <br />
+            <h2>@ViewBag.Message</h2>
+        </hgroup>
+    </div>
+</section>
+}
+@if (Model == null)
+{
+    using (Html.BeginForm("GetUserByEmail", "Home"))
+    {
+        <p>Email: @Html.TextBox("email")</p>
+<input type="submit" value="Submit" />
+}
+}
+else
+{
+    if (Model.Message == "Found")
+    {
+          <h1 style="color: green">@Html.DisplayFor(model => model.Message)</h1>
+}
+else
+    {
+        <h2 style="color: red">@Html.DisplayFor(model => model.Message)</h2>
+}
+}
+

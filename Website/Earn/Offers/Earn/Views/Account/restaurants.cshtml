@@ -1,0 +1,99 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+@{
+    Layout = "~/offers/earn/views/account/accountslayout.cshtml";
+    ViewBag.Title = "Local Restaurants";
+}
+
+<section id="spending" class="accounts-container">
+    <div class="container" style="display: none" data-bind="visible: true">
+        <div class="restaurants-container" data-bind="with:localDealsView">
+            <div class="left"><h1>Local restaurants</h1></div>
+            <div class="right">
+                <p>
+                    Change state :
+                    <select id="state-selection" data-bind="value: selectedState">
+                        <option value="wa" data-bind="css: { selected : selectedState() == 'wa'}">Washington</option>
+                        <option value="ma" data-bind="css: { selected : selectedState() == 'ma'}">Massachusetts</option>
+                        <option value="az" data-bind="css: { selected : selectedState() == 'az'}">Arizona</option>
+                    </select>
+                </p>
+            </div>
+            <div class="clear"></div>
+            <br />
+            <p>
+                Receive 7% in Earn Credits when you use your enrolled credit or debit card at these participating restaurants.
+            </p>
+            <div class="table-container">
+                <div class="get-location" data-bind="click: bingMapView.locateUser">
+                    <a class="button">Locate me</a>
+                </div>
+                <div class="bingmap-container"></div>
+                <table id="rest-table">
+                    <tr class="header">
+                        <th>
+                            <p data-bind="click: function() {  selectedSortByClicked('BusinessName');  }">
+                                Name
+                                <img class="sort-icon" src="https://az414848.vo.msecnd.net/card-linked-assets/sort-up.png" data-bind="visible: selectedSortBy() === 'BusinessName' && selectedSortOrder() === 'dsc'" />
+                                <img class="sort-icon" src="https://az414848.vo.msecnd.net/card-linked-assets/sort-up-down.png" data-bind="visible: selectedSortBy() !== 'BusinessName'" />
+                                <img class="sort-icon" src="https://az414848.vo.msecnd.net/card-linked-assets/sort-down.png" data-bind="visible: selectedSortBy() == 'BusinessName' && selectedSortOrder() === 'asc'" />
+                            </p>
+                        </th>
+                        <th>
+                            <p data-bind="click: function() {  selectedSortByClicked('City');   }">
+                                City
+                                <img class="sort-icon" src="https://az414848.vo.msecnd.net/card-linked-assets/sort-up.png" data-bind="visible: selectedSortBy() === 'City' && selectedSortOrder() === 'dsc'" />
+                                <img class="sort-icon" src="https://az414848.vo.msecnd.net/card-linked-assets/sort-up-down.png" data-bind="visible: selectedSortBy() !== 'City'" />
+                                <img class="sort-icon" src="https://az414848.vo.msecnd.net/card-linked-assets/sort-down.png" data-bind="visible: selectedSortBy() == 'City' && selectedSortOrder() === 'asc'" />
+                            </p>
+                        </th>
+                        <th>
+                            <p data-bind="click: function() {  selectedSortByClicked('Cuisine');   }">
+                                Cuisine
+                                <img class="sort-icon" src="https://az414848.vo.msecnd.net/card-linked-assets/sort-up.png" data-bind="visible: selectedSortBy() === 'Cuisine' && selectedSortOrder() === 'dsc'" />
+                                <img class="sort-icon" src="https://az414848.vo.msecnd.net/card-linked-assets/sort-up-down.png" data-bind="visible: selectedSortBy() !== 'Cuisine'" />
+                                <img class="sort-icon" src="https://az414848.vo.msecnd.net/card-linked-assets/sort-down.png" data-bind="visible: selectedSortBy() == 'Cuisine' && selectedSortOrder() === 'asc'" />
+                            </p>
+                        </th>
+                    </tr>
+
+                    <!-- ko foreach: deals -->
+                    <tr data-bind="if: isValid">
+                        <td class="address-col" width="60%">
+                            <a data-bind="text: business.name, attr : { href : business.localPlacesUrl }" target="_blank"></a>
+                            <p data-bind="text: business.address"></p>
+                            <p data-bind="text: business.phoneNumber"></p>
+                        </td>
+                        <td class="city-col" width="20%">
+                            <p data-bind="text: business.city"></p>
+                            <p data-bind="text: business.zip" style="display:none"></p>
+                        </td>
+                        <td class="zip-col" width="20%">
+                            <p data-bind="text: business.cuisine"></p>
+                        </td>
+                    </tr>
+                    <!-- /ko -->
+                </table>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+@section Fineprints{
+    <section id="fineprints">
+        <div class="container">
+            <p class="fineprint">
+                [*] Earn Credits only apply to purchase made at Microsoft stores in Arizona, Massachusetts, and Washington.
+                Not all items promoted at the online Microsoft Store available at the local Microsoft store.
+            </p>
+        </div>
+        <div class="clear"></div>
+    </section>
+}
+
+@section BodyEnd{
+    <script charset="UTF-8" type="text/javascript" src="https://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0&s=1"></script>
+}

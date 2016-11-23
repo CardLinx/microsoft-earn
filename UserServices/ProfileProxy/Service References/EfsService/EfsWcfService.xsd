@@ -1,0 +1,575 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+<xs:schema xmlns:tns="https://advertising.microsoft.com/v1/AudienceIntelligenceService/EfsService" elementFormDefault="qualified" targetNamespace="https://advertising.microsoft.com/v1/AudienceIntelligenceService/EfsService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://co3sch010042336.phx.gbl:3011/AudienceIntelligenceService/EfsWcfService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/System.Collections.Generic" />
+  <xs:import schemaLocation="http://co3sch010042336.phx.gbl:3011/AudienceIntelligenceService/EfsWcfService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.Efs" />
+  <xs:import schemaLocation="http://co3sch010042336.phx.gbl:3011/AudienceIntelligenceService/EfsWcfService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.OLP.Common" />
+  <xs:import schemaLocation="http://co3sch010042336.phx.gbl:3011/AudienceIntelligenceService/EfsWcfService.svc?xsd=xsd5" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="http://co3sch010042336.phx.gbl:3011/AudienceIntelligenceService/EfsWcfService.svc?xsd=xsd10" namespace="http://schemas.datacontract.org/2004/07/UserPreferences.Core" />
+  <xs:import schemaLocation="http://co3sch010042336.phx.gbl:3011/AudienceIntelligenceService/EfsWcfService.svc?xsd=xsd9" namespace="http://schemas.microsoft.com/Message" />
+  <xs:element name="GetDemographics">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="user" nillable="true" type="q1:ArrayOfKeyValuePairOfUserIdTypestringiEqks7YZ" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDemographicsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.Efs" minOccurs="0" name="GetDemographicsResult" nillable="true" type="q2:UserDemographics" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDemographicsAttributeList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="user" nillable="true" type="q3:ArrayOfKeyValuePairOfUserIdTypestringiEqks7YZ" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDemographicsAttributeListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.Efs" minOccurs="0" name="GetDemographicsAttributeListResult" nillable="true" type="q4:ArrayOfUserDemographicsAttribute" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateDemographics">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="user" type="q5:KeyValuePairOfUserIdTypestringiEqks7YZ" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.Efs" minOccurs="0" name="demoGraphics" nillable="true" type="q6:UserDemographics" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateDemographicsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.Efs" minOccurs="0" name="UpdateDemographicsResult" type="q7:EfsResponseStruct" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveUserInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="user" type="q8:KeyValuePairOfUserIdTypestringiEqks7YZ" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.OLP.Common" minOccurs="0" name="family" nillable="true" type="q9:BTFamily" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveUserInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.Efs" minOccurs="0" name="RemoveUserInfoResult" type="q10:EfsResponseStruct" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserSegments">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="user" nillable="true" type="q11:ArrayOfKeyValuePairOfUserIdTypestringiEqks7YZ" />
+        <xs:element minOccurs="0" name="maxSegments" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserSegmentsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.Efs" minOccurs="0" name="GetUserSegmentsResult" nillable="true" type="q12:ArrayOfSegmentResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserSegmentsWithResponseCode">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="user" nillable="true" type="q13:ArrayOfKeyValuePairOfUserIdTypestringiEqks7YZ" />
+        <xs:element minOccurs="0" name="maxSegments" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserSegmentsWithResponseCodeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.Efs" minOccurs="0" name="GetUserSegmentsWithResponseCodeResult" nillable="true" type="q14:EfsSegmentReponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateUserSegment">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="user" nillable="true" type="q15:ArrayOfKeyValuePairOfUserIdTypestringiEqks7YZ" />
+        <xs:element minOccurs="0" name="segmentId" type="xs:unsignedInt" />
+        <xs:element minOccurs="0" name="score" type="xs:unsignedShort" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateUserSegmentInformation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="user" nillable="true" type="q16:ArrayOfKeyValuePairOfUserIdTypestringiEqks7YZ" />
+        <xs:element minOccurs="0" name="segmentId" type="xs:unsignedInt" />
+        <xs:element minOccurs="0" name="score" type="xs:unsignedByte" />
+        <xs:element minOccurs="0" name="value" type="xs:unsignedByte" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteUserSegment">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="user" nillable="true" type="q17:ArrayOfKeyValuePairOfUserIdTypestringiEqks7YZ" />
+        <xs:element minOccurs="0" name="segmentId" type="xs:unsignedInt" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateUserSegmentInformationWithAck">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="user" nillable="true" type="q18:ArrayOfKeyValuePairOfUserIdTypestringiEqks7YZ" />
+        <xs:element minOccurs="0" name="segmentId" type="xs:unsignedInt" />
+        <xs:element minOccurs="0" name="score" type="xs:unsignedByte" />
+        <xs:element minOccurs="0" name="value" type="xs:unsignedByte" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateUserSegmentInformationWithAckResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.Efs" minOccurs="0" name="UpdateUserSegmentInformationWithAckResult" type="q19:EfsResponseStruct" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateUserSegmentInformationWithSegpropAck">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="user" nillable="true" type="q20:ArrayOfKeyValuePairOfUserIdTypestringiEqks7YZ" />
+        <xs:element minOccurs="0" name="segmentId" type="xs:unsignedInt" />
+        <xs:element minOccurs="0" name="score" type="xs:unsignedByte" />
+        <xs:element minOccurs="0" name="value" type="xs:unsignedByte" />
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.Efs" minOccurs="0" name="segProp" nillable="true" type="q21:SegmentFamilyProperty" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateUserSegmentInformationWithSegpropAckResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.Efs" minOccurs="0" name="UpdateUserSegmentInformationWithSegpropAckResult" type="q22:EfsResponseStruct" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteUserSegmentWithAck">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="user" nillable="true" type="q23:ArrayOfKeyValuePairOfUserIdTypestringiEqks7YZ" />
+        <xs:element minOccurs="0" name="segmentId" type="xs:unsignedInt" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteUserSegmentWithAckResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.Efs" minOccurs="0" name="DeleteUserSegmentWithAckResult" type="q24:EfsResponseStruct" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteUserSegmentWithSegpropAck">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="user" nillable="true" type="q25:ArrayOfKeyValuePairOfUserIdTypestringiEqks7YZ" />
+        <xs:element minOccurs="0" name="segmentId" type="xs:unsignedInt" />
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.Efs" minOccurs="0" name="segProp" nillable="true" type="q26:SegmentFamilyProperty" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteUserSegmentWithSegpropAckResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.Efs" minOccurs="0" name="DeleteUserSegmentWithSegpropAckResult" type="q27:EfsResponseStruct" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetUserCategoryCreativeInfoBatch">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.Efs" minOccurs="0" name="userCategoryCreativeInfos" nillable="true" type="q28:ArrayOfUserCategoryCreativeInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetUserCategoryCreativeInfoBatchResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.Efs" minOccurs="0" name="SetUserCategoryCreativeInfoBatchResult" type="q29:EfsResponseStruct" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserCategories">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="user" nillable="true" type="q30:ArrayOfKeyValuePairOfUserIdTypestringiEqks7YZ" />
+        <xs:element minOccurs="0" name="maxCategories" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserCategoriesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.Efs" minOccurs="0" name="GetUserCategoriesResult" nillable="true" type="q31:ArrayOfCategoryResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateUserCategory">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="user" nillable="true" type="q32:ArrayOfKeyValuePairOfUserIdTypestringiEqks7YZ" />
+        <xs:element minOccurs="0" name="categoryId" type="xs:unsignedInt" />
+        <xs:element minOccurs="0" name="rank" type="xs:unsignedShort" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteUserCategory">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="user" nillable="true" type="q33:ArrayOfKeyValuePairOfUserIdTypestringiEqks7YZ" />
+        <xs:element minOccurs="0" name="categoryId" type="xs:unsignedInt" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserKeywords">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="user" nillable="true" type="q34:ArrayOfKeyValuePairOfUserIdTypestringiEqks7YZ" />
+        <xs:element minOccurs="0" name="maxKeywords" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserKeywordsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.Efs" minOccurs="0" name="GetUserKeywordsResult" nillable="true" type="q35:ArrayOfKeywordResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserCategoryCreativeInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userId" nillable="true" type="xs:string" />
+        <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.Efs" minOccurs="0" name="userType" type="q36:UserIdType" />
+        <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.Efs" minOccurs="0" name="sortMethod" type="q37:SortCategoryChoice" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserCategoryCreativeInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.Efs" minOccurs="0" name="GetUserCategoryCreativeInfoResult" nillable="true" type="q38:UserCategoryCreativeInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q39="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="user" nillable="true" type="q39:ArrayOfKeyValuePairOfUserIdTypestringiEqks7YZ" />
+        <xs:element xmlns:q40="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.OLP.Common" minOccurs="0" name="families" nillable="true" type="q40:ArrayOfBTFamily" />
+        <xs:element minOccurs="0" name="maxItemsPerFamily" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q41="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.Efs" minOccurs="0" name="GetUserInfoResult" nillable="true" type="q41:ArrayOfBtFamilyResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUsersInformation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="request" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUsersInformationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetUsersInformationResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFamilyMeta">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFamilyMetaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q42="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.Efs" minOccurs="0" name="GetFamilyMetaResult" nillable="true" type="q42:ArrayOfSbtFamilyMeta" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CallCustomAlgo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="instanceName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="procName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="id" nillable="true" type="xs:string" />
+        <xs:element xmlns:q43="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="args" nillable="true" type="q43:ArrayOfbase64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CallCustomAlgoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CallCustomAlgoResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Get">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="family" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="max" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q44="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetResult" nillable="true" type="q44:ArrayOfanyType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Store">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="family" nillable="true" type="xs:string" />
+        <xs:element xmlns:q45="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="cells" nillable="true" type="q45:ArrayOfanyType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StoreResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Execute">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q46="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.Efs" minOccurs="0" name="requests" nillable="true" type="q46:ArrayOfEfsRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExecuteResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q47="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.Efs" minOccurs="0" name="ExecuteResult" nillable="true" type="q47:ArrayOfEfsResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetNominatedInterestPreference">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userId" nillable="true" type="xs:string" />
+        <xs:element xmlns:q48="http://schemas.datacontract.org/2004/07/UserPreferences.Core" minOccurs="0" name="preference" nillable="true" type="q48:ArrayOfInterestCategoryPreference" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetNominatedInterestPreferenceResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SetNominatedInterestPreferenceResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RetrieveNominatedUserInterest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RetrieveNominatedUserInterestResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q49="http://schemas.datacontract.org/2004/07/UserPreferences.Core" minOccurs="0" name="RetrieveNominatedUserInterestResult" nillable="true" type="q49:ArrayOfInterestCategoryPreference" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RetrieveInferredUserInterest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RetrieveInferredUserInterestResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q50="http://schemas.datacontract.org/2004/07/UserPreferences.Core" minOccurs="0" name="RetrieveInferredUserInterestResult" nillable="true" type="q50:ArrayOfInterestCategoryPreference" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllUserNominatedPreference">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllUserNominatedPreferenceResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q51="http://schemas.microsoft.com/Message" name="GetAllUserNominatedPreferenceResult" type="q51:StreamBody" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetOptOutState">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userId" nillable="true" type="xs:string" />
+        <xs:element xmlns:q52="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.Efs" minOccurs="0" name="identifierType" type="q52:UserIdType" />
+        <xs:element minOccurs="0" name="optOutState" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetOptOutStateResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOptOutState">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userId" nillable="true" type="xs:string" />
+        <xs:element xmlns:q53="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.Efs" minOccurs="0" name="identifierType" type="q53:UserIdType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOptOutStateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetOptOutStateResult" nillable="true" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetDeclaredUserCommercialPreference">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userId" nillable="true" type="xs:string" />
+        <xs:element xmlns:q54="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.Efs" minOccurs="0" name="userType" type="q54:UserIdType" />
+        <xs:element xmlns:q55="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.Efs" minOccurs="0" name="preference" nillable="true" type="q55:ArrayOfCommercialResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetDeclaredUserCommercialPreferenceResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDeclaredUserCommercialPreference">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userId" nillable="true" type="xs:string" />
+        <xs:element xmlns:q56="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.Efs" minOccurs="0" name="userType" type="q56:UserIdType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDeclaredUserCommercialPreferenceResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q57="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.Efs" minOccurs="0" name="GetDeclaredUserCommercialPreferenceResult" nillable="true" type="q57:ArrayOfCommercialResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetInferredUserCommercialPreference">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userId" nillable="true" type="xs:string" />
+        <xs:element xmlns:q58="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.Efs" minOccurs="0" name="userType" type="q58:UserIdType" />
+        <xs:element xmlns:q59="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.Efs" minOccurs="0" name="preference" nillable="true" type="q59:ArrayOfCommercialResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetInferredUserCommercialPreferenceResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q60="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.Efs" minOccurs="0" name="SetInferredUserCommercialPreferenceResult" type="q60:EfsResponseStruct" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetInferredUserCommercialPreferenceBatch">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q61="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.Efs" minOccurs="0" name="userCommercialPreferences" nillable="true" type="q61:ArrayOfUserCommercialPreferenceInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetInferredUserCommercialPreferenceBatchResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q62="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.Efs" minOccurs="0" name="SetInferredUserCommercialPreferenceBatchResult" type="q62:EfsResponseStruct" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetInferredUserCommercialPreference">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userId" nillable="true" type="xs:string" />
+        <xs:element xmlns:q63="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.Efs" minOccurs="0" name="userType" type="q63:UserIdType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetInferredUserCommercialPreferenceResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q64="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.Efs" minOccurs="0" name="GetInferredUserCommercialPreferenceResult" nillable="true" type="q64:ArrayOfCommercialResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserAllCommercialPreference">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userId" nillable="true" type="xs:string" />
+        <xs:element xmlns:q65="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.Efs" minOccurs="0" name="userType" type="q65:UserIdType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserAllCommercialPreferenceResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q66="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.Efs" minOccurs="0" name="GetUserAllCommercialPreferenceResult" nillable="true" type="q66:ArrayOfCommercialResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFilteredInferredUserCommercialPreference">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userId" nillable="true" type="xs:string" />
+        <xs:element xmlns:q67="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.Efs" minOccurs="0" name="userType" type="q67:UserIdType" />
+        <xs:element xmlns:q68="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.Efs" minOccurs="0" name="filterType" type="q68:UserCommercialFilterType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFilteredInferredUserCommercialPreferenceResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q69="http://schemas.datacontract.org/2004/07/Microsoft.AudienceIntelligence.Efs" minOccurs="0" name="GetFilteredInferredUserCommercialPreferenceResult" nillable="true" type="q69:ArrayOfCommercialResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllUserDeclaredCommercialPreference">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllUserDeclaredCommercialPreferenceResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q70="http://schemas.microsoft.com/Message" name="GetAllUserDeclaredCommercialPreferenceResult" type="q70:StreamBody" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,77 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+@model MsnDealsVM
+@{
+    Layout = "~/Views/GetEmail/_DailyDealLayout.cshtml";
+    ViewBag.Location = Model.Location;
+}
+
+<tr>
+    <td valign="top" style="padding-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 10px;">
+        <table width="100%" cellspacing="0" cellpadding="0" bgcolor="#eeeeee" style="background-color: #eeeeee; width: 100%; height: 260px; padding-left: 0; padding-bottom: 0; padding-top: 0; padding-right: 0; border-left-width: 0; border-bottom-width: 0; border-right-width: 0; border-top-width: 0;">
+
+            <tr>
+                <td align="left" valign="top" style="width: 340px; text-align: left; vertical-align: middle; padding-left: 0; padding-bottom: 0; padding-top: 0; padding-right: 0;">
+                    <table cellspacing="0" cellpadding="0" width="100%" style="color: #777777; font-family: 'Segoe UI Regular', 'Segoe UI', Arial, Helvetica, sans-serif; width: 100%; padding-left: 0; padding-bottom: 0; padding-top: 0; padding-right: 0;">
+                        <tr>
+                            <td align="left" bgcolor="#eeeeee" style="font-family: 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif; padding-top: 15px; padding-right: 20px; padding-bottom: 0; padding-left: 20px; background-color: #eeeeee; text-align: left; font-size: 28px; color: #b4009e;">
+                                @DailyDeals.GiftsHeader
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left" bgcolor="#eeeeee" style="font-family: 'Segoe UI Regular', 'Segoe UI', Arial, Helvetica, sans-serif; padding-top: 15px; padding-right: 20px; padding-bottom: 0; padding-left: 20px; background-color: #eeeeee; text-align: left; font-size: 20px; line-height: 20px;">
+                                @DailyDeals.GiftsSubHeader
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left" bgcolor="#eeeeee" style="font-family: 'Segoe UI Regular', 'Segoe UI', Arial, Helvetica, sans-serif; padding-top: 10px; padding-right: 20px; padding-bottom: 0; padding-left: 20px; background-color: #eeeeee; text-align: left; font-size: 16px;"></td>
+                        </tr>
+                        <tr>
+                            <td align="left" bgcolor="#eeeeee" style="padding-top: 20px; padding-right: 20px; padding-bottom: 18px; padding-left: 20px; background-color: #eeeeee; text-align: left; font-size: 16px;">
+                                <table>
+                                    <tr>
+                                        <td valign="middle" align="center" bgcolor="fbaf32" style="font-family: 'Segoe UI Semibold', 'Segoe UI', Arial, Helvetica, sans-serif; vertical-align: middle; width: 200px; height: 50px; background-color: #ffb900; text-align: center; font-size: 20px;">
+                                            <a href="https://www.bing.com/offers?bor=@ViewBag.referrer&bof=@ViewBag.campaign" style="padding-right: 0; padding-top: 0; padding-left: 0; padding-bottom: 0; text-decoration: none; color: #ffffff; text-align: center; line-height: 50px; font-size: 20px; vertical-align: middle" target="_blank">@DailyDeals.VisitBingOffers</a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+
+                <td valign="top" align="left" style="width: 300px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; text-align: left">
+                    <img width="300" src="https://productionbingofferswus.blob.core.windows.net/assets/GiftsImageCropped.jpg" style="width: 300px; height:100%; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0;" alt="@DailyDeals.BingOffers" />
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>
+
+<tr>
+    <td bgcolor="#eeeeee" style="padding-bottom: 20px; padding-left: 20px; padding-right: 20px; padding-top: 20px; background-color: #eeeeee;">
+        <table cellspacing="0" cellpadding="0" width="100%" bgcolor="#eeeeee" style="background-color: #eeeeee; color: #444444; font-family: 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif; width: 100%; padding-left: 0; padding-bottom: 0; padding-top: 0; padding-right: 0;">
+            <tbody><tr>
+                <td valign="middle" style="vertical-align: middle; padding-bottom: 0; padding-left: 0px; padding-right: 0px; padding-top: 0; font-size: 16px; text-align: left;">
+                    <p>
+            @DailyDeals.GiftsParagraph1
+        </p>
+        <p>
+            <b>
+                @DailyDeals.GiftsParagraph2
+            </b>
+        </p>
+        @Html.Partial("~/Views/Cardlink/Partial/HowToSave.cshtml")
+        @Html.Partial("~/Views/CardLink/Partial/EvenMoreDealsOnOurSite.cshtml")
+                </td>
+            </tr>
+        </tbody></table>
+    </td>
+</tr>
+
+@foreach (var deal in this.Model.FeaturedDeals)
+{
+    @Html.Partial("Partial/CLOFeatureTile", deal)
+}

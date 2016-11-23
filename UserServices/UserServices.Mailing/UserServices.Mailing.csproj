@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D718B574-8E8D-4904-8353-47BF1B31D29F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LoMo.UserServices.DealsMailing</RootNamespace>
+    <AssemblyName>DealsMailing</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <CodeAnalysisRuleSet>..\UserServicesRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Azure.KeyVault.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Azure.KeyVault.Core.1.0.0\lib\net40\Microsoft.Azure.KeyVault.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Build.Utilities.v4.0" />
+    <Reference Include="Microsoft.Data.Edm, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Microsoft.Data.Edm.5.7.0\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Microsoft.Data.OData.5.7.0\lib\net40\Microsoft.Data.OData.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services.Client, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Microsoft.Data.Services.Client.5.7.0\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.WindowsAzure.TransientFaultHandling">
+      <HintPath>..\..\..\packages\EnterpriseLibrary.WindowsAzure.TransientFaultHandling.5.1.1212.0\lib\NET4\Microsoft.Practices.EnterpriseLibrary.WindowsAzure.TransientFaultHandling.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.TransientFaultHandling.Core">
+      <HintPath>..\..\..\packages\TransientFaultHandling.Core.5.1.1209.1\lib\NET4\Microsoft.Practices.TransientFaultHandling.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Unity.Interception.4.0.1\lib\Net45\Microsoft.Practices.Unity.Interception.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Unity.Interception.4.0.1\lib\Net45\Microsoft.Practices.Unity.Interception.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Configuration, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Microsoft.WindowsAzure.ConfigurationManager.3.2.1\lib\net40\Microsoft.WindowsAzure.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Storage, Version=6.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\WindowsAzure.Storage.6.2.0\lib\net40\Microsoft.WindowsAzure.Storage.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RazorEngine, Version=3.7.7.0, Culture=neutral, PublicKeyToken=9ee697374c7e744a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\RazorEngine.3.7.7\lib\net45\RazorEngine.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Services.Client" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Spatial, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\System.Spatial.5.7.0\lib\net40\System.Spatial.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DealsMailing\CampaignEmailContentCreator.cs" />
+    <Compile Include="DealsMailing\CampaignEmailJobHandler.cs" />
+    <Compile Include="DealsMailing\CampaignTemplateCreator.cs" />
+    <Compile Include="DealsMailing\CampaignTemplateData.cs" />
+    <Compile Include="DealsMailing\DealsTemplateData.cs" />
+    <Compile Include="DealsMailing\DealsEmailJobHandler.cs" />
+    <Compile Include="Interfaces\IPriorityEmailJobHandler.cs" />
+    <Compile Include="MailingManager.cs" />
+    <Compile Include="EmailJobProcessor.cs" />
+    <Compile Include="DealsMailing\DealsEmailContentCreator.cs" />
+    <Compile Include="EmailTemplateData.cs" />
+    <Compile Include="JobFetcher.cs" />
+    <Compile Include="MerchantMailing\MerchantEmailJobHandler.cs" />
+    <Compile Include="EmailRenderingClient.cs" />
+    <Compile Include="EmailTemplatesFetcher.cs" />
+    <Compile Include="Interfaces\IEmailJobHandler.cs" />
+    <Compile Include="Interfaces\IEmailRenderingClient.cs" />
+    <Compile Include="Interfaces\IDealsSelector.cs" />
+    <Compile Include="Interfaces\IEmailContentCreator.cs" />
+    <Compile Include="Interfaces\IEmailTemplatesFetcher.cs" />
+    <Compile Include="Interfaces\ITemplateModelCreator.cs" />
+    <Compile Include="DealsMailing\DealsEmailModel.cs" />
+    <Compile Include="MerchantMailing\MerchantReportContentCreator.cs" />
+    <Compile Include="MerchantMailing\MerchantReportTemplateCreator.cs" />
+    <Compile Include="DealsMailing\DealsTemplateCreator.cs" />
+    <Compile Include="Interfaces\ModelContentException.cs" />
+    <Compile Include="DealsMailing\NaiveDealsSelector.cs" />
+    <Compile Include="MerchantMailing\MerchantTemplateData.cs" />
+    <Compile Include="PriorityMailing\ConfirmationEmailJobHandler.cs" />
+    <Compile Include="PriorityMailing\InvalidEntityTypeException.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RemainderMailing\RemainderEmailContentCreator.cs" />
+    <Compile Include="RemainderMailing\RemainderEmailJobHandler.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config.bak" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\shared\models\DotM.DataModels\DotM.DataModels.csproj">
+      <Project>{43993608-978A-4330-8A5F-D96A8FA3EADB}</Project>
+      <Name>DotM.DataModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Analytics.API.Contract\Analytics.API.Contract.csproj">
+      <Project>{72fa363e-aa9f-4b1c-a2ca-4067d4095552}</Project>
+      <Name>Analytics.API.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\LoMo.TransientFaultHandling\LoMo.TransientFaultHandling.csproj">
+      <Project>{51E91C79-9D3B-4C4E-BD22-D930E9919578}</Project>
+      <Name>LoMo.TransientFaultHandling</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Templating\Templating.csproj">
+      <Project>{d4812338-d9ea-47c6-9149-3e369913bee2}</Project>
+      <Name>Templating</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Users.Dal\Users.Dal.csproj">
+      <Project>{A1226183-D51E-4AA7-BC3A-90906B4A7A3D}</Project>
+      <Name>Users.Dal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DealsServerClient\DealsClient.csproj">
+      <Project>{38FD9968-6509-4136-9453-EC9A575F71A4}</Project>
+      <Name>DealsClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\shared\models\Lomo.GeoSpatial\Lomo.GeoSpatial.csproj">
+      <Project>{123d006b-ffec-4d14-9eb6-45e922848db7}</Project>
+      <Name>Lomo.GeoSpatial</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\shared\middleware\LoMo.Logging\Lomo.Logging.csproj">
+      <Project>{52b39f19-d67c-4cfc-8fad-0b4fe486ceb7}</Project>
+      <Name>Lomo.Logging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OffersEmail.DataContracts\OffersEmail.DataContracts.csproj">
+      <Project>{E47047C8-18EF-47B7-A40D-6CC0C54C9C44}</Project>
+      <Name>OffersEmail.DataContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UserServices.DataContract\UserServices.DataContract.csproj">
+      <Project>{2CE8733C-8D7C-4CF8-9271-415702821594}</Project>
+      <Name>UserServices.DataContract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UserServices.Worker.Common\UserServices.Worker.Common.csproj">
+      <Project>{bcf71743-2b22-48b7-8803-dfc469621482}</Project>
+      <Name>UserServices.Worker.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UserServicesStorage\UserServicesStorage.csproj">
+      <Project>{60144878-5276-48ED-91D6-F241992F6C97}</Project>
+      <Name>UserServicesStorage</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

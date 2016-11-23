@@ -1,0 +1,566 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Make your first Earn transaction and get $10 in bonus Earn Credits.</title>
+
+    <style type="text/css">
+        /* Force Outlook to provide a "view in browser" menu link. */
+        #outlook a {
+            padding: 0;
+        }
+
+        body {
+            width: 100% !important;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .ExternalClass {
+            width: 100%;
+        }
+
+            .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {
+                line-height: 100%;
+            }
+
+        #backgroundTable {
+            margin: 0;
+            padding: 0;
+            width: 100% !important;
+            line-height: 100% !important;
+        }
+
+
+        img {
+            outline: none;
+            text-decoration: none;
+            border: none;
+            -ms-interpolation-mode: bicubic;
+        }
+
+        a img {
+            border: none;
+        }
+
+        .image_fix {
+            display: block;
+        }
+
+        p {
+            margin: 0px 0px !important;
+        }
+
+        table td {
+            border-collapse: collapse;
+        }
+
+        table[class=devicewidth] {
+            width: 600px !important;
+            text-align: left !important;
+        }
+
+            table[class=devicewidth] td[class=devicetdwidth] {
+                width: 600px !important;
+            }
+
+        table {
+            border-collapse: collapse;
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        }
+
+            table[class=full] {
+                width: 100%;
+                clear: both;
+            }
+
+        .footer {
+            height: 40px;
+        }
+
+        /*################################################*/
+        /*IPAD STYLES*/
+        /*################################################*/
+        @@media only screen and (max-width: 640px) {
+            a[href^="tel"], a[href^="sms"] {
+                text-decoration: none;
+                color: #ffffff;
+                pointer-events: none;
+                cursor: default;
+            }
+
+            .mobile_link a[href^="tel"], .mobile_link a[href^="sms"] {
+                text-decoration: default;
+                color: #ffffff !important;
+                pointer-events: auto;
+                cursor: default;
+            }
+
+            table[class=devicewidth] {
+                width: 440px !important;
+                text-align: left !important;
+            }
+
+                table[class=devicewidth] td[class=devicetdwidth] {
+                    width: 440px !important;
+                }
+
+            table[class=devicewidthinner] {
+                width: 380px !important;
+                text-align: left !important;
+            }
+
+                table[class=devicewidthinner] td[class=devicetdwidthinner] {
+                    width: 380px !important;
+                }
+
+            table td[class=banner-title] {
+                padding-top: 15px;
+                font-size: 30px;
+                padding-bottom: 10px;
+            }
+
+            table[class=sthide] {
+                display: none !important;
+            }
+
+            img[class=bigimage] {
+                width: 420px !important;
+                height: 219px !important;
+            }
+
+            img[class=col2img] {
+                width: 420px !important;
+                height: 258px !important;
+            }
+
+            img[class=image-banner] {
+                width: 440px !important;
+                height: 106px !important;
+            }
+
+            div[class=menu] {
+                text-align: right !important;
+                padding-right: 30px !important;
+            }
+
+            .footer {
+                height: 60px;
+            }
+        }
+        /*##############################################*/
+        /*IPHONE STYLES*/
+        /*##############################################*/
+        @@media only screen and (max-width: 480px) {
+            a[href^="tel"], a[href^="sms"] {
+                text-decoration: none;
+                color: #ffffff;
+                pointer-events: none;
+                cursor: default;
+            }
+
+            .mobile_link a[href^="tel"], .mobile_link a[href^="sms"] {
+                text-decoration: default;
+                color: #ffffff !important;
+                pointer-events: auto;
+                cursor: default;
+            }
+
+            table[class=devicewidth] {
+                width: 320px !important;
+                text-align: left !important;
+            }
+
+                table[class=devicewidth] td[class=devicetdwidth] {
+                    width: 320px !important;
+                }
+
+            table[class=devicewidthinner] {
+                width: 280px !important;
+                text-align: left !important;
+            }
+
+                table[class=devicewidthinner] td[class=devicetdwidthinner] {
+                    width: 280px !important;
+                }
+
+            table td[class=banner-title] {
+                padding-top: 10px;
+                font-size: 25px;
+                padding-bottom: 5px;
+            }
+
+            table td[class=preheader] {
+                font-size: 10px;
+            }
+
+            table[class=sthide] {
+                display: none !important;
+            }
+
+            img[class=bigimage] {
+                width: 100% !important;
+                height: 136px !important;
+            }
+
+            img[class=col2img] {
+                width: 260px !important;
+                height: 160px !important;
+            }
+
+            img[class=image-banner] {
+                width: 280px !important;
+                height: 68px !important;
+            }
+
+            .footer {
+                height: 60px;
+            }
+        }
+    </style>
+
+</head>
+<body bgcolor="#e2e2e2" leftmargin="0" rightmargin="0" topmargin="0" bottommargin="0">
+    <table bgcolor="#e2e2e2" width="100%" align="center" cellspacing="0" cellpadding="0" border="0" style="width: 100%;">
+        <tr>
+            <td align="center">
+                <!-- START PREHEADER -->
+                <div class="block">
+
+                    <table bgcolor="#e2e2e2" width="100%" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" style="width: 100%;">
+                        <tr>
+                            <td bgcolor="#e2e2e2" align="center">
+
+                                <table bgcolor="#e2e2e2" width="600" align="center" cellspacing="0" cellpadding="0" border="0" class="devicewidth" style="width: 600px;">
+                                    <tr>
+                                        <td width="600" height="5" class="devicetdwidth" style="width: 600px; height: 5px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td bgcolor="#e2e2e2" width="600" class="devicetdwidth" style="width: 600px;">
+
+                                            <table width="540" align="center" cellspacing="0" cellpadding="0" border="0" class="devicewidthinner" style="width: 540px;">
+                                                <tr>
+                                                    <td bgcolor="#e2e2e2" width="540" align="left" valign="middle" style="width:540px; font-family: 'Segoe UI Regular', 'Segoe UI', Helvetica, Arial, sans-serif; color: #505050; font-size:10px; line-height:12px;" class="preheader devicetdwidthinner">
+                                                        Make your first Earn transaction and get $10 in bonus Earn Credits.
+                                                    </td>
+                                                </tr>
+                                            </table>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="100%" height="5" style="width: 100%; height: 5px;"></td>
+                                    </tr>
+                                </table>
+
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+                <!-- END PREHEADER -->
+            </td>
+        </tr>
+        <!-- HEADER -->
+        <tr>
+            <td align="center">
+                <div class="block">
+
+                    <table width="100%" bgcolor="#e2e2e2" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" style="width: 100%;">
+                        <tr>
+                            <td bgcolor="#e2e2e2" align="center">
+
+                                <table bgcolor="#ffffff" width="600" align="center" cellspacing="0" cellpadding="0" border="0" class="devicewidth" style="width: 600px;">
+                                    <tr>
+                                        <td width="600" height="20" style="width: 600px; height: 20px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td bgcolor="#ffffff" width="600" class="devicetdwidth" style="width: 600px; text-align: center;">
+                                            <a href="http://earn.microsoft.com/?cmp_ref=nl09h1">
+                                                <img src="https://TODO_YOUR_CDN_URL/earn/earn-logo-146x37.png" alt="Earn by MIcrosoft logo - Beta" width="146" height="37" border="0" style="border: none; outline: none; text-decoration: none; width: 146px; height: 37px;" class="logo" />
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="600" height="20" style="width: 600px; height: 20px;"></td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+            </td>
+        </tr>
+        <!-- MASTHEAD -->
+        <tr>
+            <td align="center">
+                <div class="block">
+
+                    <table bgcolor="#e2e2e2" width="100%" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" style="width: 100%;">
+                        <tr>
+                            <td bgcolor="#e2e2e2" align="center">
+
+                                <table bgcolor="#f2f2f2" width="600" align="center" cellspacing="0" cellpadding="0" border="0" class="devicewidth" style="width: 600px;">
+                                    <tr>
+                                        <td bgcolor="#f2f2f2" width="600" class="devicetdwidth" style="width: 600px;">
+                                            <img src="https://hmemailcampaigneus2.blob.core.windows.net/earn/assets/earn-inactive-headline.gif" width="100%" alt="Refer your friends. Get Bonus Earn Credits." border="0" style="width: 100%" />
+                                        </td>
+                                    </tr>
+                                </table>
+
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+            </td>
+        </tr>
+        <!-- MASTHEAD2 -->
+        <tr>
+            <td align="center">
+                <div class="block">
+
+                    <table bgcolor="#e2e2e2" width="100%" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" style="width: 100%;">
+                        <tr>
+                            <td bgcolor="#e2e2e2" align="center">
+
+                                <table bgcolor="#ffffff" width="600" align="center" cellspacing="0" cellpadding="0" border="0" class="devicewidth" style="width: 600px;">
+                                    <tr>
+                                        <td bgcolor="#ffffff" width="600" class="devicetdwidth" style="width: 600px;">
+                                            <img src="https://hmemailcampaigneus2.blob.core.windows.net/earn/assets/earn-inactive-hero.jpg" width="100%" alt="You Earned It! September 2015" border="0" style="width: 100%" />
+                                        </td>
+                                    </tr>
+                                </table>
+
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+            </td>
+        </tr>
+        <!-- TEXT -->
+        <tr>
+            <td align="center">
+                <div class="block">
+
+                    <table bgcolor="#e2e2e2" width="100%" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" style="width: 100%;">
+                        <tr>
+                            <td bgcolor="#e2e2e2" align="center">
+
+                                <table bgcolor="#ffffff" width="600" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth" style="width: 600px;">
+                                    <tr>
+                                        <td bgcolor="#ffffff" width="600" class="devicetdwidth" stype="width: 600px;">
+
+                                            <table bgcolor="#ffffff" width="540" align="center" cellspacing="0" cellpadding="0" border="0" class="devicewidthinner" style="width: 540px;">
+                                                <tr>
+                                                    <td bgcolor="#ffffff" width="540" height="20" class="devicetdwidthinner" style="width: 540px; height: 20px;"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td bgcolor="#ffffff" width="540" style="width: 540px; font-family: 'Segoe UI Regular', 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; color: #505050; text-align: center; line-height: 20px;" class="devicetdwidthinner">
+                                                        You’re all set up and ready to Earn! And Earning is easy. Just use your enrolled card* at participating merchants. You’ll receive <b>3&#8209;10%&nbsp;in&nbsp;Earn&nbsp;Credits</b> for each transaction – credits that you can use at the <a href="http://www.microsoftstore.com" style="color:#0078d7; text-decoration:none">online&nbsp;Microsoft&nbsp;Store</a> or your local Microsoft Store.&dagger;
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td bgcolor="#ffffff" width="540" height="20" class="devicetdwidthinner" style="width: 540px; height: 20px;"></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+            </td>
+        </tr>
+        <!-- SEE PLACES TO EARN SETTING -->
+        <tr>
+            <td align="center">
+                <div class="block">
+
+                    <table bgcolor="#e2e2e2" width="100%" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" style="width: 100%;">
+                        <tr>
+                            <td bgcolor="#e2e2e2" align="center">
+
+                                <table bgcolor="#ffffff" width="600" align="center" cellspacing="0" cellpadding="0" border="0" class="devicewidth" style="width: 600px;">
+                                    <tr>
+                                        <td bgcolor="#ffffff" width="600" class="devicetdwidth" style="width: 600px; text-align: center;">
+                                            <a href="https://www.earnbymicrosoft.com/?cmp_ref=wl01nb">
+                                                <img src="https://hmemailcampaigneus2.blob.core.windows.net/earn/assets/btn-see-places-to-earn-blue.gif" width="217" height="40" alt="See places to Earn" border="0" style="width: 217px; height: 40px;" />
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </table>
+
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+            </td>
+        </tr>
+        <!-- TEXT2 -->
+        <tr>
+            <td align="center">
+                <div class="block">
+
+                    <table bgcolor="#e2e2e2" width="100%" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" style="width: 100%;">
+                        <tr>
+                            <td bgcolor="#e2e2e2" align="center">
+
+                                <table bgcolor="#ffffff" width="600" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth" style="width: 600px;">
+                                    <tr>
+                                        <td bgcolor="#ffffff" width="600" class="devicetdwidth" stype="width: 600px;">
+
+                                            <table bgcolor="#ffffff" width="540" align="center" cellspacing="0" cellpadding="0" border="0" class="devicewidthinner" style="width: 540px;">
+                                                <tr>
+                                                    <td bgcolor="#ffffff" width="540" height="20" class="devicetdwidthinner" style="width: 540px; height: 20px;"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td bgcolor="#ffffff" width="540" style="width: 540px; font-family: 'Segoe UI Regular', 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; color: #505050; text-align: center; line-height: 20px;" class="devicetdwidthinner">
+                                                        Have you not started Earning because you need to change your enrolled card? Changing your card is easy in the Settings tab.
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td bgcolor="#ffffff" width="540" height="20" class="devicetdwidthinner" style="width: 540px; height: 20px;"></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+            </td>
+        </tr>
+        <!-- CHANGE SETTING -->
+        <tr>
+            <td align="center">
+                <div class="block">
+
+                    <table bgcolor="#e2e2e2" width="100%" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" style="width: 100%;">
+                        <tr>
+                            <td bgcolor="#e2e2e2" align="center">
+
+                                <table bgcolor="#ffffff" width="600" align="center" cellspacing="0" cellpadding="0" border="0" class="devicewidth" style="width: 600px;">
+                                    <tr>
+                                        <td bgcolor="#ffffff" width="600" class="devicetdwidth" style="width: 600px; text-align: center;">
+                                            <a href="https://www.earnbymicrosoft.com/settings">
+                                                <img src="https://hmemailcampaigneus2.blob.core.windows.net/earn/assets/btn-change-settings-blue-secondary.gif" width="219" height="40" alt="Change settings" border="0" style="width: 219px; height: 40px;" />
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td bgcolor="#ffffff" width="600" height="30" class="devicetdwidthinner" style="width: 600px; height: 30px;"></td>
+                                    </tr>
+                                </table>
+
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+            </td>
+        </tr>
+        <!-- FOOTER -->
+        <tr>
+            <td>
+                <div class="block">
+
+                    <table bgcolor="#e2e2e2" width="100%" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" style="width: 100%">
+                        <tr>
+                            <td bgcolor="#e2e2e2" align="center">
+
+                                <table bgcolor="#e2e2e2" width="600" align="center" cellspacing="0" cellpadding="0" border="0" class="devicewidth" style="width: 600px;">
+                                    <tr>
+                                        <td width="600" height="20" class="devicetdwidth" style="width: 600px; height: 20px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="600" class="devicetdwidth" style="width: 600px;">
+
+                                            <table width="540" align="center" cellspacing="0" cellpadding="0" border="0" class="devicewidthinner" style="width: 540px;">
+                                                <tr>
+                                                    <td width="540" valign="top" class="devicetdwidthinner" style="width: 540px;">
+
+                                                        <table width="100%" align="left" cellpadding="0" cellspacing="0" border="0" class="devicefooterwidthinner" style="width: 100%">
+                                                            <tr>
+                                                                <td width="1" valign="middle" style="width: 1px; vertical-align: middle; padding-right: 10px;">
+                                                                    <a href="http://www.microsoft.com" style="text-decoration: none;">
+                                                                        <img width="80" height="17" src="https://hmemailcampaigneus2.blob.core.windows.net/earn/assets/logo-microsoft.gif" alt="Microsoft" style="width: 80px; height: 17px; border-left-width: 0; border-bottom-width: 0; border-right-width: 0; border-top-width: 0; font-size: 10px;" />
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="540" height="15" class="devicetdwidthinner" style="width: 540px; height: 15px;"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="540" valign="middle" style="width: 540px; vertical-align: middle; font-family: 'Segoe UI Regular', 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 12px; line-height:15px; color: #505050; mso-line-height-rule: exactly;" class="devicetdwidthinner">
+                                                                    *Transactions where a PIN is entered at checkout do not qualify to receive Earn Credits.
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="540" height="15" class="devicetdwidthinner" style="width: 540px; height: 15px;"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="540" valign="middle" style="width: 540px; vertical-align: middle; font-family: 'Segoe UI Regular', 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 12px; line-height:15px; color: #505050; mso-line-height-rule: exactly;" class="devicetdwidthinner">
+                                                                    &dagger;Earn Credits only apply to purchases made at the online Microsoft Store and at local Microsoft Stores in Arizona, Massachusetts, and Washington.
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="540" height="15" class="devicetdwidthinner" style="width: 540px; height: 15px;"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="540" valign="middle" style="vertical-align: middle; font-family: 'Segoe UI Regular', 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 12px; line-height:15px; color: #505050; mso-line-height-rule: exactly;" class="devicetdwidthinner">
+                                                                    <a href="https://www.earnbymicrosoft.com/settings" target="_blank" style="text-decoration: none; color: #0078D7; line-height:24px">Settings</a>&nbsp;|&nbsp;<a href="http://www.microsoft.com/privacystatement/en-us/bingandmsn/default.aspx" target="_blank" style="text-decoration: none; color: #0078D7; line-height:24px">Privacy&nbsp;Statement</a><br />
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="540" height="15" class="devicetdwidthinner" style="width: 540px; height: 15px;"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="540" valign="middle" style="vertical-align: middle; font-family: 'Segoe UI Regular', 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 12px; line-height:15px; color: #505050; mso-line-height-rule: exactly;" class="devicetdwidthinner">
+                                                                    Microsoft Corporation<br />
+                                                                    One&nbsp;Microsoft&nbsp;Way<br />
+                                                                    Redmond,&nbsp;WA&nbsp;98052
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="540" height="20" class="devicetdwidthinner" style="width: 540px; height: 20px;"></td>
+                                                </tr>
+                                            </table>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="600" height="20" class="devicetdwidth" style="width: 600px; height: 20px;"></td>
+                                    </tr>
+                                </table>
+
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

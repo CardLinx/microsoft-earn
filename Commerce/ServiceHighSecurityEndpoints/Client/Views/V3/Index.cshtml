@@ -1,0 +1,81 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+@using Lomo.Commerce.Service.Client.Resources
+@using System.Web.Optimization
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.1.min.js"></script>
+    @Scripts.Render("~/client/jsBundles/addCardV3")
+    <link href="~/Client/css/addcard3.css?version=03042014.css" rel="stylesheet" />
+    <title></title>
+</head>
+<body>
+    <section id="card-linked-info">
+        <div class="new-card">
+            <p id="americanExpress-error" class="error">@AddCardClientResource.Error_AmericanExpress</p>
+            <p id="unknown-error" class="error">@AddCardClientResource.Error_Unknown</p>
+            <p id="invalidCard-error" class="error">@AddCardClientResource.Error_InvalidCard</p>
+            <p id="explanation-error" class="error"></p>
+
+            <input type="text" id="card-number" title="Enter your Credit/Debit card number" placeholder="Enter a VISA or MasterCard number" maxlength="20" />
+            <div id="fullcreditcardflight">
+                <p id="invalid-name" class="error">@AddCardClientResource.InvalidName</p>
+                <input type="text" id="name-on-card" placeholder="@AddCardClientResource.NameOnCard" maxlength="30" />
+                <p id="invalid-month" class="error">@AddCardClientResource.InvalidMonth</p>
+                <p id="invalid-year" class="error">@AddCardClientResource.InvalidYear</p>
+                <div id="expirationdate" class="fullcreditcardflight">
+                    <select id="month">
+                        <option value="none">Expiration month</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                    </select>
+                    <select id="year">
+                        <option value="none">Expiration year</option>
+                        <option value="2014">2014</option>
+                        <option value="2015">2015</option>
+                        <option value="2016">2016</option>
+                        <option value="2017">2017</option>
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                        <option value="2023">2023</option>
+                        <option value="2024">2024</option>
+                        <option value="2025">2025</option>
+                        <option value="2026">2026</option>
+                        <option value="2027">2027</option>
+                        <option value="2028">2028</option>
+                        <option value="2029">2029</option>
+                        <option value="2030">2030</option>
+                        <option value="2031">2031</option>
+                        <option value="2032">2032</option>
+                        <option value="2033">2033</option>
+                        <option value="2034">2034</option>
+                    </select>
+                </div>
+            </div>
+            <button id="add-button">@AddCardClientResource.AddCard_AddCard</button><span id="loading-icon"></span>
+        </div>
+    </section>
+</body>
+</html>

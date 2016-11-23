@@ -1,0 +1,443 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+@model OffersEmail.DataContracts.CampaignDataContract
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bing Offers Update Notice</title>
+
+    <style type="text/css">
+        /* Force Outlook to provide a "view in browser" menu link. */
+        #outlook a {
+            padding: 0;
+        }
+
+        body {
+            width: 100% !important;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .ExternalClass {
+            width: 100%;
+        }
+
+            .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {
+                line-height: 100%;
+            }
+
+        #backgroundTable {
+            margin: 0;
+            padding: 0;
+            width: 100% !important;
+            line-height: 100% !important;
+        }
+
+        img {
+            outline: none;
+            text-decoration: none;
+            border: none;
+            -ms-interpolation-mode: bicubic;
+        }
+
+        a img {
+            border: none;
+        }
+
+        .image_fix {
+            display: block;
+        }
+
+        p {
+            margin: 0px 0px !important;
+        }
+
+        table td {
+            border-collapse: collapse;
+        }
+
+        table {
+            border-collapse: collapse;
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        }
+
+            table[class=full] {
+                width: 100%;
+                clear: both;
+            }
+
+        /*################################################*/
+        /*IPAD STYLES*/
+        /*################################################*/
+        @@media only screen and (max-width: 640px) {
+            a[href^="tel"], a[href^="sms"] {
+                text-decoration: none;
+                color: #ffffff;
+                pointer-events: none;
+                cursor: default;
+            }
+
+            .mobile_link a[href^="tel"], .mobile_link a[href^="sms"] {
+                text-decoration: default;
+                color: #ffffff !important;
+                pointer-events: auto;
+                cursor: default;
+            }
+
+            table[class=devicewidth] {
+                width: 440px !important;
+                text-align: center !important;
+            }
+
+            table[class=devicewidthinner] {
+                width: 420px !important;
+                text-align: center !important;
+            }
+
+            table[class=sthide] {
+                display: none !important;
+            }
+
+            img[class=bigimage] {
+                width: 420px !important;
+                height: 219px !important;
+            }
+
+            img[class=col2img] {
+                width: 420px !important;
+                height: 258px !important;
+            }
+
+            img[class=image-banner] {
+                width: 440px !important;
+                height: 106px !important;
+            }
+
+            td[class=menu] {
+                text-align: center !important;
+                padding: 0 0 10px 0 !important;
+            }
+
+            td[class=logo] {
+                padding: 10px 0 5px 0 !important;
+                margin: 0 auto !important;
+            }
+
+            img[class=logo] {
+                padding: 0 !important;
+                margin: 0 auto !important;
+            }
+        }
+        /*##############################################*/
+        /*IPHONE STYLES*/
+        /*##############################################*/
+        @@media only screen and (max-width: 480px) {
+            a[href^="tel"], a[href^="sms"] {
+                text-decoration: none;
+                color: #ffffff;
+                pointer-events: none;
+                cursor: default;
+            }
+
+            .mobile_link a[href^="tel"], .mobile_link a[href^="sms"] {
+                text-decoration: default;
+                color: #ffffff !important;
+                pointer-events: auto;
+                cursor: default;
+            }
+
+            table[class=devicewidth] {
+                width: 280px !important;
+                text-align: center !important;
+            }
+
+            table[class=devicewidthinner] {
+                width: 260px !important;
+                text-align: center !important;
+            }
+
+            table[class=sthide] {
+                display: none !important;
+            }
+
+            img[class=bigimage] {
+                width: 260px !important;
+                height: 136px !important;
+            }
+
+            img[class=col2img] {
+                width: 260px !important;
+                height: 160px !important;
+            }
+
+            img[class=image-banner] {
+                width: 280px !important;
+                height: 68px !important;
+            }
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="block">
+        <!-- Start of preheader -->
+        <table width="100%" bgcolor="#cccccc" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="preheader">
+            <tbody>
+                <tr>
+                    <td width="100%">
+                        <table width="600" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+                            <tbody>
+                                <!-- Spacing -->
+                                <tr>
+                                    <td width="100%" height="10"></td>
+                                </tr>
+                                <!-- Spacing -->
+                                <tr>
+                                    <td align="left" valign="middle" style="font-family: Helvetica, arial, sans-serif; font-size: 10px; color: #505050; padding-left: 10px;" st-content="preheader">Introducing Earn by Microsoft Advertising.
+                                    </td>
+                                </tr>
+                                <!-- Spacing -->
+                                <tr>
+                                    <td width="100%" height="5"></td>
+                                </tr>
+                                <!-- Spacing -->
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- End of preheader -->
+    </div>
+
+    <div class="block">
+        <!-- start of header -->
+        <table width="100%" bgcolor="#cccccc" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="header">
+            <tbody>
+                <tr>
+                    <td>
+                        <table width="600" bgcolor="#eeeeee" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth" hlitebg="edit" shadow="edit">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <!-- logo -->
+                                        <table width="280" cellpadding="0" cellspacing="0" border="0" align="left" class="devicewidth">
+                                            <tbody>
+                                                <tr>
+                                                    <td width="270" valign="middle" style="padding: 10px 0 10px 20px;" class="logo">
+                                                        <div class="imgpop">
+                                                            <a href="https://www.earnbymicrosoft.com/">
+                                                                <img src="https://TODO_YOUR_CDN_URL/earn/earn-logo.png" alt="Microsoft Earn" border="0" style="border: none; outline: none; text-decoration: none;" st-image="edit" class="logo" />
+                                                            </a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <!-- End of logo -->
+                                        <!-- menu -->
+                                        <table width="280" cellpadding="0" cellspacing="0" border="0" align="right" class="devicewidth">
+                                            <tbody>
+                                                <tr>
+                                                    <td width="270" valign="middle" style="font-family: Helvetica, Arial, sans-serif; font-size: 12px; color: #ffffff; line-height: 30px; padding: 10px 20px 10px 0;" align="right" class="menu" st-content="menu">
+                                                        <div class="imgpop">
+                                                            <a href="http://www.bing.com/offers/?location=@Model.PostalCode&bor=@ViewBag.referrer&bof=@ViewBag.campaign">
+                                                                <img src="https://az414848.vo.msecnd.net/assets/offers_email_logo.png" alt="Bing Offers" border="0" style="border: none; outline: none; text-decoration: none;" st-image="edit" class="logo" />
+                                                            </a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <!-- End of Menu -->
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- end of header -->
+    </div>
+
+    <div class="block">
+        <!-- image + text -->
+        <table width="100%" bgcolor="#cccccc" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="bigimage">
+            <tbody>
+                <tr>
+                    <td>
+                        <table bgcolor="#ffffff" width="600" align="center" cellspacing="0" cellpadding="0" border="0" class="devicewidth" modulebg="edit">
+                            <tbody>
+                                <tr>
+                                    <td width="100%" height="5"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <table width="550" align="center" cellspacing="0" cellpadding="0" border="0" class="devicewidthinner">
+                                            <tbody>
+                                                <!-- Spacing -->
+                                                <tr>
+                                                    <td width="100%" height="20"></td>
+                                                </tr>
+                                                <!-- Spacing -->
+                                                <!-- title -->
+                                                <tr>
+                                                    <td style="font-family: 'Segoe UI Regular', 'Segoe UI', Arial, Helvetica, sans-serif; font-size: 15px; color: #777; text-align: left; line-height: 22px;" st-title="rightimage-title">Hi there!
+                                                    </td>
+                                                </tr>
+                                                <!-- end of title -->
+                                                <!-- Spacing -->
+                                                <tr>
+                                                    <td width="100%" height="20"></td>
+                                                </tr>
+                                                <!-- Spacing -->
+                                                <!-- content -->
+                                                <tr>
+                                                    <td style="font-family: 'Segoe UI Regular', 'Segoe UI', Arial, Helvetica, sans-serif; font-size: 15px; color: #777; text-align: left; line-height: 22px;" st-content="rightimage-paragraph">We’re super excited to inform you that the <a href="https://www.earnbymicrosoft.com/" target="_blank" style="text-decoration: underline; color: #094ab2">Earn</a> program has officially launched in Washington, Arizona and Massachusetts and we’re eager for you to start Earning!
+                                                    </td>
+                                                </tr>
+                                                <!-- end of content -->
+                                                <!-- Spacing -->
+                                                <tr>
+                                                    <td width="100%" height="10"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="font-family: 'Segoe UI Regular', 'Segoe UI', Arial, Helvetica, sans-serif; font-size: 15px; color: #777; text-align: left; line-height: 22px;" st-content="rightimage-paragraph">With the launch of Earn, a Microsoft account will be the exclusive way in which members can sign-in to Bing Offers Card Linked and the new Earn program.  Facebook sign-in is no longer supported;  in order to continue to participate you must sign-in using Microsoft account.  This is consistent with how our consumers sign-on to other Microsoft offerings such as Skype, Outlook.com, OneDrive, Windows 8, and others.
+                                                    </td>
+                                                </tr>
+                                                <!-- Spacing -->
+                                                <tr>
+                                                    <td width="100%" height="10"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="font-family: 'Segoe UI Regular', 'Segoe UI', Arial, Helvetica, sans-serif; font-size: 15px; color: #777; text-align: left; line-height: 22px;" st-content="rightimage-paragraph">But don’t worry … if you already have a Microsoft account, you can sign-in with it.  And if you don’t have a Microsoft account, it only takes a few minutes to create one. <i>(If you create a new Microsoft account, it can be any email address you use.)</i>
+                                                    </td>
+                                                </tr>
+                                                <!-- Spacing -->
+                                                <tr>
+                                                    <td width="100%" height="10"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="font-family: 'Segoe UI Regular', 'Segoe UI', Arial, Helvetica, sans-serif; font-size: 15px; color: #777; text-align: left; line-height: 22px;" st-content="rightimage-paragraph">Please take a moment and <a href="https://www.earnbymicrosoft.com/enroll" target="_blank" style="text-decoration: underline; color: #094ab2">sign-in</a> with your existing Microsoft account, or create a new one, today!
+                                                    </td>
+                                                </tr>
+                                                <!-- Spacing -->
+                                                <tr>
+                                                    <td width="100%" height="10"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="font-family: 'Segoe UI Regular', 'Segoe UI', Arial, Helvetica, sans-serif; font-size: 15px; color: #777; text-align: left; line-height: 22px; font-weight: 600" st-content="rightimage-paragraph">And for any inconvenience this may have caused, you’ll get $10 of bonus Earn Credits for the first time you sign-in to Earn with a Microsoft account.  Just reply to this email letting us know when you have.  This is in addition to the $10 of bonus Earn Credits you’ll receive with your first Earn transaction!
+                                                    </td>
+                                                </tr>
+                                                <!-- Spacing -->
+                                                <tr>
+                                                    <td width="100%" height="10"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="font-family: 'Segoe UI Regular', 'Segoe UI', Arial, Helvetica, sans-serif; font-size: 15px; color: #777; text-align: left; line-height: 22px;" st-content="rightimage-paragraph">If you have any questions, just send us an email at <a href="mailto:earnsupport@microsoft.com?Subject=Earn" target="_top" style="text-decoration: underline; color: #094ab2">earnsupport@microsoft.com</a> or <a href="mailto:bingoffers@microsoft.com?Subject=Earn" target="_top" style="text-decoration: underline; color: #094ab2">bingoffers@microsoft.com</a>.
+                                                    </td>
+                                                </tr>
+                                                <!-- Spacing -->
+                                                <tr>
+                                                    <td width="100%" height="25"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="font-family: 'Segoe UI Regular', 'Segoe UI', Arial, Helvetica, sans-serif; font-size: 15px; color: #777; text-align: left; line-height: 22px; font-weight: 600" st-content="rightimage-paragraph">Earn Credits at the places you love, for the technologies you want.
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="100%" height="20"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="block">
+        <table width="100%" bgcolor="#cccccc" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="bigimage">
+            <tbody>
+                <tr>
+                    <td>
+                        <table bgcolor="#eeeeee" width="600" align="center" cellspacing="0" cellpadding="0" border="0" class="devicewidth" modulebg="edit">
+                            <tbody>
+                                <tr>
+                                    <td width="100%" height="20"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <table width="550" align="center" cellspacing="0" cellpadding="0" border="0" class="devicewidthinner">
+                                            <tbody>
+                                                <tr>
+                                                    <td valign="top">
+                                                        <table cellpadding="0" cellspacing="0" border="0">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td valign="middle" style="vertical-align: middle; padding-right: 10px;">
+                                                                        <a href="http://www.microsoft.com" style="padding-right: 0; padding-top: 0; padding-left: 0; padding-bottom: 0; text-decoration: none;">
+                                                                            <img width="70" src="https://TODO_YOUR_CDN_URL/dailydeals-assets/ms.logo70x15.png" alt="Microsoft" style="width: 70px; border-left-width: 0; border-bottom-width: 0; border-right-width: 0; border-top-width: 0; font-size: 10px;" />
+                                                                        </a>
+                                                                    </td>
+                                                                    <td valign="middle" style="padding-left: 10px; border-left: 1px solid #cccccc; vertical-align: middle; font-family: Arial; font-size: 10px; color: #999999; mso-line-height-rule: exactly;">
+                                                                        <a href="http://www.microsoft.com/privacystatement/en-us/bingandmsn/default.aspx" target="_blank" style="text-decoration: none; color: #0078D7">Privacy Statement</a>
+                                                                        &nbsp;|&nbsp;
+                                                                        <a href="@Model.UnsubscribeUrl" target="_blank" style="text-decoration: none; color: #0078D7">Unsubscribe</a>
+                                                                        <br />
+                                                                        Microsoft Corporation, One Microsoft Way, Redmond, WA 98052
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="100%" height="20"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="block">
+        <table width="100%" bgcolor="#cccccc" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="postfooter">
+            <tbody>
+                <tr>
+                    <td width="100%">
+                        <table width="600" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+                            <tbody>
+                                <!-- Spacing -->
+                                <tr>
+                                    <td width="100%" height="20"></td>
+                                </tr>
+                                <!-- Spacing -->
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

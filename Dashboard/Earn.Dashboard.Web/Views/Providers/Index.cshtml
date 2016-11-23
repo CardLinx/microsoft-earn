@@ -1,0 +1,195 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+@using OfferManagement.DataModel
+@model IEnumerable<Provider>
+@{
+    ViewBag.Title = "Merchants";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section styles
+{
+    <link href="https://cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css" rel="stylesheet" />
+}
+<div class="content-wrapper" style="min-height: 916px;">
+    <!-- Page header -->
+    <div class="row">
+        <div class="col-lg-12">
+            <ol class="breadcrumb">
+                <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+                <li class="active"><i class="fa fa-shopping-cart"></i> Providers</li>
+            </ol>
+        </div>
+    </div>
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addProviderModal"><i class="fa fa-plus"></i>&nbsp; Provider</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <table class="table table-bordered" cellspacing="0" width="100%" id="providersTable">
+                    <thead>
+                        <tr>
+                            <th style="display: none">Id</th>
+                            <th width="3%">Type</th>
+                            <th width="3%">Feed</th>
+                            <th>Name</th>
+                            <th>Businesses</th>
+                            <th>Offer</th>
+                            @*<th width="3%">Delete</th>*@
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th style="display: none">Id</th>
+                            <th>Type</th>
+                            <th>Feed</th>
+                            <th>Name</th>
+                            <th>Businesses</th>
+                            <th>Offer</th>
+                            @*<th>Delete</th>*@
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @if (Model != null)
+                        {
+                            foreach (var provider in Model)
+                            {
+                                string enabled = (provider.IsActive ? "background-color: #def2de;" : "background-color: #f2dede;") + "cursor: pointer";
+                                string feed = provider.FeedType == FeedType.Feed ? "feed" : "file";
+                                string earn = provider.ProviderType == ProviderType.Earn ? "success" : "danger";
+                                <tr style="@enabled" onclick="window.document.location = '/providers/edit/@provider.Id';">
+                                    <td style="display: none">@provider.Id</td>
+                                    <td style="text-align: center"><span style="display: none">Burn</span><span class="label label-@earn"><i class="fa fa-dollar"></i></span></td>
+                                    <td style="text-align: center"><span style="display: none">@feed</span><i class="fa fa-@feed"></i></td>
+                                    @*<td><a href="/providers/edit/@provider.Id">@provider.Name</a></td>*@
+                                    <td>@provider.Name</td>
+                                    <td>@provider.TotalMerchants</td>
+                                    <td>@provider.OfferId</td>
+                                    @*<td style="text-align: center; cursor: pointer" data-toggle="modal" data-target="#deleteProviderModal" data-id="@provider.Id" data-name="@provider.Name"><i class="fa fa-trash"></i></td>*@
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+    @*modal*@
+    <div class="modal fade" id="addProviderModal" tabindex="-1" role="dialog" aria-labelledby="addProviderModalLabel">
+        <div class="modal-dialog" role="document">
+            <form id="addProviderForm" method="post" action="/providers/addprovider">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="addProviderModalLabel">New Provider</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="Name" class="control-label">Name</label>
+                            <input type="text" class="form-control" id="Name" name="Name" placeholder="Provider Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="FeedType" class="control-label">Feed Type</label>
+                            <select class="form-control" id="FeedType" name="FeedType">
+                                <option selected="selected" value="Feed">Feed Based</option>
+                                <option value="File">File Based</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="ProviderType" class="control-label">Provider Type</label>
+                            <select class="form-control" id="ProviderType" name="ProviderType">
+                                <option selected="selected" value="Earn">Earn</option>
+                                <option value="Burn">Burn</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="IsNational" class="control-label">National&nbsp;&nbsp;</label>
+                            <input type="checkbox" id="IsNational" name="IsNational" value="true"/>     
+                            <input type="hidden" value="false" name="IsNational" />                       
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-remove"></i> Close</button>
+                        <button id="saveProvider" type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deleteProviderModal" tabindex="-1" role="dialog" aria-labelledby="deleteProviderModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="deleteProviderModalLabel">Confirm Delete</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Are you sure you want to delete the Provider "<span id="confirmProviderName"></span>"?
+                    </p>
+                    <p>
+                        Associated Merchants and Offers will be deleted too.
+                    </p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <a id="confirmDelete" href="/providers/" class="btn btn-primary btn-ok">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section scripts
+{
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.10/js/dataTables.bootstrap.min.js"></script>
+    <script src="~/Scripts/etc/customjQueryValidators.js"></script>
+    <script>
+
+        $(function () {
+            $('#providersTable').DataTable({
+                //"pagingType": "full_numbers"
+                "pageLength": 50,
+            });
+
+            var validation = $("#addProviderForm").validate({
+                debug: false,
+                errorClass: 'text-danger',
+                errorElement: 'span',
+                rules: {
+                    Name: {
+                        noSpace: true,
+                        required: true
+                    }
+                },
+                messages: {
+                    Name: 'Please enter the Provider Name'
+                },
+                submitHandler: function (form) {
+                    return true;
+                }
+            });
+
+            $('#addProviderModal').on('shown.bs.modal', function () {
+                validation.resetForm();
+                $('#Name').val("");
+            });
+
+            $('#deleteProviderModal').on('shown.bs.modal', function (e) {
+                $('#confirmProviderName').html($(e.relatedTarget).data('name'));
+                $('#confirmDelete').attr('href', '/providers/deleteprovider/' + $(e.relatedTarget).data('id'));;
+            });
+        });
+    </script>
+}

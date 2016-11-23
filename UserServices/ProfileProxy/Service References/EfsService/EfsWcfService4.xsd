@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/UserPreferences.Core" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/UserPreferences.Core" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfInterestCategoryPreference">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="InterestCategoryPreference" nillable="true" type="tns:InterestCategoryPreference" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfInterestCategoryPreference" nillable="true" type="tns:ArrayOfInterestCategoryPreference" />
+  <xs:complexType name="InterestCategoryPreference">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CategoryID" type="xs:unsignedInt" />
+      <xs:element minOccurs="0" name="State" type="tns:InterestState" />
+      <xs:element minOccurs="0" name="UpdateTimeUTC" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="InterestCategoryPreference" nillable="true" type="tns:InterestCategoryPreference" />
+  <xs:simpleType name="InterestState">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Interested" />
+      <xs:enumeration value="NotInterested" />
+      <xs:enumeration value="RemoveInferred" />
+      <xs:enumeration value="NoNomination" />
+      <xs:enumeration value="Inferred" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="InterestState" nillable="true" type="tns:InterestState" />
+  <xs:complexType name="UserPreference">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Preferences" nillable="true" type="tns:ArrayOfInterestCategoryPreference" />
+      <xs:element minOccurs="0" name="UserId" nillable="true" type="xs:base64Binary" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserPreference" nillable="true" type="tns:UserPreference" />
+</xs:schema>

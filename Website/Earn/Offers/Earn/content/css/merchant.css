@@ -1,0 +1,175 @@
+/*
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+*/
+body {
+  font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+}
+body h3 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  color: #31708f !important;
+  font-size: 24px;
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+}
+body div.container {
+  width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-bottom: 20px;
+}
+body hr {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+body .text-primary {
+  font-size: 30px;
+  font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  line-height: 1.1;
+  display: inline-block;
+}
+body .form-horizontal {
+  display: inline-block;
+}
+body .form-horizontal .text-muted {
+  color: #777;
+}
+body .form-horizontal label {
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 5px;
+  font-weight: 700;
+}
+body .form-horizontal .form-group {
+  width: 100%;
+  display: table;
+  margin-right: -15px;
+  margin-left: -15px;
+  margin-bottom: 15px;
+}
+body .form-horizontal .form-group label {
+  float: left;
+}
+body .form-horizontal .form-group .control-label {
+  padding-top: 7px;
+  margin-bottom: 0;
+  text-align: right;
+}
+body .form-horizontal .form-group .col-md-2 {
+  width: 16%;
+  min-height: 1px;
+}
+body .form-horizontal .form-group .col-md-6 {
+  width: 50%;
+  min-height: 1px;
+}
+body .form-horizontal .form-group .col-md-10 {
+  float: left;
+  position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+  width: 81%;
+}
+body .form-horizontal .form-group input {
+  max-width: 280px;
+}
+body .form-horizontal .form-group .form-control {
+  display: block;
+  width: 100%;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
+  -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+body .form-horizontal .form-group .text-danger {
+  color: #a94442;
+}
+body .form-horizontal .form-group .checkbox {
+  font-size: 14px;
+  line-height: 1.428;
+  padding-left: 20px;
+  margin-bottom: 0;
+  font-weight: 400;
+  cursor: pointer;
+  width: 50%;
+}
+body .form-horizontal .form-group .checkbox label {
+  font-weight: 400;
+}
+body .form-horizontal .form-group .col-md-offset-2 {
+  margin-left: 16.66666667%;
+}
+body .form-horizontal .form-group .btn {
+  color: #fff;
+  width: 100%;
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+body .list-inline {
+  padding-left: 0;
+  margin-left: -5px;
+  list-style: none;
+}
+body .list-inline li {
+  display: inline-block;
+  padding-right: 5px;
+  padding-left: 5px;
+  font-size: 14px;
+  line-height: 1.42857143;
+}
+body .list-inline li a {
+  color: #2a6496;
+  text-decoration: underline;
+}
+@media screen and (max-width: 1200px) {
+  div.container {
+    width: 90% !important;
+  }
+  div.container .form-horizontal .control-label {
+    padding-top: 7px;
+    margin-bottom: 0;
+    text-align: left;
+    padding-bottom: 3px;
+    width: 100%;
+    margin-left: 15px;
+  }
+  div.container .col-md-offset-2 {
+    margin-left: 15px!important;
+    padding-left: 0!important;
+  }
+}
+/*# sourceMappingURL=merchant.css.map */

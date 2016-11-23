@@ -1,0 +1,46 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+@model UserServices.FrondEnd.Models.EmailSubmitModel
+
+@{
+    ViewBag.Title = "Email Submit Test";
+    
+    ViewBag.Message = "Submit Email Request Test";
+}
+
+@section featured{
+<section class="featured">
+    <div class="content-wrapper">
+        <hgroup class="title">
+            <h1>@ViewBag.Title.</h1>
+            <br />
+            <h2>@ViewBag.Message</h2>
+        </hgroup>
+        </div>
+</section>
+}
+@if(Model == null)
+{
+    using (Html.BeginForm("Create", "EmailSubmit"))
+    {
+        <p>User Id: @Html.TextBox("UserId")</p>
+        <p>Type: @Html.DropDownList("submitType")</p>
+        <input type="submit" value="Submit"/>
+    }
+}
+else
+{
+    <p>Tracking Id: @Html.DisplayFor(model => model.TrackingId)</p>
+    if(Model.EmailSubmitJobCompleted)
+    {
+        <p><a href="@Model.ViewLink" target="_blank">View Mail</a></p>
+        <p><a href="@Model.DownloadLink" target="_blank">Download Mail</a></p>
+    }
+    else
+    {
+        <p>Email Submit Job is still running. Please refresh the broswer to check the status again</p>
+    }
+    
+}

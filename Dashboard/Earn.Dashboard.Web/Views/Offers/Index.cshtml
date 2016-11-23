@@ -1,0 +1,100 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+@model List<Earn.DataContract.Deal>
+@{
+    ViewBag.Title = "Offers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles
+{
+    <link href="https://cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css" rel="stylesheet" />
+}
+
+<div class="content-wrapper" style="min-height: 916px;">
+    <!-- Page header -->
+    <div class="row">
+        <div class="col-lg-12">
+            <ol class="breadcrumb">
+                <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+                <li><i class="fa fa-shopping-cart"></i> Offers</li>
+            </ol>
+        </div>
+    </div>
+
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box box-primary collapsed-box">
+                    <div class="box-header">
+                        <h3 class="box-title">Filter Offers</h3>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <div class="form-group">
+                            <div class="col-md-2">
+                                <label>State</label>
+                                @Html.DropDownList("States", null, htmlAttributes: new { @class = "form-control", id = "states" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <table id="offersDataTable" class="display compact" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Title</th>
+                        </tr>
+                    </thead>
+
+                    <tfoot>
+                        <tr>
+                            <th>Id</th>
+                            <th>Title</th>
+
+                        </tr>
+                    </tfoot>
+
+                    <tbody>
+                        @foreach (var deal in Model)
+                        {
+                            <tr>
+                                <td>@deal.Id</td>
+                                <td>
+                                    @Html.DisplayName(@deal.Title)
+                                    <br />
+                                    <img width="80" height="80" src="@deal.ImageUrl" />
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section scripts
+{
+    <script src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.10/js/dataTables.bootstrap.min.js"></script>
+    <script>
+        $(function () {
+            $('#offersDataTable').DataTable({
+                //"pagingType": "full_numbers"
+            });
+
+            $("#states").change(function () {
+                window.location = '/offers/index?state=' + this.value;
+            });
+        });
+    </script>
+}

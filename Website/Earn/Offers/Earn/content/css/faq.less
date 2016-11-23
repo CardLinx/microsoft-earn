@@ -1,0 +1,331 @@
+/*
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+*/
+@import "settings.less";
+
+html {
+    overflow-y: scroll;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.clear {
+    clear: both;
+}
+
+#hidden {
+    display: none;
+}
+
+.container {
+    width: 1430px;
+    margin: auto;
+}
+
+hr {
+    height: 1px;
+    border: none;
+    background-color: #ccc;
+    width: 100%;
+}
+
+p {
+    strong {
+        font-weight: bold;
+    }
+}
+
+a {
+    text-decoration: none;
+}
+
+#nav {
+    position: relative;
+    margin: 20px 0;
+
+    .container {
+        .logo {
+            float: left;
+
+            a {
+                border: none;
+            }
+        }
+
+        .right-nav {
+            float: right;
+            padding-top: 5px;
+
+            ul {
+                list-style-type: none;
+
+                li {
+                    float: left;
+                    margin-left: 30px;
+
+                    a {
+                        color: @blue;
+                        font-family: @fontRegular;
+                        font-size: 20px;
+                        line-height: 40px;
+                        padding-bottom: 2px;
+                        display: block;
+                        text-decoration: none;
+                    }
+
+                    a:hover {
+                        color: @darkBlue;
+                    }
+                }
+
+                li#login {
+                    display: none;
+                }
+
+                li.border {
+                    border: 1px solid @blue;
+                    padding: 0 20px;
+                }
+
+                li.noborder {
+                    border: none;
+                    padding: 0 20px;
+                }
+
+                li.border:hover {
+                    border: 1px solid @darkBlue;
+
+                    a {
+                        color: @darkBlue;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+.accounts-container {
+    margin: 40px 0;
+    padding-bottom: 300px;
+
+    .container {
+
+        h1 {
+            font-family: @fontLight;
+            font-size: 34px;
+            line-height: 40px;
+            color: @mediumGray;
+            font-weight: 400;
+        }
+
+        h2 {
+            font-family: @fontLight;
+            font-size: 24px;
+            line-height: 28px;
+            color: @mediumGray;
+            font-weight: 400;
+        }
+
+        h3 {
+            font-family: @fontRegular;
+            font-size: 20px;
+            line-height: 24px;
+            color: @blue;
+            font-weight: 400;
+        }
+
+        p {
+            font-family: @fontRegular;
+            font-size: 16px;
+            line-height: 20px;
+            color: @mediumGray;
+            font-weight: 400;
+        }
+
+        .faq-container {
+            #accordion {
+                .group {
+                    margin: 15px 0 0 0;
+                    padding: 10px 0 0 0;
+
+                    .group-title {
+                        background-color: @offwhite;
+                        padding: 5px 10px;
+
+                        h3 {
+                            color: @mediumGray;
+                        }
+                    }
+
+                    .item {
+                        margin: 25px 0;
+
+                        p.question {
+                            font-weight: 400;
+                            margin: 5px 0;
+                            color: #000;
+                            font-size: 15px;
+                            line-height: 20px;
+                        }
+
+                        p.answer {
+                            font-weight: 300;
+                            color: @mediumGray;
+                            font-size: 14px;
+                            line-height: 20px;
+                        }
+                    }
+                }
+            }
+
+            .faq-need-more-help {
+                display: none;
+            }
+
+            .faq-need-more-help.mobile {
+                display: none;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1449px) {
+    .container {
+        width: 950px;
+        margin: auto;
+    }
+
+    .accounts-container {
+        margin: 20px 0;
+    }
+}
+/* #region Tablet Portrait 710*/
+@media screen and (max-width: 989px) {
+    .container {
+        width: 90%;
+        margin: auto;
+    }
+
+    .accounts-container {
+        margin: 20px 0;
+
+        .container {
+
+            h1 {
+                font-size: 30px;
+                line-height: 40px;
+            }
+
+            h2 {
+                font-size: 20px;
+                line-height: 30px;
+            }
+
+            h3 {
+                font-size: 17px;
+                line-height: 30px;
+            }
+
+            p {
+                font-size: 14px;
+                line-height: 20px;
+            }
+        }
+    }
+}
+
+/* #region 480 pixel breakpoint */
+@media screen and (max-width: 709px) {
+    #nav {
+        margin: 20px 0;
+
+        .container {
+            .logo {
+                a {
+                    img {
+                        height: 35px;
+                    }
+                }
+            }
+
+            .right-nav {
+                ul {
+                    li {
+                        a {
+                            font-size: 18px;
+                            line-height: 32px;
+                        }
+
+                        a:hover {
+                            color: @darkBlue;
+                        }
+                    }
+
+                    li#login {
+                        display: none;
+                    }
+
+                    li.border {
+                        border: 1px solid @blue;
+                        padding: 0 20px;
+                    }
+
+                    li.noborder {
+                        border: none;
+                        padding: 0 20px;
+                    }
+
+                    li.border:hover {
+                        border: 1px solid @darkBlue;
+
+                        a {
+                            color: @darkBlue;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .accounts-container {
+        margin: 20px 0;
+
+        .container {
+
+            h1 {
+                font-size: 30px;
+                line-height: 40px;
+            }
+
+            h2 {
+                font-size: 20px;
+                line-height: 30px;
+            }
+
+            h3 {
+                font-size: 17px;
+                line-height: 30px;
+            }
+
+            p {
+                font-size: 14px;
+                line-height: 20px;
+            }
+        }
+    }
+}
+/* #region Handheld Portrait */
+@media screen and (max-width: 479px) {
+
+    .accounts-container {
+        margin: 20px 0;
+    }
+}
+/* #region Handheld Portrait 320px */
+@media screen and (max-width: 320px) {
+}

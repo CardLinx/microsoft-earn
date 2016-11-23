@@ -1,0 +1,197 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+@model AutoprospectingCreateAdVM
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width"/>
+    <title>@Html.Raw(BAXEmail.Title)</title>
+    <style type="text/css">
+        a:visited{color:blue;}
+        div, p, a, li, td { -webkit-text-size-adjust:none; }
+        .appleLinks a {color:#000000;text-decoration: none}
+        .appleLinksGrey a{color:#999999; text-decoration:none}
+         body {
+             padding: 0;
+             margin: 0;
+          -webkit-text-size-adjust:100%; 
+          -ms-text-size-adjust:100%;
+         } 
+    </style>
+</head>
+<body style="font-family: Calibri, Arial, Helvetica, sans-serif;background:#EEEEEE">
+    <table width="100%" style="background:#EEEEEE" cellpadding="0" cellspacing="0">
+        <tr>
+            <td>
+               <!-- Main mail -->
+                <table style="background:#FFFFFF" align="center" width="600" cellpadding="0" cellspacing="0" style="width:600px">
+                    <!-- Header -->
+                    <tr>
+                        <td style="border-bottom: 5px solid #FFB900;background:#FFFFFF;padding:10px">
+                            <table width="100%">
+                                <tr>
+                                    <td width="106">
+                                        <a href="http://bingads.com/express"><img style="border:none" src="http://image.email.microsoftemail.com/lib/fe61157075630774741d/m/5/logo_bing_gray_tr_106x58.png" width="106" height="58" alt="Bing" border="0" /></a>
+                                    </td>
+                                    <td></td>
+                                     <td width="80" style="padding-right:10px"><img style="border:none" align="right" src="https://TODO_YOUR_CDN_URL/autoprospecting-assets/ms.logo70x15.png" width="70" height="15" alt="Microsoft" /></td>
+                               </tr>
+                           </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding:20px 20px 10px 20px;background:#FFFFFF">
+                            <table style="background:#FFF;font-family: Calibri, Arial, Helvetica, sans-serif;" align="center" width="560" cellpadding="0" cellspacing="0">
+                                      <tr>
+                                          <td>
+                                              <div style="font-size:16px">@{
+                                                                              if(!String.IsNullOrWhiteSpace(Model.CustomerName)){
+                                                                                  @BAXDropOff.Hi<text> </text>@Model.CustomerName
+                                                                              }
+                                                                              else{
+                                                                                  @BAXDropOff.Hello
+                                                                              }
+                                                                          },</div>
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                          <td height="20"></td>
+                                      </tr>
+                                      <tr>
+                                          <td>
+                                              <div style="font-size:16px;text-align: justify">
+                                                  @Html.Raw(BAXDropOff.AccountReady)
+                                              </div>
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                          <td height="20"></td>
+                                      </tr>
+                                      <tr>
+                                          <td>
+                                              <div style="font-size:16px;text-align: justify">@Html.Raw(String.Format(BAXDropOff.ToCompleteYourSignUp_Original, Model.GettingStartedUrl))</div>
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                          <td height="20"></td>
+                                      </tr>
+                                      <tr><td>
+                                              <div style="width:280px;color:#FFFFFF"><!--[if mso]>
+                                                                                                            <v:rect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="@Model.GettingStartedUrl" style="height:40px;v-text-anchor:middle;width:280px;" stroke="f" fillcolor="#5CA7DA">
+                                                                                                            <w:anchorlock/>
+                                                                                                           
+                                                                                                        <![endif]-->
+                                                  <a href="@Model.GettingStartedUrl"
+                                                     style="background-color: #5CA7DA; color: #ffffff; display: block; font-family: Calibri, Arial, Helvetica, sans-serif; font-size: 18px; line-height: 40px; text-align: center; text-decoration: none; width: 280px;">Redeem your $50 credit now</a>
+                                                  <!--[if mso]>
+                                                      
+                                                      </v:rect>
+                                                  <![endif]--></div>
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                          <td height="20"></td>
+                                      </tr>
+                                     <tr>
+                                    <!--td>
+                                        <div style="padding-bottom:10px;font-size:20px;color:#4888C2">@BAXDropOff.HaveQuestions_Original</div>
+                                    </td-->
+                                </tr>
+                                <!--tr>
+                                    <td>
+                                        <div style="font-size:16px;">@Html.Raw(String.Format(BAXDropOff.OurInformativeVideo, "http://advertise.bingads.microsoft.com/en-us/bing-ads-Express-video"))</div>
+                                    </td>
+                                </tr-->
+                               
+                                
+                                
+                                <tr>
+                                    <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;</td>
+                                </tr>
+                                      <tr>
+                                          <td>
+                                              <div style="font-size:16px;text-align: justify">@Html.Raw(BAXDropOff.HaveQuestions_Original)</div>
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                          <td height="20"></td>
+                                      </tr>
+                                      <tr>
+                                          <td>
+                                              <div style="font-size:16px;text-align: justify">@BAXDropOff.Sincerely</div>
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                          <td>
+                                              <div style="font-size:16px;text-align: justify">@BAXDropOff.BingAdsExpressTeam</div>
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                          <td height="10"></td>
+                                      </tr>
+                    
+                                  </table>
+
+                        </td>
+                    </tr>
+                    <!-- START footer -->
+                    <tr>
+                    <!-- disclaimer and YBN logo -->
+                        <td style="padding-left:20px;padding-right:20px; background:#FFFFFF">
+                            <table cellspacing="0" cellpadding="0" width="560" style="font-family: Calibri, Arial, Helvetica, sans-serif;">
+                                <tr>
+                                    <td colspan="2">
+                                        <div style="border-top:1px solid #CCCCCC;padding-top:20px;text-align: justify;font-size:12px;color:#999999">@Html.Raw(String.Format(BAXDropOff.OfferDetails, "http://advertise.bingads.microsoft.com/en-us/mobile-coupon-full-offer-details"))</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="20"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div style="font-size:12px;padding:0;color:#999999">@Html.Raw(BAXEmail.Disclaimer)</div>
+                        
+                                        <div class="appleLinksGrey" style="font-size:12px;color:#999999; text-align: center">@Html.Raw(BAXEmail.MicrosoftsAddress)</div>
+                                    </td>
+                                    <td width="116" style="width:116px; color: #666666; font-family: 'Segoe UI Regular', Arial; font-size: 12px; padding: 0 0 10px 0; text-align: right">
+                                        <!-- START YBN logo -->
+                                        <img src="http://image.email.microsoftemail.com/lib/fe61157075630774741d/m/5/logo_YBN_gray_116x42.jpg" width="116" height="42" alt="Yahoo! | Bing Network" border="0" />
+                                        <!-- END YBN logo -->  
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- footer links -->
+                    <tr>
+                        <td style="padding:10px;background:#FFFFFF">
+                                <table width="580" cellpadding="0" cellspacing="0" style="text-align: center;width:580px; font-family: Calibri, Arial, Helvetica, sans-serif; font-size: 12px">
+                                <tr>
+                                    <td width="25%"><a href="https://go.microsoft.com/fwlink/?LinkId=248686">@BAXEmail.PrivacyStatements</a></td>
+                                    <td width="25%"><a href="https://g.msn.com/1ewbingwin8/settingsTOUen-US">@BAXEmail.TermsAndConditions</a></td>
+                                    <td width="25%"><a href="http://bingads.uservoice.com/forums/220185-bing-ads-express">@BAXEmail.Feedback</a></td>
+                                    <td width="25%"><a href="http://www.bingplaces.com/DashBoard/Unsubscribe?view=PopUpView">@BAXEmail.Unsubscribe</a></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                   
+                
+                    <tr>
+                       <td align="right" style="background-color: #DDDDDD; padding: 10px 10px 5px 10px;">
+                            <img src="https://TODO_YOUR_CDN_URL/autoprospecting-assets/ms.logo70x15.png" width="70" height="15" alt="Microsoft" />
+                        </td>
+                    </tr>
+                    <!-- END footer -->
+                </table>
+            </td>
+        </tr>
+    </table>
+    
+</body>
+</html>

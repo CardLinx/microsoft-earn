@@ -1,0 +1,214 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+@{
+    Layout = "~/offers/earn/views/account/accountslayout.cshtml";
+    ViewBag.Title = "Places to earn";
+}
+
+<section id="places" class="accounts-container">
+    <div class="container" data-bind="with:localDealsView">
+        <div class="places-header">
+            <div class="left">
+                <h1>Three ways to Earn</h1>
+                <p>
+                    Earning is easy! Just use your enrolled card(s)<sup>1</sup> at select
+                    national retailers, participating local restaurants, or to
+                    purchase gift cards.
+                </p>
+            </div>
+            <div class="right">
+                <p>
+                    Change state :
+                    <select id="state-selection" data-bind="value: selectedState">
+                        <option value="wa" data-bind="css: { selected : selectedState() == 'wa'}">Washington</option>
+                        <option value="ma" data-bind="css: { selected : selectedState() == 'ma'}">Massachusetts</option>
+                        <option value="az" data-bind="css: { selected : selectedState() == 'az'}">Arizona</option>
+                    </select>
+                </p>
+            </div>
+        </div>
+
+        <div class="places-container national-brands">
+            <h2>Select national retailers</h2>
+            <p>
+                Receive <strong>3‒10% in Earn Credits</strong> at any of these participating retailers (in Arizona, Massachusetts, and Washington only).
+            </p>
+            <table>
+                <tr class="header">
+                    <th><p>Participating merchant</p></th>
+                    <th><p>Percentage earned</p></th>
+                </tr>
+                <tr>
+                    <td class="merchant-logo">
+                        <img src="https://az414848.vo.msecnd.net/card-linked-assets/1-800-flowers.png" />
+                    </td>
+                    <td>
+                        <p> 10%</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="merchant-logo">
+                        <img src="https://az414848.vo.msecnd.net/card-linked-assets/7-eleven.png" />
+                    </td>
+                    <td>
+                        <p> 5%</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="merchant-logo">
+                        <img src="https://az414848.vo.msecnd.net/card-linked-assets/papajohns.png" />
+                    </td>
+                    <td>
+                        <p> 7%</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="merchant-logo">
+                        <img src="https://az414848.vo.msecnd.net/card-linked-assets/petsmart.png" />
+                    </td>
+                    <td>
+                        <p> 5%</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="merchant-logo">
+                        <img src="https://az414848.vo.msecnd.net/card-linked-assets/shell.png" />
+                    </td>
+                    <td>
+                        <p> 3%</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="merchant-logo">
+                        <img src="https://az414848.vo.msecnd.net/card-linked-assets/starbucks.png" />
+                    </td>
+                    <td>
+                        <p> 5% or 10%<sup>3</sup></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="merchant-logo">
+                        <img src="https://az414848.vo.msecnd.net/card-linked-assets/wholefoods.png" />
+                    </td>
+                    <td>
+                        <p> 5%</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="places-container top-restaurants">
+            <h2>Local restaurants</h2>
+            <p class="local-restaurants-text">
+                Receive <strong>7% in Earn Credits</strong> at hundreds of participating restaurants.*
+            </p>
+
+            <table>
+                <tr class="header">
+                    <th class="restaurants-header"><p>Featured restaurants</p></th>
+                    <th class="restaurants-link-header">@Html.ActionLink("See all restaurants >", "restaurants", "account", null, new Dictionary<string, object> { { "class", "hyperlink" } })</th>
+                </tr>
+
+                <tbody data-bind="foreach: topDeals">
+                    <tr>
+                        <td class="restaurant-logo">
+                            <a data-bind="attr : { href: business.localPlacesUrl } "><img data-bind="attr: { src: imageUrl }" /></a>
+                        </td>
+                        <td class="restaurant-info">
+                            <a class="bname" data-bind="text: business.name, attr : { href : business.localPlacesUrl }" target="_blank"></a>
+                            <p class="binfo" data-bind="text: business.getCompleteAddress()"></p>
+                            <p class="binfo" data-bind="text: business.cuisine"></p>
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+            @Html.ActionLink("See all restaurants", "restaurants", "account", null, new Dictionary<string, object> { { "class", "button" } })
+        </div>
+        <div class="places-container cards">
+            <h2>Gift Cards</h2>
+            <p>
+                <strong class="new">New!</strong> Receive <strong>5% in Earn Credits</strong> when you purchase gift cards through Earn<sup>2</sup>.
+                Use them for yourself or give them as gifts!
+                Choose from hundreds of top retailers. @Html.ActionLink("Learn more >", "giftcards", "account", null, new Dictionary<string, object> { { "class", "hyperlink" } })
+            </p>
+
+            <table>
+                <tr class="header">
+                    <th class="cards-header">
+                        <p>Featured gift cards</p>
+                    </th>
+                    <th class="cards-link-header">
+                        <a href="https://microsoft.giftcardmall.com" class="hyperlink">See all gift cards &gt;</a>
+                    </th>
+                </tr>
+
+                <tbody>
+                    <tr>
+                        <td colspan="2">
+                            <div class="card1"><a href="https://microsoft.giftcardmall.com/product/24135/macysegift"><img src="https://az414848.vo.msecnd.net/card-linked-assets/gc-macys.png"></a></div>
+                            <div class="card2"><a href="https://microsoft.giftcardmall.com/Product/24816/The-Home-Depot--Crate-Bow-eGift"><img src="https://az414848.vo.msecnd.net/card-linked-assets/gc-homedepot.png"></a></div>
+                            <div class="card3"><a href="https://microsoft.giftcardmall.com/product/24536/fandango-25-egift"><img src="https://az414848.vo.msecnd.net/card-linked-assets/gc-fandango.png"></a></div>
+                            <div class="card4"><a href="https://microsoft.giftcardmall.com/product/24980/gapegift"><img src="https://az414848.vo.msecnd.net/card-linked-assets/gc-gap.png"></a></div>
+                            <div class="card5"><a href="https://microsoft.giftcardmall.com/product/24735/safeway-egift"><img src="https://az414848.vo.msecnd.net/card-linked-assets/gc-safeway.png"></a></div>
+
+                            <div class="card6"><a href="https://microsoft.giftcardmall.com/product/24297/staples-easy-button-egift"><img src="https://az414848.vo.msecnd.net/card-linked-assets/gc-staples.png"></a></div>
+                            <div class="card7"><a href="https://microsoft.giftcardmall.com/Product/25086/Sephora-Lips-eGift"><img src="https://az414848.vo.msecnd.net/card-linked-assets/gc-sephora.png"></a></div>
+                            <div class="card8"><a href="https://microsoft.giftcardmall.com/product/24126/toys-r-us-egift"><img src="https://az414848.vo.msecnd.net/card-linked-assets/gc-toysrus.png"></a></div>
+                            <div class="card9"><a href="https://microsoft.giftcardmall.com/product/24899/amcpopcorn-egift"><img src="https://az414848.vo.msecnd.net/card-linked-assets/gc-amc.png"></a></div>
+                            <div class="card10 blank"></div>
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+            <a href="https://microsoft.giftcardmall.com" class="button">See all gift cards</a>
+        </div>
+        <div class="clear"></div>
+        <div class="places-footer">
+            <div class="left">
+                <p>
+                    Change state :
+                </p>
+            </div>
+            <div class="right">
+                <select id="state-selection" data-bind="value: selectedState">
+                    <option value="wa" data-bind="css: { selected : selectedState() == 'wa'}">Washington</option>
+                    <option value="ma" data-bind="css: { selected : selectedState() == 'ma'}">Massachusetts</option>
+                    <option value="az" data-bind="css: { selected : selectedState() == 'az'}">Arizona</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Fineprints{
+    <section id="fineprints">
+        <div class="container">
+            <p class="fineprint">
+                [*] Earn Credits are only received for transactions at participating merchants in Arizona, Massachusetts and Washington, and only apply to purchases made at the online <a href="http://www.microsoftstore.com/">Microsoft Store</a> and local Microsoft Stores in Arizona, Massachusetts, and Washington.
+                Please note that it may take a few days before a purchase appears in your @Html.ActionLink("transaction history", "History", "Account").
+                If you believe you did not receive Earn Credits due, please @Html.ActionLink("contact us", "Support", "Account") and provide the place and date of purchase, along with the last 4 digits of your credit/debit card.
+                In some cases, Shell transactions may not show up in your Pending transactions at all, but should show up in your Confirmed transactions within a few days.
+            </p>
+            <br />
+            <p class="fineprint">
+                [1] Transactions where a PIN is entered at checkout do not qualify to receive Earn Credits.
+            </p>
+            <br />
+            <p class="fineprint">
+                [2] Subject to availability. See gift cards for details, terms, conditions and (if applicable) fees. All trademarks are property of their respective owners. The gift cards featured are not sponsors or otherwise affiliated with this company.
+            </p>
+            <br />
+            <p class="fineprint">
+                [3] Earn 5% on purchases at your local Starbucks store. Earn 10% when you reload your Starbucks Card online. Not valid at Starbucks in airports, hotels, retailers and grocery stores.
+            </p>
+        </div>
+        <div class="clear"></div>
+    </section>
+}
+
+@section BodyEnd{
+    <script charset="UTF-8" type="text/javascript" src="https://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0&s=1"></script>
+}

@@ -1,0 +1,523 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+@model OffersEmail.DataContracts.CampaignDataContract
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Removing the Facebook login support</title>
+
+    <style type="text/css">
+        /* Force Outlook to provide a "view in browser" menu link. */
+        #outlook a {
+            padding: 0;
+        }
+
+        /* Prevent Webkit and Windows Mobile platforms from changing default font sizes, while not breaking desktop design. */
+        body {
+            width: 100% !important;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .ExternalClass {
+            width: 100%;
+        }
+            /* Force Hotmail to display emails at full width http://templates.mailchimp.com/development/css/client-specific-styles/ */
+            .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {
+                line-height: 100%;
+            }
+        /* Force Hotmail to display normal line spacing. */
+        #backgroundTable {
+            margin: 0;
+            padding: 0;
+            width: 100% !important;
+            line-height: 100% !important;
+        }
+
+        img {
+            outline: none;
+            text-decoration: none;
+            border: none;
+            -ms-interpolation-mode: bicubic;
+        }
+
+        a img {
+            border: none;
+        }
+
+        .image_fix {
+            display: block;
+        }
+
+        p {
+            margin: 0px 0px !important;
+        }
+
+        table td {
+            border-collapse: collapse;
+        }
+
+        table {
+            border-collapse: collapse;
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        }
+            /*a {color: #e95353;text-decoration: none;text-decoration:none!important;}*/
+            /*STYLES*/
+            table[class=full] {
+                width: 100%;
+                clear: both;
+            }
+
+        /*################################################*/
+        /*IPAD STYLES*/
+        /*################################################*/
+        @@media only screen and (max-width: 640px) {
+            a[href^="tel"], a[href^="sms"] {
+                text-decoration: none;
+                color: #ffffff; /* or whatever your want */
+                pointer-events: none;
+                cursor: default;
+            }
+
+            .mobile_link a[href^="tel"], .mobile_link a[href^="sms"] {
+                text-decoration: default;
+                color: #ffffff !important;
+                pointer-events: auto;
+                cursor: default;
+            }
+
+            table[class=devicewidth] {
+                width: 440px!important;
+                text-align: center!important;
+            }
+
+            table[class=devicewidthinner] {
+                width: 420px!important;
+                text-align: center!important;
+            }
+
+            table[class="sthide"] {
+                display: none!important;
+            }
+
+            img[class="bigimage"] {
+                width: 420px!important;
+                height: 219px!important;
+            }
+
+            img[class="col2img"] {
+                width: 420px!important;
+                height: 258px!important;
+            }
+
+            img[class="image-banner"] {
+                width: 440px!important;
+                height: 106px!important;
+            }
+
+            td[class="menu"] {
+                text-align: center !important;
+                padding: 0 0 10px 0 !important;
+            }
+
+            td[class="logo"] {
+                padding: 10px 0 5px 0!important;
+                margin: 0 auto !important;
+            }
+
+            img[class="logo"] {
+                padding: 0!important;
+                margin: 0 auto !important;
+            }
+        }
+        /*##############################################*/
+        /*IPHONE STYLES*/
+        /*##############################################*/
+        @@media only screen and (max-width: 480px) {
+            a[href^="tel"], a[href^="sms"] {
+                text-decoration: none;
+                color: #ffffff; /* or whatever your want */
+                pointer-events: none;
+                cursor: default;
+            }
+
+            .mobile_link a[href^="tel"], .mobile_link a[href^="sms"] {
+                text-decoration: default;
+                color: #ffffff !important;
+                pointer-events: auto;
+                cursor: default;
+            }
+
+            table[class=devicewidth] {
+                width: 280px!important;
+                text-align: center!important;
+            }
+
+            table[class=devicewidthinner] {
+                width: 260px!important;
+                text-align: center!important;
+            }
+
+            table[class="sthide"] {
+                display: none!important;
+            }
+
+            img[class="bigimage"] {
+                width: 260px!important;
+                height: 136px!important;
+            }
+
+            img[class="col2img"] {
+                width: 260px!important;
+                height: 160px!important;
+            }
+
+            img[class="image-banner"] {
+                width: 280px!important;
+                height: 68px!important;
+            }
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="block">
+        <table width="100%" bgcolor="#f6f4f5" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="preheader">
+            <tbody>
+                <tr>
+                    <td width="100%">
+                        <table width="580" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+                            <tbody>
+                                <tr>
+                                    <td width="100%" height="20"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="block">
+        <table width="100%" bgcolor="#f6f4f5" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="header">
+            <tbody>
+                <tr>
+                    <td>
+                        <table width="580" bgcolor="#505050" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth" hlitebg="edit" shadow="edit">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <table width="150" cellpadding="0" cellspacing="0" border="0" align="left" class="devicewidth">
+                                            <tbody>
+                                                <tr>
+                                                    <td width="20" valign="middle" style="padding: 10px 0 10px 20px;" class="logo">
+                                                        <table cellpadding="0" cellspacing="0" border="0" align="center">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td valign="middle">
+                                                                        <div class="imgpop">
+                                                                            <a href="http://www.bing.com/offers/?bor=@ViewBag.referrer&bof=@ViewBag.campaign">
+                                                                                <img src="https://az414848.vo.msecnd.net/assets/offers_email_logo.png" alt="Bing Offers" border="0" style="border: none; outline: none; text-decoration: none;" st-image="edit" class="logo" />
+                                                                            </a>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="block">
+        <table width="100%" bgcolor="#f6f4f5" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="bigimage">
+            <tbody>
+                <tr>
+                    <td>
+                        <table bgcolor="#ffffff" width="580" align="center" cellspacing="0" cellpadding="0" border="0" class="devicewidth" modulebg="edit">
+                            <tbody>
+                                <tr>
+                                    <td width="100%" height="5"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <table width="540" align="center" cellspacing="0" cellpadding="0" border="0" class="devicewidthinner">
+                                            <tbody>
+                                                <tr>
+                                                    <td width="100%" height="20"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="font-family: 'Segoe UI Regular', 'Segoe UI', Arial, Helvetica, sans-serif; font-size: 18px; color: #505050; text-align: left; line-height: 25px;" st-title="rightimage-title">Dear Bing Offers customer,
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="100%" height="20"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="font-family: 'Segoe UI Regular', 'Segoe UI', Arial, Helvetica, sans-serif; font-size: 15px; color: #777; text-align: left; line-height: 24px;" st-content="rightimage-paragraph">Thanks for being a member in the Card-Linked Offer Program! We are going to make a change to how members access their Card-Linked accounts.
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="100%" height="5"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="font-family: 'Segoe UI Regular', 'Segoe UI', Arial, Helvetica, sans-serif; font-size: 15px; color: #777; text-align: left; line-height: 24px;" st-content="rightimage-paragraph">On Monday October 13th, we will be removing the Facebook login support for Bing Offers. If you have added a valid credit card to your Bing Offers account, don’t worry! After October 13th, you can still use that credit card to receive qualifying discounts at participating merchants, but you will not be able access your account (e.g. add or remove credit cards, view redemption history, etc.)
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="100%" height="10"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="font-family: 'Segoe UI Regular', 'Segoe UI', Arial, Helvetica, sans-serif; font-size: 15px; color: #777; text-align: left; line-height: 24px;" st-content="rightimage-paragraph">Prefer to have more control over your account? Not a problem.
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="100%" height="20"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="block">
+        <table width="100%" bgcolor="#f6f4f5" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="3columns">
+            <tbody>
+                <tr>
+                    <td>
+                        <table bgcolor="#505050" width="580" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth" modulebg="edit">
+                            <tbody>
+                                <tr>
+                                    <td width="100%" height="20"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <table width="540" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <table width="170" align="left" border="0" cellpadding="0" cellspacing="0" class="devicewidth">
+                                                            <tbody>
+
+                                                                <tr>
+                                                                    <td>
+                                                                        <table width="170" align="center" border="0" cellpadding="0" cellspacing="0" class="devicewidthinner">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td width="100%" height="15" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td style="font-family: Helvetica, arial, sans-serif; font-size: 25px; color: #eee; text-align: left; line-height: 20px;" st-title="3col-title1">1
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td width="100%" height="15" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td style="font-family: Helvetica, arial, sans-serif; font-size: 15px; color: #ccc; text-align: left; line-height: 20px;" st-content="3col-para1">Create a new Card-Linked account with your Microsoft account.
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td width="100%" height="15" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <table width="15" align="left" border="0" cellpadding="0" cellspacing="0" class="removeMobile">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td width="100%" height="15" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <table width="170" align="left" border="0" cellpadding="0" cellspacing="0" class="devicewidth">
+                                                            <tbody>
+
+                                                                <tr>
+                                                                    <td>
+                                                                        <table width="170" align="center" border="0" cellpadding="0" cellspacing="0" class="devicewidthinner">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td width="100%" height="15" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td style="font-family: Helvetica, arial, sans-serif; font-size: 25px; color: #eee; text-align: left; line-height: 20px;" st-title="3col-title2">2
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td width="100%" height="15" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td style="font-family: Helvetica, arial, sans-serif; font-size: 15px; color: #ccc; text-align: left; line-height: 20px;" st-content="3col-para2">Add your credit card of choice. (If you cannot add your credit card to the new account, you may need to first remove it from your old account.)
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td width="100%" height="15" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <table width="1" align="left" border="0" cellpadding="0" cellspacing="0" class="removeMobile">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td width="100%" height="15" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <table width="170" align="right" border="0" cellpadding="0" cellspacing="0" class="devicewidth">
+                                                            <tbody>
+
+                                                                <tr>
+                                                                    <td>
+                                                                        <table width="170" align="center" border="0" cellpadding="0" cellspacing="0" class="devicewidthinner">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td width="100%" height="15" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td style="font-family: Helvetica, arial, sans-serif; font-size: 25px; color: #eee; text-align: left; line-height: 20px;" st-title="3col-title3">3
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td width="100%" height="15" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td style="font-family: Helvetica, arial, sans-serif; font-size: 15px; color: #ccc; text-align: left; line-height: 20px;" st-content="3col-para1">Enjoy Bing Offers Card-Linked!
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td width="100%" height="15" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="100%" height="20"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="block">
+        <table width="100%" bgcolor="#f6f4f5" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="bigimage">
+            <tbody>
+                <tr>
+                    <td>
+                        <table bgcolor="#ffffff" width="580" align="center" cellspacing="0" cellpadding="0" border="0" class="devicewidth" modulebg="edit">
+                            <tbody>
+                                <tr>
+                                    <td width="100%" height="5"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <table width="540" align="center" cellspacing="0" cellpadding="0" border="0" class="devicewidthinner">
+                                            <tbody>
+                                                <tr>
+                                                    <td width="100%" height="20"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="font-family: 'Segoe UI Regular', 'Segoe UI', Arial, Helvetica, sans-serif; font-size: 15px; color: #777; text-align: left; line-height: 24px;" st-content="rightimage-paragraph">As always, if you have any questions, we’re here to <a target="_blank" href="http://bingoffers.uservoice.com/" style="font-size: 15px; text-decoration: underline">help!</a>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="100%" height="20"></td>
+                                                </tr>
+                                                <tr>
+
+                                                    <td style="font-family: 'Segoe UI Regular', 'Segoe UI', Arial, Helvetica, sans-serif; font-size: 15px; color: #505050; text-align: left; line-height: 25px;" st-title="rightimage-title">Best wishes,
+                                                        <br />
+                                                        The Bing Offers team
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="100%" height="20"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="block">
+        <table width="100%" bgcolor="#f6f4f5" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="postfooter">
+            <tbody>
+                <tr>
+                    <td width="100%">
+                        <table width="580" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+                            <tbody>
+                                <tr>
+                                    <td width="100%" height="5"></td>
+                                </tr>
+                                <tr>
+                                    <td valign="middle" align="left" style="padding: 0; color: #333; font-family: 'Segoe UI Regular', 'Segoe UI', Arial, Helvetica, sans-serif; font-size: 10px; margin: 0; vertical-align: central; padding-left: 10px;">Microsoft
+                                        &nbsp;|&nbsp;
+                                        1 Microsoft Way, Redmond, WA 98052
+                                        &nbsp;|&nbsp;
+                                        <a target="_blank" href="http://go.microsoft.com/fwlink/?LinkId=248686" style="padding-right: 0; padding-top: 0; padding-left: 0; padding-bottom: 0;">Privacy Statement</a>
+                                        &nbsp;|&nbsp;
+                                        <a target="_blank" href="@Model.UnsubscribeUrl" style="padding-right: 0; padding-top: 0; padding-left: 0; padding-bottom: 0;">Unsubscribe</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="100%" height="15"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Name>Users.Database</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql100DatabaseSchemaProvider</DSP>
+    <GenerateDac>False</GenerateDac>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <ShowWizard>False</ShowWizard>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <IncludeSchemaNameInFileName>False</IncludeSchemaNameInFileName>
+    <ModelCollation>1033,CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DacApplicationName>LoMo.Users</DacApplicationName>
+    <DacVersion>1.0.0.0</DacVersion>
+    <DacDescription>
+    </DacDescription>
+    <RootNamespace>Users.Database</RootNamespace>
+    <DefaultSchema>dbo</DefaultSchema>
+    <PreviousProjectVersion>4.1</PreviousProjectVersion>
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+    <ValidateCasingOnIdentifiers>False</ValidateCasingOnIdentifiers>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{f179ac55-a768-4c0c-b546-e9fbee819022}</ProjectGuid>
+    <GenerateDatabaseFile>False</GenerateDatabaseFile>
+    <GenerateCreateScript>False</GenerateCreateScript>
+    <SqlServerVerification>False</SqlServerVerification>
+    <TargetLanguage>CS</TargetLanguage>
+    <DefaultCollation>SQL_Latin1_General_CP1_CS_AS</DefaultCollation>
+    <AnsiNullDefault>True</AnsiNullDefault>
+    <AnsiNulls>True</AnsiNulls>
+    <AnsiPadding>True</AnsiPadding>
+    <AnsiWarnings>True</AnsiWarnings>
+    <ArithAbort>True</ArithAbort>
+    <ConcatNullYieldsNull>True</ConcatNullYieldsNull>
+    <QuotedIdentifier>True</QuotedIdentifier>
+    <NumericRoundAbort>False</NumericRoundAbort>
+    <RecursiveTriggersEnabled>False</RecursiveTriggersEnabled>
+    <DatabaseState>ONLINE</DatabaseState>
+    <UpdateOptions>READ_WRITE</UpdateOptions>
+    <CloseCursorOnCommitEnabled>False</CloseCursorOnCommitEnabled>
+    <DefaultCursor>LOCAL</DefaultCursor>
+    <AutoClose>False</AutoClose>
+    <AutoCreateStatistics>True</AutoCreateStatistics>
+    <AutoShrink>False</AutoShrink>
+    <AutoUpdateStatistics>True</AutoUpdateStatistics>
+    <TornPageDetection>False</TornPageDetection>
+    <DatabaseAccess>MULTI_USER</DatabaseAccess>
+    <Recovery>FULL</Recovery>
+    <EnableFullTextSearch>True</EnableFullTextSearch>
+    <DatabaseChaining>False</DatabaseChaining>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
+    <Trustworthy>False</Trustworthy>
+    <AutoUpdateStatisticsAsynchronously>False</AutoUpdateStatisticsAsynchronously>
+    <PageVerify>NONE</PageVerify>
+    <ServiceBrokerOption>DisableBroker</ServiceBrokerOption>
+    <DateCorrelationOptimizationOn>False</DateCorrelationOptimizationOn>
+    <Parameterization>SIMPLE</Parameterization>
+    <AllowSnapshotIsolation>False</AllowSnapshotIsolation>
+    <ReadCommittedSnapshot>False</ReadCommittedSnapshot>
+    <VardecimalStorageFormatOn>True</VardecimalStorageFormatOn>
+    <DefaultFileStreamFilegroup />
+    <IsChangeTrackingOn>False</IsChangeTrackingOn>
+    <IsChangeTrackingAutoCleanupOn>True</IsChangeTrackingAutoCleanupOn>
+    <ChangeTrackingRetentionPeriod>2</ChangeTrackingRetentionPeriod>
+    <ChangeTrackingRetentionUnit>Days</ChangeTrackingRetentionUnit>
+    <IsEncryptionOn>False</IsEncryptionOn>
+    <IsBrokerPriorityHonored>False</IsBrokerPriorityHonored>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>.\sql\release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TargetDatabase>
+    </TargetDatabase>
+    <TreatTSqlWarningsAsErrors>False</TreatTSqlWarningsAsErrors>
+    <SuppressTSqlWarnings />
+    <DacDatabaseCollation>SQL_Latin1_General_CP1_CI_AS</DacDatabaseCollation>
+    <ValidatePolicy>True</ValidatePolicy>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>.\sql\debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TargetDatabase>SG.Users.Database</TargetDatabase>
+    <TreatTSqlWarningsAsErrors>False</TreatTSqlWarningsAsErrors>
+    <SuppressTSqlWarnings />
+    <DacDatabaseCollation>SQL_Latin1_General_CP1_CI_AS</DacDatabaseCollation>
+    <ValidatePolicy>True</ValidatePolicy>
+  </PropertyGroup>
+  <!--Import the settings-->
+  <Import Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" Condition="'$(SQLDBExtensionsRefPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" Condition="'$(SQLDBExtensionsRefPath)' == ''" />
+  <ItemGroup>
+    <Folder Include="Scripts" />
+    <Folder Include="Scripts\Pre-Deployment" />
+    <Folder Include="Scripts\Post-Deployment" />
+    <Folder Include="Properties\" />
+    <Folder Include="Schema Objects\" />
+    <Folder Include="Schema Objects\Schemas\" />
+    <Folder Include="Schema Objects\Schemas\dbo\" />
+    <Folder Include="Schema Objects\Schemas\dbo\Programmability\" />
+    <Folder Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\" />
+    <Folder Include="Schema Objects\Schemas\dbo\Tables\" />
+    <Folder Include="Schema Objects\Database Level Objects\" />
+    <Folder Include="Schema Objects\Database Level Objects\Security\" />
+    <Folder Include="Schema Objects\Schemas\dbo\Views" />
+    <Folder Include="Schema Objects\Schemas\dbo\Programmability\Types" />
+    <Folder Include="Schema Objects\Schemas\dbo\Programmability\Types\User Defined Table Types" />
+    <Folder Include="Schema Objects\Schemas\dbo\Programmability\Functions" />
+  </ItemGroup>
+  <ItemGroup>
+    <BuildContributorArgument Include="OutDir=$(OutDir)" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\CreateOrUpdateUser.proc.sql">
+      <SubType>Code</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\ExternalUsers.table.sql">
+      <SubType>Code</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\GetUserByUserId.proc.sql">
+      <SubType>Code</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\EmailSubscriptions.table.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Users.table.sql">
+      <SubType>Code</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\CreateOrUpdateEmailSubscription.proc.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\DeleteEmailSubscriptions.proc.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\GetEmailSubscriptions.proc.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\GetEmailSubscriptionsByUserId.proc.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\GetEmailSubscriptionsByLocationId.proc.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\GetUserIdByExternalId.proc.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\UpdateUserSuppressInfo.proc.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Views\EmailSubscriptionsCurrentView.view.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\EmailUnsubscribeUrls.table.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\CreateOrUpdateEmailUnsubscribeUrl.proc.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\GetEmailUnsubscribeUrlByUserId.proc.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\GetEmailUnsubscribeUrlToUpdate.proc.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\CreateNotExistingExternalUser.proc.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\UpdateExternalUser.proc.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\DeleteUser.proc.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\DeleteExternalUser.proc.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\UsersHistory.table.sql">
+      <SubType>Code</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\ExternalUsersHistory.table.sql">
+      <SubType>Code</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Views\ValidUsersView.view.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\EmailSubscriptionsHistory.table.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\UpdateEmailSubscriptions.proc.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Types\User Defined Table Types\SubscriptionListType.udtt.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\ConfirmationCodes.table.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\CreateConfirmationCode.proc.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\ConfirmEntity.proc.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\GetConfirmEntity.proc.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\UpdateUserSource.proc.sql" />
+    <Build Include="Schema Objects\Schemas\dbo\Tables\MerchantSubscriptions.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\MerchantSubscriptionsHistory.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\EmailJobs.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Views\ValidMerchantUsersView.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Views\ActiveEmailJobsView.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Functions\getNextEmailJobRunTime.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\CreateOrUpdateMerchantSubscriptions.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\UnsubscribeMerchantSubscriptions.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\GetMerchantSubscriptionsByUserId.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\GetEmailJobs.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\UpdateEmailJob.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Parameters.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\EventLog.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\LogEvent.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\UserConfirmEmailResendsHistory.table.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\LogUserConfirmEmailResend.proc.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\GetConfirmEmailResendCountByUser.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\NotFederation.sql">
+      <SubType>NotInBuild</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <PreDeploy Include="Scripts\Pre-Deployment\Script.PreDeployment.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Scripts\Post-Deployment\Script.PostDeployment.sql" />
+  </ItemGroup>
+</Project>

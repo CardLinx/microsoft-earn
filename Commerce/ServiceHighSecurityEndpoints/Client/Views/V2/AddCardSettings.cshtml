@@ -1,0 +1,26 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+@using Lomo.Commerce.Service.Client.Resources
+@using System.Web.Optimization
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link href="~/client/css/addcard-settings2.min.css?ver=05142014" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.1.min.js"></script>
+    @Scripts.Render("~/client/jsBundles/addCardV2")
+    <title></title>
+</head>
+<body>
+   <div class="addCard_section">
+          @Html.Partial("~/Client/Views/v2/PartialView/Cards.cshtml")
+   </div>
+</body>
+</html>

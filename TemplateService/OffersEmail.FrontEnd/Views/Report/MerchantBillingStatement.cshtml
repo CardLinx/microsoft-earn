@@ -1,0 +1,315 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+@model OffersEmail.DataContracts.MerchantBillingStatementContract
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <title>Merchant Report</title>
+    <style type="text/css">
+        @@font-face {
+            font-family: "Segoe UI Web Regular";
+            src: url('https://i.s-microsoft.com/fonts/Segoe-UI/West-European/Normal/latest.eot');
+            src: local("Segoe UI"), local("Segoe"), local("Segoe WP"), url('https://i.s-microsoft.com/fonts/Segoe-UI/West-European/Normal/latest.eot?#iefix') format('embedded-opentype'), url('https://i.s-microsoft.com/fonts/Segoe-UI/West-European/Normal/latest.woff') format('woff'), url('https://i.s-microsoft.com/fonts/Segoe-UI/West-European/Normal/latest.ttf') format('truetype'), url('https://i.s-microsoft.com/fonts/Segoe-UI/West-European/Normal/latest.svg#web') format('svg');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            font-family: "Segoe UI Web Regular", Arial, Helvetica, sans-serif;
+            font-size: 100%;
+            font-weight: normal;
+            color: #777;
+        }
+
+        p, a, td, th {
+            font-family: "Segoe UI Web Regular", Arial, Helvetica, sans-serif;
+            font-size: 7pt;
+            font-weight: normal;
+            color: #777;
+        }
+
+        a {
+            color: #36b;
+        }
+
+        table, tr, td, th {
+            page-break-inside: avoid;
+        }
+
+        thead {
+            display: table-header-group;
+        }
+
+        tfoot {
+            display: table-footer-group;
+        }
+
+        th {
+            font-weight: bold;
+            color: #369;
+            vertical-align: bottom;
+        }
+
+        .block {
+            display: block;
+        }
+
+        .border {
+            border-width: 0.3pt;
+            border-color: #505050;
+            border-collapse: collapse;
+            border-style: solid;
+        }
+
+        .total {
+            text-align: right;
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+<body>
+    @{
+        var startDateString = Model.StartDate > DateTime.MinValue ? Model.StartDate.ToString("M/d/yyyy") : string.Empty;
+        var endDateString = Model.EndDate > DateTime.MinValue ? Model.EndDate.ToString("M/d/yyyy") : string.Empty;
+        var offersRedeemedString = (Model.Transactions != null && Model.Transactions.Any()) ? Model.Transactions.Count.ToString() : "-";
+        var totalTransactionAmountString = (Model.Transactions != null && Model.Transactions.Any()) ? Model.Transactions.Sum(a => a.OriginalTransactionAmount) > 0.0 ? string.Concat(Model.CurrencySymbol, Model.Transactions.Sum(a => a.OriginalTransactionAmount).ToString("0.00")) : "-" : "-";
+        var totalDiscountProvidedAmountString = (Model.Transactions != null && Model.Transactions.Any()) ? Model.Transactions.Sum(a => a.DiscountProvidedToConsumer) > 0.0 ? string.Concat(Model.CurrencySymbol, Model.Transactions.Sum(a => a.DiscountProvidedToConsumer).ToString("0.00")) : "-" : "-";
+        var totalDiscountDueAmountString = (Model.Transactions != null && Model.Transactions.Any()) ? Model.Transactions.Sum(a => a.DiscountDueFromMerchant) > 0.0 ? string.Concat(Model.CurrencySymbol, Model.Transactions.Sum(a => a.DiscountDueFromMerchant).ToString("0.00")) : "-" : "-";
+
+        var totalTransactionFees = (Model.Transactions != null && Model.Transactions.Any()) ? Model.Transactions.Sum(a => a.BingTransactionFee) : 0;
+        var totalTransactionFeesString = totalTransactionFees > 0.0 ? string.Concat(Model.CurrencySymbol, totalTransactionFees.ToString("0.00")) : "-";
+        var totalAdvertisingFees = (Model.Transactions != null && Model.Transactions.Any()) ? Model.Transactions.Sum(a => a.BingAdvertisingFee) : 0;
+        var totalAdvertisingFeesString = totalAdvertisingFees > 0.0 ? string.Concat(Model.CurrencySymbol, totalAdvertisingFees.ToString("0.00")) : "-";
+        var totalChargedAdvertisingFees = (Model.Transactions != null && Model.Transactions.Any()) ? Model.Transactions.Sum(a => a.BingChargedAdvertsingFee) : 0;
+        var totalChargedAdvertisingFeesString = totalChargedAdvertisingFees > 0.0 ? string.Concat(Model.CurrencySymbol, totalChargedAdvertisingFees.ToString("0.00")) : "-";
+
+        var totalWaivedAdvertisingFeesString = (totalAdvertisingFees - totalChargedAdvertisingFees) > 0.0 ? string.Concat(Model.CurrencySymbol, (totalAdvertisingFees - totalChargedAdvertisingFees).ToString("0.00")) : "-";
+        var totalDueString = (totalTransactionFees + totalChargedAdvertisingFees) > 0.0 ? string.Concat(Model.CurrencySymbol, (totalTransactionFees + totalChargedAdvertisingFees).ToString("0.00")) : "-";
+    }
+
+    @* Page 1*@
+    <div>
+
+        <div class="block">
+            <table width="100%">
+                <tr>
+                    <td width="60%">
+                        <table width="100%">
+                            <tr>
+                                <td><a href="http://www.bing.com/offers" title="Bing Offers" style="text-decoration: none">
+                                        <img alt="Bing Offers" src="https://az414848.vo.msecnd.net/assets/bing_offers_logo_big.20131009.png" width="120" height="30" border="0" />
+                                    </a></td>
+                            </tr>
+                            <tr>
+                                <td style="font-size: 5pt">A service of Microsoft Online, Inc.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td height="10"></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p style="font-style: italic;">Contact <a style="text-decoration: none" href="mailto:bosupport@microsoft.com">BOSupport@microsoft.com</a> with any customer support or billing issues.</p>
+                                </td>
+                            </tr>
+
+                        </table>
+                    </td>
+                    <td width="40%" style="text-align: left">
+                        <table width="100%">
+                            <tr>
+                                <td style="font-size: 11pt; font-weight: bold; color: #505050;">Merchant Billing Statement</td>
+                            </tr>
+                            <tr>
+                                <td height="5"></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <table width="100%">
+                                        <tr>
+                                            <td width="30%">Start date:</td>
+                                            <td>@startDateString</td>
+                                        </tr>
+                                        <tr>
+                                            <td height="2"></td>
+                                        </tr>
+                                        <tr>
+                                            <td width="30%">End date:</td>
+                                            <td>@endDateString</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="block">
+            <table width="100%" cellpadding="2" cellspacing="2">
+                <tr>
+                    <td height="10"></td>
+                </tr>
+                <tr>
+                    <td style="text-align: left; font-weight: bold; color: #505050">@Model.BusinessName
+                    </td>
+                </tr>
+                @if (Model.Locations != null && Model.Locations.Any())
+                {
+                    foreach (var location in Model.Locations)
+                    {
+                        <tr>
+                            <td style="text-align: left; font-weight: bold; color: #505050">@location
+                            </td>
+                        </tr>
+                    }
+                }
+                <tr>
+                    <td height="10"></td>
+                </tr>
+                @if (Model.ActiveOffers != null && Model.ActiveOffers.Any())
+                {
+                    <tr>
+                        <td style="text-align: left; font-weight: bold; color: #505050">Active Offers:
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">
+                            <table width="100%" cellpadding="2" cellspacing="2">
+                                @foreach (var offer in Model.ActiveOffers)
+                                {
+                                    <tr>
+                                        <td style="text-align: right; font-weight: bold; color: #505050;">&bull;
+                                        </td>
+                                        <td style="text-align: left;">@offer
+                                        </td>
+                                    </tr>
+                                }
+
+                            </table>
+                        </td>
+                    </tr>
+                }
+                <tr>
+                    <td height="10"></td>
+                </tr>
+            </table>
+        </div>
+
+        @if (Model.Transactions != null && Model.Transactions.Any())
+        {
+            <div class="block">
+                <hr size="10" style="color: black" />
+                <table width="100%" cellpadding="5" cellspacing="0" style="border-collapse: collapse">
+                    <thead>
+                        <tr>
+                            <th width="8%" class="border">Date</th>
+                            <th width="17%" class="border">Location</th>
+                            @*<th width="15%" class="border">Payment Card</th>*@
+                            <th width="15%" class="border">Offer Description</th>
+                            <th width="12%" class="border">Original Transaction Amount</th>
+                            <th width="12%" class="border">Discount Provided to Consumer</th>
+                            <th width="12%" class="border">Discount Due from Merchant</th>
+                            <th width="12%" class="border">Bing Transaction Fee</th>
+                            <th width="12%" class="border">Bing Advertising Fee</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var transaction in Model.Transactions)
+                        {
+                            var originalTransactionAmountString = transaction.OriginalTransactionAmount > 0.0 ? string.Concat(Model.CurrencySymbol, transaction.OriginalTransactionAmount.ToString("0.00")) : "-";
+                            var discountProvidedToConsumerString = transaction.DiscountProvidedToConsumer > 0.0 ? string.Concat(Model.CurrencySymbol, transaction.DiscountProvidedToConsumer.ToString("0.00")) : "-";
+                            var discountDueFromMerchantString = transaction.DiscountDueFromMerchant > 0.0 ? string.Concat(Model.CurrencySymbol, transaction.DiscountDueFromMerchant.ToString("0.00")) : "-";
+                            var transactionFeeString = transaction.BingTransactionFee > 0.0 ? string.Concat(Model.CurrencySymbol, transaction.BingTransactionFee.ToString("0.00")) : "-";
+                            var advertisingFeeString = transaction.BingAdvertisingFee > 0.0 ? string.Concat(Model.CurrencySymbol, transaction.BingAdvertisingFee.ToString("0.00")) : "-";
+
+                            var locationName = string.IsNullOrWhiteSpace(transaction.Location) ? string.Empty : transaction.Location.IndexOf(", ", StringComparison.Ordinal) > 5 ? transaction.Location.Substring(0, transaction.Location.IndexOf(", ", StringComparison.Ordinal)) : transaction.Location;
+                            locationName = locationName.Length > 16 ? locationName.Substring(0, 12) + " ..." : locationName;
+                            var offerDescription = string.IsNullOrWhiteSpace(transaction.OfferShortDescription) ? string.Empty : transaction.OfferShortDescription;
+                            offerDescription = offerDescription.Length > 16 ? offerDescription.Substring(0, 12) + " ..." : offerDescription;
+                            var date = transaction.Date > DateTime.MinValue ? transaction.Date.ToString("MMM dd") : string.Empty;
+                            <tr>
+                                <td class="border">@date</td>
+                                <td class="border">@locationName</td>
+                                @*<td class="border">@transaction.CardBrand @string.Concat('x', transaction.CardLastFourDigits)</td>*@
+                                <td class="border">@offerDescription</td>
+                                <td class="border">@originalTransactionAmountString</td>
+                                <td class="border">@discountProvidedToConsumerString</td>
+                                <td class="border">@discountDueFromMerchantString</td>
+                                <td class="border">@transactionFeeString</td>
+                                <td class="border">@advertisingFeeString</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+
+        <div class="block">
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td height="10" colspan="2"></td>
+                    </tr>
+                    <tr>
+                        <td width="50%" style="font-style: italic; vertical-align: top; font-size: 6pt; line-height: 10pt">Microsoft Online, Inc. is a US corporation. No VAT applies to services performed in the United States by Microsoft Online, Inc.
+                        </td>
+                        @if (Model.Transactions != null && Model.Transactions.Any())
+                        {
+                            <td width="50%">
+                                <table width="100%" cellpadding="3" cellspacing="3">
+                                    <tbody>
+                                        <tr>
+                                            <td class="total" style="color: green">Offers Redeemed:</td>
+                                            <td class="total" style="color: green">@offersRedeemedString</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="total" style="color: green">Original Transaction Volume:</td>
+                                            <td class="total" style="color: green">@totalTransactionAmountString</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="total" style="color: green">Discounts Provided to Consumers:</td>
+                                            <td class="total" style="color: green">@totalDiscountProvidedAmountString</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="total">Discounts Due from Merchant:</td>
+                                            <td class="total">@totalDiscountDueAmountString</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="total">Transaction Fees:</td>
+                                            <td class="total">@totalTransactionFeesString</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="total">Advertising Fees:</td>
+                                            <td class="total">@totalAdvertisingFeesString</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="total" style="color: red">Advertising Fee Waived:</td>
+                                            <td class="total" style="color: red">(@totalWaivedAdvertisingFeesString)</td>
+                                        </tr>
+                                        <tr>
+                                            <td height="5" colspan="2"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="total" style="color: #505050; font-size: 8pt;">Total Due:</td>
+                                            <td class="total" style="color: #505050; font-size: 8pt;">@totalDueString</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        }
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</body>
+</html>

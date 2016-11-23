@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AEC60AB2-E4A1-4B13-B40A-B7359AAA285A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Lomo.Commerce.FirstDataWorker</RootNamespace>
+    <AssemblyName>Lomo.Commerce.FirstDataWorker</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>..\CommerceRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>..\CommerceRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'ProdDebug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\ProdDebug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>..\CommerceRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'ProdRelease|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\ProdRelease\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>..\CommerceRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'IntDebug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\IntDebug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>..\CommerceRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'IntRelease|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\IntRelease\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>..\CommerceRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Azure.KeyVault.Core">
+      <HintPath>..\..\..\packages\Microsoft.Azure.KeyVault.Core.1.0.0\lib\net40\Microsoft.Azure.KeyVault.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Data.Edm, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Microsoft.Data.Edm.5.7.0\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Microsoft.Data.OData.5.7.0\lib\net40\Microsoft.Data.OData.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services.Client, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Microsoft.Data.Services.Client.5.7.0\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Configuration, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Microsoft.WindowsAzure.ConfigurationManager.3.2.1\lib\net40\Microsoft.WindowsAzure.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Storage, Version=6.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\WindowsAzure.Storage.6.2.0\lib\net40\Microsoft.WindowsAzure.Storage.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Spatial, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\System.Spatial.5.7.0\lib\net40\System.Spatial.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDictionary Include="..\CustomDictionary.xml">
+      <SubType>Designer</SubType>
+    </CodeAnalysisDictionary>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Blob\RewardsPtsBlobClient.cs" />
+    <Compile Include="Blob\FirstDataAcknowledgmentBlobClient.cs" />
+    <Compile Include="Blob\FirstDataBlobClientFactory.cs" />
+    <Compile Include="Blob\FirstDataExtractBlobClient.cs" />
+    <Compile Include="Blob\FirstDataPtsBlobClient.cs" />
+    <Compile Include="FirstDataAcknowledgmentProcessor.cs" />
+    <Compile Include="FirstDataExtractProcessor.cs" />
+    <Compile Include="FirstDataPtsProcessor.cs" />
+    <Compile Include="FirstDataTransactionPublisher.cs" />
+    <Compile Include="Ftp\FirstDataFtpClientFactory.cs" />
+    <Compile Include="Ftp\FirstDataFtpConstants.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Ftp\FirstDataAcknowledgmentFtpClient.cs" />
+    <Compile Include="Ftp\FirstDataExtractFtpClient.cs" />
+    <Compile Include="Ftp\FirstDataFtpClientBase.cs" />
+    <Compile Include="Ftp\FirstDataPtsFtpClient.cs" />
+    <Compile Include="RecordMarshalers\AcknowledgmentParsers\AcknowledgmentConstants.cs" />
+    <Compile Include="RecordMarshalers\AcknowledgmentParsers\AcknowledgmentParser.cs" />
+    <Compile Include="RecordMarshalers\AcknowledgmentParsers\DetailAcknowledgmentParser.cs" />
+    <Compile Include="RecordMarshalers\AcknowledgmentParsers\GeneralAcknowledgmentParser.cs" />
+    <Compile Include="RecordMarshalers\AcknowledgmentParsers\SignedValueConverter.cs" />
+    <Compile Include="RecordMarshalers\ExtractParsers\DetailParser.cs" />
+    <Compile Include="RecordMarshalers\ExtractParsers\ExtractConstants.cs" />
+    <Compile Include="RecordMarshalers\ExtractParsers\ExtractFooterParser.cs" />
+    <Compile Include="RecordMarshalers\ExtractParsers\ExtractHeaderParser.cs" />
+    <Compile Include="RecordMarshalers\ExtractParsers\ExtractParser.cs" />
+    <Compile Include="RecordMarshalers\ExtractParsers\RedemptionDetailParser.cs" />
+    <Compile Include="RecordMarshalers\ExtractParsers\SettlementDetailParser.cs" />
+    <Compile Include="RecordMarshalers\ExtractParsers\TransactionNotificationParser.cs" />
+    <Compile Include="RecordMarshalers\PtsBuilders\AcquirerReferenceNumberPtsBuilder.cs" />
+    <Compile Include="RecordMarshalers\PtsBuilders\DescriptorRecordPtsBuilder.cs" />
+    <Compile Include="RecordMarshalers\PtsBuilders\MerchantRecordPtsBuilder.cs" />
+    <Compile Include="RecordMarshalers\PtsBuilders\PtsBuilder.cs" />
+    <Compile Include="RecordMarshalers\PtsBuilders\PtsConstants.cs" />
+    <Compile Include="RecordMarshalers\PtsBuilders\PtsMerchantInfo.cs" />
+    <Compile Include="RecordMarshalers\PtsBuilders\SpecialConditionPtsBuilder.cs" />
+    <Compile Include="RecordMarshalers\PtsBuilders\TokenizationPtsBuilder.cs" />
+    <Compile Include="RecordMarshalers\PtsBuilders\TotalRecordPtsBuilder.cs" />
+    <Compile Include="RecordMarshalers\PtsBuilders\TransactionDetailPtsBuilder.cs" />
+    <Compile Include="FirstDataFileProcessorFactory.cs" />
+    <Compile Include="RewardsPtsProcessor.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataContracts\Commerce.DataContracts.csproj">
+      <Project>{0ff826a6-bce1-462d-ae04-f291390f6470}</Project>
+      <Name>Commerce.DataContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\Lomo.AssemblyUtils\Lomo.AssemblyUtils.csproj">
+      <Project>{64b3b242-a167-4146-8d39-93eaaef2e8eb}</Project>
+      <Name>Lomo.AssemblyUtils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\Lomo.Scheduler\Lomo.Scheduler.csproj">
+      <Project>{5e774d1c-7687-4990-a581-bb56e5d64b31}</Project>
+      <Name>Lomo.Scheduler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Configuration\Commerce.Configuration.csproj">
+      <Project>{15a69462-a2c1-44ae-9ab6-9da19d3b686d}</Project>
+      <Name>Commerce.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Context\Commerce.Context.csproj">
+      <Project>{a67149d4-e149-4c3f-873b-52921e2bfa0f}</Project>
+      <Name>Commerce.Context</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataAccess\Commerce.DataAccess.csproj">
+      <Project>{7b84e649-bbaa-4e0f-bbb4-4be1143dbc87}</Project>
+      <Name>Commerce.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataContractExtensions\Commerce.DataContractExtensions.csproj">
+      <Project>{f68fefff-05b1-49cf-96d3-696cad8d275f}</Project>
+      <Name>Commerce.DataContractExtensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataModels\Commerce.DataModels.csproj">
+      <Project>{10f548e4-c48e-4524-9a72-a6aaed713e5c}</Project>
+      <Name>Commerce.DataModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FirstDataClient\Commerce.FirstDataClient.csproj">
+      <Project>{a2fe6904-1156-4d04-9ea8-2099774b1a0f}</Project>
+      <Name>Commerce.FirstDataClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FtpClient\Commerce.FtpClient.csproj">
+      <Project>{94800b05-142c-4320-b97b-4302248bae2e}</Project>
+      <Name>Commerce.FtpClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Logging\Commerce.Logging.csproj">
+      <Project>{3fa7609a-4c21-46cc-9c76-0daefe77815c}</Project>
+      <Name>Commerce.Logging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utilities\Commerce.Utilities.csproj">
+      <Project>{78499661-cfde-4218-bb0b-b3866bd8dafd}</Project>
+      <Name>Commerce.Utilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WorkerActions\Commerce.WorkerActions.csproj">
+      <Project>{39743dbc-4c79-4546-b59b-3c691cc5eecb}</Project>
+      <Name>Commerce.WorkerActions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WorkerCommon\Commerce.WorkerCommon.csproj">
+      <Project>{04880287-4dbc-4766-820e-6ad2c0c7858d}</Project>
+      <Name>Commerce.WorkerCommon</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,37 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+@model CardLinkVM
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8" />
+    <title>@CardLink.DeleteCard_Title</title>
+</head>
+<body>
+    <table width="443" cellpadding="20" cellspacing="0" style="margin-right: auto; margin-left: auto; margin-bottom: 0; margin-top: 0; width: 443px; font-family: 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif; padding-left: 20px; padding-bottom: 20px; padding-top: 20px; padding-right: 20px; border-left-width: 0; border-bottom-width: 0; border-right-width: 0; border-top-width: 0;">
+        @Html.Partial("~/Views/CardLink/Partial/TransactionHeader.cshtml")
+        <tr>
+            <td align="left" valign="middle" style="color: #505050; font-family: 'Segoe UI Regular', 'Segoe UI', Arial, Helvetica, sans-serif; text-align: left; vertical-align: middle; padding-top: 0; padding-right: 11px; padding-bottom: 10px; padding-left: 11px;">
+                <h2 style="color: #505050; font-weight: normal; font-size: 30px; font-family: 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif; margin: 0;">@CardLink.Hello&nbsp;@Model.UserName,</h2>
+                <p>@CardLink.DeleteCard_CardDeleted</p>
+                @if (Model.ActiveCardsCount > 0)
+                {
+                    <p>@CardLink.DeleteCard_HaveAnotherCard</p>
+                }
+                else
+                {
+                    <p>
+                        @Html.Raw(string.Format(CardLink.DeleteCard_NoCard, string.Format("https://www.bing.com/offers/cardlinkedwizard?bor={0}&bof={1}", ViewBag.referrer, ViewBag.campaign)))
+                    </p>
+                }
+            </td>
+        </tr>
+        @Html.Partial("~/Views/CardLink/Partial/MoreAndFinePrint.cshtml", string.Empty)
+        @Html.Partial("~/Views/CardLink/Partial/TransactionFooter.cshtml")
+    </table>
+</body>
+</html>

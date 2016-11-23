@@ -1,0 +1,93 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+@model DealVM
+
+<tr>
+    <td style="height: 250px; padding-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 10px;">
+        <table width="100%" cellspacing="0" cellpadding="0" bgcolor="#cccccc" style="background-color: #cccccc; width: 100%; padding-left: 0; padding-bottom: 0; padding-top: 0; padding-right: 0; border-left-width: 0; border-bottom-width: 0; border-right-width: 0; border-top-width: 0;">
+            <tr>
+                <td>
+                    <a href="@Model.TransactionUrl" style="padding-right: 0; padding-top: 0; padding-left: 0; padding-bottom: 0; text-decoration: none;">
+                        <img width="560px" height="250" align="middle" src="@Model.LargeImageUrl" style="height: 250px; width: 560px; vertical-align: middle; border-left-width: 0; border-bottom-width: 0; border-right-width: 0; border-top-width: 0;" alt="@DailyDeals.ViewOffer" />
+                    </a>
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>
+
+<tr>
+    <td bgcolor="#f5f5f5" style="padding-bottom: 20px; padding-left: 20px; padding-right: 20px; padding-top: 20px; background-color: #f5f5f5;">
+        <table cellspacing="0" cellpadding="0" width="100%" bgcolor="#f5f5f5" style="background-color: #f5f5f5; color: #444444; font-family: 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif; width: 100%; padding-left: 0; padding-bottom: 0; padding-top: 0; padding-right: 0;">
+            <tr>
+                <td align="left" style="text-align: left; padding-left: 0; padding-bottom: 0; padding-top: 0; padding-right: 0;">
+                    <table cellspacing="0" cellpadding="0" width="100%" style="font-family: 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif; width: 100%; padding-left: 0; padding-bottom: 0; padding-top: 0; padding-right: 0;">
+                        <tr>
+                            <td align="left" valign="top" style="vertical-align: top; text-align: left; padding-top: 0; padding-right: 0; padding-bottom: 10px; padding-left: 0; font-size: 20px; color: #444444;">@Model.BusinessName
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left" valign="top" style="vertical-align: top; text-align: left; padding-top: 0; padding-right: 0; padding-bottom: 10px; padding-left: 0; font-size: 26px; color: #b4009e;">@Model.Title
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left" valign="top" style="vertical-align: top; text-align: left; padding-top: 0; padding-right: 0; padding-bottom: 10px; padding-left: 0; font-size: 14px; color: #777777;">@Model.Attribution
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table cellspacing="0" cellpadding="0" width="100%" bgcolor="#f5f5f5" style="background-color: #f5f5f5; color: #444444; font-family: 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif; width: 100%; padding-left: 0; padding-bottom: 0; padding-top: 0; padding-right: 0;">
+                        <tr>
+                            <td valign="bottom" style="width: 70%; text-align: left; vertical-align: bottom; padding-left: 0; padding-bottom: 5px; padding-top: 0; padding-right: 0;">
+                                <table cellspacing="0" cellpadding="0" width="100%" style="text-align: left; width: 100%; font-family: 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif; padding-left: 0; padding-bottom: 0; padding-top: 0; padding-right: 0;">
+                                    <tr>
+                                        <td>
+                                            <table cellspacing="0" cellpadding="0" width="100%" style="text-align: left; width: 100%; font-family: 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif; padding-left: 0; padding-bottom: 0; padding-top: 0; padding-right: 0;">
+                                                <tr>
+                                                    <td valign="bottom" style="font-size: 12px; vertical-align: bottom; color: #b4009e;">@DailyDeals.SaveHeader</td>
+
+                                                    @if (!string.IsNullOrEmpty(Model.MinimumSpend))
+                                                    {
+                                                        <td valign="bottom" style="font-size: 12px; vertical-align: bottom; color: #b4009e;">
+                                                            @DailyDeals.SpendHeader
+                                                        </td>
+                                                    }
+                                                </tr>
+                                                <tr>
+
+                                                    <td valign="bottom" style="font-size: 24px; font-weight: normal; vertical-align: bottom; color: #b4009e;">
+                                                        @if (!string.IsNullOrWhiteSpace(Model.Discount))
+                                                        {
+                                                            @Model.Discount
+                                                        }
+                                                        else
+                                                        {
+                                                            @Model.DiscountAmmount
+                                                        }
+                                                    </td>
+                                                    @if (!string.IsNullOrEmpty(Model.MinimumSpend))
+                                                    {
+                                                        <td valign="bottom" style="font-size: 24px; font-weight: normal; vertical-align: bottom; color: #b4009e;">@Model.MinimumSpend</td>
+                                                    }
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td align="center" valign="middle" bgcolor="#ffb900" style="width: 40%; text-align: center; vertical-align: middle; padding-left: 0; padding-bottom: 0; padding-top: 0; padding-right: 0; background-color: #ffb900; color: #ffffff">
+                                            <a href="@Model.TransactionUrl" bgcolor="#ffb900" target="_blank" style="display: block; font-size: 16px;  background-color: #ffb900; text-decoration: none; font-family: 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif; color: #505050; padding-left: 10px;">@DailyDeals.ViewOffer</a>
+
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>

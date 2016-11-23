@@ -1,0 +1,223 @@
+/*
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+*/
+@font-face {
+  font-family: "Segoe UI Web Light";
+  src: url('https://i.s-microsoft.com/fonts/Segoe-UI/West-European/Light/latest.eot');
+  src: local("Segoe UI Light"), local("Segoe WP Light"), url('https://i.s-microsoft.com/fonts/Segoe-UI/West-European/Light/latest.eot?#iefix') format('embedded-opentype'), url('https://i.s-microsoft.com/fonts/Segoe-UI/West-European/Light/latest.woff') format('woff'), url('https://i.s-microsoft.com/fonts/Segoe-UI/West-European/Light/latest.ttf') format('truetype'), url('https://i.s-microsoft.com/fonts/Segoe-UI/West-European/Light/latest.svg#web') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'MSHPIconsRegular';
+  src: url('https://i.s-microsoft.com/fonts/homepage/icons/mshpicons-regular-webfont.eot');
+  src: url('https://i.s-microsoft.com/fonts/homepage/icons/mshpicons-regular-webfont.eot?#iefix') format('embedded-opentype'), url('https://i.s-microsoft.com/fonts/homepage/icons/mshpicons-regular-webfont.woff') format('woff'), url('https://i.s-microsoft.com/fonts/homepage/icons/mshpicons-regular-webfont.ttf') format('truetype'), url('https://i.s-microsoft.com/fonts/homepage/icons/mshpicons-regular-webfont.svg#web') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Segoe UI Web Regular";
+  src: url('https://i.s-microsoft.com/fonts/Segoe-UI/West-European/Normal/latest.eot');
+  src: local("Segoe UI"), local("Segoe"), local("Segoe WP"), url('https://i.s-microsoft.com/fonts/Segoe-UI/West-European/Normal/latest.eot?#iefix') format('embedded-opentype'), url('https://i.s-microsoft.com/fonts/Segoe-UI/West-European/Normal/latest.woff') format('woff'), url('https://i.s-microsoft.com/fonts/Segoe-UI/West-European/Normal/latest.ttf') format('truetype'), url('https://i.s-microsoft.com/fonts/Segoe-UI/West-European/Normal/latest.svg#web') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Segoe UI Web Semibold';
+  src: url('https://i.s-microsoft.com/fonts/segoe-ui/west-european/semibold/latest.eot');
+  src: url('https://i.s-microsoft.com/fonts/segoe-ui/west-european/semibold/latest.eot?#iefix') format('embedded-opentype'), url('https://i.s-microsoft.com/fonts/segoe-ui/west-european/semibold/latest.woff') format('woff'), url('https://i.s-microsoft.com/fonts/segoe-ui/west-european/semibold/latest.ttf') format('truetype'), url('https://i.s-microsoft.com/fonts/segoe-ui/west-european/semibold/latest.svg#web') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "bingoffers";
+  src: url('https://earn.microsoft.com/offers/earn/content/fonts/bingoffers-20140312.eot');
+  src: url('https://earn.microsoft.com/offers/earn/content/fonts/bingoffers-20140312.woff') format("woff"), url('https://earn.microsoft.com/offers/earn/content/fonts/bingoffers-20140312.ttf') format("truetype"), url('https://earn.microsoft.com/offers/earn/content/fonts/bingoffers-20140312.eot?#iefix') format("embedded-opentype"), url('https://earn.microsoft.com/offers/earn/content/fonts/bingoffers-20140312.svg#bingoffers') format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+@media screen and (max-width: 709px) {
+  @-ms-viewport {
+    width: device-width;
+    zoom: 100%;
+  }
+  @-o-viewport {
+    width: device-width;
+    zoom: 100%;
+  }
+  @-webkit-viewport {
+    width: device-width;
+    zoom: 100%;
+  }
+  @-moz-viewport {
+    width: device-width;
+    zoom: 100%;
+  }
+}
+/* Update this region whenever the webfonts file is changed. Contains mapping between icons and the web fonts*/
+@media screen and (min-width: 261px) {
+  .icon-arrow-down:before {
+    content: "u";
+  }
+  .icon-arrow-forward:before {
+    content: "x";
+  }
+  .icon-call:before {
+    content: "v";
+  }
+  .icon-card:before {
+    content: "j";
+  }
+  .icon-close:before {
+    content: "B";
+  }
+  .icon-close:hover:before {
+    content: "C";
+  }
+  .icon-copy:before {
+    content: "K";
+  }
+  .icon-discount-applied:before {
+    content: "k";
+  }
+  .icon-driving-direction:before {
+    content: "a";
+  }
+  .icon-feeds:before {
+    content: "t";
+  }
+  .icon-filter-justified:before {
+    content: "Q";
+  }
+  .icon-focus:before {
+    content: "n";
+  }
+  .icon-gear:before {
+    content: "o";
+  }
+  .icon-get-info:before {
+    content: "l";
+  }
+  .icon-mail:before {
+    content: "J";
+  }
+  .icon-minus:before {
+    content: "f";
+  }
+  .icon-plus:before {
+    content: "e";
+    font-family: "bingoffers";
+  }
+  .icon-push-pin:before {
+    content: "s";
+  }
+  .icon-signUp:before {
+    content: "i";
+  }
+  .icon-search:before {
+    content: "r";
+  }
+  .icon-slide-previous:before {
+    content: "R";
+  }
+  .icon-slide-next:before {
+    content: "S";
+  }
+  .icon-tick:before {
+    content: "q";
+  }
+  .icon-down-arrow:before {
+    content: "U";
+  }
+}
+/*end region*/
+#footer {
+  padding: 40px 0;
+  background-color: #eeeeee;
+}
+#footer div.logo {
+  float: left;
+  position: relative;
+  display: inline-block;
+}
+#footer div.menu {
+  float: right;
+  display: inline-block;
+}
+#footer div.menu ul {
+  list-style-type: none;
+}
+#footer div.menu ul li {
+  vertical-align: middle;
+  float: left;
+  margin: 0;
+  color: #626262;
+  font-family: Segoe UI Web Regular;
+  font-size: 12px;
+  line-height: 30px;
+}
+#footer div.menu ul li a {
+  text-decoration: none;
+  margin-right: 30px;
+  color: #626262;
+  font-family: Segoe UI Web Regular;
+  font-size: 12px;
+  line-height: 30px;
+}
+#footer div.menu ul li a:hover {
+  color: #00188f;
+}
+/* #region Tablet Portrait 710*/
+@media screen and (max-width: 989px) {
+  #footer div.menu ul {
+    list-style-type: none;
+  }
+  #footer div.menu ul li a {
+    margin-right: 20px;
+    font-size: 12px;
+  }
+}
+/* #region 480 pixel breakpoint */
+@media screen and (max-width: 709px) {
+  #footer {
+    width: 100%;
+    padding: 40px 0;
+    bottom: 0;
+    background-color: #eeeeee;
+  }
+  #footer div.logo {
+    float: none;
+    display: block;
+  }
+  #footer div.menu {
+    float: none;
+  }
+  #footer div.menu ul {
+    list-style-type: none;
+  }
+  #footer div.menu ul li {
+    vertical-align: middle;
+    float: none;
+    margin: 0;
+    color: #505050;
+    font-family: Segoe UI Web Regular;
+    font-size: 12px;
+    line-height: 30px;
+  }
+  #footer div.menu ul li img {
+    padding-right: 40px;
+  }
+  #footer div.menu ul li a {
+    text-decoration: none;
+    margin-right: 20px;
+    color: #626262;
+    font-family: Segoe UI Web Regular;
+    font-size: 12px;
+    line-height: 30px;
+  }
+  #footer div.menu ul li:first-child {
+    margin-top: 10px;
+  }
+}
+/*# sourceMappingURL=footer.css.map */

@@ -1,0 +1,260 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+@{
+    ViewBag.Title = "Web Analytics";
+}
+
+@section styles
+{
+    <link href="https://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/buttons/1.1.0/css/buttons.dataTables.min.css" rel="stylesheet" />
+    @Styles.Render("~/bundles/reportsCss")
+}
+
+<div class="content-wrapper web-analytics" style="min-height: 916px;" id="mainSection">
+    <!-- Page header -->
+    <div class="row">
+        <div class="col-lg-12">
+            <ol class="breadcrumb">
+                <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active"><i class="fa fa-pie-chart"></i> Reports</li>
+                <li class="active"><i class="fa fa-area-chart"></i> @ViewBag.Title</li>
+            </ol>
+
+        </div>
+    </div>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="alert alert-warning alert-dismissible" style="display: none;">
+            <h4>
+                <i class="icon fa fa-warning"></i>
+                Unauthorized
+            </h4>
+            <p>
+                You don't have permission for fetching data.
+            </p>
+        </div>
+
+        <div class="alert alert-danger alert-dismissible" style="display: none;">
+            <h4>
+                <i class="icon fa fa-ban"></i>
+                Error
+            </h4>
+            <p>
+            </p>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box box-primary">
+                    <div class="box-header">
+                        <h3 class="box-title">Filter by:</h3>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <!-- Date range -->
+                        <div class="col-md-2">
+                            <div class="form-group">
+
+                                <label>Date range:</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input type="text" class="form-control pull-right" id="dateRange">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>Campaign Id:</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control pull-right" id="campaignId">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>Event:</label>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="eventTypeRadios" id="optionsRadios1" value="0" checked="">
+                                        All
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="eventTypeRadios" id="optionsRadios2" value="1">
+                                        Page Load
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="eventTypeRadios" id="optionsRadios3" value="2">
+                                        New Session
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="eventTypeRadios" id="optionsRadios3" value="3">
+                                        Card Added
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <div class="form-group">
+                                <div class="col-md-4">
+                                    <button type="submit" id="get-data" class="btn btn-default" data-bind="click: getData">Get Data</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row charts-and-table">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="nav-tabs-custom">
+                        <ul class="nav nav-tabs">
+                            <li class="nav active">
+                                <a href="#tabs-charts" data-toggle="tab">
+                                    <label>Charts</label>
+                                </a>
+                            </li>
+                            <li class="nav">
+                                <a href="#tabs-table" data-toggle="tab">
+                                    <label>Data</label>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane fade in active" id="tabs-charts">
+                                <br />
+                                <div class="row">
+
+                                    <div class="col-lg-8">
+                                        <div class="panel panel-default" id="visitors-by-date-panel">
+                                            <div class="panel-heading">
+                                                Visitors
+                                            </div>
+                                            <div class="panel-body chart-container line-chart">
+                                                <div class="spinner-container">
+                                                    <div class="chart-text">
+                                                        No Data
+                                                    </div>
+                                                </div>
+                                                <div class="chart-header-container">
+                                                    <p class="text-center">
+                                                        <strong></strong>
+                                                    </p>
+                                                </div>
+                                                <div class="chart-canvas-container">
+                                                    <canvas></canvas>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="panel panel-default" id="new-users-by-date-panel">
+                                            <div class="panel-heading">
+                                                New Users
+                                            </div>
+                                            <div class="panel-body chart-container bar-chart">
+                                                <div class="spinner-container">
+                                                    <div class="chart-text">
+                                                        No Data
+                                                    </div>
+                                                </div>
+                                                <div class="chart-header-container">
+                                                    <p class="text-center">
+                                                        <strong></strong>
+                                                    </p>
+                                                </div>
+                                                <div class="chart-canvas-container">
+                                                    <canvas></canvas>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4">
+                                        <div class="panel panel-default" id="device-types-panel">
+                                            <div class="panel-heading">
+                                                Device Types
+                                            </div>
+                                            <div class="panel-body chart-container pie-chart">
+                                                <div class="spinner-container">
+                                                    <div class="chart-text">
+                                                        No Data
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 chart-canvas-container">
+                                                    <canvas></canvas>
+                                                </div>
+                                                <div class="col-md-6 chart-legend-container">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="panel panel-default" id="top-visited-pages-panel">
+                                            <div class="panel-heading">
+                                                Top Visited Pages
+                                            </div>
+                                            <div class="panel-body chart-container pie-chart">
+                                                <div class="spinner-container">
+                                                    <div class="chart-text">
+                                                        No Data
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 chart-canvas-container">
+                                                    <canvas></canvas>
+                                                </div>
+                                                <div class="col-md-6 chart-legend-container">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="tabs-table">
+                                <br />
+                                <table id="resultDataTable" class="display compact" cellspacing="0" width="100%"></table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</div>
+
+@section scripts
+{
+    <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+    <script src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.1.0/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.1.0/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.10/js/dataTables.bootstrap.min.js"></script>
+    @Scripts.Render("~/bundles/reportsJs")
+
+    <script>
+        $(document).ready(function () {
+            var model = new window.webAnalyticsInfoViewModel();
+            ko.applyBindings(model, document.getElementById("mainSection"));
+        });
+    </script>
+}

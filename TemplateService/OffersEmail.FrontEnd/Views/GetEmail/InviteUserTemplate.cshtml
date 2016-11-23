@@ -1,0 +1,67 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+@model AutoprospectingCreateOfferVM
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8" />
+    <title>@Html.Raw(Autoprospecting.PageTitle)</title>
+</head>
+<body style="background: #006DD4;" bgcolor="#006DD4">
+
+    <table width="600" cellpadding="20" cellspacing="0"  style="margin-right: auto; margin-left: auto; margin-bottom: 0; margin-top: 0; width: 600px;">
+        <tr>
+            <td bgcolor="#ffffff"  align="center" style=" border: 0;text-align: center; padding-right: 20px; padding-left: 20px; padding-bottom: 20px; padding-top: 20px; background-color: #ffffff;">
+                <table cellspacing="0" cellpadding="0" border="0" width="560" bgcolor="#ffffff"
+                       style="font-family: 'Segoe UI Regular', 'Segoe UI', Arial, Helvetica, sans-serif; background-color: #ffffff; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; font-size: 13px; width: 560px;">
+
+                    <tr>
+                        <td align="left" valign="middle" style="vertical-align: middle; text-align: left; padding-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 20px;">
+                            <table cellspacing="0" cellpadding="0" width="100%" style="font-family: 'Segoe UI Regular', 'Segoe UI', Arial, Helvetica, sans-serif; width: 100%; width: 100%; padding-left: 0; padding-bottom: 0; padding-top: 0; padding-right: 0;">
+                                <tr>
+                                    <td>
+                                        <p style="font-size: 16px; color: #777777; margin: 0 0 20px 0;">@Autoprospecting.Email_Greetings <span>@Model.Name</span>,</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p style="font-size: 16px; color: #777777; margin: 0 0 20px 0;">@Autoprospecting.UserInvite_DescFirstParagraph</p>
+                                    </td>
+                                </tr>
+								<tr>
+									<td>
+									    <p style="font-size: 16px; color: #777777; margin: 0 0 20px 0;">
+										<a href="@Model.GettingStartedUrl" style="border:none;">
+										@Model.GettingStartedUrl
+										</a>
+										</p>
+									</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p style="font-size: 16px; color: #777777; margin: 0 0 20px 0;">@Autoprospecting.UserInvite_DescSecondParagraph</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td valign="middle" align="left" style="vertical-align: middle; text-align: left; padding-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 30px;">
+                            <a href="@Autoprospecting.MicrosoftUrl" style="padding-right: 0; padding-top: 0; padding-left: 0; padding-bottom: 0; text-decoration: none;">
+                                <img width="70" src="@Autoprospecting.MsLogoUrl" alt="@Autoprospecting.Microsoft" style="width: 70px; border-left-width: 0; border-bottom-width: 0; border-right-width: 0; border-top-width: 0; font-size: 10px;"  />
+                            </a>
+                        </td>
+                    </tr>
+
+                </table>
+            </td>
+        </tr>
+    </table>
+    <style>@@media print{#_t { background-image: url('https://oegirwx5.emltrk.com/oegirwx5?p&d=%%email%%');}} div.OutlookMessageHeader {background-image:url('https://oegirwx5.emltrk.com/oegirwx5?f&d=%%email%%')} table.moz-email-headers-table {background-image:url('https://oegirwx5.emltrk.com/oegirwx5?f&d=%%email%%')} blockquote #_t {background-image:url('https://oegirwx5.emltrk.com/oegirwx5?f&d=%%email%%')} #MailContainerBody #_t {background-image:url('https://oegirwx5.emltrk.com/oegirwx5?f&d=%%email%%')}</style><div id="_t"></div><img src="https://oegirwx5.emltrk.com/oegirwx5?d=%%email%%" width="1" height="1" border="0" />
+</body>
+</html>

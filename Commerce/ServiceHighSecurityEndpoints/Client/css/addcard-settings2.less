@@ -1,0 +1,182 @@
+/*
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+*/
+@import url('settings.less');
+
+body {
+    height: 240px;
+    width: 440px;
+    left: 0;
+    top: 0;
+
+    .addCard_section {
+        width: 320px;
+        background-color: @white;
+        float: left;
+        padding: 0;
+        position: relative;
+
+        #cardlink-addCard-screen-error {
+            color: @red;
+            display:block;
+            margin-bottom:5px;
+        }
+
+        .cards {
+            margin-bottom: @gridSingle;
+
+            label {
+                color: @darkGray;
+                display: block;
+                width: 100%;
+                font-family: @fontRegular;
+                font-size: @fontSize4;
+                line-height: 20px;
+            }
+
+            .account-update {
+                height: @gridTriple;
+                width: 310px;
+                margin-bottom: @gridSingle/2;
+                font-size: 16px;
+                font-family: @fontLight;
+                color: @darkGray;
+            }
+
+            #disclaimer-card {
+                font-size: 11px;
+                line-height: 14px;
+                color: @darkGray;
+                margin: 0 0 10px 0;
+                font-family: @fontSmall;
+
+                a {
+                    color: @darkGray;
+                }
+            }
+        }
+
+        #loading-icon {
+            background: @loadingAnimation no-repeat;
+            width: @gridSingle * 3;
+            height: @gridSingle * 4;
+            float:right;
+            display: none;
+            margin-right: 55px;
+            margin-top:5px;
+        }
+
+        .cardlink_addCard_add {
+            margin-left: 30px;
+        }
+
+        .cardlink_addCard_Cancel {
+            margin-left: 0px;
+        }
+
+        .cardlink-button {
+            width: 140px;
+            border: 1px solid @lightGray;
+            background-color: @white;
+            color: @blue;
+            font-family: @fontRegular;
+            font-size: @fontSize2;
+            line-height: 40px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: #e5e5e5;
+            }
+
+            &:active {
+                background-color: @blue;
+                color: @white;
+                border: 1px solid @white;
+            }
+        }
+
+        .action-button {
+            background-color: @newBingOrange;
+            color: @newDarkGray;
+            border: 1px solid @newBingOrange;
+        }
+
+            .action-button:hover {
+                background-color: @newDarkGray;
+                border: 1px solid @newDarkGray;
+                color: @newBingOrange;
+            }
+    }
+}
+
+
+@media screen and (max-width: 330px) {
+    body {
+        height: 240px;
+        width: 270px;
+        left: 0;
+        top: 0;
+
+        .addCard_section {
+            width: 270px;
+            background-color: @white;
+            float: left;
+            padding: 0;
+            position: relative;
+
+            .cards {
+                margin-bottom: @gridSingle;
+
+                span {
+                    color: @darkGray;
+                    display: block;
+                    width: 100%;
+                    font-family: @fontRegular;
+                    font-size: @fontSize4;
+                    line-height: 20px;
+                }
+
+                .account-update {
+                    height: @gridTriple;
+                    width: 270px;
+                    margin-bottom: @gridSingle;                    
+                    font-family: @fontLight;
+                    color: @darkGray;
+                }
+            }
+
+            .cardlink_addCard_add {
+                margin-left: 25px;
+            }
+
+            #loading-icon {
+               margin-right: 35px;
+               margin-top:5px;
+            }
+
+            .cardlink_addCard_Cancel {
+                
+            }
+
+            .cardlink-button {
+                width: 120px;
+                
+                .cardlink-button:hover {
+                }
+            }
+
+            .action-button {
+                background-color: @newBingOrange;
+                color: @newDarkGray;
+                border: 1px solid @newBingOrange;
+            }
+
+                .action-button:hover {
+                    background-color: @newDarkGray;
+                    border: 1px solid @newDarkGray;
+                    color: @newBingOrange;
+                }
+        }
+    }
+}

@@ -1,0 +1,1051 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Users.Dal.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityType Name="ConfirmationCodes">
+          <Key>
+            <PropertyRef Name="UserIdHash" />
+            <PropertyRef Name="PartitionId" />
+            <PropertyRef Name="EntityType" />
+            <PropertyRef Name="CreatedDate" />
+          </Key>
+          <Property Name="UserIdHash" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="PartitionId" Type="int" Nullable="false" />
+          <Property Name="EntityId" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="EntityType" Type="tinyint" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Code" Type="int" Nullable="false" />
+          <Property Name="RetryCount" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ExpiredDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmailSubscriptions">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="PartitionId" />
+            <PropertyRef Name="LocationId" />
+            <PropertyRef Name="SubscriptionType" />
+          </Key>
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PartitionId" Type="int" Nullable="false" />
+          <Property Name="LocationId" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="SubscriptionType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmailUnsubscribeUrls">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="PartitionId" />
+          </Key>
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PartitionId" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UnsubscribeUrl" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ExternalUsers">
+          <Key>
+            <PropertyRef Name="ExternalId" />
+            <PropertyRef Name="PartitionId" />
+            <PropertyRef Name="AuthProvider" />
+          </Key>
+          <Property Name="ExternalId" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PartitionId" Type="int" Nullable="false" />
+          <Property Name="AuthProvider" Type="tinyint" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="PartitionId" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PartitionId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="MsId" Type="nvarchar" MaxLength="100" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+          <Property Name="IsSuppressed" Type="bit" Nullable="false" />
+          <Property Name="Json" Type="nvarchar(max)" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="LinkedToUserId" Type="uniqueidentifier" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="Source" Type="nvarchar(max)" />
+          <Property Name="IsEmailConfirmed" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_EmailSubscription_UserId_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="EmailSubscriptions" Type="Self.EmailSubscriptions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="PartitionId" />
+            </Principal>
+            <Dependent Role="EmailSubscriptions">
+              <PropertyRef Name="UserId" />
+              <PropertyRef Name="PartitionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailUnsubscribeUrls_UserId_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="EmailUnsubscribeUrls" Type="Self.EmailUnsubscribeUrls" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="PartitionId" />
+            </Principal>
+            <Dependent Role="EmailUnsubscribeUrls">
+              <PropertyRef Name="UserId" />
+              <PropertyRef Name="PartitionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="ConfirmEntity" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserIdHash" Type="nvarchar" Mode="In" />
+          <Parameter Name="PartitionId" Type="int" Mode="In" />
+          <Parameter Name="EntityType" Type="tinyint" Mode="In" />
+          <Parameter Name="Code" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CreateConfirmationCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserIdHash" Type="nvarchar" Mode="In" />
+          <Parameter Name="PartitionId" Type="int" Mode="In" />
+          <Parameter Name="EntityId" Type="nvarchar" Mode="In" />
+          <Parameter Name="EntityType" Type="tinyint" Mode="In" />
+          <Parameter Name="UserId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="MaxRetryCount" Type="int" Mode="In" />
+          <Parameter Name="ExpiredDate" Type="datetime2" Mode="In" />
+        </Function>
+        <Function Name="CreateNotExistingExternalUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ExternalId" Type="nvarchar" Mode="In" />
+          <Parameter Name="PartitionId" Type="int" Mode="In" />
+          <Parameter Name="AuthProvider" Type="tinyint" Mode="In" />
+        </Function>
+        <Function Name="CreateOrUpdateEmailSubscription" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="PartitionId" Type="int" Mode="In" />
+          <Parameter Name="LocationId" Type="nvarchar" Mode="In" />
+          <Parameter Name="IsActive" Type="bit" Mode="In" />
+          <Parameter Name="SubscriptionType" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="CreateOrUpdateEmailUnsubscribeUrl" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="PartitionId" Type="int" Mode="In" />
+          <Parameter Name="UnsubscribeUrl" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="CreateOrUpdateMerchantSubscriptions" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="PartitionId" Type="int" Mode="In" />
+          <Parameter Name="SubscriptionType" Type="nvarchar" Mode="In" />
+          <Parameter Name="ScheduleType" Type="nvarchar" Mode="In" />
+          <Parameter Name="Preferences" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="CreateOrUpdateUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="PartitionId" Type="int" Mode="In" />
+          <Parameter Name="MsId" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+          <Parameter Name="PhoneNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="Json" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Source" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="IsEmailConfirmed" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="DeleteEmailSubscriptions" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="PartitionId" Type="int" Mode="In" />
+          <Parameter Name="LocationId" Type="nvarchar" Mode="In" />
+          <Parameter Name="SubscriptionType" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="DeleteExternalUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ExternalId" Type="nvarchar" Mode="In" />
+          <Parameter Name="PartitionId" Type="int" Mode="In" />
+          <Parameter Name="AuthProvider" Type="tinyint" Mode="In" />
+        </Function>
+        <Function Name="DeleteUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="PartitionId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetConfirmEmailResendCountByUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="PartitionId" Type="int" Mode="In" />
+          <Parameter Name="EntityType" Type="tinyint" Mode="In" />
+          <Parameter Name="FromDateTime" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="GetConfirmEntity" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserIdHash" Type="nvarchar" Mode="In" />
+          <Parameter Name="PartitionId" Type="int" Mode="In" />
+          <Parameter Name="EntityType" Type="tinyint" Mode="In" />
+        </Function>
+        <Function Name="GetEmailJobs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Take" Type="int" Mode="In" />
+          <Parameter Name="FromPartitionId" Type="int" Mode="In" />
+          <Parameter Name="FromUserId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="GetEmailSubscriptions" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Take" Type="int" Mode="In" />
+          <Parameter Name="IsActive" Type="bit" Mode="In" />
+          <Parameter Name="FromPartitionId" Type="int" Mode="In" />
+          <Parameter Name="FromUserId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="FromLocationId" Type="nvarchar" Mode="In" />
+          <Parameter Name="SubscriptionType" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GetEmailSubscriptionsByEmail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+          <Parameter Name="IsActive" Type="bit" Mode="In" />
+          <Parameter Name="SubscriptionType" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GetEmailSubscriptionsByLocationId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LocationId" Type="nvarchar" Mode="In" />
+          <Parameter Name="IsActive" Type="bit" Mode="In" />
+          <Parameter Name="SubscriptionType" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GetEmailSubscriptionsByUserId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="PartitionId" Type="int" Mode="In" />
+          <Parameter Name="IsActive" Type="bit" Mode="In" />
+          <Parameter Name="SubscriptionType" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GetEmailUnsubscribeUrlByUserId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="PartitionId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetEmailUnsubscribeUrlToUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UpdatedBefore" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="GetMerchantSubscriptionsByUserId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="PartitionId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetScheduledEmails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetUserByUserId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="PartitionId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetUserIdByExternalId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ExternalId" Type="nvarchar" Mode="In" />
+          <Parameter Name="PartitionId" Type="int" Mode="In" />
+          <Parameter Name="AuthProvider" Type="int" Mode="In" />
+        </Function>
+        <Function Name="LogUserConfirmEmailResend" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="PartitionId" Type="int" Mode="In" />
+          <Parameter Name="EntityType" Type="tinyint" Mode="In" />
+        </Function>
+        <Function Name="UnsubscribeMerchantSubscriptions" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="PartitionId" Type="int" Mode="In" />
+          <Parameter Name="SubscriptionType" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UpdateEmailJob" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="JobId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="UpdateEmailSchedule" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ScheduleId" Type="int" Mode="In" />
+          <Parameter Name="CampaignName" Type="varchar" Mode="In" />
+          <Parameter Name="Status" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="UpdateExternalUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NewUserId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ExternalId" Type="nvarchar" Mode="In" />
+          <Parameter Name="PartitionId" Type="int" Mode="In" />
+          <Parameter Name="AuthProvider" Type="tinyint" Mode="In" />
+        </Function>
+        <Function Name="UpdateUserSuppressInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="PartitionId" Type="int" Mode="In" />
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+          <Parameter Name="IsSuppressed" Type="bit" Mode="In" />
+        </Function>
+        <EntityContainer Name="UsersDalStoreContainer">
+          <EntitySet Name="ConfirmationCodes" EntityType="Self.ConfirmationCodes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmailSubscriptions" EntityType="Self.EmailSubscriptions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmailUnsubscribeUrls" EntityType="Self.EmailUnsubscribeUrls" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExternalUsers" EntityType="Self.ExternalUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_EmailSubscription_UserId_Users" Association="Self.FK_EmailSubscription_UserId_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="EmailSubscriptions" EntitySet="EmailSubscriptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailUnsubscribeUrls_UserId_Users" Association="Self.FK_EmailUnsubscribeUrls_UserId_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="EmailUnsubscribeUrls" EntitySet="EmailUnsubscribeUrls" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Users.Dal" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="UsersEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="EmailSubscriptionDbs" EntityType="Users.Dal.EmailSubscriptionDb" />
+          <EntitySet Name="ExternalUserDbs" EntityType="Users.Dal.ExternalUserDb" />
+          <EntitySet Name="UserDbs" EntityType="Users.Dal.UserDb" />
+          <AssociationSet Name="FK_EmailSubscription_UserId_Users" Association="Users.Dal.FK_EmailSubscription_UserId_Users">
+            <End Role="Users" EntitySet="UserDbs" />
+            <End Role="EmailSubscriptions" EntitySet="EmailSubscriptionDbs" />
+          </AssociationSet>
+          <FunctionImport Name="CreateOrUpdateEmailSubscription" ReturnType="Collection(Users.Dal.CreateOrUpdateEmailSubscription_Result)">
+            <Parameter Name="UserId" Mode="In" Type="Guid" />
+            <Parameter Name="PartitionId" Mode="In" Type="Int32" />
+            <Parameter Name="LocationId" Mode="In" Type="String" />
+            <Parameter Name="IsActive" Mode="In" Type="Boolean" />
+            <Parameter Name="SubscriptionType" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CreateOrUpdateUser" EntitySet="UserDbs" ReturnType="Collection(Users.Dal.UserDb)">
+            <Parameter Name="Id" Mode="In" Type="Guid" />
+            <Parameter Name="PartitionId" Mode="In" Type="Int32" />
+            <Parameter Name="MsId" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Json" Mode="In" Type="String" />
+            <Parameter Name="Source" Mode="In" Type="String" />
+            <Parameter Name="IsEmailConfirmed" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteEmailSubscriptions">
+            <Parameter Name="UserId" Mode="In" Type="Guid" />
+            <Parameter Name="PartitionId" Mode="In" Type="Int32" />
+            <Parameter Name="LocationId" Mode="In" Type="String" />
+            <Parameter Name="SubscriptionType" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetEmailSubscriptionsByLocationId" ReturnType="Collection(Users.Dal.GetEmailSubscriptions_Result)">
+            <Parameter Name="LocationId" Mode="In" Type="String" />
+            <Parameter Name="IsActive" Mode="In" Type="Boolean" />
+            <Parameter Name="SubscriptionType" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetEmailSubscriptionsByUserId" ReturnType="Collection(Users.Dal.GetEmailSubscriptions_Result)">
+            <Parameter Name="UserId" Mode="In" Type="Guid" />
+            <Parameter Name="PartitionId" Mode="In" Type="Int32" />
+            <Parameter Name="IsActive" Mode="In" Type="Boolean" />
+            <Parameter Name="SubscriptionType" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetUserByUserId" EntitySet="UserDbs" ReturnType="Collection(Users.Dal.UserDb)">
+            <Parameter Name="Id" Mode="In" Type="Guid" />
+            <Parameter Name="PartitionId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetUserIdByExternalId" ReturnType="Collection(Guid)">
+            <Parameter Name="ExternalId" Mode="In" Type="String" />
+            <Parameter Name="PartitionId" Mode="In" Type="Int32" />
+            <Parameter Name="AuthProvider" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetEmailSubscriptions" ReturnType="Collection(Users.Dal.GetEmailSubscriptions_Result)">
+            <Parameter Name="Take" Mode="In" Type="Int32" />
+            <Parameter Name="IsActive" Mode="In" Type="Boolean" />
+            <Parameter Name="FromPartitionId" Mode="In" Type="Int32" />
+            <Parameter Name="FromUserId" Mode="In" Type="Guid" />
+            <Parameter Name="FromLocationId" Mode="In" Type="String" />
+            <Parameter Name="SubscriptionType" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="EmailUnsubscribeUrlDbs" EntityType="Users.Dal.EmailUnsubscribeUrlDb" />
+          <FunctionImport Name="CreateOrUpdateEmailUnsubscribeUrl" ReturnType="Collection(Users.Dal.CreateOrUpdateEmailUnsubscribeUrl_Result)">
+            <Parameter Name="UserId" Mode="In" Type="Guid" />
+            <Parameter Name="PartitionId" Mode="In" Type="Int32" />
+            <Parameter Name="UnsubscribeUrl" Mode="In" Type="String" />
+          </FunctionImport>
+          <AssociationSet Name="FK_EmailUnsubscribeUrls_UserId_Users" Association="Users.Dal.FK_EmailUnsubscribeUrls_UserId_Users">
+            <End Role="User" EntitySet="UserDbs" />
+            <End Role="EmailUnsubscribeUrl" EntitySet="EmailUnsubscribeUrlDbs" />
+          </AssociationSet>
+          <FunctionImport Name="GetEmailUnsubscribeUrlByUserId" ReturnType="Collection(Users.Dal.EmailUnsubscribeUrl_Result)">
+            <Parameter Name="UserId" Mode="In" Type="Guid" />
+            <Parameter Name="PartitionId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetEmailUnsubscribeUrlToUpdate" ReturnType="Collection(Users.Dal.EmailUnsubscribeUrl_Result)">
+          <Parameter Name="UpdatedBefore" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="CreateNotExistingExternalUser" EntitySet="ExternalUserDbs" ReturnType="Collection(Users.Dal.ExternalUserDb)">
+            <Parameter Name="UserId" Mode="In" Type="Guid" />
+            <Parameter Name="ExternalId" Mode="In" Type="String" />
+            <Parameter Name="PartitionId" Mode="In" Type="Int32" />
+            <Parameter Name="AuthProvider" Mode="In" Type="Byte" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateExternalUser" EntitySet="ExternalUserDbs" ReturnType="Collection(Users.Dal.ExternalUserDb)">
+            <Parameter Name="NewUserId" Mode="In" Type="Guid" />
+            <Parameter Name="ExternalId" Mode="In" Type="String" />
+            <Parameter Name="PartitionId" Mode="In" Type="Int32" />
+            <Parameter Name="AuthProvider" Mode="In" Type="Byte" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteUser">
+            <Parameter Name="UserId" Mode="In" Type="Guid" />
+            <Parameter Name="PartitionId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteExternalUser">
+            <Parameter Name="ExternalId" Mode="In" Type="String" />
+            <Parameter Name="PartitionId" Mode="In" Type="Int32" />
+            <Parameter Name="AuthProvider" Mode="In" Type="Byte" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateUserSuppressInfo" EntitySet="UserDbs" ReturnType="Collection(Users.Dal.UserDb)">
+            <Parameter Name="Id" Mode="In" Type="Guid" />
+            <Parameter Name="PartitionId" Mode="In" Type="Int32" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="IsSuppressed" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="ConfirmEntity" ReturnType="Collection(Users.Dal.ConfirmEntity_Result)">
+            <Parameter Name="UserIdHash" Mode="In" Type="String" />
+            <Parameter Name="PartitionId" Mode="In" Type="Int32" />
+            <Parameter Name="EntityType" Mode="In" Type="Byte" />
+            <Parameter Name="Code" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CreateConfirmationCode" EntitySet="ConfirmationCodeDbs" ReturnType="Collection(Users.Dal.ConfirmationCodeDb)">
+            <Parameter Name="UserIdHash" Mode="In" Type="String" />
+            <Parameter Name="PartitionId" Mode="In" Type="Int32" />
+            <Parameter Name="EntityId" Mode="In" Type="String" />
+            <Parameter Name="EntityType" Mode="In" Type="Byte" />
+            <Parameter Name="UserId" Mode="In" Type="Guid" />
+            <Parameter Name="MaxRetryCount" Mode="In" Type="Int32" />
+            <Parameter Name="ExpiredDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <EntitySet Name="ConfirmationCodeDbs" EntityType="Users.Dal.ConfirmationCodeDb" />
+          <FunctionImport Name="GetConfirmEntity" EntitySet="ConfirmationCodeDbs" ReturnType="Collection(Users.Dal.ConfirmationCodeDb)">
+            <Parameter Name="UserIdHash" Mode="In" Type="String" />
+            <Parameter Name="PartitionId" Mode="In" Type="Int32" />
+            <Parameter Name="EntityType" Mode="In" Type="Byte" />
+          </FunctionImport>
+          <FunctionImport Name="CreateOrUpdateMerchantSubscriptions" ReturnType="Collection(Users.Dal.CreateOrUpdateMerchantSubscriptions_Result)">
+            <Parameter Name="UserId" Mode="In" Type="Guid" />
+            <Parameter Name="PartitionId" Mode="In" Type="Int32" />
+            <Parameter Name="SubscriptionType" Mode="In" Type="String" />
+            <Parameter Name="ScheduleType" Mode="In" Type="String" />
+            <Parameter Name="Preferences" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetMerchantSubscriptionsByUserId" ReturnType="Collection(Users.Dal.GetMerchantSubscriptionsByUserId_Result)">
+            <Parameter Name="UserId" Mode="In" Type="Guid" />
+            <Parameter Name="PartitionId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UnsubscribeMerchantSubscriptions">
+            <Parameter Name="UserId" Mode="In" Type="Guid" />
+            <Parameter Name="PartitionId" Mode="In" Type="Int32" />
+            <Parameter Name="SubscriptionType" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetEmailJobs" ReturnType="Collection(Users.Dal.GetEmailJobs_Result)">
+            <Parameter Name="Take" Mode="In" Type="Int32" />
+            <Parameter Name="FromPartitionId" Mode="In" Type="Int32" />
+            <Parameter Name="FromUserId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateEmailJob">
+          <Parameter Name="JobId" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="GetConfirmEmailResendCountByUser" ReturnType="Collection(Int32)">
+            <Parameter Name="UserId" Mode="In" Type="Guid" />
+            <Parameter Name="PartitionId" Mode="In" Type="Int32" />
+            <Parameter Name="EntityType" Mode="In" Type="Byte" />
+            <Parameter Name="FromDateTime" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="LogUserConfirmEmailResend">
+            <Parameter Name="UserId" Mode="In" Type="Guid" />
+            <Parameter Name="PartitionId" Mode="In" Type="Int32" />
+            <Parameter Name="EntityType" Mode="In" Type="Byte" />
+          </FunctionImport>
+          <FunctionImport Name="GetScheduledEmails" ReturnType="Collection(Users.Dal.GetScheduledEmails_Result)" />
+          <FunctionImport Name="UpdateEmailSchedule">
+            <Parameter Name="ScheduleId" Mode="In" Type="Int32" />
+            <Parameter Name="CampaignName" Mode="In" Type="String" />
+            <Parameter Name="Status" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetEmailSubscriptionsByEmail" ReturnType="Collection(Users.Dal.GetEmailSubscriptions_Result)">
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="IsActive" Mode="In" Type="Boolean" />
+            <Parameter Name="SubscriptionType" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="EmailSubscriptionDb">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="PartitionId" />
+            <PropertyRef Name="LocationId" />
+            <PropertyRef Name="SubscriptionType" />
+          </Key>
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="PartitionId" Type="Int32" Nullable="false" />
+          <Property Name="LocationId" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="User" Relationship="Users.Dal.FK_EmailSubscription_UserId_Users" FromRole="EmailSubscriptions" ToRole="Users" />
+          <Property Type="DateTime" Name="UpdatedDate" Nullable="false" Precision="3" />
+          <Property Type="String" Name="SubscriptionType" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ExternalUserDb">
+          <Key>
+            <PropertyRef Name="ExternalId" />
+            <PropertyRef Name="PartitionId" />
+            <PropertyRef Name="AuthProvider" />
+          </Key>
+          <Property Name="ExternalId" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="PartitionId" Type="Int32" Nullable="false" />
+          <Property Name="AuthProvider" Type="Byte" Nullable="false" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="UpdatedDate" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="UserDb">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="PartitionId" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="PartitionId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Email" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Json" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="EmailSubscriptions" Relationship="Users.Dal.FK_EmailSubscription_UserId_Users" FromRole="Users" ToRole="EmailSubscriptions" />
+          <Property Type="Boolean" Name="IsSuppressed" Nullable="false" />
+          <NavigationProperty Name="EmailUnsubscribeUrl" Relationship="Users.Dal.FK_EmailUnsubscribeUrls_UserId_Users" FromRole="User" ToRole="EmailUnsubscribeUrl" />
+          <Property Type="String" Name="MsId" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsDeleted" Nullable="false" />
+          <Property Type="Guid" Name="LinkedToUserId" />
+          <Property Type="String" Name="PhoneNumber" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Source" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsEmailConfirmed" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_EmailSubscription_UserId_Users">
+          <End Role="Users" Type="Users.Dal.UserDb" Multiplicity="1" />
+          <End Role="EmailSubscriptions" Type="Users.Dal.EmailSubscriptionDb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="PartitionId" />
+            </Principal>
+            <Dependent Role="EmailSubscriptions">
+              <PropertyRef Name="UserId" />
+              <PropertyRef Name="PartitionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="CreateExternalUser_Result">
+          <Property Type="String" Name="ExternalId" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="PartitionId" Nullable="false" />
+          <Property Type="Byte" Name="AuthProvider" Nullable="false" />
+          <Property Type="Guid" Name="UserId" Nullable="false" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="false" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="CreateOrUpdateEmailSubscription_Result">
+          <Property Type="Guid" Name="UserId" Nullable="false" />
+          <Property Type="Int32" Name="PartitionId" Nullable="false" />
+          <Property Type="String" Name="LocationId" Nullable="false" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="Version" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="CreateOrUpdateUser_Result">
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="PartitionId" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="FacebookId" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="NotificationUri" Nullable="true" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="UpdatedDate" Nullable="false" Precision="23" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Json" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetEmailSubscriptions_Result">
+          <Property Type="Guid" Name="UserId" Nullable="false" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="LocationId" Nullable="false" MaxLength="200" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
+          <Property Type="Int32" Name="PartitionId" Nullable="false" />
+          <Property Type="Int32" Name="Version" Nullable="false" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="false" Precision="23" />
+          <Property Type="String" Name="SubscriptionType" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="UpdatedDate" Nullable="false" Precision="23" />
+        </ComplexType>
+        <EntityType Name="EmailUnsubscribeUrlDb">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="PartitionId" />
+          </Key>
+          <Property Type="Guid" Name="UserId" Nullable="false" />
+          <Property Type="Int32" Name="PartitionId" Nullable="false" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="UpdatedDate" Nullable="false" Precision="3" />
+          <Property Type="String" Name="UnsubscribeUrl" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="Users.Dal.FK_EmailUnsubscribeUrls_UserId_Users" FromRole="EmailUnsubscribeUrl" ToRole="User" />
+        </EntityType>
+        <ComplexType Name="CreateOrUpdateEmailUnsubscribeUrl_Result">
+          <Property Type="Guid" Name="UserId" Nullable="false" />
+          <Property Type="Int32" Name="PartitionId" Nullable="false" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="UpdatedDate" Nullable="false" Precision="23" />
+          <Property Type="String" Name="UnsubscribeUrl" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GetEmailUnsubscribeUrl_Result">
+          <Property Type="Guid" Name="UserId" Nullable="false" />
+          <Property Type="Int32" Name="PartitionId" Nullable="false" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="UpdatedDate" Nullable="false" Precision="23" />
+          <Property Type="String" Name="UnsubscribeUrl" Nullable="false" />
+        </ComplexType>
+        <Association Name="FK_EmailUnsubscribeUrls_UserId_Users">
+          <End Type="Users.Dal.UserDb" Role="User" Multiplicity="1" />
+          <End Type="Users.Dal.EmailUnsubscribeUrlDb" Role="EmailUnsubscribeUrl" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="PartitionId" />
+            </Principal>
+            <Dependent Role="EmailUnsubscribeUrl">
+              <PropertyRef Name="UserId" />
+              <PropertyRef Name="PartitionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="GetEmailUnsubscribeUrlByUserId_Result">
+          <Property Type="Guid" Name="UserId" Nullable="false" />
+          <Property Type="String" Name="UnsubscribeUrl" Nullable="true" />
+          <Property Type="DateTime" Name="UpdatedDate" Nullable="false" Precision="23" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="GetEmailUnsubscribeUrlToUpdate_Result">
+          <Property Type="Guid" Name="UserId" Nullable="false" />
+          <Property Type="String" Name="UnsubscribeUrl" Nullable="true" />
+          <Property Type="DateTime" Name="UpdatedDate" Nullable="false" Precision="23" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="EmailUnsubscribeUrl_Result">
+          <Property Type="Guid" Name="UserId" Nullable="false" />
+          <Property Type="String" Name="UnsubscribeUrl" Nullable="true" />
+          <Property Type="DateTime" Name="UpdatedDate" Nullable="false" Precision="23" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="CreateNotExistingExternalUser_Result">
+          <Property Type="String" Name="ExternalId" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="PartitionId" Nullable="false" />
+          <Property Type="Byte" Name="AuthProvider" Nullable="false" />
+          <Property Type="Guid" Name="UserId" Nullable="false" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="false" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="UpdateUserSuppressInfo_Result">
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="PartitionId" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="MsId" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="UpdatedDate" Nullable="false" Precision="23" />
+          <Property Type="Boolean" Name="IsSuppressed" Nullable="false" />
+          <Property Type="String" Name="Json" Nullable="true" />
+          <Property Type="Boolean" Name="IsDeleted" Nullable="false" />
+          <Property Type="Guid" Name="LinkedToUserId" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="ConfirmEntity_Result">
+          <Property Type="String" Name="EntityId" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="PartitionId" Nullable="false" />
+          <Property Type="Byte" Name="EntityType" Nullable="false" />
+          <Property Type="Guid" Name="UserId" Nullable="true" />
+          <Property Type="Int32" Name="IsValid" Nullable="false" />
+          <Property Type="Int32" Name="IsConfirmed" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="CreateConfirmationCode_Result">
+          <Property Type="String" Name="EntityId" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="PartitionId" Nullable="false" />
+          <Property Type="Byte" Name="EntityType" Nullable="false" />
+          <Property Type="Guid" Name="UserId" Nullable="false" />
+          <Property Type="Int32" Name="Code" Nullable="false" />
+          <Property Type="Int32" Name="RetryCount" Nullable="false" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="UpdatedDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="ExpiredDate" Nullable="false" Precision="23" />
+        </ComplexType>
+        <EntityType Name="ConfirmationCodeDb">
+          <Key>
+            <PropertyRef Name="PartitionId" />
+            <PropertyRef Name="EntityType" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="UserIdHash" />
+          </Key>
+          <Property Type="String" Name="EntityId" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="PartitionId" Nullable="false" />
+          <Property Type="Byte" Name="EntityType" Nullable="false" />
+          <Property Type="Guid" Name="UserId" Nullable="false" />
+          <Property Type="Int32" Name="Code" Nullable="false" />
+          <Property Type="Int32" Name="RetryCount" Nullable="false" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="UpdatedDate" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="ExpiredDate" Nullable="false" Precision="3" />
+          <Property Type="String" Name="UserIdHash" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="GetConfirmEntity_Result">
+          <Property Type="String" Name="UserIdHash" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="PartitionId" Nullable="false" />
+          <Property Type="String" Name="EntityId" Nullable="false" MaxLength="100" />
+          <Property Type="Byte" Name="EntityType" Nullable="false" />
+          <Property Type="Guid" Name="UserId" Nullable="false" />
+          <Property Type="Int32" Name="Code" Nullable="false" />
+          <Property Type="Int32" Name="RetryCount" Nullable="false" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="UpdatedDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="ExpiredDate" Nullable="false" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="UpdateUserSource_Result">
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="PartitionId" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="MsId" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="UpdatedDate" Nullable="false" Precision="23" />
+          <Property Type="Boolean" Name="IsSuppressed" Nullable="false" />
+          <Property Type="String" Name="Json" Nullable="true" />
+          <Property Type="Boolean" Name="IsDeleted" Nullable="false" />
+          <Property Type="Guid" Name="LinkedToUserId" Nullable="true" />
+          <Property Type="String" Name="PhoneNumber" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Source" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="CreateOrUpdateMerchantSubscriptions_Result">
+          <Property Type="Guid" Name="UserId" Nullable="false" />
+          <Property Type="Int32" Name="PartitionId" Nullable="false" />
+          <Property Type="String" Name="SubscriptionType" Nullable="false" MaxLength="50" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
+          <Property Type="String" Name="Preferences" Nullable="true" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="UpdatedDate" Nullable="false" Precision="23" />
+          <Property Type="String" Name="ScheduleType" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetMerchantSubscriptionsByUserId_Result">
+          <Property Type="Guid" Name="UserId" Nullable="false" />
+          <Property Type="Int32" Name="PartitionId" Nullable="false" />
+          <Property Type="String" Name="SubscriptionType" Nullable="false" MaxLength="50" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
+          <Property Type="String" Name="Preferences" Nullable="true" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="UpdatedDate" Nullable="false" Precision="23" />
+          <Property Type="String" Name="ScheduleType" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetEmailJobs_Result">
+          <Property Type="Guid" Name="JobId" Nullable="false" />
+          <Property Type="Guid" Name="UserId" Nullable="false" />
+          <Property Type="Int32" Name="PartitionId" Nullable="false" />
+          <Property Type="String" Name="SubscriptionType" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="LastRunTIme" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="NextRunTime" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="UpdatedDate" Nullable="false" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="GetScheduledEmails_Result">
+          <Property Type="Int32" Name="ScheduleId" Nullable="false" />
+          <Property Type="String" Name="CampaignName" Nullable="true" MaxLength="31" />
+          <Property Type="String" Name="Url" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Metadata" Nullable="true" />
+          <Property Type="Boolean" Name="IsClo" Nullable="true" />
+          <Property Type="Boolean" Name="IsTest" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetEmailSubscriptionsByEmail_Result">
+          <Property Type="Guid" Name="UserId" Nullable="false" />
+          <Property Type="Int32" Name="PartitionId" Nullable="false" />
+          <Property Type="String" Name="LocationId" Nullable="false" MaxLength="200" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
+          <Property Type="String" Name="SubscriptionType" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="UpdatedDate" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="Version" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="UsersDalStoreContainer" CdmEntityContainer="UsersEntities">
+          <EntitySetMapping Name="EmailSubscriptionDbs">
+            <EntityTypeMapping TypeName="Users.Dal.EmailSubscriptionDb">
+              <MappingFragment StoreEntitySet="EmailSubscriptions">
+                <ScalarProperty Name="SubscriptionType" ColumnName="SubscriptionType" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PartitionId" ColumnName="PartitionId" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExternalUserDbs">
+            <EntityTypeMapping TypeName="Users.Dal.ExternalUserDb">
+              <MappingFragment StoreEntitySet="ExternalUsers">
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="ExternalId" ColumnName="ExternalId" />
+                <ScalarProperty Name="PartitionId" ColumnName="PartitionId" />
+                <ScalarProperty Name="AuthProvider" ColumnName="AuthProvider" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserDbs">
+            <EntityTypeMapping TypeName="Users.Dal.UserDb">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="IsEmailConfirmed" ColumnName="IsEmailConfirmed" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="LinkedToUserId" ColumnName="LinkedToUserId" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="MsId" ColumnName="MsId" />
+                <ScalarProperty Name="IsSuppressed" ColumnName="IsSuppressed" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PartitionId" ColumnName="PartitionId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Json" ColumnName="Json" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="CreateOrUpdateEmailSubscription" FunctionName="Users.Dal.Store.CreateOrUpdateEmailSubscription">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Users.Dal.CreateOrUpdateEmailSubscription_Result">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PartitionId" ColumnName="PartitionId" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Version" ColumnName="Version" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CreateOrUpdateUser" FunctionName="Users.Dal.Store.CreateOrUpdateUser">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="DeleteEmailSubscriptions" FunctionName="Users.Dal.Store.DeleteEmailSubscriptions" />
+          <FunctionImportMapping FunctionImportName="GetEmailSubscriptionsByLocationId" FunctionName="Users.Dal.Store.GetEmailSubscriptionsByLocationId" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Users.Dal.GetEmailSubscriptions_Result">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="PartitionId" ColumnName="PartitionId" />
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="SubscriptionType" ColumnName="SubscriptionType" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetEmailSubscriptionsByUserId" FunctionName="Users.Dal.Store.GetEmailSubscriptionsByUserId" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Users.Dal.GetEmailSubscriptions_Result">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="PartitionId" ColumnName="PartitionId" />
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="SubscriptionType" ColumnName="SubscriptionType" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetUserByUserId" FunctionName="Users.Dal.Store.GetUserByUserId">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetUserIdByExternalId" FunctionName="Users.Dal.Store.GetUserIdByExternalId" />
+          <FunctionImportMapping FunctionImportName="GetEmailSubscriptions" FunctionName="Users.Dal.Store.GetEmailSubscriptions">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="Users.Dal.GetEmailSubscriptions_Result">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="PartitionId" ColumnName="PartitionId" />
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="SubscriptionType" ColumnName="SubscriptionType" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="EmailUnsubscribeUrlDbs">
+            <EntityTypeMapping TypeName="Users.Dal.EmailUnsubscribeUrlDb">
+              <MappingFragment StoreEntitySet="EmailUnsubscribeUrls">
+                <ScalarProperty Name="UnsubscribeUrl" ColumnName="UnsubscribeUrl" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="PartitionId" ColumnName="PartitionId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="CreateOrUpdateEmailUnsubscribeUrl" FunctionName="Users.Dal.Store.CreateOrUpdateEmailUnsubscribeUrl">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Users.Dal.CreateOrUpdateEmailUnsubscribeUrl_Result">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PartitionId" ColumnName="PartitionId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UnsubscribeUrl" ColumnName="UnsubscribeUrl" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetEmailUnsubscribeUrlByUserId" FunctionName="Users.Dal.Store.GetEmailUnsubscribeUrlByUserId">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="Users.Dal.EmailUnsubscribeUrl_Result">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UnsubscribeUrl" ColumnName="UnsubscribeUrl" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetEmailUnsubscribeUrlToUpdate" FunctionName="Users.Dal.Store.GetEmailUnsubscribeUrlToUpdate">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="Users.Dal.EmailUnsubscribeUrl_Result">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UnsubscribeUrl" ColumnName="UnsubscribeUrl" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CreateNotExistingExternalUser" FunctionName="Users.Dal.Store.CreateNotExistingExternalUser">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UpdateExternalUser" FunctionName="Users.Dal.Store.UpdateExternalUser">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="DeleteUser" FunctionName="Users.Dal.Store.DeleteUser" />
+          <FunctionImportMapping FunctionImportName="DeleteExternalUser" FunctionName="Users.Dal.Store.DeleteExternalUser" />
+          <FunctionImportMapping FunctionImportName="UpdateUserSuppressInfo" FunctionName="Users.Dal.Store.UpdateUserSuppressInfo">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ConfirmEntity" FunctionName="Users.Dal.Store.ConfirmEntity">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Users.Dal.ConfirmEntity_Result">
+                <ScalarProperty Name="EntityId" ColumnName="EntityId" />
+                <ScalarProperty Name="PartitionId" ColumnName="PartitionId" />
+                <ScalarProperty Name="EntityType" ColumnName="EntityType" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+                <ScalarProperty Name="IsConfirmed" ColumnName="IsConfirmed" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CreateConfirmationCode" FunctionName="Users.Dal.Store.CreateConfirmationCode">
+          </FunctionImportMapping>
+          <EntitySetMapping Name="ConfirmationCodeDbs">
+            <EntityTypeMapping TypeName="Users.Dal.ConfirmationCodeDb">
+              <MappingFragment StoreEntitySet="ConfirmationCodes">
+                <ScalarProperty Name="UserIdHash" ColumnName="UserIdHash" />
+                <ScalarProperty Name="ExpiredDate" ColumnName="ExpiredDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="RetryCount" ColumnName="RetryCount" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="EntityType" ColumnName="EntityType" />
+                <ScalarProperty Name="PartitionId" ColumnName="PartitionId" />
+                <ScalarProperty Name="EntityId" ColumnName="EntityId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetConfirmEntity" FunctionName="Users.Dal.Store.GetConfirmEntity">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CreateOrUpdateMerchantSubscriptions" FunctionName="Users.Dal.Store.CreateOrUpdateMerchantSubscriptions">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Users.Dal.CreateOrUpdateMerchantSubscriptions_Result">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PartitionId" ColumnName="PartitionId" />
+                <ScalarProperty Name="SubscriptionType" ColumnName="SubscriptionType" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Preferences" ColumnName="Preferences" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="ScheduleType" ColumnName="ScheduleType" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetMerchantSubscriptionsByUserId" FunctionName="Users.Dal.Store.GetMerchantSubscriptionsByUserId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Users.Dal.GetMerchantSubscriptionsByUserId_Result">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PartitionId" ColumnName="PartitionId" />
+                <ScalarProperty Name="SubscriptionType" ColumnName="SubscriptionType" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Preferences" ColumnName="Preferences" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="ScheduleType" ColumnName="ScheduleType" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UnsubscribeMerchantSubscriptions" FunctionName="Users.Dal.Store.UnsubscribeMerchantSubscriptions" />
+          <FunctionImportMapping FunctionImportName="GetEmailJobs" FunctionName="Users.Dal.Store.GetEmailJobs">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Users.Dal.GetEmailJobs_Result">
+                <ScalarProperty Name="JobId" ColumnName="JobId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PartitionId" ColumnName="PartitionId" />
+                <ScalarProperty Name="SubscriptionType" ColumnName="SubscriptionType" />
+                <ScalarProperty Name="LastRunTIme" ColumnName="LastRunTIme" />
+                <ScalarProperty Name="NextRunTime" ColumnName="NextRunTime" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UpdateEmailJob" FunctionName="Users.Dal.Store.UpdateEmailJob" />
+          <FunctionImportMapping FunctionImportName="GetConfirmEmailResendCountByUser" FunctionName="Users.Dal.Store.GetConfirmEmailResendCountByUser" />
+          <FunctionImportMapping FunctionImportName="LogUserConfirmEmailResend" FunctionName="Users.Dal.Store.LogUserConfirmEmailResend" />
+          <FunctionImportMapping FunctionImportName="GetScheduledEmails" FunctionName="Users.Dal.Store.GetScheduledEmails">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Users.Dal.GetScheduledEmails_Result">
+                <ScalarProperty Name="ScheduleId" ColumnName="ScheduleId" />
+                <ScalarProperty Name="CampaignName" ColumnName="CampaignName" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Metadata" ColumnName="Metadata" />
+                <ScalarProperty Name="IsClo" ColumnName="IsClo" />
+                <ScalarProperty Name="IsTest" ColumnName="IsTest" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UpdateEmailSchedule" FunctionName="Users.Dal.Store.UpdateEmailSchedule" />
+          <FunctionImportMapping FunctionImportName="GetEmailSubscriptionsByEmail" FunctionName="Users.Dal.Store.GetEmailSubscriptionsByEmail">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="Users.Dal.GetEmailSubscriptions_Result">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="PartitionId" ColumnName="PartitionId" />
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="SubscriptionType" ColumnName="SubscriptionType" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,261 @@
+/*
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+*/
+@import url('settings.less');
+
+    body {
+        height: 400px;
+        width: 440px;
+        left: 0;
+        top: 0;
+
+        .addCard_section {
+            height: 370px;
+            width: 320px;
+            background-color: @offwhite; 
+            float: left;
+            padding: 0;
+            position: relative;
+
+            #cardlink-addCard-screen-error {
+                color: @red;
+            }
+
+            .card-type {
+                height: 110px;
+                width: @gridTriple;
+                font-size: @fontSize2;
+                font-family: @fontLight;
+                color: @darkGray;
+            }
+
+            .cards {
+                margin-bottom: @gridSingle;
+
+                span {
+                    color: @darkGray;
+                    display: block;
+                    width: 100%;
+                    font-family: @fontRegular;
+                    font-size: @fontSize4;
+                    line-height: 20px;
+                }
+
+                .account-update {
+                    height: @gridTriple;
+                    width: 310px;
+                    margin-bottom: @gridSingle;
+                    font-size: @fontSize2;
+                    font-family: @fontLight;
+                    color: @darkGray;
+                }
+
+                table {
+                    width: 310px;
+                    border-collapse: collapse;
+
+                    td {
+                        border: none;
+                    }
+                }
+
+                .month {
+                    width: 200px;
+                    height: 36px;
+                    font-size: @fontSize4;
+                    font-family: @fontRegular;
+                    color: @gray9;
+                    line-height: 20px;
+                }
+
+                .year {
+                    width: 100px;
+                    margin-left: @gridSingle;
+                    height: 36px;
+                    line-height: 20px;
+                    font-size: @fontSize4;
+                    font-family: @fontRegular;
+                    color: @gray9;
+                }
+
+                .card-type {
+                    height: 36px;
+                    width: 310px;
+                }
+            }
+
+            .cardlink_addCard_add {
+                left: 180px;
+            }
+
+            .cardlink_addCard_Cancel {
+                left: 0px;
+            }
+
+            .cardlink-button {
+                height: 50px;
+                width: 140px;
+                position: absolute;
+                bottom: @gridQuad;
+                border: 1px solid @lightGray;
+                background-color: @white;
+                float: right;
+                color: @blue;
+                font-family: @fontRegular;
+                font-size: @fontSize2;
+                line-height: 30px;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: #e5e5e5;
+                }
+
+                &:active {
+                    background-color: @blue;
+                    color: @white;
+                    border: 1px solid @white;
+                }
+
+            }
+
+
+
+            .action-button {
+                background-color: @blue;
+                color: @white;
+                border: 1px solid @blue;
+            }
+
+                .action-button:hover {
+                    background-color: transparent;
+                    border: 1px solid @blue;
+                    color: @blue;
+                }
+        }
+    }
+
+
+@media screen and (max-width: 330px) {
+    body {
+        height: 400px;
+        width: 270px;
+        left: 0;
+        top: 0;
+
+        .addCard_section {
+            height: 370px;
+            width: 270px;
+            background-color: @offwhite;
+            float: left;
+            padding: 0;
+            position: relative;
+
+            #cardlink-addCard-screen-error {
+                color: @red;
+            }
+
+            .card-type {
+                height: 110px;
+                width: @gridTriple;
+                font-size: @fontSize2;
+                font-family: @fontLight;
+                color: @darkGray;
+            }
+
+            .cards {
+                margin-bottom: @gridSingle;
+
+                span {
+                    color: @darkGray;
+                    display: block;
+                    width: 100%;
+                    font-family: @fontRegular;
+                    font-size: @fontSize4;
+                    line-height: 20px;
+                }
+
+                .account-update {
+                    height: @gridTriple;
+                    width: 270px;
+                    margin-bottom: @gridSingle;
+                    font-size: @fontSize2;
+                    font-family: @fontLight;
+                    color: @darkGray;
+                }
+
+                table {
+                    width: 270px;
+                    border-collapse: collapse;
+
+                    td {
+                        border: none;
+                    }
+                }
+
+                .month {
+                    width: 160px;
+                    height: 36px;
+                    font-size: @fontSize4;
+                    font-family: @fontRegular;
+                    color: @gray9;
+                    line-height: 20px;
+                }
+
+                .year {
+                    width: 100px;
+                    margin-left: @gridSingle;
+                    height: 36px;
+                    line-height: 20px;
+                    font-size: @fontSize4;
+                    font-family: @fontRegular;
+                    color: @gray9;
+                }
+
+                .card-type {
+                    height: 36px;
+                    width: 270px;
+                }
+            }
+
+            .cardlink_addCard_add {
+                left: 150px;
+            }
+
+            .cardlink_addCard_Cancel {
+                left: 0px;
+            }
+
+            .cardlink-button {
+                height: 50px;
+                width: 120px;
+                position: absolute;
+                bottom: @gridQuad;
+                float: right;
+
+                .cardlink-button:hover {
+
+                }
+            }
+
+
+            .action-button {
+                background-color: @blue;
+                color: @white;
+                border: 1px solid @blue;
+            }
+
+                .action-button:hover {
+                    background-color: transparent;
+                    border: 1px solid @blue;
+                    color: @blue;
+                }
+        }
+    }
+}
+
+
+
+
+
+

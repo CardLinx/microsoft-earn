@@ -1,0 +1,388 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+@model Earn.Offers.Earn.Models.LearnPageModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Earn by Microsoft</title>
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <meta property="og:title" content="Introducing Earn by Microsoft" />
+    <meta property="og:url" content="https://earn.microsoft.com" />
+    <meta property="og:image" content="" />
+    @System.Web.Optimization.Styles.Render("~/earn/styles/learnmorestylebundle")
+    <script type="text/javascript">
+        var appInsights = window.appInsights || function (config) {
+            function s(config) { t[config] = function () { var i = arguments; t.queue.push(function () { t[config].apply(t, i) }) } } var t = { config: config }, r = document, f = window, e = "script", o = r.createElement(e), i, u; for (o.src = config.url || "//az416426.vo.msecnd.net/scripts/a/ai.0.js", r.getElementsByTagName(e)[0].parentNode.appendChild(o), t.cookie = r.cookie, t.queue = [], i = ["Event", "Exception", "Metric", "PageView", "Trace"]; i.length;) s("track" + i.pop()); return config.disableExceptionTracking || (i = "onerror", s("_" + i), u = f[i], f[i] = function (config, r, f, e, o) { var s = u && u(config, r, f, e, o); return s !== !0 && t["_" + i](config, r, f, e, o), s }), t
+        }({
+            instrumentationKey: "b2769bec-64c9-4192-aa4c-29499969657d"
+        });
+
+        window.appInsights = appInsights;
+        appInsights.trackPageView();
+    </script>
+    <script language="javascript" type="text/javascript" src="https://www.microsoft.com/click/services/rio.ashx?ootc=200821438&uatid=11087206757330&action=USCMO_EPPEarn_Vue_Sit_EarnbyMS_LP"></script>
+</head>
+<body>
+    <div class="all-content-wrapper">
+        <section id="nav">
+            <div class="container">
+                <div class="logo">
+                    <a href="/">
+                        <img src="https://az414848.vo.msecnd.net/card-linked-assets/earn_logo_wht_gry-1.png" />
+                    </a>
+                </div>
+                <div class="right-nav">
+                    <ul>
+                        <li class="noborder">@Html.ActionLink("Enroll", "Index", "Enroll")</li>
+                        <li class="border" id="login">
+                            @if (Model.LiveIdResult != null && Model.LiveIdResult.IsUserAuthenticated)
+                            {
+                                <span class="name"></span>
+                                @Html.Raw(Model.LiveIdResult.SignOutHtmlLink)
+                            }
+                            else
+                            {
+                                @Html.Raw(Model.LiveIdResult.SignInHtmlLink)
+                            }
+                        </li>
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </section>
+
+        <section id="hero">
+            <div id="caraousel">
+                <div id="slides">
+                    <div class="slide selected">
+                        <img src="https://az414848.vo.msecnd.net/card-linked-assets/hero1-desktop.jpg" class="slide-img desktop" />
+                        <img src="https://az414848.vo.msecnd.net/card-linked-assets/hero1-mobile.jpg" class="slide-img mobile" />
+                        <div class="text">
+                            <div class="text-container">
+                                <h1>Pick up groceries. Earn&nbsp;Credits.</h1>
+                                <a href="/enroll">Enroll now</a>
+                                <h3>*Earn Beta is available in Arizona, Massachusetts and Washington only.</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <img data-src="https://az414848.vo.msecnd.net/card-linked-assets/hero2-desktop.jpg" class="slide-img desktop" />
+                        <img data-src="https://az414848.vo.msecnd.net/card-linked-assets/hero2-mobile.jpg" class="slide-img mobile" />
+                        <div class="text">
+                            <div class="text-container">
+                                <h1>Dinner with a friend. Earn&nbsp;Credits.</h1>
+                                <a href="/enroll">Enroll now</a>
+                                <h3>*Earn&nbsp;Beta&nbsp;is available&nbsp;in Arizona, Massachusetts and Washington&nbsp;only.</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <img data-src="https://az414848.vo.msecnd.net/card-linked-assets/hero3-desktop.jpg" class="slide-img desktop" />
+                        <img data-src="https://az414848.vo.msecnd.net/card-linked-assets/hero3-mobile.jpg" class="slide-img mobile" />
+                        <div class="text">
+                            <div class="text-container">
+                                <h1>Earn&nbsp;Credits&nbsp;to&nbsp;get rewarded.</h1>
+                                <a href="/enroll">Enroll now</a>
+                                <h3>*Earn&nbsp;Beta&nbsp;is available&nbsp;in Arizona, Massachusetts and Washington&nbsp;only.</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <img data-src="https://az414848.vo.msecnd.net/card-linked-assets/hero4-desktop.jpg" class="slide-img desktop" />
+                        <img data-src="https://az414848.vo.msecnd.net/card-linked-assets/hero4-mobile.jpg" class="slide-img mobile" />
+                        <div class="text">
+                            <div class="text-container">
+                                <h1>And&nbsp;get&nbsp;the technology&nbsp;you&nbsp;love.</h1>
+                                <a href="/enroll">Enroll now</a>
+                                <h3>*Earn&nbsp;Beta&nbsp;is available&nbsp;in Arizona, Massachusetts and Washington&nbsp;only.</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <img data-src="https://az414848.vo.msecnd.net/card-linked-assets/hero5-desktop.jpg" class="slide-img desktop" />
+                        <img data-src="https://az414848.vo.msecnd.net/card-linked-assets/hero5-mobile.jpg" class="slide-img mobile" />
+                        <div class="text">
+                            <div class="text-container">
+                                <h1>Introducing Earn&nbsp;by&nbsp;Microsoft.</h1>
+                                <a href="/enroll">Enroll now</a>
+                                <h3>*Earn&nbsp;Beta&nbsp;is available&nbsp;in Arizona, Massachusetts and Washington&nbsp;only.</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="play">
+                    <ul id="play-list">
+                        <li class="selected" onclick="javascript: selectSlide(0, 'click');"></li>
+                        <li onclick="javascript: selectSlide(1, 'click');"></li>
+                        <li onclick="javascript: selectSlide(2, 'click');"></li>
+                        <li onclick="javascript: selectSlide(3, 'click');"></li>
+                        <li onclick="javascript: selectSlide(4, 'click');"></li>
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+                <button id="prev" class="slide-button"></button>
+                <button id="next" class="slide-button"></button>
+            </div>
+        </section>
+
+        <section id="howitworks">
+            <div class="container">
+                <h1>How does it work ?</h1>
+            </div>
+        </section>
+
+        <section class="info-bar info-bar-gray">
+            <div class="container">
+                <div class="left image-container">
+                    <img src="https://az414848.vo.msecnd.net/card-linked-assets/grid-brands-with-gift-cards-desktop.png" class="desktop"/>
+                    <img src="https://az414848.vo.msecnd.net/card-linked-assets/grid-brands-with-gift-cards-mobile.png" class="mobile"/>
+                </div>
+                <div class="right right-content">
+                    <h1>Earn Credits by using your card at the places you&nbsp;love.</h1>
+                    <p>
+                        Enroll your credit and debit<sup>1</sup> cards for FREE and receive <strong>3‒10% in Earn Credits</strong>
+                        when you use your cards at select national retailers, hundreds of local restaurants,
+                        and when you purchase gift cards for hundreds of retailers through Microsoft Earn.*
+
+                        <!--You can rest easy knowing that we only see card transactions at participating merchants, and we only use your
+                         transaction information for Earn. So, your card information is safe and secure.-->
+                    </p>
+                    <p>
+                        Your enrolled card will continue to receive benefits from any other program it may be enrolled in.
+                        And rest assured that your card information is safe and secure, we only see transactions at participating merchants,
+                        and we only use it to award you with Earn Credits.
+                    </p>
+                    <p>
+                        And for a limited time, receive <strong>$5 in bonus Earn Credits</strong> after your first Earn transaction.
+                        <br /><br />
+                    </p>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </section>
+
+        <section class="info-bar">
+            <div class="container">
+                <div class="left left-content">
+                    <h1>Use&nbsp;your&nbsp;Earn&nbsp;Credits toward all&nbsp;types&nbsp;of great&nbsp;products. </h1>
+                    <p>
+                        Shop at the online Microsoft Store and participating local Microsoft Stores with your enrolled card and use your Earn Credits toward all types of great products,
+                        including: software, laptops, tablets, phones, Xbox consoles and games, headphones, speakers and more.
+                    </p>
+
+                </div>
+                <div class="right image-container">
+                    <img src="https://az414848.vo.msecnd.net/card-linked-assets/grid-products-desktop.jpg" class="desktop"/>
+                    <img src="https://az414848.vo.msecnd.net/card-linked-assets/grid-products-mobile.jpg" class="mobile" />
+                </div>
+                <div class="clear"></div>
+            </div>
+        </section>
+
+        <section class="info-bar info-bar-gray">
+            <div class="container">
+                <div class="left image-container">
+                    <img src="https://az414848.vo.msecnd.net/card-linked-assets/woman_paying_with_card.jpg" />
+                </div>
+                <div class="right right-content">
+                    <h1>It’s&nbsp;that&nbsp;easy... There's&nbsp;nothing else you&nbsp;need&nbsp;to&nbsp;do.</h1>
+                    <p>
+                        Enroll your cards with Earn. Shop and dine at participating merchants to Earn Credits.
+                        And when you make a purchase at the online Microsoft Store and participating local Microsoft Stores with your enrolled card,
+                        you’ll receive a credit on your bank card statement, up to your Earn Credits balance.
+                        It’s that easy. No loyalty cards, no coupon codes or loyalty numbers to remember.
+                    </p>
+
+                    <a href="/enroll">Enroll now</a>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </section>
+
+        <section id="fineprint">
+            <div class="container">
+                <p>
+                    <br />
+                    [*] Earn Credits are only received for transactions at participating merchants in Arizona, Massachusetts and Washington, and only apply to purchases made at the online Microsoft Store and local Microsoft Stores in Arizona, Massachusetts, and Washington.
+                </p>
+                <br />
+                <p>
+                    [1] Transactions where a PIN is entered at checkout do not qualify to receive Earn Credits.
+                </p>
+            </div>
+        </section>
+
+        @Html.Partial("~/offers/earn/views/common/socialbar.cshtml")
+        @Html.Partial("~/offers/earn/views/common/footer.cshtml")
+    </div>
+    <script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.3.min.js"></script>
+    <script src="//ajax.aspnetcdn.com/ajax/modernizr/modernizr-2.8.3.js"></script>
+    <script src="//ajax.aspnetcdn.com/ajax/knockout/knockout-3.3.0.js"></script>
+    @System.Web.Optimization.Scripts.Render("~/earn/scripts/accountsscriptBundle")
+    <script>
+        $(document).ready(function () {
+            var $elem = $('#idPPScarab');
+            var $img = $elem.find('img');
+
+            var signedIn = $img.hasClass('PassportSignOut');
+            var signedOut = $img.hasClass('PassportSignIn');
+            var text = '';
+            if (signedIn) {
+                text = 'Sign Out';
+            }
+
+            var liveMobileQueryString = $(window).width() < 710 ? '&pcexp=false' : '';
+            if (signedOut) {
+                text = 'Sign In';
+                $('#signinbutton').attr('href', $elem.attr('href') + liveMobileQueryString);
+                $elem.attr('href', $elem.attr('href') + liveMobileQueryString);
+            }
+
+            $elem.html(text);
+            $('#login').show();
+        });
+    </script>
+
+    <script>
+
+        var slideCount;
+        var selectedIndex = 0;
+        var interval;
+        var timerHandle;
+
+        var setupHero = function () {
+            var h = $('.slide').outerHeight();
+            var winHeight = $(window).height();
+            if (h > winHeight) {
+                h = winHeight;
+            }
+
+            $('#slides').outerHeight(h);
+        };
+
+        var setupButtons = function () {
+            $('button#prev').click(function () {
+                selectSlide(selectedIndex - 1, 'click')
+            });
+
+            $('button#next').click(function () {
+                selectSlide(selectedIndex + 1, 'click')
+            });
+        }
+
+        var onTimerElapsed = function () {
+            selectSlide(selectedIndex + 1, 'timer');
+        }
+
+        var selectSlide = function (index, changedBy) {
+            clearTimeout(timerHandle);
+            var originalIndex = index;
+            if (selectedIndex == index) {
+                return;
+            }
+            var slideCount = $('#play ul li').length;
+            if (index >= slideCount) {
+                index = 0;
+            }
+            if (index == -1) {
+                index = slideCount - 1;
+            }
+
+            // buttons
+            $('#play ul li').removeClass('selected');
+            var $newPlayElement = $('#play ul').find('li').eq(index);
+            $newPlayElement.addClass('selected');
+            $('#play ul li').addClass('slider-buttons-disabled');
+
+            // slides
+            var prevSelected = $('.slide.selected');
+            var newElement = $('#slides').find('.slide').eq(index);
+
+            var animiationClassName = 'selected-animate-right';
+
+            newElement.addClass(animiationClassName).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                prevSelected.removeClass('selected');
+                $(this).addClass('selected');
+                $(this).removeClass(animiationClassName);
+                newElement.show();
+                $('#play ul li').removeClass('slider-buttons-disabled');
+            });
+
+            selectedIndex = index;
+            timerHandle = setTimeout(onTimerElapsed, 6000);
+        };
+
+        var lazyLoadImages = function () {
+            window.setTimeout(function () {
+                var $slideElems = $('.slide-img');
+
+                $.each($slideElems, function (index, item) {
+                    $(item).attr('src', $(item).attr('data-src'));
+                });
+
+            }, 1000);
+        };
+
+        $(document).ready(function () {
+            var $elem = $('#slideimg');
+            var width = $(window).width();
+            if (width < 709) {
+                $elem = $('#slideimg-mobile');
+            }
+
+            $("<img />").load(function () {
+                setupHero();
+                setupButtons();
+                lazyLoadImages();
+            }).attr("src", $elem.attr("data-src"));
+
+            //setupHero();
+            setTimeout(function () { setupHero(); setupButtons(); }, 100);
+
+            lazyLoadImages();
+
+            $('#play').show();
+            slideCount = $('#slides').find('.slide')
+            timerHandle = setTimeout(onTimerElapsed, 4000);
+            var analyticsTracking = new window.bouxAnalytics({
+                enabled: configuration.analytics.enableEarnAnalytics,
+                flightModel: null
+            });
+        });
+
+        $(window).resize(setupHero);
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            // this auto tracks referrals.
+            var referrals = new window.referralsViewModel();
+        });
+    </script>
+</body>
+</html>

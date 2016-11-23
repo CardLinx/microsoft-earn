@@ -1,0 +1,88 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+@model DealVM
+
+<tr height="180" style="height: 180px">
+    <td height="180" style="height: 180px; padding-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 10px;">
+        <table bgcolor="#F5F5F5" cellspacing="0" cellpadding="0" width="100%" height="180" style="height: 180px; background-color: #F5F5F5; width: 100%; padding-left: 0; padding-bottom: 0; padding-top: 0; padding-right: 0; border-left-width: 0; border-bottom-width: 0; border-right-width: 0; border-top-width: 0;">
+            <tr>
+                <td align="left" bgcolor="#cccccc;" style="width: 180px; height: 180px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: #cccccc; text-align: left; margin: 0;">
+                    <a href="@Model.TransactionUrl" style="padding-right: 0; padding-top: 0; padding-left: 0; padding-bottom: 0; text-decoration: none; margin:0; display:inline-block;">
+                        <img align="middle" height="180" width="180" src="@Model.MediumImageUrl" style="width: 180px; height: 180px; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0;margin:0;display:inline-block;" alt="@DailyDeals.ViewOffer" />
+                    </a>
+                </td>
+                <td>
+                    <table width="100%" style="width: 100%;">
+                        <tr>
+                            <td colspan="2" align="left" valign="top" style="height: 24px; font-family: 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif; vertical-align: top; text-align: left; padding-top: 14px; padding-right: 20px; padding-bottom: 0; padding-left: 20px; font-size: 14px; color: #444444;">
+                                <span style="text-align: left">
+                                    @Model.BusinessName
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            @* First column skipped for image *@
+                            <td colspan="2" align="left" valign="top" style="height: 24px; font-family: 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif; vertical-align: top; text-align: left; padding-top: 0; padding-right: 20px; padding-bottom: 18px; padding-left: 20px; font-size: 17px; color: #b4009e;">
+                                <span style="text-align: left">
+                                    @Model.Title
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            @* First column skipped for image *@
+                            <td valign="bottom" align="left" style="vertical-align: bottom; padding-top: 0; padding-bottom: 20px; padding-left: 20px;">
+                                <table cellspacing="0" cellpadding="0" style="font-family: 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif; padding-left: 0; padding-bottom: 0; padding-top: 0; padding-right: 0;">
+                                    <tr>
+                                        <td valign="top" align="left" style="text-align: left; vertical-align: top; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; font-size: 14px; color: #b4009e;">
+                                            <span style="text-align: left">
+                                                @if (!(string.IsNullOrWhiteSpace(Model.Discount) && string.IsNullOrWhiteSpace(Model.DiscountAmmount)))
+                                                {
+                                                    @DailyDeals.SaveHeader
+                                                }
+                                            </span>
+                                        </td>
+                                        @if (Model.DealType == DealType.CardLinked && !string.IsNullOrWhiteSpace(Model.MinimumSpend))
+                                        {
+                                            <td valign="top" align="left" style="text-align: left; vertical-align: top; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 30px; font-size: 14px; color: #b4009e;">@DailyDeals.SpendHeader
+                                            </td>
+                                        }
+                                    </tr>
+                                    <tr>
+                                        <td valign="bottom" align="left" style="text-align: left; vertical-align: bottom; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; font-size: 40px; line-height: 42px; color: #b4009e;">
+                                            @if (!string.IsNullOrWhiteSpace(Model.Discount))
+                                            {
+                                                @Model.Discount
+                                            }
+                                            else
+                                            {
+                                                @Model.DiscountAmmount
+                                            }
+                                        </td>
+                                        @if (Model.DealType == DealType.CardLinked && !string.IsNullOrWhiteSpace(Model.MinimumSpend))
+                                        {
+                                            <td align="left" valign="bottom" style="text-align: left; vertical-align: bottom; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 30px; font-size: 40px; line-height: 42px; color: #b4009e;">
+                                                @Model.MinimumSpend
+                                            </td>
+                                        }
+                                    </tr>
+                                </table>
+                            </td>
+                            <td valign="bottom" align="right" style="vertical-align: bottom; padding-top: 0; padding-right: 20px; padding-bottom: 20px; padding-left: 0;">
+                                <table cellspacing="0" cellpadding="0" style="font-family: 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif; padding-left: 0; padding-bottom: 0; padding-top: 0; padding-right: 0;">
+                                    <tr>
+                                        <td bgcolor="#006DD4" style="text-align: center; padding-right: 20px; padding-top: 6px; padding-left: 20px; padding-bottom: 6px; vertical-align: bottom; background-color: #ffb900;">
+                                            <a href="@Model.TransactionUrl" target="_blank" style=" text-decoration: none; vertical-align: middle; font-size: 15px; color: #505050;" >@DailyDeals.ViewOffer</a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>

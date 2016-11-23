@@ -1,0 +1,2327 @@
+/*
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+*/
+@font-face {
+  font-family: "Segoe UI Web Light";
+  src: url('https://i.s-microsoft.com/fonts/Segoe-UI/West-European/Light/latest.eot');
+  src: local("Segoe UI Light"), local("Segoe WP Light"), url('https://i.s-microsoft.com/fonts/Segoe-UI/West-European/Light/latest.eot?#iefix') format('embedded-opentype'), url('https://i.s-microsoft.com/fonts/Segoe-UI/West-European/Light/latest.woff') format('woff'), url('https://i.s-microsoft.com/fonts/Segoe-UI/West-European/Light/latest.ttf') format('truetype'), url('https://i.s-microsoft.com/fonts/Segoe-UI/West-European/Light/latest.svg#web') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'MSHPIconsRegular';
+  src: url('https://i.s-microsoft.com/fonts/homepage/icons/mshpicons-regular-webfont.eot');
+  src: url('https://i.s-microsoft.com/fonts/homepage/icons/mshpicons-regular-webfont.eot?#iefix') format('embedded-opentype'), url('https://i.s-microsoft.com/fonts/homepage/icons/mshpicons-regular-webfont.woff') format('woff'), url('https://i.s-microsoft.com/fonts/homepage/icons/mshpicons-regular-webfont.ttf') format('truetype'), url('https://i.s-microsoft.com/fonts/homepage/icons/mshpicons-regular-webfont.svg#web') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Segoe UI Web Regular";
+  src: url('https://i.s-microsoft.com/fonts/Segoe-UI/West-European/Normal/latest.eot');
+  src: local("Segoe UI"), local("Segoe"), local("Segoe WP"), url('https://i.s-microsoft.com/fonts/Segoe-UI/West-European/Normal/latest.eot?#iefix') format('embedded-opentype'), url('https://i.s-microsoft.com/fonts/Segoe-UI/West-European/Normal/latest.woff') format('woff'), url('https://i.s-microsoft.com/fonts/Segoe-UI/West-European/Normal/latest.ttf') format('truetype'), url('https://i.s-microsoft.com/fonts/Segoe-UI/West-European/Normal/latest.svg#web') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Segoe UI Web Semibold';
+  src: url('https://i.s-microsoft.com/fonts/segoe-ui/west-european/semibold/latest.eot');
+  src: url('https://i.s-microsoft.com/fonts/segoe-ui/west-european/semibold/latest.eot?#iefix') format('embedded-opentype'), url('https://i.s-microsoft.com/fonts/segoe-ui/west-european/semibold/latest.woff') format('woff'), url('https://i.s-microsoft.com/fonts/segoe-ui/west-european/semibold/latest.ttf') format('truetype'), url('https://i.s-microsoft.com/fonts/segoe-ui/west-european/semibold/latest.svg#web') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "bingoffers";
+  src: url('https://earn.microsoft.com/offers/earn/content/fonts/bingoffers-20140312.eot');
+  src: url('https://earn.microsoft.com/offers/earn/content/fonts/bingoffers-20140312.woff') format("woff"), url('https://earn.microsoft.com/offers/earn/content/fonts/bingoffers-20140312.ttf') format("truetype"), url('https://earn.microsoft.com/offers/earn/content/fonts/bingoffers-20140312.eot?#iefix') format("embedded-opentype"), url('https://earn.microsoft.com/offers/earn/content/fonts/bingoffers-20140312.svg#bingoffers') format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+@media screen and (max-width: 709px) {
+  @-ms-viewport {
+    width: device-width;
+    zoom: 100%;
+  }
+  @-o-viewport {
+    width: device-width;
+    zoom: 100%;
+  }
+  @-webkit-viewport {
+    width: device-width;
+    zoom: 100%;
+  }
+  @-moz-viewport {
+    width: device-width;
+    zoom: 100%;
+  }
+}
+/* Update this region whenever the webfonts file is changed. Contains mapping between icons and the web fonts*/
+@media screen and (min-width: 261px) {
+  .icon-arrow-down:before {
+    content: "u";
+  }
+  .icon-arrow-forward:before {
+    content: "x";
+  }
+  .icon-call:before {
+    content: "v";
+  }
+  .icon-card:before {
+    content: "j";
+  }
+  .icon-close:before {
+    content: "B";
+  }
+  .icon-close:hover:before {
+    content: "C";
+  }
+  .icon-copy:before {
+    content: "K";
+  }
+  .icon-discount-applied:before {
+    content: "k";
+  }
+  .icon-driving-direction:before {
+    content: "a";
+  }
+  .icon-feeds:before {
+    content: "t";
+  }
+  .icon-filter-justified:before {
+    content: "Q";
+  }
+  .icon-focus:before {
+    content: "n";
+  }
+  .icon-gear:before {
+    content: "o";
+  }
+  .icon-get-info:before {
+    content: "l";
+  }
+  .icon-mail:before {
+    content: "J";
+  }
+  .icon-minus:before {
+    content: "f";
+  }
+  .icon-plus:before {
+    content: "e";
+    font-family: "bingoffers";
+  }
+  .icon-push-pin:before {
+    content: "s";
+  }
+  .icon-signUp:before {
+    content: "i";
+  }
+  .icon-search:before {
+    content: "r";
+  }
+  .icon-slide-previous:before {
+    content: "R";
+  }
+  .icon-slide-next:before {
+    content: "S";
+  }
+  .icon-tick:before {
+    content: "q";
+  }
+  .icon-down-arrow:before {
+    content: "U";
+  }
+}
+/*end region*/
+html {
+  overflow-y: scroll;
+  height: 100%;
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+.clear {
+  clear: both;
+}
+#hidden {
+  display: none;
+}
+.container {
+  width: 1430px;
+  margin: auto;
+}
+hr {
+  height: 1px;
+  border: none;
+  background-color: #ccc;
+  width: 100%;
+}
+p strong {
+  font-weight: bold;
+}
+a {
+  text-decoration: none;
+}
+sup {
+  vertical-align: top;
+  font-size: .71em;
+  top: -0.5em;
+  position: relative;
+}
+#nav {
+  z-index: 100;
+  width: 100%;
+  margin: auto;
+  padding: 20px 0;
+}
+#nav .container .logo {
+  float: left;
+}
+#nav .container .logo a {
+  border: none;
+}
+#nav .container .right-nav {
+  float: right;
+  padding-top: 20px;
+}
+#nav .container .right-nav .top-nav {
+  float: right;
+  margin-left: 100px;
+}
+#nav .container .right-nav .top-nav #login {
+  display: none;
+}
+#nav .container .right-nav .top-nav p {
+  font-family: Segoe UI Web Regular;
+  font-size: 16px;
+  line-height: 20px;
+  color: #505050;
+}
+#nav .container .right-nav .top-nav p strong {
+  font-weight: bold;
+}
+#nav .container .right-nav .top-nav p a {
+  color: #0078d7;
+  text-decoration: none;
+  margin-left: 10px;
+  cursor: pointer;
+}
+#nav .container .right-nav .top-nav p a:hover {
+  color: #00188f;
+}
+#nav .container .right-nav-mobile {
+  display: none;
+}
+#main-nav {
+  padding: 20px 0 10px 0;
+  border-bottom: 1px solid #ddd;
+  display: block;
+}
+#main-nav .container ul {
+  list-style-type: none;
+  float: left;
+}
+#main-nav .container ul li {
+  margin: 0 30px 0 0;
+  padding: 0;
+  float: left;
+}
+#main-nav .container ul li a {
+  color: #0078d7;
+  text-decoration: none;
+  font-family: Segoe UI Web Regular;
+  font-size: 16px;
+  line-height: 30px;
+  cursor: pointer;
+}
+#main-nav .container ul li a:hover {
+  color: #00188f;
+}
+#main-nav .container ul li.mobile {
+  display: none;
+}
+#main-nav .container ul li.mobile a.logoutlink {
+  display: none;
+}
+#notifications {
+  background-color: #0078D7;
+  position: relative;
+}
+#notifications .container .notification {
+  padding: 15px 0 20px 0;
+  text-align: center;
+}
+#notifications .container .notification h2 {
+  display: inline-block;
+  font-family: Segoe UI Web Regular;
+  margin: 0;
+  font-size: 20px;
+  line-height: 34px;
+  color: #fff;
+}
+#notifications .container .notification h2 strong {
+  font-weight: bold;
+}
+#notifications .container .notification a.button {
+  font-family: Segoe UI Web Regular;
+  margin-left: 15px;
+  width: 150px;
+  background-color: #fff;
+  display: inline-block;
+  color: #1570a6;
+  font-size: 17px;
+  line-height: 32px;
+  text-align: center;
+  border: 1px solid #fff;
+}
+#notifications .container .notification a.inline-link {
+  font-family: Segoe UI Web Regular;
+  font-size: 20px;
+  line-height: 34px;
+  color: #fff;
+}
+#notifications .container .bottom-separator {
+  border-bottom: 1px solid #fff;
+}
+#notifications .close {
+  position: absolute;
+  right: 25px;
+  top: calc(50% - 15px);
+  font-size: 30px;
+  cursor: pointer;
+  font-family: bingoffers;
+  color: #fff;
+  border: 0 solid #fff;
+}
+.grey {
+  background-color: #eee;
+  padding-top: 10px;
+}
+.accounts-container {
+  margin-top: 40px;
+}
+.accounts-container .container h1 {
+  font-family: Segoe UI Web Light;
+  font-size: 34px;
+  line-height: 40px;
+  color: #505050;
+  font-weight: 400;
+}
+.accounts-container .container h2 {
+  font-family: Segoe UI Web Light;
+  font-size: 24px;
+  line-height: 28px;
+  color: #505050;
+  font-weight: 400;
+}
+.accounts-container .container h3 {
+  font-family: Segoe UI Web Regular;
+  font-size: 20px;
+  line-height: 24px;
+  color: #0078d7;
+  font-weight: 400;
+}
+.accounts-container .container p {
+  font-family: Segoe UI Web Regular;
+  font-size: 16px;
+  line-height: 20px;
+  color: #505050;
+  font-weight: 400;
+}
+.accounts-container .container sup.required {
+  color: red;
+}
+.accounts-container .container .places-header {
+  width: 100%;
+  display: inline-block;
+  border-bottom: solid 1px #d2d2d2;
+  padding-bottom: 25px;
+}
+.accounts-container .container .places-header .left {
+  float: left;
+}
+.accounts-container .container .places-header .left p {
+  width: 430px;
+  margin-top: 10px;
+}
+.accounts-container .container .places-header .right {
+  float: right;
+}
+.accounts-container .container .places-header .right p {
+  color: #505050;
+  margin-top: 3px;
+}
+.accounts-container .container .places-header .right p select {
+  font-size: 16px;
+  cursor: pointer;
+  padding: 5px 10px;
+  line-height: 30px;
+  font-family: Segoe UI Web Regular;
+}
+.accounts-container .container .places-container {
+  float: left;
+  width: 430px;
+  margin-top: 40px;
+  margin-right: 70px;
+}
+.accounts-container .container .places-container select {
+  font-size: 16px;
+  cursor: pointer;
+  padding: 5px 10px;
+  line-height: 30px;
+  font-family: Segoe UI Web Regular;
+}
+.accounts-container .container .places-container h2 {
+  margin-bottom: 20px;
+}
+.accounts-container .container .places-container .state-selector-wrapper {
+  display: inline-block;
+  width: 100%;
+  margin: 50px 0 0 0;
+}
+.accounts-container .container .places-container .state-selector-wrapper p {
+  float: right;
+}
+.accounts-container .container .places-container table {
+  width: 100%;
+  margin: 40px 0;
+}
+.accounts-container .container .places-container table tr {
+  border-bottom: 1px solid #ccc;
+}
+.accounts-container .container .places-container table tr td {
+  padding: 20px 17px;
+  height: 70px;
+  vertical-align: middle;
+}
+.accounts-container .container .places-container table tr td p {
+  color: #505050;
+  text-align: center;
+  vertical-align: middle;
+}
+.accounts-container .container .places-container table tr td img {
+  vertical-align: middle;
+  display: block;
+  margin: auto;
+}
+.accounts-container .container .places-container table tr td a.bname {
+  color: #0078d7;
+  font-family: Segoe UI Web Regular;
+  text-align: left;
+  text-decoration: none;
+  font-size: 16px;
+  line-height: 20px;
+  cursor: pointer;
+}
+.accounts-container .container .places-container table tr td a.bname:hover {
+  color: #00188f;
+}
+.accounts-container .container .places-container table tr td p.binfo {
+  color: #505050;
+  font-size: 14px;
+  line-height: 18px;
+  text-align: left;
+}
+.accounts-container .container .places-container table tr td.restaurant-logo {
+  width: 140px;
+  height: 60px;
+}
+.accounts-container .container .places-container table tr td.restaurant-info {
+  padding-left: 0;
+  padding-right: 0;
+}
+.accounts-container .container .places-container table tr.header {
+  background-color: #f2f2f2;
+  border-bottom: none;
+}
+.accounts-container .container .places-container table tr.header th {
+  padding: 10px 0 10px;
+}
+.accounts-container .container .places-container table tr.header th p {
+  font-family: Segoe UI Web Regular;
+  color: #505050;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 16px;
+  line-height: 20px;
+}
+.accounts-container .container .places-container table tr.header th.restaurants-header {
+  padding-right: 0;
+}
+.accounts-container .container .places-container table tr.header th.restaurants-link-header a {
+  font-family: Segoe UI Web Regular;
+  color: #0078d7;
+  vertical-align: middle;
+  text-align: left;
+  font-size: 16px;
+  line-height: 20px;
+  display: block;
+  text-align: right;
+  margin-right: 10px;
+}
+.accounts-container .container .places-container table tr.header th.restaurants-link-header a:hover {
+  color: #00188f;
+}
+.accounts-container .container .places-container a.button {
+  background-color: #0078d7;
+  color: #fff;
+  text-decoration: none;
+  line-height: 36px;
+  display: block;
+  width: 218px;
+  font-family: Segoe UI Web Regular;
+  text-align: center;
+  font-size: 20px;
+  height: 40px;
+}
+.accounts-container .container .places-container a.button:hover {
+  background-color: #00188f;
+}
+.accounts-container .container .places-container a.hyperlink {
+  color: #0078d7;
+  text-decoration: none;
+}
+.accounts-container .container .places-container a.hyperlink:hover {
+  color: #00188f;
+}
+.accounts-container .container .places-container p.fineprint {
+  font-size: 13px;
+  line-height: 18px;
+}
+.accounts-container .container .places-container.national-brands table td.merchant-logo {
+  padding: 10px 17px;
+}
+.accounts-container .container .places-container.cards {
+  margin-right: 0;
+}
+.accounts-container .container .places-container.cards p strong.new {
+  color: #0078d7;
+}
+.accounts-container .container .places-container.cards table {
+  margin-top: 20px;
+}
+.accounts-container .container .places-container.cards table tr.header th.cards-header {
+  text-align: left;
+  padding-left: 20px;
+}
+.accounts-container .container .places-container.cards table tr.header th.cards-header p {
+  text-align: left;
+}
+.accounts-container .container .places-container.cards table tr.header th.cards-link-header a {
+  font-family: Segoe UI Web Regular;
+  color: #0078d7;
+  vertical-align: middle;
+  text-align: left;
+  font-size: 16px;
+  line-height: 20px;
+  display: block;
+  text-align: right;
+  margin-right: 10px;
+}
+.accounts-container .container .places-container.cards table tr.header th.cards-link-header a:hover {
+  color: #00188f;
+}
+.accounts-container .container .places-container.cards table td {
+  padding: 0 0 1px 0;
+}
+.accounts-container .container .places-container.cards table td div {
+  float: left;
+  width: 187px;
+  margin-top: 18px;
+  margin-bottom: 18px;
+}
+.accounts-container .container .places-container.cards table td div img {
+  width: 100%;
+}
+.accounts-container .container .places-container.cards table td .card1,
+.accounts-container .container .places-container.cards table td .card3,
+.accounts-container .container .places-container.cards table td .card5,
+.accounts-container .container .places-container.cards table td .card7,
+.accounts-container .container .places-container.cards table td .card9 {
+  margin-left: 18px;
+  margin-right: 10px;
+}
+.accounts-container .container .places-container.cards table td .card2,
+.accounts-container .container .places-container.cards table td .card4,
+.accounts-container .container .places-container.cards table td .card6,
+.accounts-container .container .places-container.cards table td .card8,
+.accounts-container .container .places-container.cards table td .card10 {
+  margin-left: 10px;
+  margin-right: 18px;
+}
+.accounts-container .container .places-container.cards table td .blank {
+  width: 187px;
+  height: 119px;
+}
+.accounts-container .container .places-footer {
+  display: none;
+  width: 100%;
+}
+.accounts-container .container .places-footer .left {
+  float: left;
+  display: inline-block;
+  margin-top: 8px;
+}
+.accounts-container .container .places-footer .right {
+  float: right;
+  display: inline-block;
+}
+.accounts-container .container .places-footer .right select {
+  font-size: 16px;
+  cursor: pointer;
+  padding: 5px 10px;
+  line-height: 30px;
+  font-family: Segoe UI Web Regular;
+}
+.accounts-container .container .spending-container {
+  margin: 40px 0;
+}
+.accounts-container .container .spending-container .left {
+  float: left;
+  width: 47%;
+  margin-right: 6%;
+}
+.accounts-container .container .spending-container .left a {
+  color: #0078d7;
+  cursor: pointer;
+  display: block;
+  margin: 10px 0 30px 0;
+  text-decoration: none;
+}
+.accounts-container .container .spending-container .left a.microsoftstore {
+  display: initial;
+}
+.accounts-container .container .spending-container .left a.button {
+  padding: 0 20px;
+  background-color: #0078d7;
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  line-height: 34px;
+  padding-bottom: 2px;
+  display: block;
+  width: 256px;
+  font-family: Segoe UI Web Regular;
+  text-align: center;
+  border: 1px solid #0078d7;
+}
+.accounts-container .container .spending-container .left a.shopOnline {
+  display: inline-block;
+  width: 100px;
+}
+.accounts-container .container .spending-container .left a.seeParticipatingStores {
+  display: inline-block;
+  margin-left: 15px;
+  background-color: white;
+  color: #0078d7;
+  border: 1px solid #0078d7;
+}
+.accounts-container .container .spending-container .left a.seeParticipatingStores:hover {
+  display: inline-block;
+  color: #fff;
+  border: 1px solid #00188f;
+}
+.accounts-container .container .spending-container .left a.button:hover {
+  background-color: #00188f;
+  border: 1px solid #00188f;
+}
+.accounts-container .container .spending-container .left a.hyperlink {
+  color: #0078d7;
+  text-decoration: none;
+}
+.accounts-container .container .spending-container .left a.hyperlink:hover {
+  color: #00188f;
+}
+.accounts-container .container .spending-container .right {
+  float: left;
+  width: 47%;
+  overflow: hidden;
+}
+.accounts-container .container .spending-container .right .content {
+  padding: 0 0 0 0;
+}
+.accounts-container .container .spending-container .right .content p.fineprint {
+  font-size: 12px;
+  line-height: 15px;
+  margin: 10px 0;
+}
+.accounts-container .container .spending-container .right .content .col {
+  float: left;
+  width: 50%;
+}
+.accounts-container .container .spending-container .right .content .col .location-section {
+  margin: 10px 0;
+}
+.accounts-container .container .spending-container .right .content .col .location-section h4 {
+  font-size: 16px;
+  line-height: 24px;
+  font-family: Segoe UI Web Semibold;
+  color: #404040;
+}
+.accounts-container .container .spending-container .right .content .col .location-section a {
+  text-decoration: none;
+  color: #0078d7;
+}
+.accounts-container .container .spending-container .right .content .col .location-section a:hover {
+  color: #00188f;
+}
+.accounts-container .container .spending-container .right .content .col .location-section p {
+  font-size: 14px;
+  line-height: 18px;
+}
+.accounts-container .container .spending-container .right h1 {
+  margin: 0;
+}
+.accounts-container .container .spending-container img {
+  width: 100%;
+}
+.accounts-container .container .spending-container .tablet {
+  display: none;
+  margin: 30px 0;
+}
+.accounts-container .container .spending-container img.below-950 {
+  display: none;
+}
+.accounts-container .container .grey {
+  background-color: #eee;
+}
+.accounts-container .container .history-container {
+  margin: 40px 0 0 0;
+}
+.accounts-container .container .history-container .loading-info {
+  font-family: Segoe UI Web Regular;
+}
+.accounts-container .container .history-container table {
+  width: 850px;
+}
+.accounts-container .container .history-container table tr {
+  border-bottom: 1px solid #ccc;
+}
+.accounts-container .container .history-container table tr p {
+  color: #505050;
+  margin: 0;
+  text-align: left;
+  font-size: 14px;
+  line-height: 20px;
+  padding: 5px 0;
+  vertical-align: middle;
+}
+.accounts-container .container .history-container table tr p.italics {
+  font-style: italic;
+}
+.accounts-container .container .history-container table tr p.burn-transaction {
+  color: red;
+}
+.accounts-container .container .history-container table tr th p {
+  font-weight: bold;
+}
+.accounts-container .container .history-container table tr th.location,
+.accounts-container .container .history-container table tr td.location {
+  display: none;
+}
+.accounts-container .container .history-container .k-grid {
+  margin-top: 20px;
+}
+.accounts-container .container .history-container .k-pager-info {
+  font-family: Segoe UI Web Regular !important;
+  font-size: 12px;
+}
+.accounts-container .container .history-container .desktop {
+  display: inline-block;
+}
+.accounts-container .container .history-container .desktop thead.k-grid td {
+  padding: .1em .6em !important;
+}
+.accounts-container .container .history-container .mobile {
+  display: none;
+}
+.accounts-container .container .history-container .mobile .k-pager-numbers li span {
+  font-size: 12px;
+}
+.accounts-container .container .history-container .mobile .k-grid-header {
+  display: none;
+}
+.accounts-container .container .history-container .mobile .k-pager-wrap > .k-link,
+.accounts-container .container .history-container .mobile .k-pager-numbers .k-link,
+.accounts-container .container .history-container .mobile .k-pager-numbers .k-state-selected {
+  min-width: 24px;
+}
+.accounts-container .container .faq-container {
+  display: inline-block;
+}
+.accounts-container .container .faq-container #accordion {
+  float: left;
+  width: 75%;
+}
+.accounts-container .container .faq-container #accordion .group {
+  margin: 15px 0 0 0;
+  padding: 10px 0 0 0;
+}
+.accounts-container .container .faq-container #accordion .group .group-title {
+  background-color: #eee;
+  padding: 5px 10px;
+}
+.accounts-container .container .faq-container #accordion .group .group-title h3 {
+  color: #505050;
+}
+.accounts-container .container .faq-container #accordion .group .item {
+  margin: 25px 0;
+}
+.accounts-container .container .faq-container #accordion .group .item p.question {
+  font-weight: 400;
+  margin: 5px 0;
+  color: #000;
+  font-size: 15px;
+  line-height: 20px;
+}
+.accounts-container .container .faq-container #accordion .group .item p.answer {
+  font-weight: 300;
+  color: #505050;
+  font-size: 14px;
+  line-height: 20px;
+}
+.accounts-container .container .faq-container .faq-need-more-help {
+  margin-left: 5%;
+  margin-top: 22px;
+  float: left;
+  width: 20%;
+  height: 90px;
+  font-family: Segoe UI Web Regular;
+  background-color: #eee;
+}
+.accounts-container .container .faq-container .faq-need-more-help h4 {
+  text-align: center;
+  margin-top: 20px;
+}
+.accounts-container .container .faq-container .faq-need-more-help a {
+  text-align: center;
+  display: block;
+  color: #0078d7;
+  text-decoration: none;
+  cursor: pointer;
+}
+.accounts-container .container .faq-container .faq-need-more-help a:hover {
+  color: #00188f;
+}
+.accounts-container .container .faq-container .faq-need-more-help.mobile {
+  display: none;
+}
+.accounts-container .container .restaurants-container .left {
+  float: left;
+}
+.accounts-container .container .restaurants-container .right {
+  float: right;
+}
+.accounts-container .container .restaurants-container .right p {
+  color: #505050;
+  margin-top: 18px;
+}
+.accounts-container .container .restaurants-container .right select {
+  font-size: 16px;
+  cursor: pointer;
+  padding: 5px 10px;
+  line-height: 30px;
+  font-family: Segoe UI Web Regular;
+}
+.accounts-container .container .restaurants-container .table-container {
+  width: 650px;
+  margin: 20px 0;
+  position: relative;
+}
+.accounts-container .container .restaurants-container .table-container div.get-location {
+  display: none;
+  text-align: center;
+}
+.accounts-container .container .restaurants-container .table-container div.get-location a.button {
+  margin-bottom: 20px;
+  padding: 0 20px;
+  background-color: #0078d7;
+  color: #fff;
+  text-decoration: none;
+  line-height: 34px;
+  display: block;
+  width: 120px;
+  font-family: Segoe UI Web Regular;
+  text-align: center;
+  cursor: pointer;
+}
+.accounts-container .container .restaurants-container .table-container div.get-location a.button:hover {
+  background-color: #00188f;
+}
+.accounts-container .container .restaurants-container .table-container div.bingmap-container {
+  position: absolute;
+  left: 660px;
+  top: 0;
+  width: 770px;
+  height: 500px;
+}
+.accounts-container .container .restaurants-container .table-container div.bingmap-container div.infobox-title {
+  font-size: 13px;
+  line-height: 18px;
+  color: white;
+}
+.accounts-container .container .restaurants-container .table-container table {
+  display: block;
+  width: 100%;
+  height: 500px;
+  overflow-y: scroll;
+  margin: 40px 0;
+  border: 1px solid #eee;
+}
+.accounts-container .container .restaurants-container .table-container table tr {
+  border-bottom: 1px solid #ccc;
+}
+.accounts-container .container .restaurants-container .table-container table tr td {
+  padding: 10px 20px;
+}
+.accounts-container .container .restaurants-container .table-container table tr td p {
+  color: #505050;
+  font-size: 14px;
+  line-height: 18px;
+  text-align: left;
+  vertical-align: middle;
+}
+.accounts-container .container .restaurants-container .table-container table tr td img {
+  vertical-align: middle;
+}
+.accounts-container .container .restaurants-container .table-container table tr td a {
+  color: #0078d7;
+  cursor: pointer;
+  font-family: Segoe UI Web Regular;
+  text-align: left;
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 18px;
+}
+.accounts-container .container .restaurants-container .table-container table tr.header {
+  background-color: #505050;
+}
+.accounts-container .container .restaurants-container .table-container table tr.header th {
+  padding: 10px 20px;
+}
+.accounts-container .container .restaurants-container .table-container table tr.header th p {
+  color: white;
+  text-align: left;
+  vertical-align: middle;
+}
+.accounts-container .container .restaurants-container .table-container table tr.header th img {
+  vertical-align: middle;
+  display: inline-block;
+  height: 22px;
+}
+.accounts-container .container .restaurants-container .fineprint {
+  font-size: 12px;
+  line-height: 16px;
+  margin: 20px 0;
+}
+.accounts-container .container .support-container {
+  margin: 40px 0 0 0;
+  /*input[type="text"].last4digits {
+                width: 40px;
+            }*/
+}
+.accounts-container .container .support-container input[type="text"] {
+  width: 400px;
+  display: block;
+  margin-bottom: 20px;
+  padding: 7px 10px;
+  background-color: #fefefe;
+  border: 1px solid #ccc;
+  font-family: Segoe UI Web Regular;
+  color: #505050;
+  font-size: 15px;
+  line-height: 20px;
+}
+.accounts-container .container .support-container textarea {
+  width: 400px;
+  display: block;
+  margin: 0 0 25px 0;
+  padding: 7px 10px;
+  background-color: #fefefe;
+  resize: none;
+  height: 100px;
+  border: 1px solid #ccc;
+  font-family: Segoe UI Web Regular;
+  color: #505050;
+  font-size: 15px;
+  line-height: 20px;
+}
+.accounts-container .container .support-container select {
+  width: 422px;
+  padding: 7px 10px;
+  margin-bottom: 20px;
+  color: #505050;
+  border: 1px solid #ccc;
+}
+.accounts-container .container .support-container p {
+  font-family: Segoe UI Web Regular;
+  font-size: 15px;
+  color: #505050;
+  line-height: 20px;
+  margin: 5px 0;
+}
+.accounts-container .container .support-container p sup {
+  font-size: 11px;
+  vertical-align: super;
+}
+.accounts-container .container .support-container .card-info input[type="text"].last4digits {
+  float: left;
+  width: 40px;
+  padding: 5px 10px 6px 10px;
+}
+.accounts-container .container .support-container .card-info select {
+  margin-left: 20px;
+  width: 340px;
+  float: left;
+}
+.accounts-container .container .support-container p.error {
+  color: red;
+  margin: 15px 0;
+}
+.accounts-container .container .support-container p.fineprint {
+  font-size: 12px;
+  line-height: 16px;
+}
+.accounts-container .container .support-container hyperlink {
+  color: #0078d7;
+}
+.accounts-container .container .support-container hyperlink:hover {
+  color: #00188f;
+}
+.accounts-container .container .support-container a {
+  text-decoration: none;
+  border: 1px solid #fff;
+  color: #fff;
+  background-color: #0078d7;
+  display: block;
+  font-size: 16px;
+  line-height: 34px;
+  font-family: Segoe UI Web Regular;
+  color: #0078d7;
+  text-align: center;
+  width: 160px;
+  margin: 40px 0;
+  cursor: pointer;
+}
+.accounts-container .container .support-container a.button {
+  padding: 0 20px;
+  background-color: #0078d7;
+  color: #fff;
+  text-decoration: none;
+  line-height: 34px;
+  display: block;
+  width: 120px;
+  font-family: Segoe UI Web Regular;
+  text-align: center;
+}
+.accounts-container .container .support-container a.button:hover {
+  background-color: #00188f;
+}
+.accounts-container .container .settings-container {
+  margin: 40px 0 0 0;
+}
+.accounts-container .container .settings-container .box {
+  margin: 20px 0 40px 0;
+  width: 320px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.accounts-container .container .settings-container .box h2 {
+  margin-bottom: 10px;
+}
+.accounts-container .container .settings-container .box hr {
+  background-color: #eee;
+  border: none;
+  height: 1px;
+}
+.accounts-container .container .settings-container .box p {
+  margin: 5px 0;
+  font-size: 14px;
+  line-height: 20px;
+}
+.accounts-container .container .settings-container .box p .sendToPhone {
+  margin-left: 50px;
+}
+.accounts-container .container .settings-container .box p.description {
+  font-weight: bold;
+}
+.accounts-container .container .settings-container .box p.error {
+  color: red;
+  margin: 10px 0;
+}
+.accounts-container .container .settings-container .box p.fineprint {
+  font-size: 12px;
+  line-height: 15px;
+}
+.accounts-container .container .settings-container .box p.sendearnconfirmations {
+  margin-bottom: 30px;
+}
+.accounts-container .container .settings-container .box a.button {
+  text-decoration: none;
+  color: #fff;
+  background-color: #0078d7;
+  display: block;
+  font-size: 16px;
+  padding-bottom: 2px;
+  line-height: 34px;
+  font-family: Segoe UI Web Regular;
+  text-align: center;
+  width: 120px;
+  margin: 30px 0;
+  cursor: pointer;
+}
+.accounts-container .container .settings-container .box a.button:hover {
+  background-color: #00188f;
+}
+.accounts-container .container .settings-container .box a.cancel-button {
+  display: inline-block;
+  background-color: #fff;
+  color: #0078d7;
+  margin-right: 20px;
+  width: 120px;
+  border: 1px solid #0078d7;
+}
+.accounts-container .container .settings-container .box a.cancel-button:hover {
+  background-color: #fff;
+  border: 1px solid #00188f;
+  color: #00188f;
+}
+.accounts-container .container .settings-container .box a.save-button {
+  display: inline-block;
+  width: 120px;
+}
+.accounts-container .container .settings-container .box a.delete {
+  width: 90px;
+  background-color: #ccc;
+  display: block;
+  float: right;
+  color: #505050;
+  font-size: 14px;
+  line-height: 30px;
+  margin: 5px 0 5px 0;
+}
+.accounts-container .container .settings-container .box table {
+  width: 100%;
+}
+.accounts-container .container .settings-container .box table tr {
+  border-bottom: 1px solid #ccc;
+}
+.accounts-container .container .settings-container .box table tr td {
+  vertical-align: middle;
+}
+.accounts-container .container .settings-container .box table tr td p {
+  font-size: 13px;
+  line-height: 20px;
+  color: #777;
+}
+.accounts-container .container .settings-container .box input[type="text"] {
+  padding: 7px 5px;
+  width: 100%;
+  border: 1px solid #ccc;
+  font-family: Segoe UI Web Regular;
+  color: #505050;
+  font-size: 14px;
+  line-height: 20px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+}
+.accounts-container .container .settings-container .box input[type="checkbox"] {
+  width: 20px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+}
+.accounts-container .container .settings-container .box #add-card-iframe {
+  width: 100%;
+  height: 340px;
+}
+.accounts-container .container .settings-container .box #add-card-iframe iframe {
+  width: 100%;
+}
+.accounts-container .container .error-container {
+  min-height: 500px;
+}
+.accounts-container .container .error-container a {
+  color: #1570a6;
+  font-family: Segoe UI Web Light;
+  font-size: 24px;
+  line-height: 40px;
+  text-decoration: none;
+  margin: 20px 0;
+}
+.accounts-container .container .referrals-container {
+  margin-top: 25px;
+  display: inline-block;
+}
+.accounts-container .container .referrals-container .left {
+  float: left;
+  width: 47%;
+}
+.accounts-container .container .referrals-container .right {
+  float: right;
+  width: 51%;
+}
+.accounts-container .container .referrals-container .referral-section {
+  font-family: Segoe UI Web Regular;
+  display: inline-block;
+}
+.accounts-container .container .referrals-container .referral-section h2 {
+  color: #505050;
+  font-size: 34px;
+  line-height: 40px;
+}
+.accounts-container .container .referrals-container .referral-section p.refer-text {
+  margin-top: 30px;
+  font-size: 16px;
+}
+.accounts-container .container .referrals-container .referral-section .personal-link {
+  margin-top: 15px;
+  display: inline-block;
+  width: 100%;
+}
+.accounts-container .container .referrals-container .referral-section .personal-link label {
+  margin: 5px 10px 0 0;
+  color: #505050;
+  font-size: 16px;
+  display: inline-block;
+}
+.accounts-container .container .referrals-container .referral-section .personal-link input.shareurl {
+  margin: 5px 10px 0 0;
+  display: inline-block;
+  font-family: Segoe UI Web Regular;
+  color: #4c4c4c;
+  font-size: 16px;
+  width: calc(100% - 100px);
+  height: 21px;
+  padding: 4px;
+}
+.accounts-container .container .referrals-container .referral-section .personal-link input.inputsharewidthwithoutbutton {
+  width: 660px !important;
+}
+.accounts-container .container .referrals-container .referral-section .personal-link .button {
+  margin-top: 5px;
+  background-color: #0078d7;
+  color: #fff;
+  text-decoration: none;
+  line-height: 34px;
+  display: inline-block;
+  width: 75px;
+  font-family: Segoe UI Web Regular;
+  text-align: center;
+  cursor: pointer;
+  height: 33px;
+}
+.accounts-container .container .referrals-container .referral-section div.social-plugin {
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.accounts-container .container .referrals-container .referral-section div.social-plugin ul {
+  margin-top: 10px;
+  display: block;
+  float: left;
+}
+.accounts-container .container .referrals-container .referral-section div.social-plugin ul li {
+  float: left;
+  margin-right: 10px;
+}
+.accounts-container .container .referrals-container .referral-section div.social-plugin ul li a {
+  display: block;
+  cursor: pointer;
+}
+.accounts-container .container .referrals-container .referral-section div.points {
+  display: inline-block;
+  margin-top: 20px;
+}
+.accounts-container .container .referrals-container .referral-section div.points .point {
+  float: left;
+  background-color: #ddd;
+  display: inline-block;
+  font-family: Segoe UI Web Regular;
+  color: #505050;
+  width: 153px;
+  height: 153px;
+  margin: 0 4px 0 0;
+}
+.accounts-container .container .referrals-container .referral-section div.points .point .point-number {
+  color: #737373;
+  font-size: 46px;
+  line-height: 56px;
+  margin: 25px 0 10px;
+  display: block;
+  text-align: center;
+}
+.accounts-container .container .referrals-container .referral-section div.points .point .point-text {
+  color: #737373;
+  font-size: 14px;
+  line-height: 18px;
+  display: block;
+  text-align: center;
+}
+.accounts-container .container .referrals-container .referral-section div.points .nodata {
+  background-color: #737373;
+}
+.accounts-container .container .referrals-container .referral-section div.points .nodata .point-number {
+  color: #fff;
+}
+.accounts-container .container .referrals-container .referral-section div.points .nodata .point-text {
+  color: #fff;
+}
+.accounts-container .container .giftcards-container .left {
+  float: left;
+  width: 47%;
+  margin-right: 6%;
+}
+.accounts-container .container .giftcards-container .right {
+  float: left;
+  width: 47%;
+  overflow: hidden;
+}
+.accounts-container .container .giftcards-container .right img {
+  width: 100%;
+}
+.accounts-container .container .giftcards-container .right img.horizont {
+  display: block;
+}
+.accounts-container .container .giftcards-container .right img.vertical {
+  display: none;
+}
+.accounts-container .container .giftcards-container a {
+  color: #0078d7;
+  cursor: pointer;
+  display: block;
+  margin: 10px 0 10px 0;
+  text-decoration: none;
+}
+.accounts-container .container .giftcards-container a.button {
+  padding: 0 20px;
+  background-color: #0078d7;
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  line-height: 34px;
+  padding-bottom: 2px;
+  display: block;
+  width: 256px;
+  font-family: Segoe UI Web Regular;
+  text-align: center;
+  border: 1px solid #0078d7;
+}
+.accounts-container .container .giftcards-container a.shop {
+  display: inline-block;
+  width: 150px;
+}
+.accounts-container .container .giftcards-container a.button:hover {
+  background-color: #00188f;
+  border: 1px solid #00188f;
+}
+.accounts-container .container .giftcards-container a.hyperlink {
+  color: #0078d7;
+  text-decoration: none;
+}
+.accounts-container .container .giftcards-container a.hyperlink:hover {
+  color: #00188f;
+}
+.accounts-container .container .giftcards-container .how-to-get-started-container div.caption h1 {
+  text-align: center;
+}
+.accounts-container .container .giftcards-container .how-to-get-started-container div.steps {
+  border-bottom: solid 1px #d2d2d2;
+  display: inline-block;
+  margin-top: 40px;
+}
+.accounts-container .container .giftcards-container .how-to-get-started-container div.steps .step {
+  width: 430px;
+  float: left;
+}
+.accounts-container .container .giftcards-container .how-to-get-started-container div.steps .step img {
+  height: 240px;
+  margin: auto;
+  display: block;
+}
+.accounts-container .container .giftcards-container .how-to-get-started-container div.steps .step h2 {
+  text-align: center;
+  margin-top: 20px;
+}
+.accounts-container .container .giftcards-container .how-to-get-started-container div.steps .step p {
+  text-align: center;
+  margin: 20px 0 20px 0;
+}
+.accounts-container .container .giftcards-container .how-to-get-started-container div.steps .step p a {
+  display: initial;
+}
+.accounts-container .container .giftcards-container .how-to-get-started-container div.steps .step.shop-gift-card {
+  margin: 0 30px 0 10px;
+}
+.accounts-container .container .giftcards-container .how-to-get-started-container div.steps .step.get-code {
+  margin: 0 30px 0 30px;
+}
+.accounts-container .container .giftcards-container .how-to-get-started-container div.steps .step.use-code {
+  margin: 0 10px 0 30px;
+}
+.accounts-container .container .giftcards-container .how-to-get-started-container .footer {
+  margin-top: 20px;
+  padding-bottom: 30px;
+}
+.accounts-container .container .giftcards-container .how-to-get-started-container .footer p {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.accounts-container .container .giftcards-container .how-to-get-started-container .footer .button.get-started {
+  width: 110px;
+  margin: auto;
+}
+.accounts-container .container .giftcards-container .faq {
+  margin-top: 20px;
+}
+.accounts-container .container .giftcards-container .faq .item {
+  width: 70%;
+  display: inline-block;
+  margin-bottom: 15px;
+}
+.accounts-container .container .giftcards-container .faq .item div.question {
+  cursor: pointer;
+  font-family: Segoe UI Web Regular;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 22px;
+  color: #505050;
+}
+.accounts-container .container .giftcards-container .faq .item div.question div.icon-layout {
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+  background-image: url('https://az414848.vo.msecnd.net/card-linked-assets/faq-item-icon-expand.png');
+  background-position: 0 -10px;
+  background-repeat: no-repeat;
+  background-size: 40px 40px;
+}
+.accounts-container .container .giftcards-container .faq .item div.question div.text {
+  display: inline-block;
+  vertical-align: top;
+}
+.accounts-container .container .giftcards-container .faq .item div.question:hover div.icon-layout {
+  background: url('https://az414848.vo.msecnd.net/card-linked-assets/faq-item-icon-expand-hover.png');
+  background-repeat: no-repeat;
+  background-position: 0 -10px;
+  background-size: 40px 40px;
+}
+.accounts-container .container .giftcards-container .faq .item div.question.collapse div.icon-layout {
+  background: url('https://az414848.vo.msecnd.net/card-linked-assets/faq-item-icon-collapse.png');
+  background-repeat: no-repeat;
+  background-position: 0 -10px;
+  background-size: 40px 40px;
+}
+.accounts-container .container .giftcards-container .faq .item div.question.collapse:hover div.icon-layout {
+  background: url('https://az414848.vo.msecnd.net/card-linked-assets/faq-item-icon-collapse-hover.png');
+  background-repeat: no-repeat;
+  background-position: 0 -10px;
+  background-size: 40px 40px;
+}
+.accounts-container .container .giftcards-container .faq .item div.answer {
+  display: none;
+  margin-left: 43px;
+}
+.accounts-container .container .giftcards-container .faq .item div.answer a {
+  display: initial;
+}
+#fineprints {
+  padding-bottom: 20px;
+  bottom: 0;
+  position: relative;
+  width: 100%;
+}
+#fineprints p {
+  font-family: Segoe UI Web Regular;
+  color: #505050;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+}
+#fineprints p a {
+  color: #0078d7;
+  font-family: Segoe UI Web Regular;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+}
+@media screen and (max-width: 1449px) {
+  .container {
+    width: 950px;
+    margin: auto;
+  }
+  #nav .container .logo {
+    float: left;
+  }
+  #nav .container .logo a {
+    border: none;
+  }
+  #nav .container .right-nav {
+    float: right;
+  }
+  #nav .container .right-nav ul {
+    list-style-type: none;
+  }
+  #nav .container .right-nav ul li {
+    float: left;
+    margin-left: 30px;
+  }
+  #nav .container .right-nav ul li a {
+    font-size: 18px;
+    line-height: 30px;
+    padding: 5px;
+  }
+  #nav .container .right-nav ul li.border {
+    border: 1px solid #fff;
+    padding: 5px 20px;
+  }
+  .accounts-container {
+    margin: 20px 0 0 0;
+  }
+  .accounts-container .container .spending-container .left a.shopOnline {
+    width: 90px;
+  }
+  .accounts-container .container .spending-container .left a.seeParticipatingStores {
+    width: 250px;
+  }
+  .accounts-container .container .restaurants-container .table-container {
+    width: 100%;
+  }
+  .accounts-container .container .restaurants-container .table-container div.get-location {
+    display: block;
+  }
+  .accounts-container .container .restaurants-container .table-container div.bingmap-container {
+    position: relative;
+    left: 0;
+    top: 0;
+    margin: 0, 0;
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 0;
+    height: 300px;
+  }
+  .accounts-container .container .restaurants-container .table-container table {
+    margin: 0 0;
+    height: auto;
+    display: block;
+    overflow-y: auto;
+  }
+  .accounts-container .container .restaurants-container .fineprint {
+    font-size: 12px;
+    line-height: 16px;
+    margin: 20px 0;
+  }
+  .accounts-container .container .referrals-container .referral-section div.points div.point {
+    margin-top: 4px;
+  }
+  .accounts-container .container .referrals-container .referral-section .personal-link input.inputsharewidthwithoutbutton {
+    width: 435px !important;
+  }
+  .accounts-container .container .places-header .right {
+    display: initial !important;
+  }
+  .accounts-container .container .places-container.top-restaurants {
+    margin-right: 0;
+  }
+  .accounts-container .container .places-container.cards {
+    width: 100%;
+    margin-top: 0;
+  }
+  .accounts-container .container .places-container.cards table td div {
+    width: 178px;
+  }
+  .accounts-container .container .places-container.cards table td .card1,
+  .accounts-container .container .places-container.cards table td .card6 {
+    margin-left: 10px;
+    margin-right: 5px;
+  }
+  .accounts-container .container .places-container.cards table td .card5,
+  .accounts-container .container .places-container.cards table td .card10 {
+    margin-left: 5px;
+    margin-right: 10px;
+  }
+  .accounts-container .container .places-container.cards table td .card2,
+  .accounts-container .container .places-container.cards table td .card3,
+  .accounts-container .container .places-container.cards table td .card4,
+  .accounts-container .container .places-container.cards table td .card7,
+  .accounts-container .container .places-container.cards table td .card8,
+  .accounts-container .container .places-container.cards table td .card9 {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  .accounts-container .container .places-container.cards table td .blank {
+    display: none;
+  }
+  .accounts-container .container .places-container.cards .state-selector-wrapper {
+    display: none;
+  }
+  .accounts-container .container .giftcards-container .how-to-get-started-container .steps .step.shop-gift-card {
+    width: 49%;
+    margin: 0 1% 0 0 !important;
+  }
+  .accounts-container .container .giftcards-container .how-to-get-started-container .steps .step.get-code {
+    width: 49%;
+    margin: 0 !important;
+    margin: 0 0 0 1% !important;
+  }
+  .accounts-container .container .giftcards-container .how-to-get-started-container .steps .step.use-code {
+    margin: auto !important;
+    width: 49%;
+    float: none;
+  }
+  .accounts-container .container .giftcards-container .faq .item .question .text {
+    width: 80%;
+  }
+}
+/* #region Tablet Portrait 710*/
+@media screen and (max-width: 989px) {
+  .container {
+    width: 90%;
+    margin: auto;
+  }
+  #nav {
+    padding: 20px 0;
+    margin: 20px 0;
+  }
+  #nav .container .logo a img {
+    height: 34px;
+  }
+  #nav .container .right-nav {
+    display: none;
+  }
+  #nav .container .right-nav-mobile {
+    display: block;
+    float: right;
+    width: 24px;
+    position: relative;
+  }
+  #nav .container .right-nav-mobile .hamburger {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    right: 0;
+    top: 0;
+  }
+  #nav .container .right-nav-mobile .hamburger img {
+    height: 24px;
+  }
+  #nav .container .right-nav-mobile .hamburger .first {
+    display: block;
+  }
+  #nav .container .right-nav-mobile .hamburger .second {
+    display: none;
+  }
+  #nav .container .right-nav-mobile .pressed .first {
+    display: none;
+  }
+  #nav .container .right-nav-mobile .pressed .second {
+    display: block;
+  }
+  #nav .container .right-nav-mobile .earn-credits {
+    position: absolute;
+    top: 40px;
+    width: 100px;
+    width: 150px;
+    right: 0;
+  }
+  #nav .container .right-nav-mobile .earn-credits p {
+    font-size: 16px;
+    font-family: Segoe UI Web Regular;
+    text-align: right;
+    line-height: 24px;
+    color: #505050;
+  }
+  #nav .container .right-nav-mobile .earn-credits p strong {
+    font-weight: bold;
+  }
+  #main-nav {
+    padding: 0;
+    border-bottom: 1px solid #ddd;
+    background-color: #f9f9f9;
+    margin: 20px 0;
+    display: none;
+  }
+  #main-nav .container {
+    width: 100%;
+  }
+  #main-nav .container ul {
+    list-style-type: none;
+    margin: auto;
+    float: none;
+    width: 100%;
+  }
+  #main-nav .container ul li {
+    margin: 0 30px 0 0;
+    padding: 0;
+    float: none;
+    border-top: 1px solid #ddd;
+    width: 100%;
+  }
+  #main-nav .container ul li a {
+    color: #0078d7;
+    width: 90%;
+    margin: auto;
+    display: block;
+    text-decoration: none;
+    font-family: Segoe UI Web Regular;
+    font-size: 17px;
+    line-height: 30px;
+    padding: 7px 0;
+  }
+  #main-nav .container ul li.mobile {
+    display: block;
+  }
+  #main-nav .container ul li.mobile a.logoutlink {
+    display: block;
+  }
+  #main-nav .container ul li.mobile a.logoutlink p {
+    color: #505050;
+    display: inline-block;
+    margin-left: 10px;
+  }
+  #notifications .container .notification h2 {
+    line-height: 34px;
+  }
+  #notifications .container .notification a.button {
+    width: 150px;
+    display: inline-block;
+    margin-left: 0;
+    font-size: 15px;
+  }
+  .accounts-container {
+    margin: 20px 0 0 0;
+  }
+  .accounts-container .container h1 {
+    font-size: 30px;
+    line-height: 40px;
+  }
+  .accounts-container .container h2 {
+    font-size: 20px;
+    line-height: 30px;
+  }
+  .accounts-container .container h3 {
+    font-size: 17px;
+    line-height: 30px;
+  }
+  .accounts-container .container p {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .accounts-container .container .places-container {
+    float: left;
+    width: 100%;
+    margin: 20px 0;
+  }
+  .accounts-container .container .places-container h2 {
+    margin-bottom: 20px;
+  }
+  .accounts-container .container .places-container table {
+    width: 100%;
+    margin: 20px 0;
+  }
+  .accounts-container .container .places-container table tr td a.bname {
+    font-size: 14px;
+    line-height: 18px;
+  }
+  .accounts-container .container .places-container table tr.header th p {
+    font-size: 14px;
+    line-height: 18px;
+  }
+  .accounts-container .container .places-container table tr.header th.restaurants-link-header a {
+    font-size: 14px;
+    line-height: 18px;
+  }
+  .accounts-container .container .places-container table a.button {
+    width: 100%;
+    padding: 0;
+  }
+  .accounts-container .container .places-container.cards {
+    margin-top: 0;
+  }
+  .accounts-container .container .places-container.cards table {
+    width: 100%;
+  }
+  .accounts-container .container .places-container.cards table td div {
+    width: 23%;
+  }
+  .accounts-container .container .places-container.cards table td .card1,
+  .accounts-container .container .places-container.cards table td .card3,
+  .accounts-container .container .places-container.cards table td .card5,
+  .accounts-container .container .places-container.cards table td .card7,
+  .accounts-container .container .places-container.cards table td .card9 {
+    margin-left: 1%;
+    margin-right: 1%;
+  }
+  .accounts-container .container .places-container.cards table td .card2,
+  .accounts-container .container .places-container.cards table td .card4,
+  .accounts-container .container .places-container.cards table td .card6,
+  .accounts-container .container .places-container.cards table td .card8,
+  .accounts-container .container .places-container.cards table td .card10 {
+    margin-left: 1%;
+    margin-right: 1%;
+  }
+  .accounts-container .container .places-container.top-restaurants .local-restaurants-text {
+    margin-bottom: 0;
+  }
+  .accounts-container .container .history-container table {
+    width: 100%;
+  }
+  .accounts-container .container .restaurants-container .left {
+    float: none;
+  }
+  .accounts-container .container .restaurants-container .right {
+    float: none;
+  }
+  .accounts-container .container .restaurants-container .right p {
+    color: #505050;
+    margin-top: 16px;
+  }
+  .accounts-container .container .restaurants-container .right select {
+    font-size: 14px;
+    padding: 5px 10px;
+    margin: 10px 0;
+    line-height: 28px;
+  }
+  .accounts-container .container .restaurants-container .table-container {
+    width: 100%;
+  }
+  .accounts-container .container .restaurants-container .table-container table {
+    width: 100%;
+  }
+  .accounts-container .container .restaurants-container .table-container table tr td {
+    padding: 10px 20px;
+    height: auto;
+  }
+  .accounts-container .container .restaurants-container .table-container table tr td p {
+    font-size: 14px;
+    line-height: 18px;
+  }
+  .accounts-container .container .restaurants-container .table-container table tr td a {
+    font-size: 14px;
+    font-family: Segoe UI Web Regular;
+    line-height: 18px;
+  }
+  .accounts-container .container .restaurants-container .table-container table tr.header th {
+    padding: 10px 5px;
+  }
+  .accounts-container .container .restaurants-container .map-container .bingmap-container {
+    height: 200px;
+  }
+  .accounts-container .container .restaurants-container .fineprint {
+    font-size: 12px;
+    line-height: 16px;
+    margin: 20px 0;
+  }
+  .accounts-container .container .spending-container .left {
+    float: none;
+    width: 600px;
+    margin-right: 0;
+  }
+  .accounts-container .container .spending-container .left h1 {
+    margin: 20px 0;
+  }
+  .accounts-container .container .spending-container .left a {
+    margin: 20px 0;
+  }
+  .accounts-container .container .spending-container .right {
+    float: none;
+    width: 600px;
+  }
+  .accounts-container .container .spending-container .right img {
+    width: 100%;
+  }
+  .accounts-container .container .spending-container .desktop {
+    display: none;
+  }
+  .accounts-container .container .spending-container .tablet {
+    display: block;
+  }
+  .accounts-container .container .error-container {
+    min-height: 500px;
+  }
+  .accounts-container .container .error-container a {
+    color: #1570a6;
+    font-family: Segoe UI Web Light;
+    font-size: 24px;
+    line-height: 40px;
+    text-decoration: none;
+    margin: 20px 0;
+  }
+  .accounts-container .container .referrals-container .left {
+    width: 100%;
+    clear: both;
+  }
+  .accounts-container .container .referrals-container .right {
+    width: 100%;
+    clear: both;
+    margin-top: 30px;
+  }
+  .accounts-container .container .referrals-container .referral-section h2 {
+    font-size: 24px;
+    line-height: 28px;
+  }
+  .accounts-container .container .referrals-container .referral-section .personal-link label {
+    display: block;
+  }
+  .accounts-container .container .referrals-container .referral-section .personal-link input.shareurl {
+    width: calc(100% - 102px);
+  }
+  .accounts-container .container .referrals-container .referral-section .personal-link input.inputsharewidthwithoutbutton {
+    width: 98% !important;
+  }
+  .accounts-container .container .giftcards-container .left {
+    float: none;
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+  .accounts-container .container .giftcards-container .right {
+    float: none;
+    width: 100%;
+  }
+  .accounts-container .container .giftcards-container .right img {
+    width: 100%;
+  }
+  .accounts-container .container .giftcards-container .how-to-get-started-container .steps .step.use-code {
+    margin: auto !important;
+    width: 49%;
+    float: none;
+  }
+  .accounts-container .container .giftcards-container .faq .item {
+    width: 100%;
+  }
+  .accounts-container .container .faq-container #accordion {
+    width: 65%;
+  }
+  .accounts-container .container .faq-container .faq-need-more-help {
+    width: 30%;
+  }
+}
+/* #region 480 pixel breakpoint */
+@media screen and (max-width: 709px) {
+  .accounts-container {
+    margin: 20px 0 0 0;
+  }
+  .accounts-container .container h1 {
+    font-size: 30px;
+    line-height: 40px;
+  }
+  .accounts-container .container h2 {
+    font-size: 20px;
+    line-height: 30px;
+  }
+  .accounts-container .container h3 {
+    font-size: 17px;
+    line-height: 30px;
+  }
+  .accounts-container .container p {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .accounts-container .container .places-container {
+    float: left;
+    width: 100%;
+    margin: 20px 0;
+  }
+  .accounts-container .container .places-container h2 {
+    margin-bottom: 20px;
+  }
+  .accounts-container .container .places-container table {
+    width: 100%;
+    margin: 20px 0;
+  }
+  .accounts-container .container .restaurants-container .table-container {
+    width: 100%;
+  }
+  .accounts-container .container .restaurants-container .table-container table {
+    width: 100%;
+  }
+  .accounts-container .container .spending-container .left {
+    float: none;
+    width: 100%;
+    margin-right: 0;
+  }
+  .accounts-container .container .spending-container .left h1 {
+    margin: 20px 0;
+  }
+  .accounts-container .container .spending-container .left a {
+    margin: 20px 0;
+  }
+  .accounts-container .container .spending-container .left a.button {
+    padding: 0 15px;
+  }
+  .accounts-container .container .spending-container .left a.seeParticipatingStores {
+    margin-left: 5px;
+    width: 250px;
+  }
+  .accounts-container .container .spending-container .right {
+    float: none;
+    width: 100%;
+  }
+  .accounts-container .container .spending-container .right img {
+    width: 100%;
+  }
+  .accounts-container .container .settings-container {
+    margin: 20px 0 0 0;
+  }
+  .accounts-container .container .settings-container .box {
+    margin: 20px 0 40px 0;
+  }
+  .accounts-container .container .history-container .k-grid td {
+    padding: .4em .1em;
+  }
+  .accounts-container .container .error-container {
+    min-height: 500px;
+  }
+  .accounts-container .container .error-container a {
+    color: #1570a6;
+    font-family: Segoe UI Web Light;
+    font-size: 24px;
+    line-height: 40px;
+    text-decoration: none;
+    margin: 20px 0;
+  }
+  .accounts-container .container .giftcards-container .left {
+    float: none;
+    width: 100%;
+    margin-right: 0;
+  }
+  .accounts-container .container .giftcards-container .right {
+    float: none;
+    width: 100%;
+  }
+  .accounts-container .container .giftcards-container .right img {
+    width: 100%;
+  }
+  .accounts-container .container .giftcards-container .right img.horizont {
+    display: none;
+  }
+  .accounts-container .container .giftcards-container .right img.vertical {
+    display: block;
+  }
+  .accounts-container .container .giftcards-container .how-to-get-started-container .steps .step {
+    width: 100% !important;
+  }
+  #notifications .container .closable-notification {
+    text-align: left;
+  }
+  #notifications .container .closable-notification h2 {
+    text-align: left;
+    font-size: 18px;
+    line-height: 24px;
+    width: calc(100% - 60px);
+  }
+  #notifications .container .closable-notification a.button {
+    margin-left: 0;
+    width: 100%;
+    display: block;
+    margin-top: 10px;
+  }
+  #notifications .container .nonclosable-notification h2 {
+    width: 100%;
+    font-size: 16px;
+    line-height: 18px;
+  }
+  #notifications .container .nonclosable-notification a.inline-link {
+    font-size: 16px;
+    line-height: 18px;
+  }
+  #notifications .close {
+    top: calc(50% - 43px);
+  }
+  #fineprints {
+    padding-bottom: 20px;
+  }
+}
+/* #region Handheld Portrait */
+@media screen and (max-width: 650px) {
+  .accounts-container .container .places-container.cards table td div {
+    width: 47%;
+  }
+  .accounts-container .container .places-container.cards table td div img {
+    max-width: 100%;
+  }
+  .accounts-container .container .places-container.cards table td .card1,
+  .accounts-container .container .places-container.cards table td .card3,
+  .accounts-container .container .places-container.cards table td .card5,
+  .accounts-container .container .places-container.cards table td .card7,
+  .accounts-container .container .places-container.cards table td .card9 {
+    margin-left: 2%;
+    margin-right: 1%;
+  }
+  .accounts-container .container .places-container.cards table td .card2,
+  .accounts-container .container .places-container.cards table td .card4,
+  .accounts-container .container .places-container.cards table td .card6,
+  .accounts-container .container .places-container.cards table td .card8,
+  .accounts-container .container .places-container.cards table td .card10 {
+    margin-left: 1%;
+    margin-right: 2%;
+  }
+  .accounts-container .container .faq-container #accordion {
+    width: 100%;
+  }
+  .accounts-container .container .faq-container .faq-need-more-help {
+    display: none;
+  }
+  .accounts-container .container .faq-container .faq-need-more-help.mobile {
+    width: 100%;
+    margin-left: 0;
+    display: block;
+  }
+}
+@media screen and (max-width: 479px) {
+  .accounts-container {
+    margin: 20px 0 0 0;
+  }
+  .accounts-container .container .places-header .left p {
+    width: 100%;
+  }
+  .accounts-container .container .places-header .right {
+    display: none !important;
+  }
+  .accounts-container .container .places-container table {
+    width: 100%;
+    margin: 20px 0;
+  }
+  .accounts-container .container .places-container table tr td {
+    padding: 20px 0 20px;
+  }
+  .accounts-container .container .places-container table tr td img {
+    max-width: 130px;
+  }
+  .accounts-container .container .places-container a.button {
+    width: 100%;
+  }
+  .accounts-container .container .places-container.top-restaurants table tr th.restaurants-header {
+    padding-left: 0 !important;
+  }
+  .accounts-container .container .places-container.top-restaurants table tr td {
+    padding-left: 0 !important;
+  }
+  .accounts-container .container .places-container.top-restaurants table tr td img {
+    margin-left: 0;
+  }
+  .accounts-container .container .places-container.top-restaurants table tr td.restaurant-logo {
+    max-width: 140px;
+  }
+  .accounts-container .container .places-container.top-restaurants table tr td.restaurant-info {
+    padding-right: 0;
+  }
+  .accounts-container .container .places-container.top-restaurants table tr.header th a.hyperlink {
+    margin-right: 5px;
+  }
+  .accounts-container .container .places-container.cards table tr th p {
+    padding-left: 5px;
+  }
+  .accounts-container .container .places-footer {
+    display: initial !important;
+  }
+  .accounts-container .container .restaurants-container .table-container table tr td {
+    padding: 10px 5px;
+    height: auto;
+  }
+  .accounts-container .container .restaurants-container .table-container table tr td p {
+    font-size: 12px;
+    line-height: 15px;
+  }
+  .accounts-container .container .restaurants-container .table-container table tr td a {
+    font-size: 12px;
+    line-height: 15px;
+  }
+  .accounts-container .container .spending-container {
+    margin: 0 0 0 0;
+  }
+  .accounts-container .container .spending-container .tablet {
+    margin: 15px 0;
+  }
+  .accounts-container .container .spending-container .left a.button {
+    line-height: 32px;
+    margin-top: 0;
+    width: 90%;
+    font-size: 14px;
+  }
+  .accounts-container .container .spending-container .left a.seeParticipatingStores {
+    margin-left: 0;
+  }
+  .accounts-container .container .spending-container .right .content .col {
+    float: none;
+    width: 100%;
+  }
+  .accounts-container .container .settings-container {
+    margin: 20px 0 0 0;
+  }
+  .accounts-container .container .settings-container .box {
+    margin: 20px 0 40px 0;
+    max-width: 320px;
+    min-width: 240px;
+    width: 100%;
+  }
+  .accounts-container .container .settings-container .box a.button {
+    font-size: 16px;
+    line-height: 34px;
+    width: 100%;
+    margin: 20px 0;
+  }
+  .accounts-container .container .settings-container .box a.delete {
+    font-size: 13px;
+    margin: 5px 0;
+  }
+  .accounts-container .container .settings-container .box table tr {
+    border-bottom: 1px solid #ccc;
+  }
+  .accounts-container .container .settings-container .box table tr td p {
+    font-size: 13px;
+    line-height: 20px;
+    color: #777;
+  }
+  .accounts-container .container .settings-container .box input[type="text"] {
+    padding: 5px 5px;
+  }
+  .accounts-container .container .settings-container .box #add-card-iframe {
+    width: 100%;
+    height: 340px;
+  }
+  .accounts-container .container .settings-container .box #add-card-iframe iframe {
+    width: 100%;
+  }
+  .accounts-container .container .support-container {
+    margin: 20px 0 0 0;
+  }
+  .accounts-container .container .support-container input[type="text"] {
+    width: 100%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    padding: 4px 5px;
+    font-size: 13px;
+    line-height: 20px;
+  }
+  .accounts-container .container .support-container textarea {
+    width: 100%;
+    margin: 0 0 10px 0;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    padding: 4px 5px;
+    height: 170px;
+    border: 1px solid #ccc;
+    font-family: Segoe UI Web Regular;
+    font-size: 13px;
+    line-height: 20px;
+  }
+  .accounts-container .container .support-container select {
+    width: 100%;
+  }
+  .accounts-container .container .support-container .card-info input[type="text"].last4digits {
+    float: left;
+    width: 30%;
+    padding: 5px 10px 6px 10px;
+    margin-right: 5%;
+  }
+  .accounts-container .container .support-container .card-info select {
+    margin-left: 5%;
+    width: 60%;
+    float: left;
+  }
+  .accounts-container .container .support-container p {
+    font-family: Segoe UI Web Regular;
+    font-size: 14px;
+    color: #505050;
+    line-height: 20px;
+    margin: 5px 0;
+  }
+  .accounts-container .container .support-container p.error {
+    color: red;
+    margin: 15px 0;
+  }
+  .accounts-container .container .support-container a {
+    font-size: 16px;
+    line-height: 34px;
+    font-family: Segoe UI Web Regular;
+    text-align: center;
+    width: 100%;
+    margin: 40px 0;
+    cursor: pointer;
+  }
+  .accounts-container .container .history-container {
+    margin: 40px 0 0 0;
+  }
+  .accounts-container .container .history-container .desktop {
+    display: none;
+  }
+  .accounts-container .container .history-container .mobile {
+    display: block;
+  }
+  .accounts-container .container .history-container .mobile .item {
+    margin: 10px 0;
+  }
+  .accounts-container .container .history-container .mobile .item .row {
+    border-bottom: 1px solid white;
+    background-color: #eee;
+  }
+  .accounts-container .container .history-container .mobile .item .row .left {
+    width: 100px;
+    padding: 3px 10px;
+    float: left;
+    margin-right: 20px;
+  }
+  .accounts-container .container .history-container .mobile .item .row .left p.italics {
+    font-style: italic;
+  }
+  .accounts-container .container .history-container .mobile .item .row .left p.burn-transaction {
+    color: red;
+  }
+  .accounts-container .container .history-container .mobile .item .row .left p.title {
+    font-weight: 600;
+  }
+  .accounts-container .container .history-container .mobile .item .row .left:nth-child(2n) {
+    margin-right: 0;
+  }
+  .accounts-container .container .referrals-container .referral-section {
+    padding-bottom: 40px;
+    border-bottom: 1px solid #ddd;
+  }
+  .accounts-container .container .referrals-container .referral-section .personal-link label {
+    display: block;
+  }
+  .accounts-container .container .referrals-container .referral-section .personal-link input.shareurl {
+    width: calc(100% - 102px);
+  }
+  .accounts-container .container .referrals-container .referral-section div.points {
+    margin-top: 10px;
+  }
+  .accounts-container .container .referrals-container .referral-section div.points div.point {
+    width: 100%;
+    height: 93px;
+    margin: 10px 0 0 0;
+  }
+  .accounts-container .container .referrals-container .referral-section div.points div.point .point-number {
+    font-size: 34px;
+    line-height: 40px;
+    margin: 25px 40px 0 40px;
+    float: left;
+    width: 100px;
+  }
+  .accounts-container .container .referrals-container .referral-section div.points div.point .point-text {
+    display: table-cell;
+    height: 93px;
+    text-align: left;
+    width: calc(100% - 180px);
+    vertical-align: middle;
+  }
+  #notifications .container .notification h2 {
+    font-size: 16px;
+    line-height: 18px;
+  }
+  #notifications .container .notification h2 a.button {
+    width: 100%;
+    display: block;
+    margin-top: 10px;
+  }
+  #notifications .container .notification .closable-notification h2 {
+    text-align: left;
+  }
+}
+/* #region Handheld Portrait 320px */

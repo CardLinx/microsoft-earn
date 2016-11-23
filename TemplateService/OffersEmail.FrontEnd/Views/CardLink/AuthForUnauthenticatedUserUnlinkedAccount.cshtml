@@ -1,0 +1,42 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+@model CardLinkVM
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8" />
+    <title>@CardLink.AuthTitle</title>
+</head>
+<body>
+
+    <table width="443" cellpadding="20" cellspacing="0" style="margin-right: auto; margin-left: auto; margin-bottom: 0; margin-top: 0; width: 443px; font-family: 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif; padding-left: 20px; padding-bottom: 20px; padding-top: 20px; padding-right: 20px; border-left-width: 0; border-bottom-width: 0; border-right-width: 0; border-top-width: 0;">
+        @Html.Partial("~/Views/CardLink/Partial/TransactionHeader.cshtml")
+        <tr>
+            <td align="left" valign="middle" style="color: #505050; font-family: 'Segoe UI Regular', 'Segoe UI', Arial, Helvetica, sans-serif; text-align: left; vertical-align: middle; padding-top: 0; padding-right: 11px; padding-bottom: 10px; padding-left: 11px;">
+
+                <h2 style="color: #505050; font-weight: normal; font-size: 30px; font-family: 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif; margin: 0;">@CardLink.Congratulations,</h2>
+                <p>
+                    @CardLink.NewAuthParagraph1Part1 <b>@Model.DiscountSummary</b> @CardLink.NewAuthParagraph1Part2 <b>@Model.MerchantName</b> @CardLink.NewAuthParagraph1Part3
+                </p>
+                <p>
+                    @CardLink.NewAuthUnauthenticatedUserUnlinkedEmailParagraph2Part1  
+                </p>
+                <p>
+                    <a href="@Model.AccountLinkingUrl" target="_blank" bgcolor="#ffb900" width="165px" height="40px" target="_blank" style="display: block; height: 45px; line-height: 45px; font-size: 30px; width: 165px; background-color: #ffb900; text-decoration: none; font-family: 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif; color: #505050; padding-left: 10px;">@CardLink.LinkYourAccount</a>
+                </p>
+                <p>
+                    @CardLink.NewAuthParagraph3Part1 <a href="https://www.bing.com/offers/cardlinked?bor=@ViewBag.referrer&bof=@ViewBag.campaign">@CardLink.NewAuthParagraph3FAQLinkText</a> @CardLink.NewAuthParagraph3Part2
+                </p>
+            </td>
+        </tr>
+
+        @Html.Partial("~/Views/CardLink/Partial/MoreAndFinePrint.cshtml", CardLink.AdjustmentDisclaimer)
+        @Html.Partial("~/Views/CardLink/Partial/TransactionFooter.cshtml")
+    </table>
+
+</body>
+</html>

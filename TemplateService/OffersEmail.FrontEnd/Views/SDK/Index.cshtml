@@ -1,0 +1,833 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Bing Offers Email Template</title>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/css/sdk.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="content-header">
+        <h1>BingOffers Email Template</h1>
+        <p>API documentation</p>
+    </div>
+    <div>
+        <div class="content-section">
+
+            @* Reminder templates *@
+            <div class="content-section-inner">
+                <h2>Reminder Templates</h2>
+                <ul>
+                    <li><a>@Html.ActionLink("Signup Reminder Template", "Signup", "Reminder")</a></li>
+                    <li><a>@Html.ActionLink("Activate Account Template A", "TestReminderActivateAccountTemplate", "Home")</a></li>
+                    <li><a href="/Home/TestReminderActivateAccountTemplate/S">Activate Account Template B</a></li>
+                    <li><a href="/outlook/S/A">Outlook Seattle Template</a></li>
+                    <li><a href="/outlook/B/A">Outlook Boston Template</a></li>
+                    <li><a href="/outlook/P/A">Outlook Phoenix Template</a></li>
+                    <li><a>@Html.ActionLink("Deprecate Facebook", "TestDeprecateFacebookTemplate", "Home")</a></li>
+                    <li><a>@Html.ActionLink("Bing Offers Update Notice", "TestBingOffersUpdateNotice", "Home")</a></li>
+                    <li><a>@Html.ActionLink("Deprecate Facebook New", "TestDeprecateFacebookTemplateNew", "Home")</a></li>
+                    <li><a>@Html.ActionLink("Migrate User", "TestMigrateUserTemplate", "Home")</a></li>
+                </ul>
+            </div>
+
+            @*Promotional template*@
+            <div class="content-section-inner">
+                <h2>Promotional Templates</h2>
+                <ul>
+                    <li><a href="/Home/TestDailyDealsTemplate?id=@Url.Encode("/Newsletter/Weekly")">Newsletter Weekly Template</a></li>
+                    <li><a>@Html.ActionLink("Trending Template", "TestTrendingTemplate", "Home")</a></li>
+                    <li><a>@Html.ActionLink("CardLink Daily Deals Template", "TestCLODailyDealsTemplate", "Home")</a></li>
+                    <li><a>@Html.ActionLink("Msn Template", "TestMsnDealsTemplate", "Home")</a></li>
+                    <li><a href="/Home/TestDailyDealsTemplate?id=@Url.Encode("/Seasonal/Valentine")">Valentine's Day Template</a></li>
+                    <li><a href="/Home/TestDailyDealsTemplate?id=@Url.Encode("/Seasonal/Memorial")">Memorial Day Template</a></li>
+                    <li><a href="/Home/TestDailyDealsTemplate?id=@Url.Encode("/Seasonal/Father")">Father's Day Template</a></li>
+                    <li>Fourth of July
+                        <ul>
+                            <li><a href="/Home/TestDailyDealsTemplate?id=@Url.Encode("/Seasonal/Independence")">Independence's Day Template</a></li>
+                            <li><a href="/Home/TestDailyDealsTemplate?id=@Url.Encode("/Seasonal/IndependenceFollowUp")">Independence's Day Follow-up Template</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/Home/TestDailyDealsTemplate?id=@Url.Encode("/Seasonal/Summer")">Summer Template</a></li>
+                </ul>
+            </div>
+
+            @*Email Share templates*@
+            <div class="content-section-inner">
+                <h2>Email Share Templates</h2>
+                <ul>
+                    <li><a>@Html.ActionLink("Deal Template", "TestEmailDealShareTemplate", "Home")</a></li>
+                    <li><a>@Html.ActionLink("Page Template", "TestEmailPageShareTemplate", "Home")</a></li>
+                </ul>
+                <h2>Hero Tile Preview</h2>
+                <ul>
+                    <li><a>@Html.ActionLink("Preview hero tile html", "TestHeroTilePreviewHtml", "Home")</a></li>
+                    <li><a>@Html.ActionLink("Preview hero tile image", "TestHeroTilePreviewImage", "Home")</a></li>
+                    <li><a>@Html.ActionLink("Upload hero tile image", "TestHeroTilePreviewImageUpload", "Home")</a></li>
+                </ul>
+                <h2>Merchant Billing Statement</h2>
+                <ul>
+                    <li><a>@Html.ActionLink("Statement html", "TestMerchantBillingStatementHtml", "Home")</a></li>
+                    <li><a>@Html.ActionLink("Statement pdf", "TestMerchantBillingStatementPdf", "Home")</a></li>
+                </ul>
+            </div>
+
+            @*Auto-prospecting template*@
+            <div class="content-section-inner">
+                <h2>Auto-prospecting Templates</h2>
+                <ul>
+                    <li><a>@Html.ActionLink("Default Template", "TestAutoprospectingTemplate", "Home")</a></li>
+                    <li><a>@Html.ActionLink("Create new offer Template", "TestAutoprospectingCreateNewOfferTemplate", "Home")</a></li>
+                    <li><a>@Html.ActionLink("Create new offer Deem Template", "TestAutoprospectingCreateNewOfferDeemTemplate", "Home")</a></li>
+                    <li><a>@Html.ActionLink("Invite User Template", "TestAutoprospectingInviteUserTemplate", "Home")</a></li>
+                    <li><a>@Html.ActionLink("Merchant Report Template", "TestMerchantReportTemplate", "Home")</a></li>
+                </ul>
+            </div>
+
+            @*Auto-prospecting create new ad template with coupon*@
+            <div class="content-section-inner">
+                <h2>BAX AutoProspecting</h2>
+                <ul>
+                    <li><a>@Html.ActionLink("Create new ad template with coupon", "TestAutoprospectingBaxWithCoupon", "Home")</a></li>
+                    <li><a>@Html.ActionLink("Create new ad Template Without Coupon", "TestAutoprospectingBaxWithoutCoupon", "Home")</a></li>
+                    <li><a>@Html.ActionLink("Create new ad rich template with coupon", "TestAutoprospectingBaxRich", "Home")</a></li>
+                    <li><a>@Html.ActionLink("Create Ad Rich Template 2", "TestBAXAPRich2", "Home")</a></li>
+                    <li><a>@Html.ActionLink("Follow Up Create Ad Rich Template 2", "TestBAXAPRich2FU", "Home")</a></li>
+                    <li><a>@Html.ActionLink("Follow up Template1 with coupon", "TestBAXFollowupEmail", "Home")</a></li>
+                </ul>
+            </div>
+
+            @*BAX Drop off Email Ad Created*@
+            <div class="content-section-inner">
+                <h2>BAX Drop Off Templates</h2>
+                <ul>
+                    <li><a>@Html.ActionLink("BAX Drop Off Ad Created", "TestBaxDropOffAdCreated", "Home")</a></li>
+                    <li><a>@Html.ActionLink("BAX Drop Off Ad Not Created", "TestBaxDropOffAdNotCreated", "Home")</a></li>
+                    <li><a>@Html.ActionLink("BAX Drop Off Without Coupon", "TestBaxDropOffWithoutCoupon", "Home")</a></li>
+                </ul>
+            </div>
+
+            @*BP Claim Templates*@
+            <div class="content-section-inner">
+                <h2>BP Claim Templates</h2>
+                <ul>
+                    <li><a>@Html.ActionLink("FB Promotion Drop Off", "TestBPClaimFB1", "Home")</a></li>
+                </ul>
+            </div>
+
+            @*Auto-prospecting rule based Templates*@
+            <div class="content-section-inner">
+                <h2>Rule-based Auto prospecting Templates</h2>
+                <ul>
+                    <li><a>@Html.ActionLink("BAX Drop Off", "TestAutoprospectingRuleBasedBaxDropOff", "Home")</a></li>
+                </ul>
+            </div>
+
+            @*Change Terms of Use Template template *@
+            <div class="content-section-inner">
+                <h2>Change Terms of Use Template</h2>
+                <ul>
+                    <li>@Html.ActionLink("Email Template", "TestChangeTermsTemplate", "Home")
+
+                        <div class="info-wrapper">
+                            <div class="info">
+                                <pre>
+                                            <code>
+Post /GetEmail/ChangeTerms
+                                            </code>
+                                            </pre>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            @*Confirm email template*@
+            <div class="content-section-inner">
+                <h2>Confirm Email Update Template</h2>
+                <ul>
+                    <li><a>@Html.ActionLink("Email Template", "TestConfirmEmailUpdateTemplate", "Home")</a>
+                        <div class="info-wrapper">
+                            <div class="info">
+                                <pre>
+                                            <code>
+Post /GetEmail/ConfirmEmailUpdate
+Content-Type: application/json
+{
+    "confirmation_url":"https://eeepp.test.com/eee&contactID=/ryMVgxtLR3nhpQd"
+}
+                                            </code>
+                                            </pre>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a>@Html.ActionLink("Text Template", "TestConfirmEmailUpdateTextTemplate", "Home")</a>
+                        <div class="info-wrapper">
+                            <div class="info">
+                                <pre>
+                                            <code>
+Post /GetEmail/ConfirmEmailUpdate
+Content-Type: application/json
+Accept: text/plain
+{
+    "confirmation_url":"https://eeepp.test.com/eee&contactID=/ryMVgxtLR3nhpQd"
+}
+                                            </code>
+                                            </pre>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            @*Earn email templates*@
+            <div class="content-section-inner">
+                <h2>Earn™ Templates</h2>
+                <ul>
+                    <li>
+                        <h3>Welcome Templates</h3>
+                        <ul>
+                            <li><a>@Html.ActionLink("Welcome to Earn", "TestWelcomeToEarnTemplate", "Home")</a></li>
+                            <li><a>@Html.ActionLink("if user has Earned ", "TestIfUserHasEarnedTemplate", "Home")</a></li>
+                            <li><a>@Html.ActionLink("if user has not Earned", "TestIfUserHasNotEarnedTemplate", "Home")</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h3>Promo Templates</h3>
+                        <ul>
+                            <li><a>@Html.ActionLink("Promo Template (December 2015) 2x4 tiles", "TestEarnPromoDecember2015_2x4_HtmlTemplate", "Home")</a></li>
+                            <li><a>@Html.ActionLink("Promo Template (December 2015) 2x3 tiles", "TestEarnPromoDecember2015_2x3_HtmlTemplate", "Home")</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h3>Newsletter Templates</h3>
+                        <h4>2015</h4>
+                        <ul>
+                            <li><a>@Html.ActionLink("July", "TestEarnNewsletterHtmlTemplate", "Home")</a></li>
+                            <li><a>@Html.ActionLink("August", "TestEarnNewsletterAugust2015HtmlTemplate", "Home")</a></li>
+                            <li><a>@Html.ActionLink("September", "TestEarnNewsletterSeptember2015HtmlTemplate", "Home")</a></li>
+                            <li><a>@Html.ActionLink("November", "TestEarnNewsletterNovember2015HtmlTemplate", "Home")</a></li>
+                            <li><a>@Html.ActionLink("Black Friday", "TestEarnNewsletterBlackFriday2015HtmlTemplate", "Home")</a></li>
+                            <li><a>@Html.ActionLink("November Summary", "TestEarnNewsletterNovember2015SummaryHtmlTemplate", "Home")</a></li>
+                            <li><a>@Html.ActionLink("December Summary", "TestEarnNewsletterDecember2015HtmlTemplate", "Home")</a></li>
+                        </ul>
+                        <br />
+                        <h4>2016</h4>
+                        <ul>
+                            <li><a>@Html.ActionLink("January", "TestEarnNewsletterJanuary2016HtmlTemplate", "Home")</a></li>
+                            <li><a>@Html.ActionLink("February", "TestEarnNewsletterFebruary2016HtmlTemplate", "Home")</a></li>
+                            <li><a>@Html.ActionLink("March", "TestEarnNewsletterMarch2016HtmlTemplate", "Home")</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h3>Earn Template</h3>
+                        <ul>
+                            <li><a>@Html.ActionLink("Email Template", "TestEarnHtmlTemplate", "Home")</a></li>
+                            <li><a>@Html.ActionLink("SMS Template", "TestEarnSmsTemplate", "Home")</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h3>Burn Template</h3>
+                        <ul>
+                            <li><a>@Html.ActionLink("Email Template", "TestBurnHtmlTemplate", "Home")</a></li>
+                            <li><a>@Html.ActionLink("SMS Template", "TestBurnSmsTemplate", "Home")</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            @*CardLink email templates*@
+            <div class="content-section-inner">
+                <h2>CardLink™ Templates</h2>
+                <ul>
+                    <li>
+                        <h3>Auth Template</h3>
+                        <ul>
+                            <li><a>@Html.ActionLink("Email Template", "TestCardLinkAuthTemplate", "Home")</a>
+                                <div class="info-wrapper">
+                                    <div class="info">
+                                        <pre>
+                                            <code>
+Post /CardLink/Auth
+Content-Type: application/json
+{
+    "user_name": "Jane",
+    "merchant_name"": "New Delhi Palace",
+    "discount_summary": ""10% Off on Buffet",
+    "credit_amount": "$55.55",
+    "last_four_digits": ""9876"
+}
+                                            </code>
+                                            </pre>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <a>@Html.ActionLink("Text Template", "TestCardLinkAuthTextTemplate", "Home")</a>
+                                <div class="info-wrapper">
+                                    <div class="info">
+                                        <pre>
+                                            <code>
+Post /CardLink/Auth
+Content-Type: application/json
+Accept: text/plain
+{
+    "user_name": "Jane",
+    "merchant_name"": "New Delhi Palace",
+    "discount_summary": ""10% Off on Buffet",
+    "credit_amount": "$55.55",
+    "last_four_digits": ""9876"
+}
+                                            </code>
+                                            </pre>
+
+                                    </div>
+                                </div>
+                            </li>
+                            <li><a>@Html.ActionLink("SMS Template", "TestCardLinkAuthSmsTemplate", "Home")</a>
+                                <div class="info-wrapper">
+                                    <div class="info">
+                                        <pre>
+                                            <code>
+Post /CardLink/AuthSms
+Content-Type: application/json
+{
+    "merchant_name"": "New Delhi Palace",
+    "discount_summary": ""10% Off on Buffet"
+}
+                                            </code>
+                                            </pre>
+
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <h3>Auth Template for Unauthenticated scenario where the user's email is unconfirmed.</h3>
+                                <a>@Html.ActionLink("Email Template", "TestCardLinkAuthTemplateForUnAuthUserWithUnConfirmedEmail", "Home")</a>
+                                <div class="info-wrapper">
+                                    <div class="info">
+                                        <pre>
+                                            <code>
+Post /CardLink/Auth
+Content-Type: application/json
+{
+    "user_name": "Jane",
+    "merchant_name"": "New Delhi Palace",
+    "discount_summary": ""10% Off on Buffet",
+    "credit_amount": "$55.55",
+    "last_four_digits": ""9876",
+    "unauthenticated_user_status" : "UnConfirmedEmail",
+    "email_verification_url" : "https://eeepp.test.com/eee&contactID=/ryMVgxtLR3nhpQd"
+}
+                                            </code>
+                                            </pre>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <a>@Html.ActionLink("Text Template", "TestCardLinkAuthTextTemplateForUnAuthUserWithUnConfirmedEmail", "Home")</a>
+                                <div class="info-wrapper">
+                                    <div class="info">
+                                        <pre>
+                                            <code>
+Post /CardLink/Auth
+Content-Type: application/json
+Accept: text/plain
+{
+    "user_name": "Jane",
+    "merchant_name"": "New Delhi Palace",
+    "discount_summary": ""10% Off on Buffet",
+    "credit_amount": "$55.55",
+    "last_four_digits": ""9876",
+    "unauthenticated_user_status" : "UnConfirmedEmail",
+    "email_verification_url" : "https://eeepp.test.com/eee&contactID=/ryMVgxtLR3nhpQd"
+}
+                                            </code>
+                                            </pre>
+
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <h3>Auth Template for Unauthenticated scenario where the user's account is not linked.</h3>
+                                <a>@Html.ActionLink("Email Template", "TestCardLinkAuthTemplateForUnAuthUserWithUnlinkedAccountEmail", "Home")</a>
+                                <div class="info-wrapper">
+                                    <div class="info">
+                                        <pre>
+                                            <code>
+Post /CardLink/Auth
+Content-Type: application/json
+{
+    "user_name": "Jane",
+    "merchant_name"": "New Delhi Palace",
+    "discount_summary": ""10% Off on Buffet",
+    "credit_amount": "$55.55",
+    "last_four_digits": ""9876",
+    "unauthenticated_user_status" : "UnLinkedEmail",
+    "account_linking_url" : "https://eeepp.test.com/eee&contactID=/ryMVgxtLR3nhpQd"
+}
+                                            </code>
+                                            </pre>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <a>@Html.ActionLink("Text Template", "TestCardLinkAuthTextTemplateForUnAuthUserWithUnlinkedAccountEmail", "Home")</a>
+                                <div class="info-wrapper">
+                                    <div class="info">
+                                        <pre>
+                                            <code>
+Post /CardLink/Auth
+Content-Type: application/json
+Accept: text/plain
+{
+    "user_name": "Jane",
+    "merchant_name"": "New Delhi Palace",
+    "discount_summary": ""10% Off on Buffet",
+    "credit_amount": "$55.55",
+    "last_four_digits": ""9876",
+    "unauthenticated_user_status" : "UnLinkedEmail",
+    "account_linking_url" : "https://eeepp.test.com/eee&contactID=/ryMVgxtLR3nhpQd"
+}
+                                            </code>
+                                            </pre>
+
+                                    </div>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li>
+                        <h3>Linked Template</h3>
+                        <ul>
+                            <li><a>@Html.ActionLink("Email Template", "TestCardLinkLinkedTemplate", "Home")</a>
+                                <div class="info-wrapper">
+                                    <div class="info">
+                                        <pre>
+                                            <code>
+Post /CardLink/Linked
+Content-Type: application/json
+{
+    "user_name": "Jane",
+    "merchant_name"": "New Delhi Palace",
+    "discount_summary": ""10% Off on Buffet"
+}
+                                            </code>
+                                            </pre>
+
+                                    </div>
+                                </div>
+                            </li>
+                            <li><a>@Html.ActionLink("Text Template", "TestCardLinkLinkedTextTemplate", "Home")</a>
+                                <div class="info-wrapper">
+                                    <div class="info">
+                                        <pre>
+                                            <code>
+Post /CardLink/Linked
+Content-Type: application/json
+Accept: text/plain
+{
+    "user_name": "Jane",
+    "merchant_name"": "New Delhi Palace",
+    "discount_summary": ""10% Off on Buffet"
+}
+                                            </code>
+                                            </pre>
+
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h3>Settle Template</h3>
+                        <ul>
+                            <li><a>@Html.ActionLink("Email Template", "TestCardLinkSettleTemplate", "Home")</a>
+                                <div class="info-wrapper">
+                                    <div class="info">
+                                        <pre>
+                                            <code>
+Post /CardLink/Settle
+Content-Type: application/json
+{
+    "user_name": "Jane",
+    "merchant_name"": "New Delhi Palace",
+    "discount_summary": ""10% Off on Buffet",
+    "credit_amount": "$55.55",
+    "last_four_digits": ""9876"
+}
+                                            </code>
+                                            </pre>
+
+                                    </div>
+                                </div>
+                            </li>
+                            <li><a>@Html.ActionLink("Text Template", "TestCardLinkSettleTextTemplate", "Home")</a>
+                                <div class="info-wrapper">
+                                    <div class="info">
+                                        <pre>
+                                            <code>
+Post /CardLink/Settle
+Content-Type: application/json
+Accept: text/plain
+{
+    "user_name": "Jane",
+    "merchant_name"": "New Delhi Palace",
+    "discount_summary": ""10% Off on Buffet",
+    "credit_amount": "$55.55",
+    "last_four_digits": ""9876"
+}
+                                            </code>
+                                            </pre>
+
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <h3>Settle Template for Unauthenticated scenario where the user's email is unconfirmed.</h3>
+                                <a>@Html.ActionLink("Email Template", "TestCardLinkSettleTemplateForUnAuthUserWithUnConfirmedEmail", "Home")</a>
+                                <div class="info-wrapper">
+                                    <div class="info">
+                                        <pre>
+                                            <code>
+Post /CardLink/Settle
+Content-Type: application/json
+{
+    "user_name": "Jane",
+    "merchant_name"": "New Delhi Palace",
+    "discount_summary": ""10% Off on Buffet",
+    "credit_amount": "$55.55",
+    "last_four_digits": ""9876",
+    "unauthenticated_user_status" : "UnConfirmedEmail",
+    "email_verification_url" : "https://eeepp.test.com/eee&contactID=/ryMVgxtLR3nhpQd"
+}
+                                            </code>
+                                            </pre>
+
+                                    </div>
+                                </div>
+                            </li>
+                            <li><a>@Html.ActionLink("Text Template", "TestCardLinkSettleTextTemplateForUnAuthUserWithUnConfirmedEmail", "Home")</a>
+                                <div class="info-wrapper">
+                                    <div class="info">
+                                        <pre>
+                                            <code>
+Post /CardLink/Settle
+Content-Type: application/json
+Accept: text/plain
+{
+    "user_name": "Jane",
+    "merchant_name"": "New Delhi Palace",
+    "discount_summary": ""10% Off on Buffet",
+    "credit_amount": "$55.55",
+    "last_four_digits": ""9876",
+    "unauthenticated_user_status" : "UnConfirmedEmail",
+    "email_verification_url" : "https://eeepp.test.com/eee&contactID=/ryMVgxtLR3nhpQd"
+}
+                                            </code>
+                                            </pre>
+
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <h3>Settle Template for Unauthenticated scenario where the user's account is not linked.</h3>
+                                <a>@Html.ActionLink("Email Template", "TestCardLinkSettleTemplateForUnAuthUserWithUnlinkedAccountEmail", "Home")</a>
+                                <div class="info-wrapper">
+                                    <div class="info">
+                                        <pre>
+                                            <code>
+Post /CardLink/Settle
+Content-Type: application/json
+{
+    "user_name": "Jane",
+    "merchant_name"": "New Delhi Palace",
+    "discount_summary": ""10% Off on Buffet",
+    "credit_amount": "$55.55",
+    "last_four_digits": ""9876",
+    "unauthenticated_user_status" : "UnLinkedEmail",
+    "account_linking_url" : "https://eeepp.test.com/eee&contactID=/ryMVgxtLR3nhpQd"
+}
+                                            </code>
+                                            </pre>
+
+                                    </div>
+                                </div>
+                            </li>
+                            <li><a>@Html.ActionLink("Text Template", "TestCardLinkSettleTextTemplateForUnAuthUserWithUnlinkedAccountEmail", "Home")</a>
+                                <div class="info-wrapper">
+                                    <div class="info">
+                                        <pre>
+                                            <code>
+Post /CardLink/Settle
+Content-Type: application/json
+Accept: text/plain
+{
+    "user_name": "Jane",
+    "merchant_name"": "New Delhi Palace",
+    "discount_summary": ""10% Off on Buffet",
+    "credit_amount": "$55.55",
+    "last_four_digits": ""9876",
+    "unauthenticated_user_status" : "UnLinkedEmail",
+    "account_linking_url" : "https://eeepp.test.com/eee&contactID=/ryMVgxtLR3nhpQd"
+}
+                                            </code>
+                                            </pre>
+
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h3>SignUp Template</h3>
+                        <ul>
+                            <li><a>@Html.ActionLink("Email Template", "TestCardLinkSignUpTemplate", "Home")</a>
+                                <div class="info-wrapper">
+                                    <div class="info">
+                                        <pre>
+                                            <code>
+Post /CardLink/SignUp
+Content-Type: application/json
+{
+    "user_name": "Jane",
+    "merchant_name"": "New Delhi Palace"
+}
+                                            </code>
+                                            </pre>
+
+                                    </div>
+                                </div>
+                            </li>
+                            <li><a>@Html.ActionLink("Text Template", "TestCardLinkSignUpTextTemplate", "Home")</a>
+                                <div class="info-wrapper">
+                                    <div class="info">
+                                        <pre>
+                                            <code>
+Post /CardLink/SignUp
+Content-Type: application/json
+Accept: text/plain
+{
+    "user_name": "Jane",
+    "merchant_name"": "New Delhi Palace"
+}
+                                            </code>
+                                            </pre>
+
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h3>Add Card Template</h3>
+                        <ul>
+                            <li>
+                                <a>@Html.ActionLink("Email Template for verified user", "TestCardLinkAddCardTemplate", "Home")</a>
+                                <div class="info-wrapper">
+                                    <div class="info">
+                                        <pre>
+                                            <code>
+Post /CardLink/AddCard
+Content-Type: application/json
+{
+    "user_name": "Jane",
+    "last_four_digits": "6734",
+    "card_type" : "VISA"  
+}
+                                            </code>
+                                            </pre>
+
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <a>@Html.ActionLink("Email Template for unverified user", "TestCardLinkAddCardTemplateForUnverifiedUser", "Home")</a>
+                                <div class="info-wrapper">
+                                    <div class="info">
+                                        <pre>
+                                            <code>
+Post /CardLink/AddCard
+Content-Type: application/json
+{
+    "user_name": "Jane",
+    "last_four_digits": "6734",
+    "card_type" : "VISA",
+    "unauthenticated_user_status": "UnConfirmedEmail"
+}
+                                            </code>
+                                            </pre>
+
+                                    </div>
+                                </div>
+                            </li>
+                            <li><a>@Html.ActionLink("SMS Template for verified user", "TestCardLinkAddCardSmsTemplate", "Home")</a>
+                                <div class="info-wrapper">
+                                    <div class="info">
+                                        <pre>
+                                            <code>
+Post /CardLink/AddCardSms
+Content-Type: application/json
+{
+    "user_name": "Jane",
+    "last_four_digits": "6734",
+    "card_type" : "VISA"  
+}
+                                            </code>
+                                            </pre>
+
+                                    </div>
+                                </div>
+                            </li>
+                            <li><a>@Html.ActionLink("SMS Template for unverified user", "TestCardLinkAddCardSmsTemplateForUnverifiedUser", "Home")</a>
+                                <div class="info-wrapper">
+                                    <div class="info">
+                                        <pre>
+                                            <code>
+Post /CardLink/AddCardSms
+Content-Type: application/json
+{
+    "user_name": "Jane",
+    "last_four_digits": "6734",
+    "card_type" : "VISA",
+    "unauthenticated_user_status": "UnConfirmedEmail"
+}
+                                            </code>
+                                            </pre>
+
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h3>Delete Card Template</h3>
+                        <ul>
+                            <li><a>@Html.ActionLink("Email Template", "TestCardLinkDeleteCardTemplate", "Home")</a>
+                                <div class="info-wrapper">
+                                    <div class="info">
+                                        <pre>
+                                            <code>
+Post /CardLink/DeleteCard
+Content-Type: application/json
+{
+    "user_name": "Jane",
+    "active_cards_count":0
+}
+                                            </code>
+                                            </pre>
+
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <h3>Complete Profile Template</h3>
+                        <ul>
+                            <li><a>@Html.ActionLink("Email Template", "TestCardLinkCompleteProfileTemplate", "Home")</a>
+                                <div class="info-wrapper">
+                                    <div class="info">
+                                        <pre>
+                                            <code>
+Post /CardLink/CompleteProfile
+Content-Type: application/json
+{
+    "user_name": "Jane"
+}
+                                            </code>
+                                            </pre>
+
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+
+
+                </ul>
+            </div>
+
+            @*Unauthenticated CLO Sign up Email Templates*@
+            <div class="content-section-inner">
+                <h2>Unauthenticated CLO Signups templates</h2>
+                <ul>
+                    <li><a>@Html.ActionLink("Email Template", "TestUnauthCLOConfirmEmailHtmlTemplate", "Home")</a>
+                        <div class="info-wrapper">
+                            <div class="info">
+                                <pre>
+                                            <code>
+Post /GetEmail/ConfirmUnAuthenticatedSignupEmail
+Content-Type: application/json
+{
+    "confirmation_url":"https://eeepp.test.com/eee&contactID=/ryMVgxtLR3nhpQd"
+}
+                                            </code>
+                                            </pre>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a>@Html.ActionLink("Text Template", "TestUnauthCLOConfirmEmailTextTemplate", "Home")</a>
+                        <div class="info-wrapper">
+                            <div class="info">
+                                <pre>
+                                            <code>
+Post /GetEmail/ConfirmUnAuthenticatedSignupEmail
+Content-Type: application/json
+Accept: text/plain
+{
+    "confirmation_url":"https://eeepp.test.com/eee&contactID=/ryMVgxtLR3nhpQd"
+}
+                                            </code>
+                                            </pre>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+                <h2>Link your email to FB/MS Account account invitation templates</h2>
+                <ul>
+                    <li><a>@Html.ActionLink("Email Template", "TestUnAuthenticatedAccountLinkingInviteEmailHtmlTemplate", "Home")</a>
+                        <div class="info-wrapper">
+                            <div class="info">
+                                <pre>
+                                            <code>
+Post /GetEmail/UnAuthenticatedAccountLinkingInviteEmail
+Content-Type: application/json
+{
+    "confirmation_url":"https://eeepp.test.com/eee&contactID=/ryMVgxtLR3nhpQd"
+}
+                                            </code>
+                                            </pre>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a>@Html.ActionLink("Text Template", "TestUnAuthenticatedAccountLinkingInviteEmailTextTemplate", "Home")</a>
+                        <div class="info-wrapper">
+                            <div class="info">
+                                <pre>
+                                            <code>
+Post /GetEmail/UnAuthenticatedAccountLinkingInviteEmail
+Content-Type: application/json
+Accept: text/plain
+{
+    "confirmation_url":"https://eeepp.test.com/eee&contactID=/ryMVgxtLR3nhpQd"
+}
+                                            </code>
+                                            </pre>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{058FB9ED-C35D-4F30-ACA8-B5C9AFD1F302}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Lomo.Commerce.WorkerJobs</RootNamespace>
+    <AssemblyName>Lomo.Commerce.WorkerJobs</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.WindowsAzure.Configuration, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Microsoft.WindowsAzure.ConfigurationManager.3.2.1\lib\net40\Microsoft.WindowsAzure.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="OrchestratedJobs\Deals\ClaimDealTask.cs" />
+    <Compile Include="OrchestratedJobs\Deals\ClaimDiscountForExistingCardsJob.cs" />
+    <Compile Include="OrchestratedJobs\Deals\ClaimDiscountsForNewCardJob.cs" />
+    <Compile Include="OrchestratedJobs\JobOrchestrator.cs" />
+    <Compile Include="OrchestratedJobs\OrchestratedJobFactory.cs" />
+    <Compile Include="OrchestratedJobs\ParallelTaskThrottler.cs" />
+    <Compile Include="OrchestratedJobs\PartnerJobs\AmexOfferBlobUploadTask.cs" />
+    <Compile Include="OrchestratedJobs\PartnerJobs\AmexOfferRegistrationJob.cs" />
+    <Compile Include="OrchestratedJobs\Rewards\ApplyEarnCredit.cs" />
+    <Compile Include="OrchestratedJobs\Rewards\ApplyBingRewardsPoints.cs" />
+    <Compile Include="OrchestratedJobs\Rewards\ApplyRedemptionRewardJob.cs" />
+    <Compile Include="OrchestratedJobs\Rewards\ApplyRewardTask.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RestServiceClient.cs" />
+    <Compile Include="RestServiceContentTypes.cs" />
+    <Compile Include="RestServiceVerbs.cs" />
+    <Compile Include="Runner\IJobRunner.cs" />
+    <Compile Include="Runner\JobRunnerFactory.cs" />
+    <Compile Include="Runner\OrchestratedJobRunner.cs" />
+    <Compile Include="Runner\SimpleJobRunner.cs" />
+    <Compile Include="OrchestratedJobs\Rewards\ApplyReferralRewardJob.cs" />
+    <Compile Include="ScheduledJobs\Deals\DiscountActivationJob.cs" />
+    <Compile Include="ScheduledJobs\IScheduledJob.cs" />
+    <Compile Include="ScheduledJobs\PartnerJobs\AmexOfferRegistrationFileSyncJob.cs" />
+    <Compile Include="ScheduledJobs\PartnerJobs\ProcessMasterCardRebateConfirmationJob.cs" />
+    <Compile Include="ScheduledJobs\PartnerJobs\ProcessMasterCardRebateJob.cs" />
+    <Compile Include="ScheduledJobs\PartnerJobs\ProcessMasterCardClearingJob.cs" />
+    <Compile Include="ScheduledJobs\PartnerJobs\ProcessMasterCardFilteringJob.cs" />
+    <Compile Include="ScheduledJobs\PartnerJobs\ProcessAcknowledgmentJob.cs" />
+    <Compile Include="ScheduledJobs\PartnerJobs\ProcessAmexStatementCreditJob.cs" />
+    <Compile Include="ScheduledJobs\PartnerJobs\ProcessAmexTransactionLogJob.cs" />
+    <Compile Include="ScheduledJobs\PartnerJobs\ProcessExtractJob.cs" />
+    <Compile Include="ScheduledJobs\PartnerJobs\ProcessPtsJob.cs" />
+    <Compile Include="ScheduledJobs\PartnerJobs\ProcessVisaRebateJob.cs" />
+    <Compile Include="ScheduledJobs\PingJob.cs" />
+    <Compile Include="ScheduledJobs\ProcessRewardsNetworkReportJob.cs" />
+    <Compile Include="ScheduledJobs\ScheduledJobFactory.cs" />
+    <Compile Include="SchedulerExtensions.cs" />
+    <Compile Include="SimpleWebToken.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataContracts\Commerce.DataContracts.csproj">
+      <Project>{0ff826a6-bce1-462d-ae04-f291390f6470}</Project>
+      <Name>Commerce.DataContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\shared\middleware\LoMo.Logging\Lomo.Logging.csproj">
+      <Project>{52B39F19-D67C-4CFC-8FAD-0B4FE486CEB7}</Project>
+      <Name>Lomo.Logging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\Lomo.Authorization\Lomo.Authorization.csproj">
+      <Project>{382BEFE2-BA1E-46D8-8501-1A748504C359}</Project>
+      <Name>Lomo.Authorization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\Lomo.Scheduler\Lomo.Scheduler.csproj">
+      <Project>{5E774D1C-7687-4990-A581-BB56E5D64B31}</Project>
+      <Name>Lomo.Scheduler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AmexWorker\Commerce.AmexWorker.csproj">
+      <Project>{DF145CBE-AECF-456A-B82D-967C0C7009E0}</Project>
+      <Name>Commerce.AmexWorker</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Commerce.RewardNetworksWorker\Commerce.RewardsNetworkWorker.csproj">
+      <Project>{1DC695F8-5DA0-473A-8777-3210760E35FF}</Project>
+      <Name>Commerce.RewardsNetworkWorker</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Configuration\Commerce.Configuration.csproj">
+      <Project>{15A69462-A2C1-44AE-9AB6-9DA19D3B686D}</Project>
+      <Name>Commerce.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Context\Commerce.Context.csproj">
+      <Project>{a67149d4-e149-4c3f-873b-52921e2bfa0f}</Project>
+      <Name>Commerce.Context</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataAccess\Commerce.DataAccess.csproj">
+      <Project>{7b84e649-bbaa-4e0f-bbb4-4be1143dbc87}</Project>
+      <Name>Commerce.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataContractExtensions\Commerce.DataContractExtensions.csproj">
+      <Project>{F68FEFFF-05B1-49CF-96D3-696CAD8D275F}</Project>
+      <Name>Commerce.DataContractExtensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataModels\Commerce.DataModels.csproj">
+      <Project>{10f548e4-c48e-4524-9a72-a6aaed713e5c}</Project>
+      <Name>Commerce.DataModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FirstDataWorker\Commerce.FirstDataWorker.csproj">
+      <Project>{AEC60AB2-E4A1-4B13-B40A-B7359AAA285A}</Project>
+      <Name>Commerce.FirstDataWorker</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FtpClient\Commerce.FtpClient.csproj">
+      <Project>{94800b05-142c-4320-b97b-4302248bae2e}</Project>
+      <Name>Commerce.FtpClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Logging\Commerce.Logging.csproj">
+      <Project>{3fa7609a-4c21-46cc-9c76-0daefe77815c}</Project>
+      <Name>Commerce.Logging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LogicCore\Commerce.Logic.Core.csproj">
+      <Project>{2D8F2A73-23FE-4A54-8E49-FB3D40D1AA11}</Project>
+      <Name>Commerce.Logic.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MasterCardWorker\Commerce.MasterCardWorker.csproj">
+      <Project>{5ef3768b-7439-489e-9419-95bdf2ea9380}</Project>
+      <Name>Commerce.MasterCardWorker</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Notifications\Commerce.Notifications.csproj">
+      <Project>{6CE5B414-7C4D-46E7-90F2-05439E9F9F6A}</Project>
+      <Name>Commerce.Notifications</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SftpClient\Commerce.SftpClient.csproj">
+      <Project>{1C84DE35-0F60-411C-B888-425B67B1F56C}</Project>
+      <Name>Commerce.SftpClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utilities\Commerce.Utilities.csproj">
+      <Project>{78499661-CFDE-4218-BB0B-B3866BD8DAFD}</Project>
+      <Name>Commerce.Utilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VisaWorker\Commerce.VisaWorker.csproj">
+      <Project>{5BFCC21E-00B1-4202-9328-8C2CF8C89BD0}</Project>
+      <Name>Commerce.VisaWorker</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WorkerCommon\Commerce.WorkerCommon.csproj">
+      <Project>{04880287-4DBC-4766-820E-6AD2C0C7858D}</Project>
+      <Name>Commerce.WorkerCommon</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

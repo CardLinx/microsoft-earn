@@ -1,0 +1,351 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+@{
+    ViewBag.Title = "Customer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles
+{
+    <link href="https://cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/buttons/1.1.0/css/buttons.dataTables.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1-rc.1/css/select2.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" rel="stylesheet" />
+    @Styles.Render("~/bundles/supportCss")
+}
+
+<div class="content-wrapper customer-info" style="min-height: 916px;" id="mainSection">
+    <!-- Select Customer Modal  -->
+    <div id="selectCustomerModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Multiple matches are found</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Please select a customer.</p>
+                </div>
+
+                <table id="foundCustomers" class="display compact" cellspacing="0" width="100%"></table>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" data-bind="click: customerSelected">Select</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Issue Credits Modal  -->
+    @Html.Partial("~/Views/Support/IssueCreditsModalView.cshtml")
+
+    <!-- Page header -->
+    <div class="row">
+        <div class="col-lg-12">
+            <ol class="breadcrumb">
+                <li><a href="/support/"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active"><i class="fa fa-envelope"></i> Support</li>
+                <li class="active"><i class="fa fa-user"></i> @ViewBag.Title</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="alert alert-warning alert-dismissible alert-custmers-not-found" style="display: none;">
+            <h4>
+                <i class="icon fa fa-warning"></i>
+                Customer not found.
+            </h4>
+            <p>
+                Please try with new search criteria.
+            </p>
+        </div>
+
+        <div class="alert alert-warning alert-dismissible" style="display: none;">
+            <h4>
+                <i class="icon fa fa-warning"></i>
+                Unauthorized
+            </h4>
+            <p>
+                You don't have permission for fetching data.
+            </p>
+        </div>
+
+        <div class="box box-danger box-solid collapsed-box" style="display: none;">
+            <div class="box-header with-border">
+                <i class="icon fa fa-ban"></i>
+                <h3 class="box-title">Error: An error occurred while executing the request. Click plus for details.</h3>
+
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                        <i class="fa fa-plus"></i>
+                    </button>
+                </div>
+                <!-- /.box-tools -->
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body" style="display: none;">
+                <p>
+
+                </p>
+            </div>
+            <!-- /.box-body -->
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+
+                <div class="box box-primary">
+                    <div class="box-header">
+                        <h3 class="box-title">Search by Last 4 Digits, Email, PUID or Global User Id</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="col-md-11 col-sm-10 col-xs-9" id="find-customer-input">
+                            <input id="customerFilter" class="form-control" data-bind="value: customerFilter, event: {keypress: onEnterFindCustomer}, enable: enableComponents" />
+                        </div>
+                        <div class="col-md-1 col-sm-2 col-xs-3" id="find-customer-button">
+                            <button type="submit" class="btn btn-default" data-bind="click: findCustomer, enable: enableComponents">Search</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row" style="display: none;" data-bind="visible: showCustomerAndCardInfo">
+            <div class="col-xs-12">
+                <div class="row">
+                    <div class="col-xs-12 col-md-6 col-lg-5">
+                        <div class="box box-info">
+                            <div class="box-header">
+                                <h3 class="box-title">Customer</h3>
+                            </div>
+                            <div class="box-body">
+                                <div class="col-md-12">
+
+                                    <div class="row customer-details">
+                                        <div class="col-md-3 col-xs-4">
+                                            <label class="title">User Id (Hex):</label>
+                                        </div>
+                                        <div class="col-md-9 col-xs-8">
+                                            <label class="value" data-bind="text: showCustomerAndCardInfo() ? customer().id_hex : ''"></label>
+                                        </div>
+                                    </div>
+
+                                    <div class="row customer-details">
+                                        <div class="col-md-3 col-xs-4">
+                                            <label class="title">User Global Id:</label>
+                                        </div>
+                                        <div class="col-md-9 col-xs-8">
+                                            <label class="value" data-bind="text: showCustomerAndCardInfo() ? customer().global_id : ''"></label>
+                                        </div>
+                                    </div>
+
+                                    <div class="row customer-details">
+                                        <div class="col-md-3 col-xs-4">
+                                            <label class="title">Email:</label>
+                                        </div>
+                                        <div class="col-md-9 col-xs-8">
+                                            <label class="value" data-bind="text: showCustomerAndCardInfo() ? customer().email : ''"></label>
+                                        </div>
+                                    </div>
+
+                                    <div class="row customer-details">
+                                        <div class="col-md-3 col-xs-4">
+                                            <label class="title">MSID/PUID:</label>
+                                        </div>
+                                        <div class="col-md-9 col-xs-8">
+                                            <label class="value" data-bind="text: showCustomerAndCardInfo() ? customer().msid : ''"></label>
+                                        </div>
+                                    </div>
+
+                                    <div class="row customer-details">
+                                        <div class="col-md-3 col-xs-4">
+                                            <label class="title">Phone:</label>
+                                        </div>
+                                        <div class="col-md-9 col-xs-8">
+                                            <label class="value" data-bind="text: showCustomerAndCardInfo() ? customer().phone_number : ''"></label>
+                                        </div>
+                                    </div>
+
+                                    <div class="row customer-details">
+                                        <div class="col-md-3 col-xs-4">
+                                            <label class="title">Credits:</label>
+                                        </div>
+                                        <div class="col-md-5 col-xs-4 customer-credit" data-bind="visible: !showSpinnerInTransactionsTab()">
+                                            <label class="value" data-bind="text: customerCredits"></label>
+                                        </div>
+                                        <div class="col-md-5 col-xs-4 customer-credit" data-bind="visible: showSpinnerInTransactionsTab">
+                                            <span><i class="fa fa-spinner fa-spin"></i></span>
+                                        </div>
+                                        <div class="col-md-4 col-xs-4">
+                                            <button type="submit" class="btn btn-success" data-bind="click: showIssueCreditsModal">
+                                                <i class="fa fa-plus"></i> Issue
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-md-6 col-lg-6 cards-box">
+                        <div class="box box-info">
+
+                            <div class="box-header">
+                                <h3 class="box-title">Cards</h3>
+                            </div>
+                            <div class="box-body">
+                                <table class="table" id="customer-cards">
+                                    <tbody>
+                                        <tr>
+                                            <th style="width: 10px">#</th>
+                                            <th>Brand</th>
+                                            <th>Last 4 Digits</th>
+                                            <th>Date added UTC</th>
+                                            <th>Token</th>
+                                            <th>Active</th>
+                                        </tr>
+
+                                        <!-- ko if: showCustomerAndCardInfo() -->
+                                        <!-- ko foreach: customer().cards -->
+                                        <tr>
+                                            <td data-bind="text: ($index() + 1) + '.'"></td>
+                                            <td>
+                                                <img data-bind="attr:{src: utils.getCardLogo(card_brand_id)}" />
+                                            </td>
+                                            <td data-bind="text: last_4_digits"></td>
+                                            <td data-bind="date: date_added_utc"></td>
+                                            <td data-bind="text: token"></td>
+                                            <td>
+                                                <input type="checkbox" disabled data-bind="checked: active" />
+                                            </td>
+                                        </tr>
+
+                                        <!-- /ko -->
+                                        <!-- /ko -->
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row tables" style="display: none;" data-bind="visible: showTabsWithData">
+            <div class="col-xs-12">
+                <div class="box">
+
+                    <div class="nav-tabs-custom">
+                        <ul class="nav nav-tabs">
+                            <li class="nav active">
+                                <a href="#tabs-transactionHistory" data-toggle="tab">
+                                    <label>Transaction History</label>
+                                    <span data-bind="visible: showSpinnerInTransactionsTab"><i class="fa fa-spinner fa-spin"></i></span>
+                                </a>
+                            </li>
+                            <li class="nav">
+                                <a href="#tabs-earnBurnLineItems" data-toggle="tab">
+                                    <label>Earn/Burn Line Items</label>
+                                    <span data-bind="visible: showSpinnerInEarnBurnLineItemsTab"><i class="fa fa-spinner fa-spin"></i></span>
+                                </a>
+                            </li>
+                            <li class="nav">
+                                <a href="#tabs-referrals" data-toggle="tab">
+                                    <label>Referrals</label>
+                                    <span data-bind="visible: showSpinnerInReferralsTab"><i class="fa fa-spinner fa-spin"></i></span>
+                                </a>
+                            </li>
+                            <li class="nav">
+                                <a href="#tabs-notes" data-toggle="tab">
+                                    <label data-bind="text: 'Notes (' + notesTimeline().totalNotesCount() + ')' "></label>
+                                    <span data-bind="visible: showSpinnerInNotesTab"><i class="fa fa-spinner fa-spin"></i></span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane fade in active" id="tabs-transactionHistory">
+                                <br />
+                                <table id="transactionHistoryDataTable" class="display compact" cellspacing="0" width="100%"></table>
+                            </div>
+                            <div class="tab-pane fade" id="tabs-earnBurnLineItems">
+                                <br />
+                                <table id="earnBurnLineItemsDataTable" class="display compact" cellspacing="0" width="100%"></table>
+                            </div>
+                            <div class="tab-pane fade" id="tabs-referrals">
+                                <br />
+                                <table id="referralsDataTable" class="display compact" cellspacing="0" width="100%"></table>
+                            </div>
+                            <div class="tab-pane fade" id="tabs-notes">
+                                <br />
+
+                                <ul class="timeline">
+
+                                    <!-- ko foreach: notesTimeline().items -->
+                                    <li class="time-label">
+                                        <span class="bg-blue" data-bind="text: date"></span>
+                                    </li>
+
+                                    <!-- ko foreach: notes() -->
+                                    <li>
+                                        <i class="fa fa-lightbulb-o bg-aqua"></i>
+
+                                        <div class="timeline-item">
+                                            <span class="time"><i class="fa fa-clock-o"></i> <span data-bind="text: time() + ' (' + agoText() + ' ago)'"></span></span>
+
+                                            <h3 class="timeline-header" data-bind="text: topic"></h3>
+
+                                            <div class="timeline-body" data-bind="text: text">
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <!-- /ko -->
+                                    <!-- /ko -->
+
+                                    <li>
+                                        <i class="fa fa-clock-o bg-gray"></i>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+</div>
+
+@section scripts
+{
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1-rc.1/js/select2.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.1.0/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.1.0/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.10/js/dataTables.bootstrap.min.js"></script>
+    @Scripts.Render("~/bundles/supportJs")
+
+    <script>
+        $(document).ready(function () {
+            var model = new window.customerInfoViewModel('@User.Identity.Name');
+            ko.applyBindings(model, document.getElementById("mainSection"));
+        });
+    </script>
+}

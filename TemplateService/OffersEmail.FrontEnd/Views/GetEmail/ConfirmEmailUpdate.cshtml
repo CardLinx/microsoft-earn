@@ -1,0 +1,67 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+@model ConfirmSubscriptionVM
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8" />
+    <title>@Confirm.PageTitle</title>
+</head>
+<body>
+
+    <table width="640" cellpadding="0" cellspacing="0" style="margin-right: auto; margin-left: auto; margin-bottom: 0; margin-top: 0; width: 640px;">
+        <tr>
+            <td valign="top" align="left" style="text-align: left; vertical-align: top; padding-right: 0; padding-top: 0; padding-left: 0; padding-bottom: 10px;">
+                <a href="https://www.bing.com/offers?bor=@ViewBag.referrer&bof=@ViewBag.campaign" style="padding-right: 0; padding-top: 0; padding-left: 0; padding-bottom: 0; text-decoration: none;">
+                    <img width="150" height="30" src="@Confirm.OffersLogoUrl" style="width: 150px; height: 30px; vertical-align: bottom; border-left-width: 0; border-bottom-width: 0; border-right-width: 0; border-top-width: 0; font-size: 10px;" alt="@Confirm.BingOffers" />
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="#008272" style="padding-bottom: 40px; padding-left: 40px; padding-right: 40px; padding-top: 15px; background-color: #008272; height: 360px;">
+                <table cellspacing="0" cellpadding="0" width="100%" bgcolor="#008272" style="background-color: #008272; color: #ffffff; font-family: 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif; width: 100%; padding-left: 0; padding-bottom: 0; padding-top: 0; padding-right: 0; height: 360px;">
+                    <tr>
+                        <td align="left" valign="top" style="vertical-align: top; text-align: left; padding-top: 20px; padding-right: 200px; padding-bottom: 35px; padding-left: 0; font-size: 55px; color: #ffffff; line-height: 60px;">
+                            @Confirm.EmailUpdateLine1
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="left" valign="top" style="vertical-align: top; text-align: left; padding-top: 0; padding-right: 0; padding-bottom: 35px; padding-left: 0; font-size: 25px; color: #ffffff; line-height: 30px;">
+                        @Confirm.EmailUpdateLine2
+                    </tr>
+                    <tr>
+                        <td align="left" valign="bottom" style="vertical-align: bottom; text-align: left; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; font-size: 25px; color: #ffffff;">
+
+                            <table cellspacing="0" cellpadding="0" style="color: #ffffff; font-family: 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif; width: 100%; padding-left: 0; padding-bottom: 0; padding-top: 0; padding-right: 0;">
+                                <tr>
+                                    <td align="left" valign="middle" style="vertical-align: middle; text-align: left; padding-top: 0; padding-right: 10px; padding-bottom: 0; padding-left: 0; width: 50px;">
+                                        <img src="@Confirm.FwdButtonImageUrl" alt="@Confirm.EmailUpdateLine3" style="border-left-width: 0; border-bottom-width: 0; border-right-width: 0; border-top-width: 0; font-size: 10px; color: #ffffff;"  />
+                                    </td>
+                                    <td align="left" valign="middle" style="vertical-align: middle; text-align: left; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; font-size: 25px;">
+                                        <a href="@Model.ConfirmationUrl" style="padding-right: 0; padding-top: 0; padding-left: 0; padding-bottom: 0; text-decoration: underline; color: #ffffff; font-size: 25px;">
+                                            @Confirm.EmailUpdateLine3
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td valign="bottom" align="right" style="text-align: right; vertical-align: bottom; padding-right: 0; padding-top: 10px; padding-left: 0; padding-bottom: 0;">
+                <a href="@Confirm.MicrosoftUrl" style="padding-right: 0; padding-top: 0; padding-left: 0; padding-bottom: 0; text-decoration: none;">
+                    <img width="70" src="@Confirm.MsLogoUrl" alt="@Confirm.Microsoft" style="width: 70px; border-left-width: 0; border-bottom-width: 0; border-right-width: 0; border-top-width: 0; font-size: 10px;"  />
+                </a>
+            </td>
+        </tr>
+    </table>
+     <style>@@media print{#_t { background-image: url('https://oegirwx5.emltrk.com/oegirwx5?p&d=%%email%%');}} div.OutlookMessageHeader {background-image:url('https://oegirwx5.emltrk.com/oegirwx5?f&d=%%email%%')} table.moz-email-headers-table {background-image:url('https://oegirwx5.emltrk.com/oegirwx5?f&d=%%email%%')} blockquote #_t {background-image:url('https://oegirwx5.emltrk.com/oegirwx5?f&d=%%email%%')} #MailContainerBody #_t {background-image:url('https://oegirwx5.emltrk.com/oegirwx5?f&d=%%email%%')}</style><div id="_t"></div><img src="https://oegirwx5.emltrk.com/oegirwx5?d=%%email%%" width="1" height="1" border="0" />
+</body>
+</html>

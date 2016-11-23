@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{ED50E570-9E4A-4B61-99B3-8ADEDCBA3DB3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Earn.DataContract</RootNamespace>
+    <AssemblyName>Earn.DataContract</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Commerce\CardBrand.cs" />
+    <Compile Include="Commerce\CardInfo.cs" />
+    <Compile Include="Commerce\EarnBurnHistoryRecord.cs" />
+    <Compile Include="Commerce\EarnBurnLineItem.cs" />
+    <Compile Include="Commerce\IssueCreditsRequest.cs" />
+    <Compile Include="Commerce\IssueCreditsResponse.cs" />
+    <Compile Include="Commerce\UserReferral.cs" />
+    <Compile Include="LomoUsers\Customer.cs" />
+    <Compile Include="LomoUsers\CustomerFilter.cs" />
+    <Compile Include="Commerce\Merchant.cs" />
+    <Compile Include="Commerce\Settlments.cs" />
+    <Compile Include="Commerce\Transaction.cs" />
+    <Compile Include="Commerce\TransactionsFilter.cs" />
+    <Compile Include="Commerce\TransactionType.cs" />
+    <Compile Include="Deal.cs" />
+    <Compile Include="DealImage.cs" />
+    <Compile Include="Business.cs" />
+    <Compile Include="BusinessLocation.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebAnalytics\AggregatedNewUsersByDateRecord.cs" />
+    <Compile Include="WebAnalytics\AggregatedVisitorsByDateRecord.cs" />
+    <Compile Include="WebAnalytics\AggregatedByPageTitleRecord.cs" />
+    <Compile Include="WebAnalytics\AggregatedByDeviceTypeRecord.cs" />
+    <Compile Include="WebAnalytics\EventFilter.cs" />
+    <Compile Include="WebAnalytics\RequestFilter.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

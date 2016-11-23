@@ -1,0 +1,60 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+@using System.Web.Optimization
+@using Lomo.Commerce.Service.Client.Resources
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.1.min.js"></script>
+    @Scripts.Render("~/client/jsBundles/addCardSingleStep")
+    <link href="~/Client/css/SingleStep.min.css?ver=05072014.css" rel="stylesheet" />
+    <title></title>
+</head>
+<body>
+    <div id="main">
+        <div id="formControl">
+            <div id="input-container">
+                <label id="email-label" for="email">Enter your email address</label>
+                <input type="text" id="email" title="Enter your email address" placeholder="somebody@example.com" maxlength="50"/>
+                <label id="card-label" for="card">Enter your Credit/Debit card number</label>
+                <input type="text" id="card" title="Enter your Credit/Debit card number" placeholder="Enter a VISA or MasterCard number" maxlength="20"/>
+                <p id="disclaimer">WE DO NOT CHARGE YOUR CARD. We’ll only use your card number to credit your account. Please pay in full at the merchant.</p>
+                <p id="disclaimer-card">With some exceptions, debit cards with the VISA or MasterCard logos are eligible as long as you sign (and don't enter a PIN) at checkout. Click <a href="https://www.bing.com/offers/cardlinkterms#section4" target="_blank">here</a> for exceptions info.</p>
+            </div>
+            <div id="lowerbox">
+                <div id="terms-container" class="normaltext">
+                    <input type="checkbox" id="terms" />I accept the <a href="https://www.bing.com/offers/cardlinkterms" target="_blank">Terms of Use</a> and direct Microsoft, <a href="https://www.bing.com/offers/cardlinkedterms#section4" target="_blank">payment processors</a>, and participating merchants to share information about my purchases and offer-redemptions to enable my participation in this program and for such other uses of my information as specifically set forth in the Terms of Use.
+                </div>
+                <p id="americanExpress-error" class="error">@AddCardClientResource.Error_AmericanExpress</p>
+                <p id="unknown-error" class="error">@AddCardClientResource.Error_Unknown</p>
+                <p id="terms-not-accepted-error" class="error">@AddCardClientResource.TermsNotAcceptedError</p>
+                <p id="email-invalid-error" class="error">@AddCardClientResource.email_invalid_error</p>
+                <p id="invalidCard-error" class="error">@AddCardClientResource.Error_InvalidCard</p>
+                <p id="explanation-error" class="error"></p>
+
+                <div id="submit">
+                    <div class="centered">
+                        <div id="imageDiv">
+                            <img src="https://az414848.vo.msecnd.net/assets/securelockwhite.png?rand=12345.png" />
+                        </div>
+                        <div id="joinTextDiv">
+                            <p id="join">Activate your card</p>
+                            <p id="protectedby">Protected by our secure server</p>
+                        </div>
+                        <div class="clear">
+                        </div>
+
+                    </div>
+
+                </div>
+                <span id="loading-icon"></span>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

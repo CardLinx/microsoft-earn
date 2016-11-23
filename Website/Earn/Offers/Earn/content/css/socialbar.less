@@ -1,0 +1,50 @@
+/*
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+*/
+@import "settings.less";
+
+#socialbar {
+    background-color: #0078D7;
+    vertical-align: middle;
+
+    div.follow-earn-section {
+        display: inline-block;
+        margin-top: 7px;
+        margin-bottom: 7px;
+
+        .text {
+            height: 40px;
+            display: inline-block;
+            float: left;
+
+            p {
+                font-family: @fontRegular;
+                font-size: 16px;
+                line-height: 20px;
+                color: @white;
+                margin-top: 9px;
+            }
+        }
+
+        ul {
+            display: inline-block;
+            float: left;
+            margin-left: 10px;
+
+            li {
+                float: left;
+                a {
+                    display: block;
+                    cursor: pointer;
+
+                    img {
+                        width: 40px;
+                        height: 40px;
+                        vertical-align: top;
+                    }
+                }
+            }
+        }
+    }
+}

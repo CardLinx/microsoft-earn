@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CustomerServiceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="CustomerServiceIssueEarnCredit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userId" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="amount" Type="int" Mode="In" />
+          <Parameter Name="explanation" Type="nvarchar" Mode="In" />
+          <Parameter Name="issuedBy" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GetEarnBurnHistory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userId" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="QueryEarnBurnLineItems" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="TransactionId" Type="uniqueidentifier" />
+                <Property Name="GlobalId" Type="uniqueidentifier" />
+                <Property Name="TransactionDate" Type="datetime2" Precision="7" />
+                <Property Name="EarnCredit" Type="int" />
+                <Property Name="BurnDebit" Type="int" />
+                <Property Name="HasRedeemedDealRecord" Type="bit" />
+                <Property Name="TransactionType" Type="int" />
+                <Property Name="DealSummary" Type="nvarchar" MaxLength="255" />
+                <Property Name="DealPercent" Type="money" />
+                <Property Name="MerchantName" Type="nvarchar" MaxLength="255" />
+                <Property Name="TransactionAmount" Type="int" />
+                <Property Name="Reversed" Type="bit" />
+                <Property Name="TransactionStatusId" Type="int" />
+                <Property Name="LastFourDigits" Type="char" MaxLength="4" />
+                <Property Name="CardBrand" Type="int" />
+                <Property Name="PermaPending" Type="bit" />
+                <Property Name="ReviewStatusId" Type="int" />
+                <Property Name="RedeemedDealId" Type="uniqueidentifier" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <EntityContainer Name="CustomerServiceModelStoreContainer" />
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CustomerServiceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <ComplexType Name="QueryEarnBurnLineItems_Result">
+          <Property Name="TransactionId" Type="Guid" />
+          <Property Name="GlobalId" Type="Guid" />
+          <Property Name="TransactionDate" Type="DateTime" />
+          <Property Name="EarnCredit" Type="Int32" />
+          <Property Name="BurnDebit" Type="Int32" />
+          <Property Name="HasRedeemedDealRecord" Type="Boolean" />
+          <Property Name="TransactionType" Type="Int32" />
+          <Property Name="DealSummary" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DealPercent" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="MerchantName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TransactionAmount" Type="Int32" />
+          <Property Name="Reversed" Type="Boolean" />
+          <Property Name="TransactionStatusId" Type="Int32" />
+          <Property Name="LastFourDigits" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="CardBrand" Type="Int32" />
+          <Property Name="PermaPending" Type="Boolean" />
+          <Property Name="ReviewStatusId" Type="Int32" />
+          <Property Name="RedeemedDealId" Type="Guid" />
+        </ComplexType>
+        <EntityContainer Name="CustomerServiceEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="QueryEarnBurnLineItems" IsComposable="true" ReturnType="Collection(CustomerServiceModel.QueryEarnBurnLineItems_Result)" />
+          <FunctionImport Name="CustomerServiceIssueEarnCredit">
+            <Parameter Name="userId" Mode="In" Type="Guid" />
+            <Parameter Name="amount" Mode="In" Type="Int32" />
+            <Parameter Name="explanation" Mode="In" Type="String" />
+            <Parameter Name="issuedBy" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetEarnBurnHistory" ReturnType="Collection(CustomerServiceModel.GetEarnBurnHistory_Result)">
+            <Parameter Name="userId" Mode="In" Type="Guid" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="GetEarnBurnHistory_Result">
+          <Property Type="Int32" Name="ReimbursementTenderId" Nullable="true" />
+          <Property Type="String" Name="MerchantName" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="DiscountSummary" Nullable="true" MaxLength="255" />
+          <Property Type="Decimal" Name="Percent" Nullable="true" Precision="19" />
+          <Property Type="DateTime" Name="PurchaseDateTime" Nullable="true" />
+          <Property Type="Int32" Name="AuthorizationAmount" Nullable="true" />
+          <Property Type="Boolean" Name="Reversed" Nullable="true" />
+          <Property Type="Int32" Name="CreditStatusId" Nullable="true" />
+          <Property Type="Int32" Name="DiscountAmount" Nullable="true" />
+          <Property Type="String" Name="LastFourDigits" Nullable="true" MaxLength="4" />
+          <Property Type="Int32" Name="CardBrandId" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CustomerServiceModelStoreContainer" CdmEntityContainer="CustomerServiceEntities">
+          <FunctionImportMapping FunctionName="CustomerServiceModel.Store.QueryEarnBurnLineItems" FunctionImportName="QueryEarnBurnLineItems">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CustomerServiceModel.QueryEarnBurnLineItems_Result">
+                <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
+                <ScalarProperty Name="GlobalId" ColumnName="GlobalId" />
+                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+                <ScalarProperty Name="EarnCredit" ColumnName="EarnCredit" />
+                <ScalarProperty Name="BurnDebit" ColumnName="BurnDebit" />
+                <ScalarProperty Name="HasRedeemedDealRecord" ColumnName="HasRedeemedDealRecord" />
+                <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
+                <ScalarProperty Name="DealSummary" ColumnName="DealSummary" />
+                <ScalarProperty Name="DealPercent" ColumnName="DealPercent" />
+                <ScalarProperty Name="MerchantName" ColumnName="MerchantName" />
+                <ScalarProperty Name="TransactionAmount" ColumnName="TransactionAmount" />
+                <ScalarProperty Name="Reversed" ColumnName="Reversed" />
+                <ScalarProperty Name="TransactionStatusId" ColumnName="TransactionStatusId" />
+                <ScalarProperty Name="LastFourDigits" ColumnName="LastFourDigits" />
+                <ScalarProperty Name="CardBrand" ColumnName="CardBrand" />
+                <ScalarProperty Name="PermaPending" ColumnName="PermaPending" />
+                <ScalarProperty Name="ReviewStatusId" ColumnName="ReviewStatusId" />
+                <ScalarProperty Name="RedeemedDealId" ColumnName="RedeemedDealId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CustomerServiceIssueEarnCredit" FunctionName="CustomerServiceModel.Store.CustomerServiceIssueEarnCredit" />
+          <FunctionImportMapping FunctionImportName="GetEarnBurnHistory" FunctionName="CustomerServiceModel.Store.GetEarnBurnHistory">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CustomerServiceModel.GetEarnBurnHistory_Result">
+                <ScalarProperty Name="ReimbursementTenderId" ColumnName="ReimbursementTenderId" />
+                <ScalarProperty Name="MerchantName" ColumnName="MerchantName" />
+                <ScalarProperty Name="DiscountSummary" ColumnName="DiscountSummary" />
+                <ScalarProperty Name="Percent" ColumnName="Percent" />
+                <ScalarProperty Name="PurchaseDateTime" ColumnName="PurchaseDateTime" />
+                <ScalarProperty Name="AuthorizationAmount" ColumnName="AuthorizationAmount" />
+                <ScalarProperty Name="Reversed" ColumnName="Reversed" />
+                <ScalarProperty Name="CreditStatusId" ColumnName="CreditStatusId" />
+                <ScalarProperty Name="DiscountAmount" ColumnName="DiscountAmount" />
+                <ScalarProperty Name="LastFourDigits" ColumnName="LastFourDigits" />
+                <ScalarProperty Name="CardBrandId" ColumnName="CardBrandId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

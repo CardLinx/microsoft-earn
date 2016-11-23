@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://co3sch010042336.phx.gbl:3011/AudienceIntelligenceService/EfsWcfService.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/Live.Mesh.Service.AsyncQueueService.Interface" />
+  <xs:import schemaLocation="http://co3sch010042336.phx.gbl:3011/AudienceIntelligenceService/EfsWcfService.svc?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/Live.Mesh.Service.AsyncQueuePushService.Interface" />
+  <xs:import schemaLocation="http://co3sch010042336.phx.gbl:3011/AudienceIntelligenceService/EfsWcfService.svc?xsd=xsd9" namespace="http://schemas.microsoft.com/Message" />
+  <xs:element name="ReceiveWork">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Live.Mesh.Service.AsyncQueueService.Interface" minOccurs="0" name="aggregationGroups" nillable="true" type="q1:ArrayOfAggregationGroup" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReceiveWorkResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Live.Mesh.Service.AsyncQueuePushService.Interface" minOccurs="0" name="ReceiveWorkResult" nillable="true" type="q2:ArrayOfWorkResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OnProjectedAllocationChanged">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.microsoft.com/Message" name="data" type="q3:StreamBody" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OnProjectedAllocationChangedResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OnScheduledAllocationChanged">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.microsoft.com/Message" name="data" type="q4:StreamBody" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OnScheduledAllocationChangedResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,42 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+<div class="modal fade" id="issueCreditsModal" tabindex="-1" role="dialog" aria-labelledby="issueCreditsModalLabel">
+    <div class="modal-dialog" role="document">
+        <form class="form-horizontal" id="issueCreditsForm" action="#" data-bind="submit: issueCredits">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="issueCreditsModalLabel">Issue Credits</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="issue_credit_customer_id" class="col-sm-2 control-label">User Id:</label>
+                        <div class="col-sm-10">
+                            <label for="issue_credit_customer_id" class="control-label" data-bind="text: showCustomerAndCardInfo() ? customer().id : ''"></label>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="issue_credit_value" class="col-sm-2 control-label">Credits:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="issue_credit_value" name="issueCreditValue" data-bind="value: issueCreditsAmount">
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="issue_credit_explanation" class="col-sm-2 control-label">Explanation:</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" id="issue_credit_explanation" name="issueCreditExplanation" data-bind="value: issueCreditsExplanation" placeholder="Explanation"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" data-bind="click: resetIssueCreditValues"><i class="fa fa-remove"></i> Cancel</button>
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-dollar"></i> Issue</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

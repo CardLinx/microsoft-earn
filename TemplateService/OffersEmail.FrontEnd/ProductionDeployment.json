@@ -1,0 +1,17 @@
+﻿{
+    "deployments":
+    [
+        {
+            "deploymentName":"BingOffers - Email - Production Prep - WUS",
+            "deploymentLabel": "BingOffers Production - Automated Deployment (WUS)",
+            "SubscriptionDataFileLocation":"c:\\BuildHelpers\\publishsettings.publishsettings",
+            "subscriptionName":"PS-LocalAds-BingOffersWebSite-PROD",
+            "cloudPackageLocation":"\\OffersEmail.Azure.cspkg",
+            "cloudConfigurationLocation":"\\ServiceConfiguration.Cloud.cscfg",
+            "storageAccountName":"productionoffersemailwus",
+            "deploymentConfiguration":"Cloud",
+            "deploymentEnvironment":"Staging",
+            "deploymentServiceName":"production-offersemail-wus"
+        }
+    ]
+}

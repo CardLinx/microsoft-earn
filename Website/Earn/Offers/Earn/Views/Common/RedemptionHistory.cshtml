@@ -1,0 +1,124 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+@model IEnumerable<Lomo.Commerce.DataContracts.EarnBurnTransactionItemDataContract>
+<div class="desktop">
+    <div class="loading-info">Loading...</div>
+    <table id="@ViewData["id"]" style="display: none;">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Business</th>
+                <th>Card</th>
+                <th>Amount</th>
+                <th>Earn Credit</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (Lomo.Commerce.DataContracts.EarnBurnTransactionItemDataContract item in Model)
+            {
+                <tr>
+                    <td><p>@item.EventDateTime.ToString("d")</p></td>
+                    @if (item.RedemptionType == "Redemption")
+                    {
+                        <td><p class="italics">@item.RedemptionType</p></td>
+                    }
+                    else
+                    {
+                        <td><p>@item.RedemptionType</p></td>
+                    }
+                    <td><p>@item.MerchantName</p></td>
+                    <td>
+                        <p>**@item.LastFourDigits</p>
+                    </td>
+                    <td><p>@item.EventAmount</p></td>
+                    @if (item.RedemptionType == "Redemption")
+                    {
+                        <td><p class="burn-transaction">(@item.DiscountAmount)</p></td>
+                    }
+                    else
+                    {
+                        <td><p>@item.DiscountAmount</p></td>
+                    }
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
+
+<div class="mobile">
+    <div class="loading-info">Loading...</div>
+    <table id="@ViewData["id"]Mobile" style="display: none;">
+        <thead>
+            <tr>
+                <th>Transactions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Lomo.Commerce.DataContracts.EarnBurnTransactionItemDataContract item in Model)
+            {
+                <tr>
+                    <td>
+                        <div class="item">
+                            <div class="row">
+                                <div class="left"><p class="title">Date</p></div>
+                                <div class="left"><p>@item.EventDateTime.ToString("d")</p></div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="row">
+                                <div class="left"><p class="title">Type</p></div>
+                                <div class="left">
+                                    @if (item.RedemptionType == "Redemption")
+                                    {
+                                        <p class="italics">@item.RedemptionType</p>
+                                    }
+                                    else
+                                    {
+                                        <p>@item.RedemptionType</p>
+                                    }
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="row">
+                                <div class="left"><p class="title">Business</p></div>
+                                <div class="left"><p>@item.MerchantName</p></div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="row">
+                                <div class="left"><p class="title">Card</p></div>
+                                <div class="left"><p>**@item.LastFourDigits</p></div>
+                                <div class="clear"></div>
+                            </div>
+
+                            <div class="row">
+                                <div class="left"><p class="title">Amount</p></div>
+                                <div class="left"><p>@item.EventAmount</p></div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="row">
+                                <div class="left"><p class="title">Earn Credit</p></div>
+                                <div class="left">
+                                    @if (item.RedemptionType == "Redemption")
+                                    {
+                                        <p class="burn-transaction">(@item.DiscountAmount)</p>
+                                    }
+                                    else
+                                    {
+                                        <p>@item.DiscountAmount</p>
+                                    }
+
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</div>

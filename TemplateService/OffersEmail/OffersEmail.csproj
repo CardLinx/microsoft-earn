@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{EEA9BE1A-EEAD-478A-A1C3-AA26D5304EE5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>OffersEmail</RootNamespace>
+    <AssemblyName>OffersEmail</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <StyleCopTreatErrorsAsWarnings>false</StyleCopTreatErrorsAsWarnings>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.WindowsAzure.Configuration, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Microsoft.WindowsAzure.ConfigurationManager.3.2.1\lib\net40\Microsoft.WindowsAzure.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\CardLinkModel.cs" />
+    <Compile Include="Models\CardlinkDealInfo.cs" />
+    <Compile Include="Models\DealModel.cs" />
+    <Compile Include="Models\ConfirmEmailModel.cs" />
+    <Compile Include="Models\DealPreviewBusinessLocationModel.cs" />
+    <Compile Include="Models\DealPreviewBusinessModel.cs" />
+    <Compile Include="Models\DealPreviewCardlinkInfoModel.cs" />
+    <Compile Include="Models\DealPreviewModel.cs" />
+    <Compile Include="Models\DealPreviewVoucherInfoModel.cs" />
+    <Compile Include="Models\EmailDealsModel.cs" />
+    <Compile Include="Resources\Autoprospecting.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Autoprospecting.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\CardLink.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CardLink.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Confirm.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Confirm.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\BAXDropOff.Designer.cs">
+      <DependentUpon>BAXDropOff.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\BAXFollowupEmail.Designer.cs">
+      <DependentUpon>BAXFollowupEmail.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Earn.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Earn.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Feedback.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Feedback.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\MerchantReportEmail.Designer.cs">
+      <DependentUpon>MerchantReportEmail.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\BPClaim.Designer.cs">
+      <DependentUpon>BPClaim.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\DailyDeals.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DailyDeals.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\BAXEmail.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BAXEmail.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UnAuthCLOEmailConfirm.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UnAuthCLOEmailConfirm.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UnauthenticatedAccountLinkingInvite.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UnauthenticatedAccountLinkingInvite.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Testing\TestDealPreview.cs" />
+    <Compile Include="Testing\TestData.cs" />
+    <Compile Include="Testing\TestMerchantBillingStatement.cs" />
+    <Compile Include="ViewModels\AutoprospectingVM.cs" />
+    <Compile Include="ViewModels\CardLinkVM.cs" />
+    <Compile Include="ViewModels\ConfirmSubscriptionVM.cs" />
+    <Compile Include="ViewModels\AutoprospectingCreateOfferVM.cs" />
+    <Compile Include="ViewModels\AutoprospectingCreateAdVM.cs" />
+    <Compile Include="ViewModels\AutoprospectingBusinessClaimVM.cs" />
+    <Compile Include="ViewModels\AutoprospectingCreateRuleBasedVM.cs" />
+    <Compile Include="ViewModels\AutoprospectingCreateRuleBasedVMBase.cs" />
+    <Compile Include="ViewModels\Feedback\FeedbackEmailVM.cs" />
+    <Compile Include="ViewModels\Feedback\FeedbackVisitVM.cs" />
+    <Compile Include="ViewModels\Feedback\FeedbackVM.cs" />
+    <Compile Include="ViewModels\MerchantReportVM.cs" />
+    <Compile Include="ViewModels\DealVM.cs" />
+    <Compile Include="ViewModels\DailyDealsVM.cs" />
+    <Compile Include="Models\ShareDealModel.cs" />
+    <Compile Include="ViewModels\MsnDealsVM.cs" />
+    <Compile Include="ViewModels\UnauthenticatedAccountLinkingInviteEmailVM.cs" />
+    <Compile Include="ViewModels\UnauthenticatedSignupEmailConfirmationVM.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Autoprospecting.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Autoprospecting.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\CardLink.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CardLink.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Confirm.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Confirm.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\BAXDropOff.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>BAXDropOff.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\BAXFollowupEmail.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>BAXFollowupEmail.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\BPClaim.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>BPClaim.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Earn.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Earn.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Feedback.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Feedback.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\MerchantReportEmail.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MerchantReportEmail.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\DailyDeals.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DailyDeals.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\BAXEmail.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>BAXEmail.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\UnAuthCLOEmailConfirm.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>UnAuthCLOEmailConfirm.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\UnauthenticatedAccountLinkingInvite.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>UnauthenticatedAccountLinkingInvite.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OffersEmail.DataContracts\OffersEmail.DataContracts.csproj">
+      <Project>{e47047c8-18ef-47b7-a40d-6cc0c54c9c44}</Project>
+      <Name>OffersEmail.DataContracts</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

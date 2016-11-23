@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0FF826A6-BCE1-462D-AE04-F291390F6470}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Lomo.Commerce.DataContracts</RootNamespace>
+    <AssemblyName>Lomo.Commerce.DataContracts</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>..\CommerceRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>..\CommerceRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ProdDebug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ProdDebug\</OutputPath>
+    <DefineConstants>CODE_ANALYSIS;DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>..\CommerceRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ProdRelease|AnyCPU'">
+    <OutputPath>bin\ProdRelease\</OutputPath>
+    <DefineConstants>CODE_ANALYSIS;TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>..\CommerceRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'IntDebug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\IntDebug\</OutputPath>
+    <DefineConstants>CODE_ANALYSIS;DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>..\CommerceRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'IntRelease|AnyCPU'">
+    <OutputPath>bin\IntRelease\</OutputPath>
+    <DefineConstants>CODE_ANALYSIS;TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>..\CommerceRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <CodeAnalysisDictionary Include="..\CustomDictionary.xml">
+      <SubType>Designer</SubType>
+    </CodeAnalysisDictionary>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Amex\AmexAuthRequest.cs" />
+    <Compile Include="Amex\AmexAuthResponseCode.cs" />
+    <Compile Include="Amex\AmexAuthResponse.cs" />
+    <Compile Include="Cards\AddCardPayload.cs" />
+    <Compile Include="Cards\AuthenticationVector.cs" />
+    <Compile Include="Cards\CardDataContract.cs" />
+    <Compile Include="Cards\UnauthenticatedAddCardResponse.cs" />
+    <Compile Include="Cards\NewCardNumber.cs" />
+    <Compile Include="Cards\ServiceCardsDataContract.cs" />
+    <Compile Include="Cards\ServiceGetCardsResponse.cs" />
+    <Compile Include="Cards\V2GetCardsResponse.cs" />
+    <Compile Include="Cards\V2CardDataContract.cs" />
+    <Compile Include="ClaimedDeals\ClaimDealInfo.cs" />
+    <Compile Include="ClaimedDeals\GetClaimedDealsResponse.cs" />
+    <Compile Include="ClaimedDeals\ClaimDealPayload.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="DealReports\DealReportQuery.cs" />
+    <Compile Include="DealReports\DealReportsQuery.cs" />
+    <Compile Include="DealReports\GetDealReportsResponse.cs" />
+    <Compile Include="DealReports\DealReportDataContract.cs" />
+    <Compile Include="DealReports\DiscountRedemptionDataContract.cs" />
+    <Compile Include="DealReports\DiscountReportDataContract.cs" />
+    <Compile Include="Deals\ComplexPartnerMerchantId.cs" />
+    <Compile Include="Deals\DayTimeRestriction.cs" />
+    <Compile Include="Deals\V3DealDataContract.cs" />
+    <Compile Include="Deals\V3DiscountDataContract.cs" />
+    <Compile Include="Deals\V3RegisterDealResponse.cs" />
+    <Compile Include="Deals\DealDataContract.cs" />
+    <Compile Include="Deals\DiscountPartnerMerchantIds.cs" />
+    <Compile Include="Discounts\GetActiveDiscountIdsResponse.cs" />
+    <Compile Include="Mastercard\MasterCardAuthorizationResponse.cs" />
+    <Compile Include="MerchantReports\DealRedemptions.cs" />
+    <Compile Include="MerchantReports\PartnerMerchantDealRedemptions.cs" />
+    <Compile Include="MerchantReports\PartnerMerchantIds.cs" />
+    <Compile Include="MerchantReports\GetMerchantReportResponse.cs" />
+    <Compile Include="MerchantReports\MerchantReportQuery.cs" />
+    <Compile Include="RedemptionHistory\CreditStatus.cs" />
+    <Compile Include="RedemptionHistory\EarnBurnTransactionItemDataContract.cs" />
+    <Compile Include="RedemptionHistory\GetEarnBurnTransactionHistoryResponse.cs" />
+    <Compile Include="RedemptionHistory\GetRedemptionHistoryResponse.cs" />
+    <Compile Include="RedemptionHistory\RedemptionEvent.cs" />
+    <Compile Include="RedemptionHistory\RedemptionHistoryItemDataContract.cs" />
+    <Compile Include="Cards\AddCardResponse.cs" />
+    <Compile Include="ClaimedDeals\ClaimDealResponse.cs" />
+    <Compile Include="Cards\GetCardsResponse.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Cards\NewCardInfo.cs" />
+    <Compile Include="Cards\RemoveCardResponse.cs" />
+    <Compile Include="Referrals\AddReferralTypeResponse.cs" />
+    <Compile Include="Referrals\AddReferralResponse.cs" />
+    <Compile Include="Referrals\GetUsersReferralsResponse.cs" />
+    <Compile Include="Referrals\ReferralCodeReportDataContract.cs" />
+    <Compile Include="Referrals\ReferralCountsDataContract.cs" />
+    <Compile Include="Referrals\ReferralDataContract.cs" />
+    <Compile Include="Referrals\ReferralTypeDataContract.cs" />
+    <Compile Include="Referrals\ServiceReferralTypeDataContract.cs" />
+    <Compile Include="Referrals\ReferralEventRewardDataContract.cs" />
+    <Compile Include="RequestInformation.cs" />
+    <Compile Include="CommerceResponse.cs" />
+    <Compile Include="ResultSummary.cs" />
+    <Compile Include="RewardDistributions\GetMssVoucherDistributionHistoryResponse.cs" />
+    <Compile Include="RewardDistributions\TransactionHistoryDataContract.cs" />
+    <Compile Include="RewardDistributions\DistributeMssvResponse.cs" />
+    <Compile Include="RewardDistributions\DistributionHistoryDataContract.cs" />
+    <Compile Include="RewardDistributions\MssvDistributionDataContract.cs" />
+    <Compile Include="RewardsProgramCardEnrollment.cs" />
+    <Compile Include="SecureTokens\GetSecureCardOperationTokenResponse.cs" />
+    <Compile Include="TransactionPublish\TransactionDetail.cs" />
+    <Compile Include="Visa\VisaResponse.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

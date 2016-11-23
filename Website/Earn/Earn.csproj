@@ -1,0 +1,697 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E393307D-BCAA-4010-BD32-FEAC219C5EBE}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Earn</RootNamespace>
+    <AssemblyName>Earn</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <ApplicationInsightsResourceId>/subscriptions/15671901-f055-4031-b828-1d30a2518486/resourcegroups/Default-ApplicationInsights-CentralUS/providers/microsoft.insights/components/Earn</ApplicationInsightsResourceId>
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="DataCollection.IdentityModel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\shared\resources\IdentityModel\7.0\x64\DataCollection.IdentityModel.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector">
+      <HintPath>..\..\..\packages\Microsoft.ApplicationInsights.DependencyCollector.1.2.3\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector">
+      <HintPath>..\..\..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.1.2.3\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel">
+      <HintPath>..\..\..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.1.2.3\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web">
+      <HintPath>..\..\..\packages\Microsoft.ApplicationInsights.Web.1.2.3\lib\net45\Microsoft.AI.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer">
+      <HintPath>..\..\..\packages\Microsoft.ApplicationInsights.WindowsServer.1.2.3\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=1.2.3.490, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Microsoft.ApplicationInsights.1.2.3\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights.Extensibility.PerfCollector">
+      <HintPath>..\..\..\packages\Microsoft.ApplicationInsights.PerformanceCollector.0.13.2-build00132\lib\net40\Microsoft.ApplicationInsights.Extensibility.PerfCollector.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights.Extensibility.RuntimeTelemetry">
+      <HintPath>..\..\..\packages\Microsoft.ApplicationInsights.RuntimeTelemetry.0.13.2-build00132\lib\net45\Microsoft.ApplicationInsights.Extensibility.RuntimeTelemetry.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights.TraceListener">
+      <HintPath>..\..\..\packages\Microsoft.ApplicationInsights.TraceListener.1.2.6\lib\net45\Microsoft.ApplicationInsights.TraceListener.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Azure.Documents.Client, Version=1.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Microsoft.Azure.DocumentDB.1.5.3\lib\net40\Microsoft.Azure.Documents.Client.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Azure.KeyVault.Core">
+      <HintPath>..\..\..\packages\Microsoft.Azure.KeyVault.Core.1.0.0\lib\net40\Microsoft.Azure.KeyVault.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Data.Edm, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Microsoft.Data.Edm.5.7.0\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Microsoft.Data.OData.5.7.0\lib\net40\Microsoft.Data.OData.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services.Client, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Microsoft.Data.Services.Client.5.7.0\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Diagnostics.Instrumentation.Extensions.Intercept">
+      <HintPath>..\..\..\packages\Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.0.13.0-build22724\lib\net40\Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Diagnostics.Tracing.EventSource, Version=1.1.28.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Microsoft.Diagnostics.Tracing.EventSource.Redist.1.1.28\lib\net40\Microsoft.Diagnostics.Tracing.EventSource.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Passport.RPS, Version=6.5.6509.0, Culture=neutral, PublicKeyToken=283dd9fa4b2406c5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\shared\resources\RPS\Microsoft.Passport.RPS.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Passport.RPS.Native, Version=6.5.6509.0, Culture=neutral, PublicKeyToken=a7f43edfd0d31b0f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\shared\resources\RPS\Microsoft.Passport.RPS.Native.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks">
+      <HintPath>..\..\..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions">
+      <HintPath>..\..\..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions.Desktop">
+      <HintPath>..\..\..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Configuration, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Microsoft.WindowsAzure.ConfigurationManager.3.2.1\lib\net40\Microsoft.WindowsAzure.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Diagnostics, Version=2.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.ServiceRuntime, Version=2.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Storage, Version=6.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\WindowsAzure.Storage.6.2.0\lib\net40\Microsoft.WindowsAzure.Storage.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SendGrid.SmtpApi">
+      <HintPath>..\..\..\packages\SendGrid.SmtpApiPlus.1.0.1\lib\portable-net4+sl5+wp8+win8+wpa81+monotouch+monoandroid\SendGrid.SmtpApi.dll</HintPath>
+    </Reference>
+    <Reference Include="SendGridPlus">
+      <HintPath>..\..\..\packages\SendGridPlus.4.1\lib\net45\SendGridPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Services.Client" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=4.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Spatial, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\System.Spatial.5.7.0\lib\net40\System.Spatial.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\..\..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="db\analytic.cs">
+      <DependentUpon>Analytics.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Analytics.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Analytics.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Analytics.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Analytics.tt</DependentUpon>
+    </Compile>
+    <Compile Include="db\Analytics.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Analytics.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Offers\Earn\Attributes\AuthorizeUserAttribute.cs" />
+    <Compile Include="Offers\Earn\Attributes\CorpnetFilterAttribute.cs" />
+    <Compile Include="Offers\Earn\Attributes\IpFilterAttribute.cs" />
+    <Compile Include="Offers\Earn\Attributes\LiveIdAuthResult.cs" />
+    <Compile Include="Offers\Earn\Attributes\LocationAttribute.cs" />
+    <Compile Include="Offers\Earn\Attributes\MicrosoftAccountApiAuthentication.cs" />
+    <Compile Include="Offers\Earn\Attributes\MicrosoftAccountAuthenticationAttribute.cs" />
+    <Compile Include="Offers\Earn\Attributes\RootDomainRedirectFilterAttribute.cs" />
+    <Compile Include="Offers\Earn\Controllers\Api\AnalyticsController.cs" />
+    <Compile Include="Offers\Earn\Controllers\Api\PingController.cs" />
+    <Compile Include="Offers\Earn\Controllers\Api\SupportController.cs" />
+    <Compile Include="Offers\Earn\Controllers\ExpireCookieController.cs" />
+    <Compile Include="Offers\Earn\Controllers\AccountController.cs" />
+    <Compile Include="Offers\Earn\Controllers\EnrollController.cs" />
+    <Compile Include="Offers\Earn\Controllers\LearnController.cs" />
+    <Compile Include="Offers\Earn\Controllers\LegalController.cs" />
+    <Compile Include="Offers\Earn\Controllers\MigrateController.cs" />
+    <Compile Include="Offers\Earn\Controllers\MyAnidController.cs" />
+    <Compile Include="Offers\Earn\Controllers\SocialController.cs" />
+    <Compile Include="Offers\Earn\Controllers\MerchantController.cs" />
+    <Compile Include="Offers\Earn\Controllers\TestController.cs" />
+    <Compile Include="Offers\Earn\Dal\AnalyticsDatabaseDal.cs" />
+    <Compile Include="Offers\Earn\Dal\DocumentDbDealsProvider.cs" />
+    <Compile Include="Offers\Earn\Dal\DocumentDBRepository.cs" />
+    <Compile Include="Offers\Earn\Dal\HolMonDealsProvider.cs" />
+    <Compile Include="Offers\Earn\Dal\IDealsProvider.cs" />
+    <Compile Include="Offers\Earn\Helper\AzureUtility.cs" />
+    <Compile Include="Offers\Earn\Helper\DatabaseAdapter.cs" />
+    <Compile Include="Offers\Earn\Helper\DealComparison.cs" />
+    <Compile Include="Offers\Earn\Helper\FrontdoorUtility.cs" />
+    <Compile Include="Offers\Earn\Helper\TokenHelper.cs" />
+    <Compile Include="Offers\Earn\Helper\Utility.cs" />
+    <Compile Include="Offers\Earn\Models\AccountsPageModel.cs" />
+    <Compile Include="Offers\Earn\Models\AuthorizeUserResult.cs" />
+    <Compile Include="Offers\Earn\Models\EmailInfo.cs" />
+    <Compile Include="Offers\Earn\Models\EnrollPageModel.cs" />
+    <Compile Include="Offers\Earn\Models\FrontDoorLocation.cs" />
+    <Compile Include="Offers\Earn\Models\LearnPageModel.cs" />
+    <Compile Include="Offers\Earn\Models\MerchantModel.cs" />
+    <Compile Include="Offers\Earn\Models\SortBy.cs" />
+    <Compile Include="Offers\Earn\Models\SupportRequestModel.cs" />
+    <Compile Include="Offers\Earn\Models\UserModel.cs" />
+    <Compile Include="Offers\Earn\Services\AnalyticsService.cs" />
+    <Compile Include="Offers\Earn\Services\CommerceService.cs" />
+    <Compile Include="Offers\Earn\Services\DealService.cs" />
+    <Compile Include="Offers\Earn\Services\EmailService.cs" />
+    <Compile Include="Offers\Earn\Services\UserService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="apple-touch-icon-114x114.png" />
+    <Content Include="apple-touch-icon-120x120.png" />
+    <Content Include="apple-touch-icon-144x144.png" />
+    <Content Include="apple-touch-icon-152x152.png" />
+    <Content Include="apple-touch-icon-57x57.png" />
+    <Content Include="apple-touch-icon-60x60.png" />
+    <Content Include="apple-touch-icon-72x72.png" />
+    <Content Include="apple-touch-icon-76x76.png" />
+    <Content Include="browserconfig.xml" />
+    <Content Include="favicon-128.png" />
+    <Content Include="favicon-16x16.png" />
+    <Content Include="favicon-196x196.png" />
+    <Content Include="favicon-32x32.png" />
+    <Content Include="favicon-96x96.png" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="mstile-144x144.png" />
+    <Content Include="mstile-150x150.png" />
+    <Content Include="mstile-310x150.png" />
+    <Content Include="mstile-310x310.png" />
+    <Content Include="mstile-70x70.png" />
+    <Content Include="Offers\Earn\content\css\animate.css" />
+    <Content Include="Offers\Earn\content\css\enroll.css">
+      <DependentUpon>enroll.less</DependentUpon>
+    </Content>
+    <Content Include="Offers\Earn\content\css\enroll.min.css">
+      <DependentUpon>enroll.css</DependentUpon>
+    </Content>
+    <Content Include="Offers\Earn\content\css\faq.css">
+      <DependentUpon>faq.less</DependentUpon>
+    </Content>
+    <Content Include="Offers\Earn\content\css\faq.min.css">
+      <DependentUpon>faq.css</DependentUpon>
+    </Content>
+    <Content Include="Offers\Earn\content\css\footer.css">
+      <DependentUpon>footer.less</DependentUpon>
+    </Content>
+    <Content Include="Offers\Earn\content\css\footer.min.css">
+      <DependentUpon>footer.css</DependentUpon>
+    </Content>
+    <Content Include="Offers\Earn\content\css\accounts.css">
+      <DependentUpon>accounts.less</DependentUpon>
+    </Content>
+    <Content Include="Offers\Earn\content\css\accounts.min.css">
+      <DependentUpon>accounts.css</DependentUpon>
+    </Content>
+    <Content Include="Offers\Earn\content\css\learn.css">
+      <DependentUpon>learn.less</DependentUpon>
+    </Content>
+    <Content Include="Offers\Earn\content\css\learn.min.css">
+      <DependentUpon>learn.css</DependentUpon>
+    </Content>
+    <Content Include="Offers\Earn\content\css\merchant.css">
+      <DependentUpon>merchant.less</DependentUpon>
+    </Content>
+    <Content Include="Offers\Earn\content\css\merchant.min.css">
+      <DependentUpon>merchant.css</DependentUpon>
+    </Content>
+    <Content Include="Offers\Earn\content\css\reset.css">
+      <DependentUpon>reset.less</DependentUpon>
+    </Content>
+    <Content Include="Offers\Earn\content\css\reset.min.css">
+      <DependentUpon>reset.css</DependentUpon>
+    </Content>
+    <Content Include="Offers\Earn\content\css\settings.css">
+      <DependentUpon>settings.less</DependentUpon>
+    </Content>
+    <Content Include="Offers\Earn\content\css\settings.min.css">
+      <DependentUpon>settings.css</DependentUpon>
+    </Content>
+    <Content Include="Offers\Earn\content\css\SocialBar.css">
+      <DependentUpon>socialbar.less</DependentUpon>
+    </Content>
+    <Content Include="Offers\Earn\content\css\SocialBar.min.css">
+      <DependentUpon>SocialBar.css</DependentUpon>
+    </Content>
+    <Content Include="Offers\Earn\content\fonts\bingoffers-20131115.svg" />
+    <Content Include="Offers\Earn\content\fonts\bingoffers-20140312.svg" />
+    <Content Include="Offers\Earn\content\images\check.gif" />
+    <Content Include="Offers\Earn\content\images\email_40x40.png" />
+    <Content Include="Offers\Earn\content\images\fb_40x40.png" />
+    <Content Include="Offers\Earn\content\images\pn_40x40.png" />
+    <Content Include="Offers\Earn\content\images\spinner.gif" />
+    <Content Include="Offers\Earn\content\images\tw_40x40.png" />
+    <Content Include="Offers\Earn\content\images\userlocation.png" />
+    <Content Include="Offers\Earn\content\js\bingMapViewModel.js" />
+    <Content Include="Offers\Earn\content\js\bouxAnalytics.js" />
+    <Content Include="Offers\Earn\content\js\enrollViewModel.js" />
+    <Content Include="Offers\Earn\content\js\notification.js" />
+    <Content Include="Offers\Earn\content\js\notificationsViewModel.js" />
+    <Content Include="Offers\Earn\content\js\referralCodeViewModel.js" />
+    <Content Include="Offers\Earn\content\js\referralsViewModel.js" />
+    <Content Include="Offers\Earn\content\js\settingsViewModel.js" />
+    <Content Include="Offers\Earn\content\js\accountMainViewModel.js" />
+    <Content Include="Offers\Earn\content\js\businessViewModel.js" />
+    <Content Include="Offers\Earn\content\js\cardInfo.js" />
+    <Content Include="Offers\Earn\content\js\cardsControllerProxy.js" />
+    <Content Include="Offers\Earn\content\js\configuration.js" />
+    <Content Include="Offers\Earn\content\js\cookie.js" />
+    <Content Include="Offers\Earn\content\js\dealViewModel.js" />
+    <Content Include="Offers\Earn\content\js\localDealsViewModel.js" />
+    <Content Include="Offers\Earn\content\js\socialPlugin.js" />
+    <Content Include="Offers\Earn\content\js\supportViewModel.js" />
+    <Content Include="Offers\Earn\content\js\helper.js" />
+    <Content Include="Offers\Earn\content\js\contactInfoViewModel.js" />
+    <Content Include="Offers\Earn\content\js\login.js" />
+    <Content Include="Offers\Earn\content\js\messaging.js" />
+    <Content Include="Offers\Earn\content\js\registeredCardsViewModel.js" />
+    <Content Include="Offers\Earn\content\js\transactionHistoryViewModel.js" />
+    <Content Include="Offers\Earn\content\js\userServices.js" />
+    <Content Include="Offers\Earn\Views\Merchant\Agreements\ExhibitC.htm" />
+    <Content Include="Offers\Earn\Views\Merchant\Agreements\ExhibitD.htm" />
+    <Content Include="rpsServer.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="scripts\ai.0.15.0-build58334.js" />
+    <Content Include="scripts\ai.0.15.0-build58334.min.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Offers\Earn\Views\Partial\" />
+    <Folder Include="Views\MyAnid\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Offers\Earn\Views\Enroll\Enroll.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Offers\Earn\Views\Learn\Learn.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Offers\Earn\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Offers\Earn\Views\Common\Footer.cshtml" />
+    <Content Include="Offers\Earn\Views\Common\Header.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Offers\Earn\content\css\settings.less" />
+    <Content Include="Offers\Earn\content\css\settings.css.map">
+      <DependentUpon>settings.css</DependentUpon>
+    </Content>
+    <Content Include="Offers\Earn\content\css\footer.less" />
+    <Content Include="Offers\Earn\content\css\footer.css.map">
+      <DependentUpon>footer.css</DependentUpon>
+    </Content>
+    <Content Include="Offers\Earn\content\css\reset.less" />
+    <Content Include="Offers\Earn\content\css\reset.css.map">
+      <DependentUpon>reset.css</DependentUpon>
+    </Content>
+    <Content Include="Offers\Earn\content\css\accounts.less" />
+    <Content Include="Offers\Earn\content\css\accounts.css.map">
+      <DependentUpon>accounts.css</DependentUpon>
+    </Content>
+    <Content Include="Offers\Earn\Views\Account\AccountsLayout.cshtml" />
+    <Content Include="Offers\Earn\Views\Account\Places.cshtml" />
+    <Content Include="Offers\Earn\Views\Account\Settings.cshtml" />
+    <Content Include="Offers\Earn\Views\Account\spending.cshtml" />
+    <Content Include="Offers\Earn\Views\Account\history.cshtml" />
+    <Content Include="Offers\Earn\Views\Account\help.cshtml" />
+    <Content Include="Offers\Earn\Views\Account\restaurants.cshtml" />
+    <Content Include="Offers\Earn\Views\Account\Referrals.cshtml" />
+    <Content Include="InstallRPS.cmd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="rps64.msi">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RPS_CEK.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RPS_CEK.pfx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RPS_DEK.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RPS_DEK.pfx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Offers\Earn\Views\Account\AccountError.cshtml" />
+    <Content Include="Offers\Earn\Views\Enroll\EnrollUnauthenticated.cshtml" />
+    <Content Include="Offers\Earn\content\css\enroll.less" />
+    <Content Include="Offers\Earn\content\css\enroll.css.map">
+      <DependentUpon>enroll.css</DependentUpon>
+    </Content>
+    <Content Include="Offers\Earn\content\fonts\bingoffers-20131115.eot" />
+    <Content Include="Offers\Earn\content\fonts\bingoffers-20131115.ttf" />
+    <Content Include="Offers\Earn\content\fonts\bingoffers-20131115.woff" />
+    <Content Include="Offers\Earn\content\fonts\bingoffers-20140312.eot" />
+    <Content Include="Offers\Earn\content\fonts\bingoffers-20140312.ttf" />
+    <Content Include="Offers\Earn\content\fonts\bingoffers-20140312.woff" />
+    <Content Include="Offers\Earn\Views\Social\Facebook.cshtml" />
+    <Content Include="Offers\Earn\Views\Test\Test.cshtml" />
+    <Content Include="Offers\Earn\Views\Legal\TermsofUse.cshtml" />
+    <Content Include="Offers\Earn\Views\Account\support.cshtml" />
+    <Content Include="Offers\Earn\Views\Common\RedemptionHistory.cshtml" />
+    <Content Include="manifest.json" />
+    <Content Include="Offers\Earn\Views\Migrate\Index.cshtml" />
+    <Content Include="topplaces.json" />
+    <Content Include="Offers\Earn\content\css\learn.less" />
+    <Content Include="Offers\Earn\content\css\learn.css.map">
+      <DependentUpon>learn.css</DependentUpon>
+    </Content>
+    <Content Include="Offers\Earn\Views\Common\FaqPartial.cshtml" />
+    <Content Include="Offers\Earn\Views\Legal\Faq.cshtml" />
+    <Content Include="Offers\Earn\content\css\faq.less" />
+    <Content Include="Offers\Earn\content\css\faq.css.map">
+      <DependentUpon>faq.css</DependentUpon>
+    </Content>
+    <Content Include="Offers\Earn\Views\Common\PopupNotifications.cshtml" />
+    <EntityDeploy Include="db\Analytics.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Analytics.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="db\Analytics.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Analytics.edmx</DependentUpon>
+      <LastGenOutput>Analytics.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="db\Analytics.edmx.diagram">
+      <DependentUpon>Analytics.edmx</DependentUpon>
+    </Content>
+    <Content Include="db\Analytics.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Analytics.edmx</DependentUpon>
+      <LastGenOutput>Analytics.cs</LastGenOutput>
+    </Content>
+    <Content Include="Offers\Earn\Views\Merchant\Email.cshtml" />
+    <Content Include="Offers\Earn\Views\Merchant\InsertionOrder.cshtml" />
+    <Content Include="Offers\Earn\Views\Merchant\ThankYou.cshtml" />
+    <Content Include="Offers\Earn\Views\Merchant\_Layout.cshtml" />
+    <Content Include="Offers\Earn\content\css\merchant.less" />
+    <Content Include="Offers\Earn\content\css\merchant.css.map">
+      <DependentUpon>merchant.css</DependentUpon>
+    </Content>
+    <Content Include="Offers\Earn\Views\Common\SocialBar.cshtml" />
+    <Content Include="Offers\Earn\content\css\socialbar.less" />
+    <Content Include="Offers\Earn\content\css\SocialBar.css.map">
+      <DependentUpon>SocialBar.css</DependentUpon>
+    </Content>
+    <Content Include="Offers\Earn\Views\Account\GiftCards.cshtml" />
+    <Content Include="Service References\Application Insights\ConnectedService.json" />
+    <None Include="Web.Release.EUS.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.WUS.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Commerce\DataContracts\Commerce.DataContracts.csproj">
+      <Project>{0ff826a6-bce1-462d-ae04-f291390f6470}</Project>
+      <Name>Commerce.DataContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\shared\middleware\LoMo.Logging\Lomo.Logging.csproj">
+      <Project>{52b39f19-d67c-4cfc-8fad-0b4fe486ceb7}</Project>
+      <Name>Lomo.Logging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\shared\middleware\Lomo.Authentication\Lomo.Authentication.csproj">
+      <Project>{ddf5533d-8591-4a36-9e7c-a4220c3a1561}</Project>
+      <Name>Lomo.Authentication</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\UserServices\ProfileService.Utility\ProfileService.Utility.csproj">
+      <Project>{9d2aa457-982d-4c6c-aa72-78b5b829484c}</Project>
+      <Name>ProfileService.Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\UserServices\UserServices.DataContract\UserServices.DataContract.csproj">
+      <Project>{2ce8733c-8d7c-4cf8-9271-415702821594}</Project>
+      <Name>UserServices.DataContract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Earn.DataContract\Earn.DataContract.csproj">
+      <Project>{ed50e570-9e4a-4b61-99b3-8adedcba3db3}</Project>
+      <Name>Earn.DataContract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Earn.Models\Earn.Models.csproj">
+      <Project>{60664626-2d55-4ec2-96d3-712c7b8a73ae}</Project>
+      <Name>Earn.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release.EUS|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>false</Optimize>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release.WUS|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>10551</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://earn.microsoft.com</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

@@ -1,0 +1,1042 @@
+/*
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+*/
+@import url('settings.less');
+
+/* #region Default View */
+@media screen and (max-width: 720px) and (min-width:700px) {
+
+    html {
+        padding: 0;
+        margin: 0;
+    }
+
+    body {
+        height: 540px;
+        width: 710px;
+        left: 0;
+        top: 0;
+        margin: 0;
+        padding: 0;
+        font-family: @fontRegular;
+        color: @darkGray;
+        font-size: 16px;
+
+        .addCard_section {
+            height: 465px;
+            width: 630px;
+            background-color: @extraLightGray;
+            float: left;
+            padding: 35px @gridQuad @gridQuad;
+            position: relative;
+
+            .reminder {
+                position: absolute;
+                width: 230px;
+                background-color: @lightGray;
+                height: 220px;
+                left: 400px;
+                top: 120px;
+                padding: @gridDouble;
+
+                .header {
+                    color: @black;
+                    font-family: @fontRegular;
+                    font-size: @fontSize4;
+                    line-height: @gridDouble;
+                }
+
+                .description {
+                    color: @darkGray;
+                    display: block;
+                    width: 200px;
+                    font-family: @fontLight;
+                    font-size: @fontSize3;
+                    line-height: @gridDouble;
+                    margin-bottom: @gridDouble;
+                }
+
+                .description-bold {
+                    color: @darkGray;
+                    display: block;
+                    font-family: @fontSemiBold;
+                    font-size: @fontSize3;
+                    line-height: 20px;
+                }
+            }
+
+            .header {
+                font-family: @fontLight;
+                font-size: @fontSize1;
+                font-weight: normal;
+                display: block;
+                margin-bottom: @gridTriple;
+                line-height: @gridTriple;
+                color: @black;
+            }
+
+            #cardlink-addCard-screen-error {
+                color: @red;
+                font-family: @fontRegular;
+                font-size: @fontSize4;
+            }
+
+            .card-type {
+                height: 110px;
+                width: @gridTriple;
+                font-size: @fontSize3;
+                font-family: @fontLight;
+                color: @darkGray;
+            }
+
+            .cards {
+                margin-bottom: @gridSingle;
+
+                span {
+                    color: @darkGray;
+                    display: block;
+                    width: 100%;
+                    font-family: @fontRegular;
+                    font-size: @fontSize4;
+                    line-height: 20px;
+                }
+
+                .account-update {
+                    height: @gridTriple;
+                    width: 310px;
+                    margin-bottom: @gridSingle;
+                    font-size: @fontSize2;
+                    font-family: @fontLight;
+                    color: @darkGray;
+                }
+
+                table {
+                    width: 310px;
+                    border-collapse: collapse;
+
+                    td {
+                        border: none;
+                    }
+                }
+
+                .month {
+                    width: 200px;
+                    height: 36px;
+                    font-size: @fontSize4;
+                    font-family: @fontRegular;
+                    color: @darkGray;
+                    line-height: 20px;
+                    padding: 7px 0;
+                }
+
+                .year {
+                    width: 100px;
+                    margin-left: @gridSingle;
+                    height: 36px;
+                    line-height: 20px;
+                    font-size: @fontSize4;
+                    font-family: @fontRegular;
+                    color: @darkGray;
+                    padding: 7px 0;
+                }
+
+                .card-type {
+                    height: 36px;
+                    width: 310px;
+                }
+            }
+
+            .cardlink-button {
+                height: 50px;
+                width: 200px;
+                position: absolute;
+                bottom: @gridQuad;
+                float: right;
+                font-family: @fontRegular;
+                font-size: @fontSize2;
+                line-height: 30px;
+                cursor: pointer;
+
+                &:hover {
+                }
+
+                &:active {
+                }
+            }
+
+            .cardlink_addCard_add {
+                left: 470px;
+                border: 1px solid @blue;
+                background-color: @blue;
+                color: @white;
+
+                &:hover {
+                    border: 1px solid @lightblue;
+                    background-color: @lightblue;
+                }
+
+                &:active {
+                    border: 1px solid @gray6;
+                    background-color: @gray6;
+                }
+            }
+
+            .cardlink_addCard_Cancel {
+                left: 250px;
+                border: 1px solid @lightGray;
+                background-color: transparent;
+                color: @blue;
+
+                &:hover {
+                    background-color: @lightGray;
+                    color: @blue;
+                }
+
+                &:active {
+                    border: 1px solid @blue;
+                    background-color: @blue;
+                    color: @white;
+                }
+            }
+
+            .action-button {
+            }
+
+                .action-button:hover {
+                }
+        }
+    }
+}
+
+/* #region Small Desktop Display and Tablet Landscape 950*/
+@media screen and (max-width: 477px) and (min-width:472px) {
+
+    body {
+        top: 0;
+        left: 0;
+        width: 475px;
+        margin: 0;
+        padding: 0;
+
+        .addCard_section {
+            position: relative;
+            width: 435px;
+            height:540px;
+            background-color: @extraLightGray;
+            float: left;
+            padding: @gridDouble;
+
+            .reminder {
+                position: relative;
+                width: 405px;
+                height: auto;
+                float: none;
+                background-color: #dddddd;
+                padding: @gridHalf @gridSingleHalf @gridHalf @gridSingleHalf;
+                top: auto;
+                right: auto;
+                left: auto;
+                margin-bottom: @gridDouble;
+
+                .header {
+                    color: @black;
+                    font-family: @fontRegular;
+                    font-size: @fontSize3;
+                    line-height: 20px;
+                    margin: 0;
+                }
+
+                .description {
+                    color: @darkGray;
+                    margin: 0;
+                    display: block;
+                    font-family: @fontLight;
+                    width: 405px;
+                    font-size: @fontSize3;
+                    line-height: 20px;
+                }
+
+                .description-bold {
+                    color: @darkGray;
+                    margin: 0;
+                    display: block;
+                    font-family: @fontSemiBold;
+                    font-size: @fontSize3;
+                    line-height: 20px;
+                }
+            }
+
+            .header {
+                font-size: 25px;
+                display: block;
+                margin-bottom: @gridDouble;
+                line-height: 30px;
+                font-family: @fontLight;
+                color: @black;
+            }
+
+            #cardlink-addCard-screen-error {
+                color: @red;
+                font-family: @fontRegular;
+                font-size: @fontSize4;
+                margin-bottom:@gridDouble;
+                display:block;
+                left:auto;
+                margin-top:@gridTriple;
+                bottom: auto;
+            }
+
+            .card-type {
+                height: 110px;
+                width: @gridTriple;
+                font-size: @fontSize3;
+                font-family: @fontLight;
+                color: @darkGray;
+            }
+
+            .cards {
+                margin: 0;
+                margin-bottom: @gridSingleHalf;
+
+                &:nth-child(6) {
+                    margin-bottom: 37px;
+                }
+
+                span {
+                    color: @darkGray;
+                    display: block;
+                    margin: 0;
+                    margin-bottom: @gridHalf;
+                    width: 100%;
+                    font-family: @fontRegular;
+                    font-size: @fontSize4;
+                    line-height: 20px;
+                }
+
+                .account-update {
+                    width: 310px;
+                    height: 30px;
+                    margin: 0;
+                    font-size: @fontSize2;
+                    font-family: @fontLight;
+                    color: @darkGray;
+                }
+
+                table {
+                    width: 310px;
+                    border-collapse: collapse;
+
+                    td {
+                        border: none;
+                    }
+                }
+
+                .month {
+                    width: 200px;
+                    height: 36px;
+                    font-size: @fontSize4;
+                    font-family: @fontRegular;
+                    color: @darkGray;
+                    line-height: 20px;
+                }
+
+                .year {
+                    width: 100px;
+                    margin-left: @gridSingle;
+                    height: 36px;
+                    line-height: 20px;
+                    font-size: @fontSize4;
+                    font-family: @fontRegular;
+                    color: @darkGray;
+                }
+
+                .card-type {
+                    height: 36px;
+                    width: 310px;
+                }
+            }
+
+
+            .cardlink-button {
+                bottom: @gridQuad;
+                font-family: @fontRegular;
+                font-size: @fontSize2;
+                line-height: 20px;
+                height: @gridPenta;
+                cursor: pointer;
+
+                &:hover {
+                }
+            }
+
+            .action-button {
+            }
+
+                .action-button:hover {
+                }
+
+            .cardlink_addCard_add {
+                width: 210px;
+                border: 1px solid @blue;
+                background-color: @blue;
+                color: @white;
+                float: right;
+
+                &:hover {
+                    border: 1px solid @lightblue;
+                    background-color: @lightblue;
+                }
+
+                &:active {
+                    border: 1px solid @gray6;
+                    background-color: @gray6;
+                }
+            }
+
+            .cardlink_addCard_Cancel {
+                width: 210px;
+                border: 1px solid @lightGray;
+                background-color: transparent;
+                color: @blue;
+
+                &:hover {
+                    background-color: @lightGray;
+                    color: @blue;
+                }
+
+                &:active {
+                    border: 1px solid @blue;
+                    background-color: @blue;
+                    color: @white;
+                }
+            }
+        }
+    }
+}
+
+/* #endregion */
+
+/* #region Tablet Portrait 710*/
+@media screen and (max-width: 365px) and (min-width:355px) {
+    body {
+        width: 360px;
+        height: 680px;
+        top: 0;
+        left: 0;
+        margin: 0;
+        padding: 0;
+
+
+
+        .addCard_section {
+            height: 620px;
+            width: 280px;
+            float: left;
+            padding: @gridDouble @gridQuad @gridTriple @gridQuad;
+            position: relative;
+
+            .reminder {
+                position: relative;
+                width: 250px;
+                height: auto;
+                float: none;
+                background-color: #dddddd;
+                padding: @gridHalf @gridSingleHalf @gridHalf @gridSingleHalf;
+                top: auto;
+                right: auto;
+                margin-bottom: @gridDouble;
+
+                .header {
+                    color: @black;
+                    font-family: @fontRegular;
+                    font-size: @fontSize3;
+                    line-height: 20px;
+                    margin: 0;
+                }
+
+                .description {
+                    color: @darkGray;
+                    margin: 0;
+                    width: 250px;
+                    display: block;
+                    font-family: @fontLight;
+                    font-size: @fontSize3;
+                    line-height: 20px;
+                }
+
+                .description-bold {
+                    color: @darkGray;
+                    margin: 0;
+                    display: block;
+                    font-family: @fontSemiBold;
+                    font-size: @fontSize3;
+                    line-height: 20px;
+                }
+            }
+
+            .header {
+                font-size: 25px;
+                display: block;
+                margin-bottom: @gridDouble;
+                line-height: 30px;
+                font-family: @fontLight;
+                color: @black;
+            }
+
+            #cardlink-addCard-screen-error {
+                color: @red;
+                font-family: @fontRegular;
+                font-size: @fontSize4;
+            }
+
+            .card-type {
+                height: 110px;
+                width: @gridTriple;
+                font-size: @fontSize3;
+                font-family: @fontLight;
+                color: @darkGray;
+            }
+
+            .cards {
+                margin: 0;
+                margin-bottom: @gridSingleHalf;
+
+                span {
+                    color: @darkGray;
+                    display: block;
+                    margin: 0;
+                    margin-bottom: @gridHalf;
+                    width: 100%;
+                    font-family: @fontRegular;
+                    font-size: @fontSize4;
+                    line-height: 20px;
+                }
+
+                .account-update {
+                    width: 280px;
+                    height: 30px;
+                    margin: 0;
+                    font-size: @fontSize2;
+                    font-family: @fontLight;
+                    color: @darkGray;
+                }
+
+                table {
+                    width: 280px;
+                    border-collapse: collapse;
+
+                    td {
+                        border: none;
+                    }
+                }
+
+                .month {
+                    width: 160px;
+                    height: 36px;
+                    font-size: @fontSize4;
+                    font-family: @fontRegular;
+                    color: @darkGray;
+                    line-height: 20px;
+                }
+
+                .year {
+                    width: 100px;
+                    margin-left: @gridSingle;
+                    height: 36px;
+                    line-height: 20px;
+                    font-size: @fontSize4;
+                    font-family: @fontRegular;
+                    color: @darkGray;
+                }
+
+                .card-type {
+                    height: 36px;
+                    width: 280px;
+                }
+            }
+
+
+            .cardlink-button {
+                position: absolute;
+                font-family: @fontRegular;
+                font-size: @fontSize2;
+                float: right;
+                height: @gridPenta;
+                cursor: pointer;
+
+                &:hover {
+                }
+            }
+
+            .action-button {
+            }
+
+                .action-button:hover {
+                }
+
+            .cardlink_addCard_add {
+                left: 170px;
+                width: 150px;
+                bottom: @gridTriple;
+                border: 1px solid @blue;
+                background-color: @blue;
+                color: @white;
+
+                &:hover {
+                    border: 1px solid @lightblue;
+                    background-color: @lightblue;
+                }
+
+                &:active {
+                    border: 1px solid @gray6;
+                    background-color: @gray6;
+                }
+            }
+
+            .cardlink_addCard_Cancel {
+                left: @gridQuad;
+                width: 110px;
+                bottom: @gridTriple;
+                border: 1px solid @lightGray;
+                background-color: transparent;
+                color: @blue;
+
+                &:hover {
+                    background-color: @lightGray;
+                    color: @blue;
+                }
+
+                &:active {
+                    border: 1px solid @blue;
+                    background-color: @blue;
+                    color: @white;
+                }
+            }
+        }
+    }
+}
+/* #endregion */
+
+/* #region 480 pixel breakpoint */
+@media screen and (max-width: 482px) and (min-width:478px) {
+
+    html {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        height: auto;
+        width: 480px;
+        top: 0;
+        left: 0;
+        margin: 0;
+        padding: 0;
+
+        .addCard_section {
+            width: 440px;
+            height: auto;
+            background-color: @extraLightGray;
+            float: none;
+            padding: @gridSingleHalf @gridDouble @gridDouble @gridDouble;
+            position: relative;
+
+            .reminder {
+                position: relative;
+                width: 410px;
+                height: auto;
+                float: none;
+                background-color: #dddddd;
+                padding: @gridHalf @gridSingleHalf @gridHalf @gridSingleHalf;
+                top: auto;
+                right: auto;
+                margin-bottom: @gridDouble;
+
+                .header {
+                    color: @black;
+                    font-family: @fontRegular;
+                    font-size: @fontSize3;
+                    line-height: 20px;
+                    margin: 0;
+                }
+
+                .description {
+                    color: @darkGray;
+                    margin: 0;
+                    display: block;
+                    font-family: @fontLight;
+                    font-size: @fontSize3;
+                    line-height: 20px;
+                }
+
+                .description-bold {
+                    color: @darkGray;
+                    margin: 0;
+                    display: block;
+                    font-family: @fontSemiBold;
+                    font-size: @fontSize3;
+                    line-height: 20px;
+                }
+            }
+
+            .header {
+                font-size: 25px;
+                display: block;
+                margin-bottom: @gridDouble;
+                line-height: 30px;
+                font-family: @fontLight;
+                color: @black;
+            }
+
+            #cardlink-addCard-screen-error {
+                color: @red;
+                font-family: @fontRegular;
+                font-size: @fontSize4;
+            }
+
+            .card-type {
+                height: 110px;
+                width: @gridTriple;
+                font-size: @fontSize3;
+                font-family: @fontLight;
+                color: @darkGray;
+            }
+
+            .cards {
+                margin: 0;
+                margin-bottom: @gridSingleHalf;
+
+                span {
+                    color: @darkGray;
+                    display: block;
+                    margin: 0;
+                    margin-bottom: @gridHalf;
+                    width: 240px;
+                    font-family: @fontRegular;
+                    font-size: @fontSize4;
+                    line-height: 20px;
+                }
+
+                .account-update {
+                    min-width: 280px;
+                    width: 440px;
+                    height: 30px;
+                    margin: 0;
+                    font-size: @fontSize2;
+                    font-family: @fontLight;
+                    color: @darkGray;
+                }
+
+                table {
+                    width: 440px;
+                    border-collapse: collapse;
+
+                    td {
+                        border: none;
+                    }
+                }
+
+                .month {
+                    width: 250px;
+                    height: 36px;
+                    font-size: @fontSize4;
+                    font-family: @fontRegular;
+                    color: @darkGray;
+                    line-height: 20px;
+                }
+
+                .year {
+                    width: 180px;
+                    margin-left: @gridSingle;
+                    height: 36px;
+                    line-height: 20px;
+                    font-size: @fontSize4;
+                    font-family: @fontRegular;
+                    color: @darkGray;
+                }
+
+                .card-type {
+                    height: 36px;
+                    width: 440px;
+                }
+            }
+
+            .cardlink_addCard_add {
+                right: auto;
+                height: 50px;
+                position: relative;
+                float: left;
+                margin-left: @gridDouble;
+                width: 150px;
+                bottom: auto;
+                left: auto;
+                border: 1px solid @blue;
+                background-color: @blue;
+                color: @white;
+
+                &:hover {
+                    border: 1px solid @lightblue;
+                    background-color: @lightblue;
+                }
+
+                &:active {
+                    border: 1px solid @gray6;
+                    background-color: @gray6;
+                }
+            }
+
+            .cardlink_addCard_Cancel {
+                float: left;
+                margin-left: 0px;
+                height: 50px;
+                position: relative;
+                width: 110px;
+                bottom: auto;
+                left: auto;
+                right: auto;
+                border: 1px solid @lightGray;
+                background-color: transparent;
+                color: @blue;
+
+                &:hover {
+                    background-color: @lightGray;
+                    color: @blue;
+                }
+
+                &:active {
+                    border: 1px solid @blue;
+                    background-color: @blue;
+                    color: @white;
+                }
+            }
+
+            .clear {
+                clear: both;
+            }
+        }
+    }
+}
+/* #endregion */
+
+/* #region Handheld Portrait */
+@media screen and (max-width: 350px) and (min-width:300px) {
+
+    html {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        height: auto;
+        width: 283px;
+        top: 0;
+        left: 0;
+        margin: 0;
+        padding: 0;
+
+        .addCard_section {
+            width: auto;
+            height: auto;
+            background-color: @extraLightGray;
+            float: none;
+            padding: @gridSingleHalf @gridDouble @gridDouble @gridDouble;
+            position: relative;
+            margin: 0px;
+
+            .reminder {
+                position: relative;
+                width: 210px;
+                height: auto;
+                float: none;
+                background-color: #dddddd;
+                padding: @gridHalf @gridSingleHalf @gridHalf @gridSingleHalf;
+                top: auto;
+                right: auto;
+                margin-bottom: @gridDouble;
+
+                .header {
+                    color: @black;
+                    font-family: @fontRegular;
+                    font-size: @fontSize3;
+                    line-height: 20px;
+                    margin: 0;
+                }
+
+                .description {
+                    color: @darkGray;
+                    margin: 0;
+                    min-width: 250px;
+                    display: block;
+                    font-family: @fontLight;
+                    font-size: @fontSize3;
+                    line-height: 20px;
+                }
+
+                .description-bold {
+                    color: @darkGray;
+                    margin: 0;
+                    display: block;
+                    font-family: @fontSemiBold;
+                    font-size: @fontSize3;
+                    line-height: 20px;
+                }
+            }
+
+            .header {
+                font-size: 25px;
+                display: block;
+                margin-bottom: @gridDouble;
+                line-height: 30px;
+                font-family: @fontLight;
+                color: @black;
+            }
+
+            #cardlink-addCard-screen-error {
+                color: @red;
+                display:block;
+                margin-bottom:@gridDouble;
+                font-family: @fontRegular;
+                font-size: @fontSize4;
+            }
+
+            .card-type {
+                height: 110px;
+                width: @gridTriple;
+                font-size: @fontSize3;
+                font-family: @fontLight;
+                color: @darkGray;
+            }
+
+            .cards {
+                margin: 0;
+                margin-bottom: @gridSingleHalf;
+
+                &:nth-child(6) {
+                    margin-bottom: 55px;
+                }
+
+                span {
+                    color: @darkGray;
+                    display: block;
+                    margin: 0;
+                    margin-bottom: @gridHalf;
+                    width: 100%;
+                    font-family: @fontRegular;
+                    font-size: @fontSize4;
+                    line-height: 20px;
+                }
+
+                .account-update {
+                    width: 98%;
+                    height: 30px;
+                    margin: 0;
+                    font-size: @fontSize2;
+                    font-family: @fontLight;
+                    color: @darkGray;
+                }
+
+                table {
+                    width: 80%;
+                    border-collapse: collapse;
+
+                    td {
+                        border: none;
+                    }
+                }
+
+                .month {
+                    min-width: 128px;
+                    width: 60%;
+                    height: 36px;
+                    font-size: @fontSize4;
+                    font-family: @fontRegular;
+                    color: @darkGray;
+                    line-height: 20px;
+                }
+
+                .year {
+                    min-width: 100px;
+                    margin-left: @gridSingle;
+                    width: 40%;
+                    height: 36px;
+                    line-height: 20px;
+                    font-size: @fontSize4;
+                    font-family: @fontRegular;
+                    color: @darkGray;
+                }
+
+                .card-type {
+                    height: 36px;
+                    width: 100%;
+                }
+            }
+
+            .cardlink-button {
+                height: 50px;
+                bottom: @gridQuad;
+                float: right;
+                font-family: @fontRegular;
+                font-size: @fontSize2;
+                cursor: pointer;
+
+                &:hover {
+                }
+            }
+
+            .action-button {
+            }
+
+                .action-button:hover {
+                }
+
+            .cardlink_addCard_add {
+                float: right;
+                margin-left: 0;
+                width: 130px;
+                border: 1px solid @blue;
+                background-color: @blue;
+                color: @white;
+
+                &:hover {
+                    border: 1px solid @lightblue;
+                    background-color: @lightblue;
+                }
+
+                &:active {
+                    border: 1px solid @gray6;
+                    background-color: @gray6;
+                }
+            }
+
+            .cardlink_addCard_Cancel {
+                float: left;
+                height: 50px;
+                width: 100px;
+                border: 1px solid @lightGray;
+                background-color: transparent;
+                color: @blue;
+
+                &:hover {
+                    background-color: @lightGray;
+                    color: @blue;
+                }
+
+                &:active {
+                    border: 1px solid @blue;
+                    background-color: @blue;
+                    color: @white;
+                }
+            }
+
+            .clear {
+                clear: both;
+            }
+        }
+    }
+}
+/* #endregion */
+
+
+
+

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Live.Mesh.Service.AsyncQueueService.Interface" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Live.Mesh.Service.AsyncQueueService.Interface" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfAggregationGroup">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AggregationGroup" nillable="true" type="tns:AggregationGroup" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAggregationGroup" nillable="true" type="tns:ArrayOfAggregationGroup" />
+  <xs:complexType name="AggregationGroup">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LeaseExpirationTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="QueueName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TakenTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="WorkItems" nillable="true" type="tns:ArrayOfWorkItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AggregationGroup" nillable="true" type="tns:AggregationGroup" />
+  <xs:complexType name="ArrayOfWorkItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WorkItem" nillable="true" type="tns:WorkItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWorkItem" nillable="true" type="tns:ArrayOfWorkItem" />
+  <xs:complexType name="WorkItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Aggregation" nillable="true" type="tns:AggregationInfo" />
+      <xs:element minOccurs="0" name="ExpirationSeconds" type="xs:int" />
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Payload" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="Retry" type="xs:boolean" />
+      <xs:element minOccurs="0" name="SubmissionTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="TakenCount" type="xs:short" />
+      <xs:element minOccurs="0" name="TransactionId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Type" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WorkItem" nillable="true" type="tns:WorkItem" />
+  <xs:complexType name="AggregationInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Key" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ThresholdSeconds" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AggregationInfo" nillable="true" type="tns:AggregationInfo" />
+</xs:schema>

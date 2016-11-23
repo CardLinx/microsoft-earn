@@ -1,0 +1,120 @@
+/*
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+*/
+@import "settings.less";
+
+#footer {
+    padding: 40px 0;
+    background-color: @offwhite;
+
+    div.logo {
+        float: left;
+        position: relative;
+        display: inline-block;
+    }
+
+    div.menu {
+        float: right;
+        display: inline-block;
+
+        ul {
+            list-style-type: none;
+
+            li {
+                vertical-align: middle;
+                float: left;
+                margin: 0;
+                color: #626262;
+                font-family: @fontRegular;
+                font-size: 12px;
+                line-height: 30px;
+
+                a {
+                    text-decoration: none;
+                    margin-right: 30px;
+                    color: #626262;
+                    font-family: @fontRegular;
+                    font-size: 12px;
+                    line-height: 30px;
+                }
+
+                a:hover {
+                    color: @darkBlue;
+                }
+            }
+        }
+    }
+}
+
+/* #region Tablet Portrait 710*/
+@media screen and (max-width: 989px) {
+    #footer {
+
+        div.menu {
+            ul {
+                list-style-type: none;
+
+                li {
+
+                    a {
+                        margin-right: 20px;
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+/* #region 480 pixel breakpoint */
+@media screen and (max-width: 709px) {
+    #footer {
+        width: 100%;
+        padding: 40px 0;
+        bottom: 0;
+        background-color: @offwhite;
+
+        div.logo {
+            float: none;
+            display: block;
+        }
+
+        div.menu {
+
+            float: none;
+
+            ul {
+                list-style-type: none;
+
+                li {
+                    vertical-align: middle;
+                    float: none;
+                    margin: 0;
+                    color: @mediumGray;
+                    font-family: @fontRegular;
+                    font-size: 12px;
+                    line-height: 30px;
+
+                    img {
+                        padding-right: 40px;
+                    }
+
+                    a {
+                        text-decoration: none;
+                        margin-right: 20px;
+                        color: #626262;
+                        font-family: @fontRegular;
+                        font-size: 12px;
+                        line-height: 30px;
+                    }
+                }
+
+                li:first-child {
+                    margin-top: 10px;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="EarnanalyticsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="analytics">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AuthenticatedUserId" Type="varchar" MaxLength="70" />
+          <Property Name="BrowserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IPAddress" Type="varchar" MaxLength="70" />
+          <Property Name="SessionId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DeviceType" Type="varchar" MaxLength="50" />
+          <Property Name="UserAgent" Type="ntext" />
+          <Property Name="PageTitle" Type="varchar" MaxLength="400" />
+          <Property Name="ServerTimeStamp" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="PageUrl" Type="varchar" MaxLength="1000" />
+          <Property Name="EventId" Type="varchar" MaxLength="50" />
+          <Property Name="EventType" Type="varchar" MaxLength="50" />
+          <Property Name="EventInfo" Type="varchar" MaxLength="1000" />
+          <Property Name="FlightId" Type="varchar" MaxLength="50" />
+          <Property Name="NewUser" Type="bit" />
+          <Property Name="IsAuthenticated" Type="bit" />
+          <Property Name="cmp_source" Type="varchar" MaxLength="50" />
+          <Property Name="cmp_name" Type="varchar" MaxLength="50" />
+          <Property Name="cmp_ref" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="EarnanalyticsModelStoreContainer">
+          <EntitySet Name="analytics" EntityType="Self.analytics" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EarnanalyticsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="analytic">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AuthenticatedUserId" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="BrowserId" Type="Guid" Nullable="false" />
+          <Property Name="IPAddress" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="SessionId" Type="Guid" Nullable="false" />
+          <Property Name="DeviceType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserAgent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PageTitle" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="ServerTimeStamp" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="PageUrl" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="EventId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EventType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EventInfo" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="FlightId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NewUser" Type="Boolean" />
+          <Property Name="IsAuthenticated" Type="Boolean" />
+          <Property Name="cmp_source" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cmp_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cmp_ref" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="earnanalyticsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="analytics" EntityType="Self.analytic" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EarnanalyticsModelStoreContainer" CdmEntityContainer="earnanalyticsEntities">
+          <EntitySetMapping Name="analytics">
+            <EntityTypeMapping TypeName="EarnanalyticsModel.analytic">
+              <MappingFragment StoreEntitySet="analytics">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AuthenticatedUserId" ColumnName="AuthenticatedUserId" />
+                <ScalarProperty Name="BrowserId" ColumnName="BrowserId" />
+                <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+                <ScalarProperty Name="SessionId" ColumnName="SessionId" />
+                <ScalarProperty Name="DeviceType" ColumnName="DeviceType" />
+                <ScalarProperty Name="UserAgent" ColumnName="UserAgent" />
+                <ScalarProperty Name="PageTitle" ColumnName="PageTitle" />
+                <ScalarProperty Name="ServerTimeStamp" ColumnName="ServerTimeStamp" />
+                <ScalarProperty Name="PageUrl" ColumnName="PageUrl" />
+                <ScalarProperty Name="EventId" ColumnName="EventId" />
+                <ScalarProperty Name="EventType" ColumnName="EventType" />
+                <ScalarProperty Name="EventInfo" ColumnName="EventInfo" />
+                <ScalarProperty Name="FlightId" ColumnName="FlightId" />
+                <ScalarProperty Name="NewUser" ColumnName="NewUser" />
+                <ScalarProperty Name="IsAuthenticated" ColumnName="IsAuthenticated" />
+                <ScalarProperty Name="cmp_source" ColumnName="cmp_source" />
+                <ScalarProperty Name="cmp_name" ColumnName="cmp_name" />
+                <ScalarProperty Name="cmp_ref" ColumnName="cmp_ref" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

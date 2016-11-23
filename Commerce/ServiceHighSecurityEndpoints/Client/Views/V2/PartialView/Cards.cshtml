@@ -1,0 +1,17 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+@using Lomo.Commerce.Service.Client.Resources
+
+<div class="cards">
+    <label for="cardlink-cardNumber">Enter your Credit/Debit card number</label>
+    <input id="cardlink-cardNumber" type="text" maxlength="20" class="account-update" title="Enter your Credit/Debit card number" placeholder="Enter a VISA or MasterCard number" />
+    <p id="disclaimer-card">With some exceptions, debit cards with the VISA or MasterCard logos are eligible as long as you sign (and don't enter a PIN) at checkout. Click <a href="https://www.bing.com/offers/cardlinkterms#section4" target="_blank">here</a> for exceptions info.</p>
+</div>
+
+<span id="cardlink-addCard-screen-error"></span>
+<input class="cardlink-button cardlink_addCard_Cancel" type="button" value="@AddCardClientResource.Cancel" />
+<input id="cardlink_addCard_add" class="cardlink-button action-button cardlink_addCard_add" type="button" value="@AddCardClientResource.AddCard_Add"/>
+<span id="loading-icon"></span>
+<div class="clear"></div>

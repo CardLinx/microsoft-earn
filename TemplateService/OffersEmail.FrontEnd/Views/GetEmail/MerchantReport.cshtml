@@ -1,0 +1,195 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+@model MerchantReportVM
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@Html.Raw(MerchantReportEmail.Title)</title>
+    <style type="text/css">
+        a:visited {
+            color: blue;
+        }
+
+        div, p, a, li, td {
+            -webkit-text-size-adjust: none;
+        }
+
+        .appleLinks a {
+            color: #000000;
+            text-decoration: none;
+        }
+
+        .appleLinksGrey a {
+            color: #999999;
+            text-decoration: none;
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+    </style>
+</head>
+<body style="font-family: Calibri, Arial, Helvetica, sans-serif; background: #EEEEEE">
+    <table width="100%" style="background: #EEEEEE" cellpadding="0" cellspacing="0">
+        <tr>
+            <td>
+                <!-- Main mail -->
+                <table style="background: #FFFFFF" align="center" width="600" cellpadding="0" cellspacing="0" style="width: 600px">
+                    <!-- Header -->
+                    <tr>
+                        <td style="border-bottom: 5px solid #FFB900; background: #FFFFFF; padding: 20px">
+
+                            <img width="145" height="34" border="0" src="https://az414848.vo.msecnd.net/assets/offers_email_logo.png" style="border: 0; width: 150px; height: 30px; vertical-align: bottom; border-left-width: 0; border-bottom-width: 0; border-right-width: 0; border-top-width: 0; font-size: 10px;" alt="Bing Offers">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 20px 20px 10px 20px; background: #FFFFFF">
+                            <table style="background: #FFF; font-family: Calibri, Arial, Helvetica, sans-serif;" align="center" width="560" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td>
+                                        <div style="font-size: 16px">
+                                            @MerchantReportEmail.Hello,
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="20"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div style="font-size: 16px; text-align: justify">
+                                            @MerchantReportEmail.TransactionReportFor
+                                            @if (Model.ScheduleType != "Daily")
+                                                  {
+                                                       @Html.Raw(String.Format(" <b>{0}</b> - <b>{1}</b>. ", Model.FromDate, Model.ToDate))
+                                                  }
+                                                  else
+                                                  {
+                                                       @Html.Raw(String.Format(" <b>{0}</b>. ", Model.FromDate))
+
+                                                  }
+                                            @Html.Raw(MerchantReportEmail.TransactionReportPreference)
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="10"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        @{
+                                            if (Model.MerchantStoreTransactions != null && Model.MerchantStoreTransactions.Length > 0)
+                                            {
+                                                for (int i = 0; i < Model.MerchantStoreTransactions.Length; i++)
+                                                {
+                                            <text><br />
+                                            <b style="padding-bottom: 10px">@Model.MerchantStoreTransactions[i].MerchantName: @Model.MerchantStoreTransactions[i].StoreLocation.Address, @Model.MerchantStoreTransactions[i].StoreLocation.City, @Model.MerchantStoreTransactions[i].StoreLocation.State</b><br />
+                                            <br /></text>
+                                                    if (Model.MerchantStoreTransactions[i].Transactions != null && Model.MerchantStoreTransactions[i].Transactions.Length > 0)
+                                                    {
+
+                                            @:<table style="font-size:16px;border-collapse: collapse" border="1" cellspacing="0" cellpadding="5">
+<tr>
+                                                        <th>Deal Title</th>
+                                                        <th>Redemption time</th>
+                                                        <th>Settlement Date</th>
+                                                        <th>Settlement Amount</th>
+                                                        <th>Discount</th>
+                                                        <th width="70">Last four CC digits</th>
+                                                    </tr>
+                                            for (int j = 0; j < Model.MerchantStoreTransactions[i].Transactions.Length; j++)
+                                                        {
+                                                            <text>
+                                                                <tr>
+                                                                    <td>@Model.MerchantStoreTransactions[i].Transactions[j].DealTitle</td>
+                                                                    <td style="text-align: right">@Model.MerchantStoreTransactions[i].Transactions[j].RedemptionTime</td>
+                                                                    <td style="text-align: right">@Model.MerchantStoreTransactions[i].Transactions[j].SettlementDate</td>
+                                                                    <td style="text-align: right">@Model.MerchantStoreTransactions[i].Transactions[j].SettlementAmount</td>
+                                                                    <td style="text-align: right">@Model.MerchantStoreTransactions[i].Transactions[j].Discount</td>
+                                                                    <td style="text-align: right">**@Model.MerchantStoreTransactions[i].Transactions[j].CardLastFourDigits</td>
+                                                                </tr>
+                                                            </text>
+                                                        }
+                                                        @:</table>
+                                                                                                                                                                                                                                                                                }
+                                                    else
+                                                    {
+                                            <text><b>There were no transactions for this reporting period.</b></text>
+
+                                                    }
+                                                }
+
+                                            }
+                                            else
+                                            {
+                                            <text><b>There were no transactions for this reporting period.</b></text>
+
+                                            }
+                                        }
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="10"></td>
+                                </tr>
+                                <tr>
+                                </tr>
+                                <tr>
+                                    <td height="20"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div style="font-size: 16px; text-align: justify">@Html.Raw(String.Format(MerchantReportEmail.CommonEnding, @Model.MerchantPortalUrl))</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                </tr>
+
+                                <tr>
+                                    <td height="20" style="font-size: 10px; line-height: 10px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div style="font-size: 16px; text-align: justify">@Html.Raw(MerchantReportEmail.AnyQuestions)</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="20"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div style="font-size: 16px; text-align: justify">@MerchantReportEmail.BestRegards</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="20"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div style="font-size: 16px; text-align: justify">@MerchantReportEmail.BingOffersTeam</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="10"></td>
+                                </tr>
+
+                            </table>
+
+                        </td>
+                    </tr>
+
+                </table>
+            </td>
+        </tr>
+    </table>
+
+</body>
+</html>

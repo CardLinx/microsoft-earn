@@ -1,0 +1,159 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+@model Earn.Offers.Earn.Models.AccountsPageModel
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="&nbsp;" />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="mstile-310x310.png" />
+    <link rel="manifest" href="/manifest.json">
+    <link rel="stylesheet" href="//kendo.cdn.telerik.com/2014.1.318/styles/kendo.common.min.css" />
+    @*<link rel="stylesheet" href="//kendo.cdn.telerik.com/2014.1.318/styles/kendo.default.min.css" />*@
+    <link rel="stylesheet" href="//kendo.cdn.telerik.com/2014.1.318/styles/kendo.silver.min.css" />
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    @System.Web.Optimization.Styles.Render("~/earn/styles/accountsBundle")
+    <script type="text/javascript">
+        var appInsights=window.appInsights||function(config){
+            function s(config){t[config]=function(){var i=arguments;t.queue.push(function(){t[config].apply(t,i)})}}var t={config:config},r=document,f=window,e="script",o=r.createElement(e),i,u;for(o.src=config.url||"//az416426.vo.msecnd.net/scripts/a/ai.0.js",r.getElementsByTagName(e)[0].parentNode.appendChild(o),t.cookie=r.cookie,t.queue=[],i=["Event","Exception","Metric","PageView","Trace"];i.length;)s("track"+i.pop());return config.disableExceptionTracking||(i="onerror",s("_"+i),u=f[i],f[i]=function(config,r,f,e,o){var s=u&&u(config,r,f,e,o);return s!==!0&&t["_"+i](config,r,f,e,o),s}),t
+        }({
+            instrumentationKey:"b2769bec-64c9-4192-aa4c-29499969657d"
+        });
+
+        window.appInsights=appInsights;
+        appInsights.trackPageView();
+    </script>
+
+</head>
+<body>
+    <div id="hidden">
+        @Html.Raw(ViewBag.SignOutHtmlLink)
+    </div>
+    <div class="all-content-wrapper">
+        <div class="content">
+            @Html.Partial("~/offers/earn/views/common/popupnotifications.cshtml")
+
+            <section id="nav">
+                <div class="container">
+                    <div class="logo">
+                        <a href="/">
+                            <img src="https://az414848.vo.msecnd.net/card-linked-assets/earn_logo_blue_gry-1.png" />
+                        </a>
+                    </div>
+                    <div class="right-nav">
+                        <div class="top-nav name"><p class="login">@ViewBag.ProfileName <a class="logoutlink">Sign Out</a></p></div>
+                        <div class="top-nav"><p>Earn Credits : <strong>@Model.EarnTotal</strong></p></div>
+                        <div class="clear"></div>
+                    </div>
+
+                    <div class="right-nav-mobile">
+                        <div class="hamburger">
+                            <img class="first" src="https://az414848.vo.msecnd.net/card-linked-assets/hamburger_2x.png" />
+                            <img class="second" src="https://az414848.vo.msecnd.net/card-linked-assets/hamburger_revered_ontap_2x.png" />
+                        </div>
+                        <div class="earn-credits"><p>Earn Credits : <strong>@Model.EarnTotal</strong></p></div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </section>
+
+            <section id="main-nav">
+                <div class="container">
+                    <ul>
+                        <li>@Html.ActionLink("Ways to Earn", "Index", "Account")</li>
+                        <li>@Html.ActionLink("Spend balance", "Spending", "Account")</li>
+                        <li>@Html.ActionLink("Transactions", "History", "Account")</li>
+                        <li>@Html.ActionLink("Refer and Earn", "Referrals", "Account")</li>
+                        <li>@Html.ActionLink("Settings", "Settings", "Account")</li>
+                        <li>@Html.ActionLink("Support", "Support", "Account")</li>
+                        <li class="mobile login"><a class="logoutlink">Sign Out <p>(@ViewBag.ProfileName)</p></a></li>
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+            </section>
+
+            @RenderBody()
+
+            <script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.3.min.js"></script>
+            <script>
+                $(document).ready(function () {
+                    var $elem = $('#idPPScarab');
+                    var logoutUrl = $elem.attr('href');
+                    $('.logoutlink').attr('href', logoutUrl);
+                    $('.login').show();
+                });
+            </script>
+            <script src="//ajax.aspnetcdn.com/ajax/modernizr/modernizr-2.8.3.js"></script>
+            <script src="//ajax.aspnetcdn.com/ajax/knockout/knockout-3.3.0.js"></script>
+            <script src="//kendo.cdn.telerik.com/2014.1.318/js/kendo.all.min.js"></script>
+            @System.Web.Optimization.Scripts.Render("~/earn/scripts/accountsscriptBundle")
+            <script>
+                var handleMenuClick = function($menuIcon){
+                    var pressed = $menuIcon.hasClass('pressed');
+                    if(pressed){
+                        $menuIcon.removeClass('pressed');
+                        $('#main-nav').slideUp(400, function(){
+                            $("#main-nav").attr({ 'style' : '' });
+                        });
+                    }
+                    else
+                    {
+                        $menuIcon.addClass('pressed');
+                        $('#main-nav').slideDown(400);
+                    }
+                };
+
+
+                $(document).ready(function () {
+                    helper.setupAuth();
+                    var serverModel = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
+                    var pageViewModel = new window.accountMainViewModel(serverModel);
+                    ko.applyBindings(pageViewModel);
+
+                    $(document).click(function(){
+                        if($('.right-nav-mobile').is(':visible')){
+                            $('.hamburger').removeClass('pressed');
+                            $('#main-nav').slideUp(400);
+                        }
+                    });
+
+                    $('.hamburger').click(function(event ){
+                        event.stopPropagation();
+                        handleMenuClick($(this));
+                    });
+                });
+            </script>
+        </div>
+        <div class="footer-content-wrapper">
+            @RenderSection("Fineprints", required: false)
+            @RenderSection("BodyEnd", required: false)
+            @Html.Partial("~/offers/earn/views/common/socialbar.cshtml")
+            @Html.Partial("~/offers/earn/views/common/footer.cshtml")
+        </div>
+    </div>
+</body>
+</html>

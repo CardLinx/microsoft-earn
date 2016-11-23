@@ -1,0 +1,97 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+@{
+    Layout = "~/offers/earn/views/account/accountslayout.cshtml";
+    ViewBag.Title = "Account settings";
+}
+
+<section id="settings" class="accounts-container">
+    <div class="container">
+        <h1>Account settings</h1>
+        <div class="settings-container" data-bind="with: settingsView">
+            <div class="box" data-bind="with: contactView">
+                <h2>Contact info</h2>
+                <hr />
+                <br />
+                <p class="description">Your email address (required)<span data-bind="visible: emailConfirmationPending"> (Confirmation Pending)</span></p>
+                <p>We will send Earn transaction confirmations here</p>
+                <input type="text" data-bind="visible: !editMode(), value: uneditableEmail()" disabled />
+
+                <input type="text" data-bind="value: email, visible: editMode" />
+                <br />
+                <br />
+                <p class="description">Your cell phone number (optional)</p>
+                <p>We will text Earn transaction confirmations here</p>
+                <input type="text" data-bind="value: phone, visible: editMode, valueUpdate: 'afterkeydown'" />
+                <input type="text" data-bind="visible: !editMode(), value: uneditablePhone()" disabled />
+                <br />
+                <br />
+                <p class="fineprint sendearnconfirmations">
+                    Send Earn Confirmations to:<br />
+                    <input type="checkbox" data-bind="enable: editMode(), checked: sendEarnConfirmationsToEmail" /> Email
+                    <input class="sendToPhone" type="checkbox" data-bind="enable: editMode(), checked: sendEarnConfirmationsToPhone" /> Phone
+                </p>
+                <p class="fineprint" data-bind="visible: editMode">
+                    <input type="checkbox" data-bind="checked: selectedCheckBox, enable: sendEarnConfirmationsToPhone" />
+                    I authorize Microsoft to send text messages to this number for Earn notifications.
+                    I understand that messaging fees may apply.
+                </p>
+                <p class="error" data-bind="visible: editMode, text:error"></p>
+                <a class="button cancel-button" data-bind="visible: editMode, click: function() { cancelClicked(); }">
+                    Cancel
+                </a>
+                <a class="button save-button" data-bind="visible: editMode, click: function() { saveClicked(false); }">
+                    Save
+                </a>
+                <a class="button" data-bind="visible: !editMode(), click: function() { editClicked(); }">
+                    Edit
+                </a>
+            </div>
+
+            <div class="box">
+                <h2>Enrolled cards</h2>
+                <p class="fineprint">
+                    Your card will not be charged. There are no costs or fees for enrolling in Earn.
+                    We only see card transactions at participating merchants*, and we only use
+                    your transaction information for the Earn program.
+                </p>
+                <hr />
+
+                <table data-bind="with: registeredCardsView">
+                    <tbody data-bind="foreach: registeredCards">
+                        <tr>
+                            <td><p data-bind="text: formattedCardNumber()"></p></td>
+                            <td>
+                                <a data-bind="click: function() { $parent.deleteCard($data); }" class="button delete">Delete</a>
+                                <div class="clear"></div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p data-bind="visible: !registeredCardsView.hasAtLeastOneRegisteredCard()">You don't have any cards enrolled yet. </p>
+                <p class="error" data-bind="text: registeredCardsView.errorMessageDeletingCard"></p>
+                <div id="add-card-iframe" data-bind="visible: showAddCardIframe">
+                    <iframe frameborder="0" data-bind="attr: { src : addCardFrameUrl  }"></iframe>
+                </div>
+                <a class="button" data-bind="visible: !showAddCardIframe(), click: addCardClicked">Add Card</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Fineprints{
+    <section id="fineprints">
+        <div class="container">
+            <p class="fineprint">
+                [*] Earn Credits are only received for transactions at participating merchants in Arizona, Massachusetts and Washington, and only apply to purchases made at the online <a href="http://www.microsoftstore.com/">Microsoft Store</a> and local Microsoft Stores in Arizona, Massachusetts, and Washington.
+                Please note that it may take a few days before a purchase appears in your @Html.ActionLink("transaction history", "History", "Account").
+                If you believe you did not receive Earn Credits due, please @Html.ActionLink("contact us", "Support", "Account") and provide the place and date of purchase, along with the last 4 digits of your credit/debit card.
+                In some cases, Shell transactions may not show up in your Pending transactions at all, but should show up in your Confirmed transactions within a few days.
+            </p>
+        </div>
+        <div class="clear"></div>
+    </section>
+}

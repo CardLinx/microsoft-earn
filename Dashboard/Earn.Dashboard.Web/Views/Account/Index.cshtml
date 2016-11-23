@@ -1,0 +1,86 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+@model Microsoft.Azure.ActiveDirectory.GraphClient.IUser
+@{
+    ViewBag.Title = "Profile";
+}
+
+<div class="content-wrapper" style="min-height: 916px;">
+    <!-- Page header -->
+    <div class="row">
+        <div class="col-lg-12">
+            <ol class="breadcrumb">
+                <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+                <li class="active"><i class="fa fa-user"></i> @ViewBag.Title</li>
+            </ol>
+        </div>
+    </div>
+
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box box-primary">
+                    @if (HttpContext.Current.Session["ThumbnailPhoto"] != null)
+                    {
+                        <div class="box-header box-bordered">
+                            <img src="@HttpContext.Current.Session["ThumbnailPhoto"]" alt="@Model.DisplayName" />
+                        </div>
+                    }
+
+                    <div class="box-body">
+                        <table class="table table-bordered table-striped">
+                            <tr>
+                                <td>Id</td>
+                                <td>@Model.ImmutableId</td>
+                            </tr>
+                            <tr>
+                                <td>Display Name</td>
+                                <td>@Model.DisplayName</td>
+                            </tr>
+                            <tr>
+                                <td>First Name</td>
+                                <td>@Model.GivenName</td>
+                            </tr>
+                            <tr>
+                                <td>Last Name</td>
+                                <td>@Model.Surname</td>
+                            </tr>
+                            <tr>
+                                <td>Email</td>
+                                <td>@Model.Mail</td>
+                            </tr>
+                            <tr>
+                                <td>Alias</td>
+                                <td>@Model.MailNickname</td>
+                            </tr>
+                            <tr>
+                                <td>Title</td>
+                                <td>@Model.JobTitle</td>
+                            </tr>
+                            <tr>
+                                <td>Office</td>
+                                <td>@Model.PhysicalDeliveryOfficeName</td>
+                            </tr>
+                            <tr>
+                                <td>Telephone</td>
+                                <td>@Model.TelephoneNumber</td>
+                            </tr>
+                            <tr>
+                                <td>Mobile</td>
+                                <td>@Model.Mobile</td>
+                            </tr>
+                            <tr>
+                                <td>Address</td>
+                                <td>
+                                    @string.Join(", ", new List<string> { Model.StreetAddress, Model.City, Model.State, Model.Country, Model.PostalCode }.Where(s => !string.IsNullOrEmpty(s)))
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

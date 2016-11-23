@@ -1,0 +1,10 @@
+<%@ ServiceHost 
+    Language="C#" 
+    Debug="true" 
+    Factory ="LoMo.EmailSubscription.Service.HostFactory.EmailSubscriptionHostFactory"
+    Service="LoMo.EmailSubscription.Service.SubscriptionLookupService" 
+    CodeBehind="SubscriptionLookupService.svc.cs" %>
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->

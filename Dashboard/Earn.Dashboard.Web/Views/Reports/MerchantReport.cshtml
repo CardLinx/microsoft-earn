@@ -1,0 +1,185 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+@{
+    ViewBag.Title = "Merchant Report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles
+{
+    <link href="https://cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/buttons/1.1.0/css/buttons.dataTables.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1-rc.1/css/select2.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" rel="stylesheet" />
+    @Styles.Render("~/bundles/supportCss")
+}
+
+<div class="content-wrapper transactions" style="min-height: 916px;" id="mainSection">
+    <!-- Page header -->
+    <div class="row">
+        <div class="col-lg-12">
+            <ol class="breadcrumb">
+                <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+                <li class="active"><i class="fa fa-pie-chart"></i> Reports</li>
+                <li class="active"><i class="fa fa-bar-chart"></i> @ViewBag.Title</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="alert alert-warning alert-dismissible" style="display: none;">
+            <h4>
+                <i class="icon fa fa-warning"></i>
+                Unauthorized
+            </h4>
+            <p>
+                You don't have permission for fetching data.
+            </p>
+        </div>
+
+        <div class="alert alert-danger alert-dismissible" style="display: none;">
+            <h4>
+                <i class="icon fa fa-ban"></i>
+                Error
+            </h4>
+            <p>
+            </p>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box box-primary">
+                    <div class="box-header">
+                        <h3 class="box-title">Filter by:</h3>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <div class="form-group filter">
+                            <div class="col-md-2">
+                                <div class="row header">
+                                    <label>Request Type</label>
+                                </div>
+
+                                <!-- ko foreach: requestTypes -->
+
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="requestType" data-bind="value: $data.id, checked: $parent.requestParameters.requestType" />
+                                        <!--ko text: name--><!--/ko-->
+                                    </label>
+                                </div>
+
+                                <!-- /ko -->
+                            </div>
+                            <div class="col-md-2">
+                                <div class="row header">
+                                    <label>Date Range</label>
+                                </div>
+                                <div class="input-group datepicker">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input type="text" class="form-control pull-right" id="dateRange">
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                <div class="row header">
+                                    <label>Merchants</label>
+                                </div>
+
+                                <select id="merchants" class="form-control" data-bind="select2,
+                                                                                       value: requestParameters.merchantName,
+                                                                                     options: merchants,
+                                                                                optionsValue: function(item) { return item; },
+                                                                                 optionsText: function(item) { return item; }"></select>
+                            </div>
+
+                            <div class="col-md-1">
+                                <div class="row header">
+                                    <label>Last 4 Digits</label>
+                                </div>
+
+                                <input id="last4digits" class="form-control" min="0" max="9999" type="number" data-bind="value: requestParameters.last4Digits" />
+                            </div>
+
+                            <div class="col-md-1">
+                                <div class="row header">
+                                    <label>Transaction Type</label>
+                                </div>
+
+                                <!-- ko foreach: transactionTypes -->
+
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" data-bind="value: $data.id, checked: $parent.requestParameters.transactionTypes" />
+                                        <!--ko text: name--><!--/ko-->
+                                    </label>
+                                </div>
+
+                                <!-- /ko -->
+                            </div>
+
+                            <div class="col-md-1">
+                                <div class="row header">
+                                    <label>Card Brand</label>
+                                </div>
+
+                                <!-- ko foreach: cardBrands -->
+
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" data-bind="value: $data.id, checked: $parent.requestParameters.cardBrandIds" />
+                                        <!--ko text: name--><!--/ko-->
+                                    </label>
+                                </div>
+
+                                <!-- /ko -->
+                            </div>
+
+                            <div class="col-md-1">
+                                <div class="col-md-4">
+                                    <button type="submit" id="get-data" class="btn btn-default" data-bind="click: getData">Get Data</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <table id="transactionsDataTable" class="display compact" cellspacing="0" width="100%"></table>
+                <table id="settlementsDataTable" class="display compact" cellspacing="0" width="100%"></table>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section scripts
+{
+    <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1-rc.1/js/select2.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.1.0/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.1.0/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.10/js/dataTables.bootstrap.min.js"></script>
+    @Scripts.Render("~/bundles/merchantReportJs")
+
+    <script>
+        $(document).ready(function(){
+            var pageServerModel = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
+            var model = new window.merchantReportViewModel(pageServerModel)
+            ko.applyBindings(model, document.getElementById("mainSection"));
+        });
+    </script>
+}

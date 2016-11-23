@@ -1,0 +1,963 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+@model DailyDealsVM
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Father's Day</title>
+
+    <style type="text/css">
+        /* Client-specific Styles */
+        #outlook a {
+            padding: 0;
+        }
+
+        /* Force Outlook to provide a "view in browser" menu link. */
+        body {
+            width: 100% !important;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Prevent Webkit and Windows Mobile platforms from changing default font sizes, while not breaking desktop design. */
+        .ExternalClass {
+            width: 100%;
+        }
+            /* Force Hotmail to display emails at full width */
+            .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {
+                line-height: 100%;
+            }
+
+        /* Force Hotmail to display normal line spacing. */
+        #backgroundTable {
+            margin: 0;
+            padding: 0;
+            width: 100% !important;
+            line-height: 100% !important;
+        }
+
+        img {
+            outline: none;
+            text-decoration: none;
+            border: none;
+            -ms-interpolation-mode: bicubic;
+        }
+
+        a img {
+            border: none;
+        }
+
+        .image_fix {
+            display: block;
+        }
+
+        p {
+            margin: 0px 0px !important;
+        }
+
+        table td {
+            border-collapse: collapse;
+        }
+
+        table {
+            border-collapse: collapse;
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        }
+
+        a {
+            color: #33b9ff;
+            text-decoration: none;
+            text-decoration: none!important;
+        }
+
+        /*STYLES*/
+        table[class=full] {
+            width: 100%;
+            clear: both;
+        }
+
+        /*IPAD STYLES*/
+        @@media only screen and (max-width: 640px) {
+            a[href^="tel"], a[href^="sms"] {
+                text-decoration: none;
+                color: #0a8cce;
+                pointer-events: none;
+                cursor: default;
+            }
+
+            .mobile_link a[href^="tel"], .mobile_link a[href^="sms"] {
+                text-decoration: default;
+                color: #0a8cce !important;
+                pointer-events: auto;
+                cursor: default;
+            }
+
+            table[class=devicewidth] {
+                width: 440px!important;
+                text-align: center!important;
+            }
+
+            table[class=devicewidthmob] {
+                width: 420px!important;
+                text-align: left!important;
+            }
+
+            table[class=devicewidthinner] {
+                width: 420px!important;
+                text-align: left!important;
+            }
+
+            img[class=banner] {
+                width: 440px!important;
+                height: 300px!important;
+            }
+
+            img[class=col2img] {
+                width: 440px!important;
+                height: 330px!important;
+            }
+
+            table[class="cols3inner"] {
+                width: 100px!important;
+            }
+
+            table[class="col3img"] {
+                width: 131px!important;
+            }
+
+            img[class="col3img"] {
+                width: 131px!important;
+                height: 82px!important;
+            }
+
+            table[class='removeMobile'] {
+                width: 10px!important;
+            }
+
+            img[class="blog"] {
+                width: 420px!important;
+                height: 162px!important;
+            }
+        }
+
+        /*IPHONE STYLES*/
+        @@media only screen and (max-width: 480px) {
+            a[href^="tel"], a[href^="sms"] {
+                text-decoration: none;
+                color: #0a8cce;
+                pointer-events: none;
+                cursor: default;
+            }
+
+            .mobile_link a[href^="tel"], .mobile_link a[href^="sms"] {
+                text-decoration: default;
+                color: #0a8cce !important;
+                pointer-events: auto;
+                cursor: default;
+            }
+
+            table[class=devicewidth] {
+                width: 280px!important;
+                text-align: center!important;
+            }
+
+            table[class=devicewidthmob] {
+                width: 260px!important;
+                text-align: left!important;
+            }
+
+            table[class=devicewidthinner] {
+                width: 260px!important;
+                text-align: left!important;
+            }
+
+            img[class=banner] {
+                width: 280px!important;
+                height: 180px!important;
+            }
+
+            img[class=col2img] {
+                width: 280px!important;
+                height: 210px!important;
+            }
+
+            table[class="cols3inner"] {
+                width: 260px!important;
+            }
+
+            img[class="col3img"] {
+                width: 280px!important;
+                height: 175px!important;
+            }
+
+            table[class="col3img"] {
+                width: 280px!important;
+            }
+
+            img[class="blog"] {
+                width: 260px!important;
+                height: 100px!important;
+            }
+
+            td[class="padding-top-right15"] {
+                padding: 15px 15px 0 0 !important;
+            }
+
+            td[class="padding-right15"] {
+                padding-right: 15px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Start of preheader -->
+    <table width="100%" bgcolor="#d8d8d8" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="preheader">
+        <tbody>
+            <tr>
+                <td width="100%" height="20"></td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- End of preheader -->
+
+    <!-- Start of header -->
+    @* offers logo*@
+    <table width="100%" bgcolor="#d8d8d8" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="header">
+        <tbody>
+            <tr>
+                <td>
+                    <table width="560" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+                        <tbody>
+                            <tr>
+                                <td width="100%">
+                                    <table bgcolor="#303030" width="560" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+                                        <tbody>
+                                            <!-- Spacing -->
+                                            <tr>
+                                                <td height="15" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                            </tr>
+                                            <!-- Spacing -->
+                                            <tr>
+                                                <td>
+                                                    <!-- logo -->
+                                                    <table width="100%" align="left" border="0" cellpadding="0" cellspacing="0" style="font-family: 'Segoe UI Regular', 'Segoe UI', Arial, Helvetica, sans-serif;">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td valign="bottom" align="left" style="vertical-align: bottom; text-align: left; width: 20%; padding-left: 20px;">
+                                                                    <a href="https://www.bing.com/offers?bor=@ViewBag.referrer&bof=@ViewBag.campaign" style="padding-right: 0; padding-top: 0; padding-left: 0; padding-bottom: 0; text-decoration: none;" target="_blank">
+                                                                        <img width="146" height="35" border="0" src="https://az414848.vo.msecnd.net/assets/offers-email-logo-nobeta.png" style="border: 0; width: 146px; height: 35px; vertical-align: bottom; border-left-width: 0; border-bottom-width: 0; border-right-width: 0; border-top-width: 0; font-size: 10px;" alt="Bing Offers" />
+                                                                    </a>
+                                                                </td>
+                                                                @if (!string.IsNullOrEmpty(Model.Location))
+                                                                {
+                                                                    <td valign="middle" align="left" style="vertical-align: middle; text-align: left; font-size: 20px; line-height: 25px; color: #a2a2a2;">&nbsp;|&nbsp;<span style="color: white; font-weight: normal; padding-top: 5px;">@Model.Location</span>
+                                                                    </td>
+                                                                }
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <!-- end of logo -->
+                                                </td>
+                                            </tr>
+                                            <!-- Spacing -->
+                                            <tr>
+                                                <td height="15" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                            </tr>
+                                            <!-- Spacing -->
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- End of Header -->
+
+    <!-- fulltext -->
+    @*Father's day message*@
+    <table width="100%" bgcolor="#d8d8d8" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="left-image">
+        <tbody>
+            <tr>
+                <td>
+                    <table width="560" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+                        <tbody>
+                            <tr>
+                                <td width="100%">
+                                    <table bgcolor="#f5f5f5" width="560" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+                                        <tbody>
+                                            <!-- Spacing -->
+                                            <tr>
+                                                <td height="10" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                            </tr>
+                                            <!-- Spacing -->
+                                            <tr>
+                                                <td>
+                                                    <table width="520" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidthinner">
+                                                        <tbody>
+                                                            <!-- Spacing -->
+                                                            <tr>
+                                                                <td width="100%" height="15" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                            </tr>
+                                                            <!-- /Spacing -->
+                                                            <tr>
+                                                                <td style="font-family: 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif; font-size: 35px; color: #b4009e; text-align: left; line-height: 45px;">Treat dad to more this
+                                                                    <br />
+                                                                    Father's Day.
+                                                                </td>
+                                                            </tr>
+                                                            <!-- Spacing -->
+                                                            <tr>
+                                                                <td width="100%" height="15" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                            </tr>
+                                                            <!-- /Spacing -->
+                                                            <!-- content -->
+                                                            <tr>
+                                                                <td style="font-family: 'Segoe UI Regular', 'Segoe UI', Arial, Helvetica, sans-serif; font-size: 17px; color: #7a6e67; text-align: left; line-height: 26px;">Remember the days when you had to plan Father's Day, weeks in advance and worry over each detail? Thank goodness for Bing Offers Card-Linked! Now you can treat dad to an epic Father's Day weekend while getting the most for your money. It's the kind of bargain that will make dad proud.
+                                                                </td>
+                                                            </tr>
+                                                            <!-- end of content -->
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <!-- Spacing -->
+                                            <tr>
+                                                <td height="20" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                            </tr>
+                                            <!-- Spacing -->
+                                            <!-- Spacing -->
+                                            <tr>
+                                                <td height="10" bgcolor="#ffffff" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                            </tr>
+                                            <!-- Spacing -->
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- end of fulltext -->
+
+    <!-- Start of main-banner -->
+    @*hero tile image*@
+    <table width="100%" bgcolor="#d8d8d8" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="banner">
+        <tbody>
+            <tr>
+                <td>
+                    <table width="560" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+                        <tbody>
+                            <tr>
+                                <td width="100%">
+                                    <table width="560" align="center" cellspacing="0" cellpadding="0" border="0" class="devicewidth">
+                                        <tbody>
+                                            <tr>
+                                                <!-- start of image -->
+                                                <td align="center" st-image="banner-image">
+                                                    <div class="imgpop">
+                                                        <a target="_blank" href="@Model.HeroDeal.TransactionUrl">
+                                                            <img width="560" border="0" height="250" alt="@Model.HeroDeal.BusinessName" border="0" style="display: block; border: none; outline: none; text-decoration: none;" src="@Model.HeroDeal.LargeImageUrl" class="banner" /></a>
+                                                    </div>
+                                                </td>
+                                                <!-- end of image -->
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    @*hero tile text*@
+    <table width="100%" bgcolor="#d8d8d8" cellpadding="0" cellspacing="0" border="0" id="backgroundTable">
+        <tbody>
+            <tr>
+                <td>
+                    <table bgcolor="#f5f5f5" width="560" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth" style="background-color: #f5f5f5;">
+                        <tbody>
+                            <tr>
+                                <td width="100%" style="padding-right: 20px; padding-left: 20px; padding-top: 20px; padding-bottom: 20px;">
+                                    <table cellspacing="0" cellpadding="0" width="100%" style="color: #444444; font-family: 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif; width: 100%">
+                                        <tr>
+                                            <td align="left" style="text-align: left; padding-left: 0; padding-bottom: 0; padding-top: 0; padding-right: 0;">
+                                                <table cellspacing="0" cellpadding="0" width="100%" style="font-family: 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif; width: 100%; padding-left: 0; padding-bottom: 0; padding-top: 0; padding-right: 0;">
+                                                    <!-- Spacing -->
+                                                    <tr>
+                                                        <td width="100%" height="15" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                    </tr>
+                                                    <!-- /Spacing -->
+                                                    <tr>
+                                                        <td align="left" valign="top" style="vertical-align: top; text-align: left; padding-top: 0; padding-right: 0; padding-bottom: 10px; padding-left: 0; font-size: 20px; color: #444444;">@Model.HeroDeal.BusinessName
+                                                        </td>
+                                                    </tr>
+                                                    <!-- Spacing -->
+                                                    <tr>
+                                                        <td width="100%" height="15" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                    </tr>
+                                                    <!-- /Spacing -->
+                                                    <tr>
+                                                        <td align="left" valign="top" style="vertical-align: top; text-align: left; padding-top: 0; padding-right: 0; padding-bottom: 10px; padding-left: 0; font-size: 26px; color: #b4009e;">@Model.HeroDeal.Title
+                                                        </td>
+                                                    </tr>
+                                                    <!-- Spacing -->
+                                                    <tr>
+                                                        <td width="100%" height="15" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                    </tr>
+                                                    <!-- /Spacing -->
+                                                    <tr>
+                                                        <td align="left" valign="top" style="vertical-align: top; text-align: left; padding-top: 0; padding-right: 0; padding-bottom: 10px; padding-left: 0; font-size: 14px; color: #777777;">@Model.HeroDeal.Attribution
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <table cellspacing="0" cellpadding="0" width="100%" style="color: #444444; font-family: 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif; width: 100%; padding-left: 0; padding-bottom: 0; padding-top: 0; padding-right: 0;">
+                                                    <tr>
+                                                        <td valign="bottom" style="width: 70%; text-align: left; vertical-align: bottom; padding-left: 0; padding-bottom: 5px; padding-top: 0; padding-right: 0;">
+                                                            <table cellspacing="0" cellpadding="0" width="100%" style="text-align: left; width: 100%; font-family: 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif; padding-left: 0; padding-bottom: 0; padding-top: 0; padding-right: 0;">
+                                                                <tr>
+                                                                    <td width="60%">
+                                                                        <table cellspacing="0" cellpadding="0" width="100%" style="text-align: left; width: 100%; font-family: 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif; padding-left: 0; padding-bottom: 0; padding-top: 0; padding-right: 0;">
+                                                                            <tr>
+                                                                                <td valign="bottom" style="font-size: 12px; vertical-align: bottom; color: #b4009e;">@DailyDeals.SaveHeader</td>
+
+                                                                                @if (!string.IsNullOrEmpty(Model.HeroDeal.MinimumSpend))
+                                                                                {
+                                                                                    <td valign="bottom" style="font-size: 12px; vertical-align: bottom; color: #b4009e;">
+                                                                                        @DailyDeals.SpendHeader
+                                                                                    </td>
+                                                                                }
+                                                                            </tr>
+                                                                            <tr>
+
+                                                                                <td valign="bottom" style="font-size: 24px; font-weight: normal; vertical-align: bottom; color: #b4009e;">
+                                                                                    @(!string.IsNullOrWhiteSpace(Model.HeroDeal.Discount) ? Model.HeroDeal.Discount : Model.HeroDeal.DiscountAmmount)
+                                                                                </td>
+                                                                                @if (!string.IsNullOrEmpty(Model.HeroDeal.MinimumSpend))
+                                                                                {
+                                                                                    <td valign="bottom" style="font-size: 24px; font-weight: normal; vertical-align: bottom; color: #b4009e;">@Model.HeroDeal.MinimumSpend</td>
+                                                                                }
+                                                                            </tr>
+                                                                        </table>
+                                                                    </td>
+                                                                    <td align="right" valign="middle" style="text-align: right; vertical-align: middle;" width="40%">
+                                                                        <table border="0" cellpadding="0" cellspacing="0" class="tablet-button" st-button="edit" width="100%">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td align="center" valign="middle" height="40" width="100%" style="background-color: #ffa615; border-top-left-radius: 4px; border-bottom-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; background-clip: padding-box; font-size: 16px; font-family: Helvetica, arial, sans-serif; text-align: center; color: #ffffff; font-weight: 300; padding-left: 10px; padding-right: 10px;">
+                                                                                        <span style="color: #ffffff; font-weight: 300; vertical-align: bottom">
+                                                                                            <a style="color: #ffffff; text-align: center; text-decoration: none;" href="@Model.HeroDeal.TransactionUrl">@DailyDeals.ViewOffer</a>
+                                                                                        </span>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <!-- End of main-banner -->
+
+    <!-- tip -->
+    <table width="100%" bgcolor="#d8d8d8" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="left-image">
+        <tbody>
+            <tr>
+                <td>
+                    <table width="560" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+                        <tbody>
+                            <tr>
+                                <td width="100%">
+                                    <table bgcolor="#303030" width="560" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+                                        <tbody>
+                                            <!-- Spacing -->
+                                            <tr>
+                                                <td height="10" bgcolor="#ffffff" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                            </tr>
+                                            <!-- Spacing -->
+                                            <tr>
+                                                <td>
+                                                    <table width="560" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    <!-- Start of left column -->
+                                                                    <table width="180" align="left" border="0" cellpadding="0" cellspacing="0" class="devicewidth">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td width="100%" height="15" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td width="180" align="left" class="devicewidth" style="color: #ffffff; padding-left: 20px; font-family: 'Segoe UI Semibold', 'Segoe UI', Arial, Helvetica, sans-serif; font-size: 18px;">Insider Tip:
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                    <!-- end of left column -->
+                                                                    <!-- spacing for mobile devices-->
+                                                                    <table align="left" border="0" cellpadding="0" cellspacing="0" class="mobilespacing">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td width="100%" height="15" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                    <!-- end of for mobile devices-->
+                                                                    <!-- start of right column -->
+                                                                    <table width="360" align="right" border="0" cellpadding="0" cellspacing="0" class="devicewidthmob" style="font-family: 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif;">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td width="100%" height="15" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td width="100%" style="color: #ffffff; padding-right: 10px; vertical-align: top; font-size: 16px; line-height: 22px;">Change wallets often? Prefer to use different cards for different kinds of purchases? Register multiple credit or debit cards with Card-Linked and you'll never have to worry about missing out on member benefits!</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td width="100%" height="15" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                    <!-- end of right column -->
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <!-- Spacing -->
+                                            <tr>
+                                                <td height="10" bgcolor="#ffffff" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                            </tr>
+                                            <!-- Spacing -->
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- end of tip -->
+
+    @foreach (var deal in this.Model.FeaturedDeals)
+    {
+        <!-- leftimage -->
+        <table width="100%" bgcolor="#d8d8d8" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="left-image">
+            <tbody>
+                <tr>
+                    <td>
+                        <table width="560" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+                            <tbody>
+                                <tr>
+                                    <td width="100%">
+                                        <table bgcolor="#f5f5f5" width="560" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+                                            <tbody>
+
+                                                <tr>
+                                                    <td>
+                                                        <table width="560" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>
+                                                                        <!-- Start of left column -->
+                                                                        <table width="180" align="left" border="0" cellpadding="0" cellspacing="0" class="devicewidth">
+                                                                            <tbody>
+                                                                                <!-- image -->
+                                                                                <tr>
+                                                                                    <td width="180" height="180" align="center" class="devicewidth">
+                                                                                        <div class="imgpop">
+                                                                                            <a target="_blank" href="@deal.TransactionUrl">
+                                                                                                <img src="@deal.MediumImageUrl" alt="@deal.BusinessName" border="0" width="180" height="180" style="display: block; border: none; outline: none; text-decoration: none;" class="col2img" />
+                                                                                            </a>
+                                                                                        </div>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <!-- /image -->
+                                                                            </tbody>
+                                                                        </table>
+                                                                        <!-- end of left column -->
+                                                                        <!-- spacing for mobile devices-->
+                                                                        <table align="left" border="0" cellpadding="0" cellspacing="0" class="mobilespacing">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td width="100%" height="15" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                        <!-- end of for mobile devices-->
+                                                                        <!-- start of right column -->
+                                                                        <table width="360" align="right" border="0" cellpadding="0" cellspacing="0" class="devicewidthmob" style="font-family: 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif;">
+                                                                            <tbody>
+                                                                                <!-- Spacing -->
+                                                                                <tr>
+                                                                                    <td width="100%" height="20" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;" colspan="2">&nbsp;</td>
+                                                                                </tr>
+                                                                                <!-- /Spacing -->
+                                                                                <tr>
+                                                                                    <td width="55%" style="padding-right: 10px; vertical-align: top;">
+                                                                                        <table cellpadding="0" cellpadding="0" width="100%" style="font-family: 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif; width: 100%;">
+                                                                                            <tr>
+                                                                                                <td valign="top" style="font-size: 14px; color: #444444; text-align: left; line-height: 24px;">@deal.BusinessName
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <!-- end of title -->
+                                                                                            <!-- Spacing -->
+                                                                                            <tr>
+                                                                                                <td width="100%" height="10" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                                                            </tr>
+                                                                                            <!-- /Spacing -->
+                                                                                            <tr>
+                                                                                                <td valign="top" style="font-size: 18px; color: #b4009e; text-align: left; line-height: 24px;">@deal.Title
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <!-- end of title -->
+                                                                                            <!-- Spacing -->
+                                                                                            <tr>
+                                                                                                <td width="100%" height="20" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                                                            </tr>
+                                                                                            <!-- /Spacing -->
+                                                                                        </table>
+
+                                                                                    </td>
+                                                                                    <td width="45%" style="padding-right: 20px;">
+                                                                                        <table cellspacing="0" cellpadding="0" width="100%" style="font-family: 'Segoe UI Light', 'Segoe UI', Arial, Helvetica, sans-serif; width: 100%; padding-left: 0; padding-bottom: 0; padding-top: 0; padding-right: 0;">
+                                                                                            <tr>
+                                                                                                <td valign="top" align="right" style="text-align: right; vertical-align: top; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; font-size: 14px; color: #444444;">
+                                                                                                    @if (!(string.IsNullOrWhiteSpace(deal.Discount) && string.IsNullOrWhiteSpace(deal.DiscountAmmount)))
+                                                                                                    {
+                                                                                                        @DailyDeals.SaveHeader
+                                                                                                    }
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <!-- Spacing -->
+                                                                                            <tr>
+                                                                                                <td width="100%" height="8" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                                                            </tr>
+                                                                                            <!-- /Spacing -->
+                                                                                            <tr>
+                                                                                                <td valign="top" align="right" style="text-align: right; vertical-align: top; font-size: 40px; color: #b4009e; line-height: 40px;">
+                                                                                                    @(!string.IsNullOrWhiteSpace(deal.Discount) ? deal.Discount : deal.DiscountAmmount)
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <!-- Spacing -->
+                                                                                            <tr>
+                                                                                                <td width="100%" height="30" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                                                            </tr>
+                                                                                            <!-- /Spacing -->
+                                                                                            <tr>
+                                                                                                <td align="right">
+                                                                                                    <table border="0" cellpadding="0" cellspacing="0" class="tablet-button" st-button="edit" width="100%">
+                                                                                                        <tbody>
+                                                                                                            <tr>
+                                                                                                                <td align="center" valign="middle" height="40" width="100%" style="background-color: #ffa615; border-top-left-radius: 4px; border-bottom-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; background-clip: padding-box; font-size: 16px; font-family: Helvetica, arial, sans-serif; text-align: center; color: #ffffff; font-weight: 300; padding-left: 10px; padding-right: 10px;">
+                                                                                                                    <span style="color: #ffffff; font-weight: 300; vertical-align: bottom">
+                                                                                                                        <a style="color: #ffffff; text-align: center; text-decoration: none;" href="@deal.TransactionUrl">@DailyDeals.ViewOffer</a>
+                                                                                                                    </span>
+                                                                                                                </td>
+                                                                                                            </tr>
+                                                                                                        </tbody>
+                                                                                                    </table>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <!-- Spacing -->
+                                                                                            <tr>
+                                                                                                <td width="100%" height="20" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                                                            </tr>
+                                                                                            <!-- /Spacing -->
+                                                                                        </table>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                        <!-- end of right column -->
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                                <!-- Spacing -->
+                                                <tr>
+                                                    <td height="10" bgcolor="#ffffff" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                </tr>
+                                                <!-- Spacing -->
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- end of left image -->
+    }
+
+    <!-- Start of footer -->
+    <table width="100%" bgcolor="#d8d8d8" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="footer">
+        <tbody>
+            <tr>
+                <td>
+                    <table width="560" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+                        <tbody>
+                            <tr>
+                                <td width="100%">
+                                    <table bgcolor="#303030" width="560" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+                                        <tbody>
+                                            <!-- Spacing -->
+                                            <tr>
+                                                <td height="20" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                            </tr>
+                                            <!-- Spacing -->
+                                            <!-- Social Sharing -->
+                                            <tr>
+                                                <td align="center" width="100%">
+                                                    <table width="540" align="center" class="devicewidthinner" border="0" cellspacing="0" cellpadding="0">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td align="center" width="100%">
+                                                                    <!-- start of left column -->
+                                                                    <table width="250" align="right" class="devicewidthinner" border="0" cellspacing="0" cellpadding="0">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td align="center" style="font-family: 'Segoe UI Regular', 'Segoe UI', Arial, Helvetica, sans-serif; font-size: 15px; color: #ffffff; text-align: center; line-height: 24px;">Don't see a deal you like?
+                                                                                </td>
+                                                                            </tr>
+                                                                            <!-- Spacing -->
+                                                                            <tr>
+                                                                                <td height="10" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                                            </tr>
+                                                                            <!-- Spacing -->
+                                                                            <!-- button -->
+                                                                            <tr>
+                                                                                <td align="center">
+                                                                                    <table height="40" align="center" valign="middle" border="0" cellpadding="0" cellspacing="0" class="tablet-button" st-button="edit">
+                                                                                        <tbody>
+
+                                                                                            <tr>
+                                                                                                <td align="center" valign="middle" height="40" width="100%" style="background-color: #ffa615; border-top-left-radius: 4px; border-bottom-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; background-clip: padding-box; font-size: 16px; font-family: Helvetica, arial, sans-serif; text-align: center; color: #ffffff; font-weight: 300; padding-left: 20px; padding-right: 20px;">
+                                                                                                    <span style="color: #ffffff; font-weight: 300;">
+                                                                                                        <a target="_blank" style="color: #ffffff; text-align: center; text-decoration: none;" href="http://www.bing.com/offers/?bor=@ViewBag.referrer&bof=@ViewBag.campaign">See more deals</a>
+                                                                                                    </span>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <!-- /button -->
+                                                                        </tbody>
+                                                                    </table>
+                                                                    <!-- end of left column -->
+
+                                                                    <!-- mobile spacing -->
+                                                                    <table align="left" class="mobilespacing" border="0" cellspacing="0" cellpadding="0">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td width="100%" height="10" style="line-height: 1px; font-size: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                    <!-- mobile spacing -->
+                                                                    <!-- start of right column -->
+                                                                    <table width="270" align="left" class="devicewidthinner" border="0" cellspacing="0" cellpadding="0">
+                                                                        <tbody>
+                                                                            <!-- Spacing -->
+                                                                            <tr>
+                                                                                <td height="20" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                                            </tr>
+                                                                            <!-- Spacing -->
+                                                                            <tr>
+                                                                                <td align="center">
+                                                                                    <table align="center" valign="middle" border="0" cellspacing="0" cellpadding="0">
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td align="center" valign="middle" style="font-size: 17px; font-family: 'Segoe UI Semibold', 'Segoe UI', Arial, Helvetica, sans-serif; text-align: center; color: #ffffff; padding-right: 10px;">Follow us on
+                                                                                                </td>
+                                                                                                <td width="10" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                                                                <td align="center" valign="middle" height="40">
+                                                                                                    <a target="_blank" href="https://www.facebook.com/BingOffers" style="text-decoration: none; text-align: center;">
+                                                                                                        <img width="30" height="30" border="0" style="border-width: 0px; width: 30px; height: 30px; font-size: 6px;" alt="Facebook" src="https://TODO_YOUR_CDN_URL/dailydeals-assets/digest.facebook.png" border="0" />
+                                                                                                    </a>
+                                                                                                </td>
+                                                                                                <td width="20" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                                                                <td align="center" valign="middle" height="40">
+                                                                                                    <a target="_blank" href="https://twitter.com/bingoffers" style="text-decoration: none; text-align: center;">
+                                                                                                        <img width="30" height="30" border="0" style="border-width: 0px; width: 30px; height: 30px; font-size: 6px;" alt="Twitter" src="https://TODO_YOUR_CDN_URL/dailydeals-assets/digest.twitter.png" border="0" />
+                                                                                                    </a>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                    <!-- end of right column -->
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <!-- Spacing -->
+                                            <tr>
+                                                <td height="20" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                            </tr>
+                                            <!-- Spacing -->
+                                            <!-- Spacing -->
+                                            <tr>
+                                                <td height="10" bgcolor="#ffffff" style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                            </tr>
+                                            <!-- Spacing -->
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- End of footer -->
+
+    <!-- Start of postfooter -->
+    <table width="100%" bgcolor="#d8d8d8" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="preheader">
+        <tbody>
+            <tr>
+                <td>
+                    <table bgcolor="#f5f5f5" width="560" width="560" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+                        <tbody>
+                            <tr>
+                                <td width="100%">
+                                    <table cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+                                        <tbody>
+                                            <tr>
+                                                <td style="padding-left: 20px; padding-right: 10px;">
+                                                    <table>
+                                                        <tbody>
+                                                            <!-- Spacing -->
+                                                            <tr>
+                                                                <td width="100%" height="10"></td>
+                                                            </tr>
+                                                            <!-- Spacing -->
+                                                            <tr>
+                                                                <td align="left" valign="middle" style="font-family: 'Segoe UI Regular', 'Segoe UI', Arial, Helvetica, sans-serif; font-size: 11px; color: #777777; text-align: left;" st-content="viewonline">@DailyDeals.SubscriptionText
+                                                                </td>
+                                                            </tr>
+                                                            <!-- Spacing -->
+                                                            <tr>
+                                                                <td width="100%" height="10"></td>
+                                                            </tr>
+                                                            <!-- Spacing -->
+                                                            <tr>
+                                                                <td align="left" valign="middle" style="font-family: 'Segoe UI Regular', 'Segoe UI', Arial, Helvetica, sans-serif; font-size: 11px; color: #777777; text-align: left;" st-content="viewonline">@DailyDeals.MicrosoftAddress
+                                                                </td>
+                                                            </tr>
+                                                            <!-- Spacing -->
+                                                            <tr>
+                                                                <td width="100%" height="10"></td>
+                                                            </tr>
+                                                            <!-- Spacing -->
+                                                            <tr>
+                                                                <td valign="middle" align="center" style="vertical-align: middle; text-align: center; font-size: 11px; padding-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 10px;">
+                                                                    <table cellspacing="0" cellpadding="0" width="100%" style="font-family: 'Segoe UI Regular', 'Segoe UI', Arial, Helvetica, sans-serif; width: 100%; padding-left: 0; padding-bottom: 0; padding-top: 0; padding-right: 0; font-size: 11px;">
+                                                                        <tr>
+                                                                            <td valign="middle" align="center" style="vertical-align: middle; text-align: center; padding-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; width: 23%;">
+                                                                                <a href="@DailyDeals.PrivacyStatementsUrl" style="font-size: 11px;">@DailyDeals.PrivacyStatements</a>
+                                                                            </td>
+                                                                            <td valign="middle" align="center" style="vertical-align: middle; text-align: center; padding-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0;">
+                                                                                <a href="@DailyDeals.TermsConditionsUrl" style="font-size: 11px;">@DailyDeals.TermsConditions</a>
+                                                                            </td>
+                                                                            <td valign="middle" align="center" style="vertical-align: middle; text-align: center; padding-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; width: 23%;">
+                                                                                <a href="@DailyDeals.FeedbackUrl" style="font-size: 11px;">@DailyDeals.Feedback</a>
+                                                                            </td>
+                                                                            <td valign="middle" align="center" style="vertical-align: middle; text-align: center; padding-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; width: 23%;">
+                                                                                <a href="@Model.UnsubscribeUrl" style="font-size: 11px;">@DailyDeals.Unsubscribe</a>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <!-- Spacing -->
+                                                            <tr>
+                                                                <td width="100%" height="10"></td>
+                                                            </tr>
+                                                            <!-- Spacing -->
+                                                            <tr>
+                                                                <td valign="middle" align="left" style="vertical-align: middle; text-align: left; padding-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 30px;">
+                                                                    <a href="@DailyDeals.MicrosoftUrl" style="padding-right: 0; padding-top: 0; padding-left: 0; padding-bottom: 0; text-decoration: none;">
+                                                                        <img width="70" src="@DailyDeals.MsLogoUrl" alt="@DailyDeals.Microsoft" style="width: 70px; border-left-width: 0; border-bottom-width: 0; border-right-width: 0; border-top-width: 0; font-size: 10px;"  />
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                            <!-- Spacing -->
+                                                            <tr>
+                                                                <td width="100%" height="10"></td>
+                                                            </tr>
+                                                            <!-- Spacing -->
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- End of postfooter -->
+
+    <table width="100%" bgcolor="#d8d8d8" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="preheader">
+        <tbody>
+            <tr>
+                <td width="100%" height="20"></td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

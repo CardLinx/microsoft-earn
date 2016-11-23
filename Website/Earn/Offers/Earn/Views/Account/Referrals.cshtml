@@ -1,0 +1,87 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+@{
+    Layout = "~/offers/earn/views/account/accountslayout.cshtml";
+    ViewBag.Title = "Referrals";
+}
+
+<section id="referrals" class="accounts-container">
+    <div class="container">
+        <div class="referrals-container" data-bind="with: referralsView">
+            <div class="referral-section left">
+                <h1>Refer and Earn</h1>
+                <p class="refer-text">
+                    Earn even more! Get <strong>$5 in Bonus Earn Credits</strong> for each friend that enrolls and makes their first Earn transaction.
+                    The more friends that enroll using your personal link, the more Bonus Earn Credits you'll get to use towards all types of great products.<sup>1</sup> Share now!
+                </p>
+                <div class="social-plugin">
+                    <ul class="social">
+                        <li>
+                            <a class="facebook icon-facebook" data-bind="click: socialView.facebookPageShare">
+                                <img src="Offers/Earn/content/images/fb_40x40.png" />
+                            </a>
+                        </li>
+                        <li>
+                            <a class="twitter icon-twitter" data-bind="click: socialView.twitterPageShare">
+                                <img src="Offers/Earn/content/images/tw_40x40.png" />
+                            </a>
+                        </li>
+                        <li>
+                            <a class="email icon-email" data-bind="click: socialView.emailShare">
+                                <img src="Offers/Earn/content/images/email_40x40.png" />
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="personal-link">
+                    <label>Your personal link:</label>
+                    <input class="shareurl" readonly="readonly" data-bind="value: shareUrl, click: selectShareUrl, css: { inputsharewidthwithoutbutton: !showCopyButton() } ">
+                    <a class="button" data-bind="click: copyShareUrl, visible: showCopyButton">Copy</a>
+                </div>
+            </div>
+            <div class="referral-section right">
+                <h2>Referral activity</h2>
+                <div class="points">
+                    <div class="point" data-bind="css: { nodata: cardlinkSignups() == 0 }">
+                        <div class="point-number" data-bind="text: cardlinkSignups">0</div>
+                        <div class="point-text">Friends enrolled, but not&nbsp;yet qualified<sup>1</sup></div>
+                    </div>
+                    <div class="point" data-bind="css: { nodata: countOfUsersWhoRedeemed() == 0 }">
+                        <div class="point-number" data-bind="text: countOfUsersWhoRedeemed">0</div>
+                        <div class="point-text">Friends enrolled and qualified<sup>1</sup></div>
+                    </div>
+                    <div class="point" data-bind="css: { nodata: (countOfUsersWhoRedeemed() * 5) == 0 }">
+                        <div class="point-number" data-bind="text: '$' + countOfUsersWhoRedeemed() * 5">0</div>
+                        <div class="point-text">Referral Bonus Earn Credits awarded<sup>2</sup></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Fineprints{
+    <section id="fineprints">
+        <div class="container">
+            <p class="fineprint">
+                [*] Earn Credits are only received for transactions at participating merchants in Arizona, Massachusetts and Washington, and only apply to purchases made at the online <a href="http://www.microsoftstore.com/">Microsoft Store</a> and local Microsoft Stores in Arizona, Massachusetts, and Washington.
+                Please note that it may take a few days before a purchase appears in your @Html.ActionLink("transaction history", "History", "Account").
+                If you believe you did not receive Earn Credits due, please @Html.ActionLink("contact us", "Support", "Account") and provide the place and date of purchase, along with the last 4 digits of your credit/debit card.
+                In some cases, Shell transactions may not show up in your Pending transactions at all, but should show up in your Confirmed transactions within a few days.
+            </p>
+            <br />
+            <p class="fineprint">
+                [1] Friends must make their first Earn transaction for you to qualify for Referral Bonus Earn Credits.
+            </p>
+            <br />
+            <p class="fineprint">
+                [2] It can take up to two days after your friend’s qualified transaction for Referral Bonus Earn Credits to be awarded to you.
+            </p>
+        </div>
+        <div class="clear"></div>
+    </section>
+}

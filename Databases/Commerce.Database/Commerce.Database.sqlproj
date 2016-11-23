@@ -1,0 +1,652 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>Commerce.Database</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{fdd4552a-3dc1-4cf5-bdc1-8b56c1e33387}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.SqlAzureV12DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>Commerce.Database</RootNamespace>
+    <AssemblyName>Commerce.Database</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+    <ValidateCasingOnIdentifiers>False</ValidateCasingOnIdentifiers>
+    <TargetFrameworkProfile />
+    <GenerateCreateScript>True</GenerateCreateScript>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <OutputPath>.\sql\Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>false</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <OutputPath>.\sql\debug\</OutputPath>
+  </PropertyGroup>
+  <!-- VS10 without SP1 will not have VisualStudioVersion set, so do that here -->
+  <PropertyGroup />
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'ProdDebug|AnyCPU' ">
+    <OutputPath>.\sql\proddebug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>false</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'ProdRelease|AnyCPU' ">
+    <OutputPath>.\sql\ProdRelease\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'IntDebug|AnyCPU' ">
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>false</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <OutputPath>.\sql\intdebug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'IntRelease|AnyCPU' ">
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <OutputPath>.\sql\IntRelease\</OutputPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="Scripts\" />
+    <Folder Include="Scripts\Pre-Deployment" />
+    <Folder Include="Scripts\Post-Deployment" />
+    <Folder Include="Schema Objects" />
+    <Folder Include="Schema Objects\Database Level Objects" />
+    <Folder Include="Schema Objects\Database Level Objects\Security" />
+    <Folder Include="Schema Objects\Schemas" />
+    <Folder Include="Schema Objects\Schemas\dbo" />
+    <Folder Include="Schema Objects\Schemas\dbo\Tables" />
+    <Folder Include="Schema Objects\Schemas\dbo\Views" />
+    <Folder Include="Schema Objects\Schemas\dbo\Programmability" />
+    <Folder Include="Schema Objects\Schemas\dbo\Programmability\Functions" />
+    <Folder Include="Schema Objects\Schemas\dbo\Programmability\Types" />
+    <Folder Include="Schema Objects\Schemas\dbo\Programmability\Types\User Defined Table Types" />
+    <Folder Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Scripts\Post-Deployment\Script.PostDeployment.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </PostDeploy>
+    <PreDeploy Include="Scripts\Pre-Deployment\Script.PreDeployment.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </PreDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\RedemptionEvents.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Authorizations.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Cards.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\TransactionLinks.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Deals.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\PartnerCards.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\PartnerDeals.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\PartnerDealRegistrationStatus.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Partners.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\RedeemedDeals.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Users.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Sequences.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\AddClaimedDeal.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\AddRedeemedDeal.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\GetDealById.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\MergeDeal.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\MergeUser.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\CardBrands.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\GetCardById.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\GetCardsByUser.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\GetExistingCardId.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\GetClaimedDealsByUser.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\GetUserByGlobalId.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\DealPartnerMerchantIds.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Types\User Defined Table Types\PartnerCardInfo.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Types\User Defined Table Types\PartnerDealInfo.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Types\User Defined Table Types\DealPartnerMerchants.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\ReverseRedeemedDeal.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\ProcessRedemptionTimeout.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\PartnerRedeemedDeals.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\ProcessPartnerRedeemedDealRecord.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\GetOutstandingPartnerRedeemedDealRecords.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Types\User Defined Table Types\TransactionReferenceNumbers.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\UpdatePendingPartnerRedeemedDeals.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\GetActiveDealIds.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\GetActiveCards.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\GetCardsByPartnerCardId.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\ReferrerTypes.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\ReferralVectors.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\RewardRecipients.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\ReferralTypes.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Referrals.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\RewardPayoutStatus.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Rewards.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\ReferralEvents.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\ReferralEventRewards.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\DealStatus.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Types\User Defined Table Types\EventRewards.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\MergeReferralType.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\AddReferral.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\RewardPayouts.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\PayeeTypes.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\RewardTypes.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\GetUserUnprocessedReferrals.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\GetNextValueFromSequence.sql">
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\GetDealByPartnerDealId.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\RewardReasons.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\UpdateRewardPayoutStatus.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\AddRedemptionReward.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\GetUnprocessedRedemptionReward.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Types\User Defined Table Types\ParentDealIds.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Types\User Defined Table Types\DealIds.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\MerchantNames.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\GetReferralCounts.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\AddAuthorization.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Views\RedemptionReport.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\DecreaseSequenceValue.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Views\CardsReport.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Parameters.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\EventLog.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\LogEvent.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\GetCardTokenForAnotherPartner.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\AddClaimedDeals.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\PartnerMerchantIdTypes.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\PartnerCardFilters.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\GetUnfilteredMasterCards.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Types\User Defined Table Types\ListOfStrings.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\AddFilteredMasterCards.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Views\TransactionCardHolders.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Types\User Defined Table Types\ListOfGuids.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\MarkSettledAsRedeemed.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
+    <None Include="Scripts\Conversion_01_IntegerMapping.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\RegisterDealBatch.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\ClaimedDealBatches.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\DealBatchDetails.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\DealBatches.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Types\User Defined Table Types\ListOfInts.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <None Include="Scripts\Conversion_02_ClaimedDealBatches.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\MarkRejectedByMasterCard.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Views\ClaimedDeals.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Functions\ToDayAndTime.function.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Functions\DayAndTimeAdd.function.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\CleanupEventLog.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\GetPartnerMerchantTimeZoneId.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\TrackedRedemptionRewards.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\AddReferredRedemptionReward.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\GetOutstandingReferredRedemptionRewardRecords.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\UpdatePendingReferredRedemptionRewards.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\ReimbursementTender.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\MSSVDistributions.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Views\MSSVPayouts.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\MergeCard_2.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\GetEarnBurnHistory.sql">
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Functions\FundsToBurn.function.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\RewardProgram.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\RewardProgramReimbursementTenderIds.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\EnrollCardsInRewardPrograms.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\RemoveCardFromRewardPrograms.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\GetVisaPartnerCardId.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\CustomerServiceIssueEarnCredit.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\GetRedeemedDealsByDate.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Views\AuthorizedMasterCardTransactions.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Views\RedeemedVisaTransactions.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Views\AuthorizedVisaTransactions.sql">
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Views\RedeemedMasterCardTransactions.sql">
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Views\FirstDataTransactions.sql">
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Views\EarnRewardsAndGrants.sql">
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Functions\GetEarnBurnLineItems.sql">
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Functions\QueryEarnBurnLineItems.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\MarkPermaPending.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\TransactionReviewStatus.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\ResolveTransactionReview.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\AddOrUpdateUser.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\DeactivateCard.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\AddOrReactivateCard.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\GetCardByPartnerToken.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\MarkMasterCardsAsFiltered.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\GetUserById.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Types\User Defined Table Types\PartnerMerchantRecords.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Merchants.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\AddOrUpdateMerchant.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Offers.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\AddOrUpdateOffer.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\GetOfferByGlobalID.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\GetMerchantByGlobalID.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Providers.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\GetProviderByGlobalID.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\AddOrUpdateProvider.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\PartnerMerchantAuthorizationIDs.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\PartnerMerchantSettlementIDs.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Types\User Defined Table Types\PartnerMerchantIDs.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\DeactivatePartnerMerchantIDs.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\ReactivatePartnerMerchantIDs.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\AddPartnerMerchantIDs.sql" />
+    <Build Include="Schema Objects\Schemas\dbo\Tables\PartnerUserIDs.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Types\User Defined Table Types\PartnerUserIDRecords.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\DeactivatePartnerUserIDs.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\ReactivatePartnerUserIds.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\AddPartnerUserIDs.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Functions\GetTransactionStatusName.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Functions\BuildDiscountSummary.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\Tier3CustomerServiceIssueEarnCredit.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\UpdateRedeemedDealsByVisa.sql" />
+    <Build Include="Schema Objects\Schemas\dbo\Views\AuthorizedAmexTransactions.sql">
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Views\RedeemedAmexTransactions.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SuppressTSqlWarnings>71502</SuppressTSqlWarnings>
+    </Build>
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="Commerce.Database.refactorlog" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Commerce.Database.Int.publish.xml" />
+    <None Include="Schema Objects\Database Level Objects\Security\SecurityInt.sql" />
+    <None Include="Commerce.Database.Local.publish.xml" />
+  </ItemGroup>
+</Project>

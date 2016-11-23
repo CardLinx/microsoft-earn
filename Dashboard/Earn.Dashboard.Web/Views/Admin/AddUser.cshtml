@@ -1,0 +1,108 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+@using Earn.Dashboard.Web.Utils
+@model Dictionary<string, IEnumerable<string>>
+@{
+    ViewBag.Title = "Add User";
+}
+
+<div class="content-wrapper" style="min-height: 916px;">
+    <!-- Page header -->
+    <div class="row">
+        <div class="col-lg-12">
+            <ol class="breadcrumb">
+                <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+                <li class="active"><i class="fa fa-user-secret"></i> Admin</li>
+                <li class="active"><i class="fa fa-user-plus"></i> @ViewBag.Title</li>
+            </ol>
+        </div>
+    </div>
+
+    <section class="content">
+        
+        <div class="row">
+            <div class="col-xs-12">
+
+                <div class="box box-primary">
+                    <div class="box-header">
+                        <a href="https://idweb/identitymanagement/aspx/Groups/EditGroup.aspx?id=ddef6ead-35c2-472c-b60e-0cfc602d745f&_p=1" target="_blank" class="btn btn-primary"><i class="fa fa-plus"></i> Admin</a>
+                    </div>
+                    <div class="box-body">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Admins (redmond\earnit-admin)
+                                    </th>
+                                </tr>
+                            </thead>
+                            @if (Model[Config.Roles.Admin] != null)
+                            {
+                                foreach (var item in Model[Config.Roles.Admin])
+                                {
+                                    <tr>
+                                        <td>@item</td>
+                                    </tr>
+                                }
+                            }
+                        </table>
+                    </div>
+                </div>
+
+                <div class="box box-primary">
+                    <div class="box-header">
+                        <a href="https://idweb/identitymanagement/aspx/Groups/EditGroup.aspx?id=09718854-7ff7-433f-b8e5-656dde0b516f&_p=1" target="_blank" class="btn btn-primary"><i class="fa fa-plus"></i> User</a>
+                    </div>
+                    <div class="box-body">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th>
+                                    Users (redmond\earnit)
+                                </th>
+                            </tr>
+                            </thead>
+                            @if (Model[Config.Roles.User] != null)
+                            {
+                                foreach (var item in Model[Config.Roles.User])
+                                {
+                                    <tr>
+                                        <td>@item</td>
+                                    </tr>
+                                }
+                            }
+                        </table>
+                    </div>
+                </div>               
+
+                <div class="box box-primary">
+                    <div class="box-header">
+                        <a href="https://idweb/identitymanagement/aspx/Groups/EditGroup.aspx?id=a922439b-c882-4264-be71-65125e6a9cb5&_p=1" target="_blank" class="btn btn-primary"><i class="fa fa-plus"></i> Support</a>
+                    </div>
+                    <div class="box-body">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Support (redmond\earnit-support)
+                                    </th>
+                                </tr>
+                            </thead>
+                            @if (Model[Config.Roles.Support] != null)
+                            {
+                                foreach (var item in Model[Config.Roles.Support])
+                                {
+                                    <tr>
+                                        <td>@item</td>
+                                    </tr>
+                                }
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

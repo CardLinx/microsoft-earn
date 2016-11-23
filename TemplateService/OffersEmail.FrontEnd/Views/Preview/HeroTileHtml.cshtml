@@ -1,0 +1,60 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved. 
+Licensed under the MIT license. See LICENSE.txt file in the project root for full license information.
+-->
+@model OffersEmail.Models.DealPreviewModel
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8" />
+    <meta name="author" content="Microsoft" />
+    <meta name="copyright" content="© 2014 Microsoft" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Hero Tile Preview</title>
+    <link href="@string.Concat(Request.Url.Scheme, "://", Request.Url.Host, ":", Request.Url.Port, "/Content/css/deal-preview.min.css?ver=05152014")" rel="stylesheet" />
+</head>
+<body>
+    <div id="main">
+        <section id="hero">
+            <div class="title-bar">
+                <h2 class="business">@Model.Business.Name</h2>
+            </div>
+            <div class="display">
+                <div class="image-container">
+                    <img alt="@Model.Business.Name" src="@string.Concat(Request.Url.Scheme, "://", Request.Url.Host, ":", Request.Url.Port, "/Image/Get?url=", HttpUtility.UrlPathEncode(Model.ImageUrl))" class="image" />
+                </div>
+                <div class="clear"></div>
+            </div>
+
+            <div class="details">
+                <div class="content-container">
+                    <div class="text">
+                        <p class="title">@Model.Title</p>
+                        <p class="attribution">@Model.Attribution</p>
+                        <p class="description">@Model.Description</p>
+                    </div>
+                </div>
+                <div class="overlay-content">
+                    <div class="save-container">
+                        <p class="meta-label">Save</p>
+                        <p class="meta-data">@Model.GetDiscount</p>
+                    </div>
+
+
+                    <div class="location">
+                        <span class="icon-push-pin"></span>
+                        <p>@Model.GetLocation</p>
+                    </div>
+
+                    <a class="viewoffer-button">View offer</a>
+                </div>
+            </div>
+
+            <div class="clear"></div>
+        </section>
+    </div>
+</body>
+</html>
